@@ -104,7 +104,7 @@ $http.get('/api/dashbord/results/?userId='+ data.userDetails.id)
             {
                 if(data){
                     clinicName = data[0].ClinicName;
-                    alert(clinicName);
+                    //alert(clinicName);
                 }
             }).error(function(e){
 
