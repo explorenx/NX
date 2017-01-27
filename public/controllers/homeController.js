@@ -100,7 +100,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     $scope.metaDataTitle = dd.title;
     $scope.metaDataDescription = dd.description;
     $scope.metaDataKeywords = dd.keywords;
-    alert($scope.metaData);
+    //alert($scope.metaData);
 
 
     $window.document.getElementsByName('title')[0].content = dd.title;
