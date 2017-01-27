@@ -1,0 +1,25 @@
+<div  class="row" ng-controller="updateHomeServicesGalleryAllController as up" ng-init="initHomeUpdate()">
+
+            <div class="col-sm-8 col-sm-offset-2 text-center" >
+
+                <input type="hidden" ng-model="formData._id" >
+                <input type="hidden" ng-model="formData.ClinicId" >
+                <input type="text" ng-model="formData.DoctorName"  class="form-control text-center" placeholder="Enter Doctorname" ng-required="true">
+                <!--<input type="text" ng-model="formData.Image"  class="form-control text-center" placeholder="Enter Image " ng-required="true">-->
+
+                <input 
+							type="file" 
+							ngf-select
+							ng-model="up.file" 
+							name="file"
+							ngf-pattern="'image/*'"
+							accept="image/*" 
+							ngf-max-size="20MB" 
+							/>
+
+                <input type="text" ng-model="formData.Description"  class="form-control text-center" placeholder="Enter Description" ng-required="true">
+                
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="EditRec()" >Update</button>
+
+            </div>
+</div>

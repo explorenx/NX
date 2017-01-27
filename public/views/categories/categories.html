@@ -1,0 +1,58 @@
+<div id="myForm" class="container" ng-controller="categoriesController">
+    <a href="/addCategories"><i class="fa fa-shield"></i> Add New Category</a>
+    <div class="cols-md-6 well">Search: <input ng-model="txtSearch" class="form-control input-lg text-center"></div>
+
+    <!--<div class="col-xs-6" ng-repeat="item in categories | filter:txtSearch track by $index ">
+        <div class ="panel panel-success">
+            <label class="label label-primary text-center"> <span class="strong ">{{item.mainCategoryName}}</span> </label>
+                <li ng-repeat="rec in item.category">
+                    <span class="strong days-timing">{{rec.name}} 
+                        <br/>
+                        <ul>subs : 
+                            <li  ng-repeat="res in rec.subcategories track by $index">
+                                {{res}}
+                            </li>
+                            </ul>
+                    </span>
+                </li>
+            <span class="fa fa-trash-o  pull-right" aria-hidden="true"  ng-click="deleteRec(item._id)"></span>
+        </div>
+    </div>-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Main Category</th>
+                <th> Category</th>
+                <th class="pull-right">Delete</th>
+                <!--<th> Sub Category</th>-->
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in categories | filter:txtSearch track by $index ">
+            <tr>
+                <td>{{item.mainCategoryName}}<a href="/updateCategory/{{item._id}}"> (Edit) </a></td>
+                <td> <label ng-repeat="rec in item.category">{{rec.name}}<span ng-if="rec.name.length">, </span></label> </td>
+                <td ng-repeat="res in rec.subcategories track by $index">{{res}}</td>
+
+                <td><a class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal{{$index}}">Delete </a>
+                    <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title pull-left">Are You Want To Delete <b>{{item.mainCategoryName}}</b></h3>
+                                </div>
+                                <div class="modal-body pull-left">
+                                </div>
+                                <div class="modal-footer">
+                                    <button ng-click="deleteRec(item._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

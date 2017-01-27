@@ -1,0 +1,24 @@
+<div  class="row" ng-controller="updateHomeServicesGalleryAllController as up" ng-init="initGallaryUpdate()">
+
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        
+        <input type="hidden" ng-model="formData._id">
+        <input type="hidden" ng-model="formData.ClinicId" >
+        <div class="col-md-12">
+                    <label>Update Gallary</label>
+                    <input  <input  <input
+                            type="file" 
+							ngf-select
+							ng-model="up.file" 
+							name="file"
+							ngf-pattern="'image/*'"
+							accept="image/*" 
+							ngf-max-size="20MB" 
+							/>
+        </div>       
+                <div><br></div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="EditGallary()" >Update Gallary</button>
+
+    </div>
+           
+</div>

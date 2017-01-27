@@ -1,0 +1,29 @@
+
+
+
+<div  class="row" ng-controller="updateHomeServicesGalleryAllController" ng-init="initContactUpdate()">
+
+    <div class="col-sm-8 col-sm-offset-2 text-center" >
+        <label>Update Contact</label>
+            <input type="hidden" ng-model="formData._id" >
+            <input type="hidden" ng-model="formData.ClinicId" >
+            
+        <div class="col-md-12">
+
+            <label  >Address1</label>
+					<input type="text" ng-model="formData.address1" name=""  class="form-control text-center" placeholder="Enter a Address ">
+					<label  >Address2</label>
+                 <input type="text" ng-model="formData.address2" id="address" name=""  class="form-control text-center" placeholder="Enter a Address ">
+            
+            <div class="col-md-6">
+                Enter Mobile No.
+                <input type="text" ng-model="formData.clinicmobile"  class="form-control text-center" placeholder="Enter Mobile" ng-required="true">
+            </div>
+        </div>
+        
+                <div><br></div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="EditContact()" >Update Contact</button>
+
+            </div>
+            <div><br><hr/></div>
+</div>

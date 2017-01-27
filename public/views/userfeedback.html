@@ -1,0 +1,17 @@
+<div class="col-lg-12 col-md-12 col-xs-12">
+<form>
+    <div class="form-group">
+        <label >Add Feedback</label>
+        <input type="hidden" ng-model="formData._id" >
+
+        <div>
+            <label  >Username</label>
+            <input type="text" ng-model="item.userName" name=""  class="form-control text-center" placeholder="Enter a Username ">
+            <label  >Feedback</label>
+            <input type="text" ng-model="item.feedback" name=""  class="form-control text-center" placeholder="Enter a Feedback ">
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="addFeedback()">{{btnValue}}</button>
+</form>
+</div>

@@ -1,0 +1,576 @@
+<div class="col-lg-12">
+    <div class="tabtitle">
+        <h2>Search Your Requirement</h2>
+        </br>
+    </div>
+</div>
+
+<div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
+    <div class="col-md-12 col-xs-12">
+        <form>
+            <div class="col-md-3 col-xs-12 pull-left" style="padding-left: 10px; padding-top: 20px">
+
+                <!--<label for="exampleInputEmail1"></label>-->
+                <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
+
+                <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+											</select>
+                <!--{{client.selectedCityModel}}-->
+
+
+            </div>
+
+            <div class="col-md-3 col-xs-12 pull-left" style=" padding-top: 20px">
+                <div>
+                    <!--<label for="exampleInputPassword1"></label>
+                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
+                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas " ng-disabled="disabled">
+												<option value="">Select Area</option>
+											</select>
+                    <!--{{MainAreas.selectedAreaModel}}-->
+                </div>
+                <!--<div class="bar" ng-init="EnableData = false">
+												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
+												<ul ng-show="EnableData" >
+													<li ng-repeat="i in items | searchFor:searchString" >
+														<a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
+														<p>{{i.title}}</p>
+													</li>
+
+													{{EnableData}}
+												 </ul>
+											</div>-->
+
+
+
+            </div>
+
+
+            <div class="col-md-5 col-xs-8 pull-left">
+
+                <div class="form-group" ng-blur="EnableData = false">
+                    <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                    />
+
+                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                        <div ng-repeat="i in Categories |  filter : searchString track by $index" class="list_dropdown">
+                            <span><a href="" ng-click="gotoResultsPageByCategory(i)">
+                                                                    <img ng-src=""  /><b>{{i}}</b>
+                                                                </a>
+                                                                
+                                                        </span>
+                        </div>
+                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index" class="list_dropdown">
+                            <span><a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                                                    <b>{{i}}</b>
+                                                                </a>
+                                                                
+                                                        </span>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /> {{i.ClinicName}}
+                                <br/></a>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <span class="text-center"> {{i.DoctorName}}</span>
+                                <br/>
+                            </a>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <span class="text-center"> {{i.speciality}}</span>
+                                <br/>
+                            </a>
+                        </div>
+
+
+
+                        <div>
+                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
+                                                            Clinics named "{{searchString}}"({{searchString.length}})
+                                                        </a><br/>
+                            <hr style="border-color: lightskyblue;">
+                        </div>
+                        <div>
+                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
+                                                            Doctors named "{{searchString}}"({{searchString.length}})
+                                                        </a><br/>
+                            <hr style="border-color: lightskyblue;">
+                        </div>
+
+
+
+                    </div>
+                    <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                                
+                                                <div ng-show="EnableTextInputResult == true">
+                                                    
+                                                    <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                                        <h5 ng-show="$index == 0"> Doctors </h5>
+                                                        <a href="/homepage/{{i._id}}"><img ng-src="" />{{i.DoctorName}}</a><br/>
+                                                        <span> {{i.ClinicName}} </span><br/>
+                                                        <span>{{i.speciality}}</span>
+                                                        <hr style="border-color: lightskyblue;">
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>-->
+                    <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
+                                                <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
+                                                    <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
+
+                                                </div>
+                                            </div>-->
+
+                </div>
+            </div>
+
+            <div class="col-md-1 col-xs-2 pull-left topmargin">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="bs-example">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#health">Health and Medicine</a></li>
+            <li><a data-toggle="tab" href="#school">Schools and Institutes</a></li>
+            <li><a data-toggle="tab" href="#beauty">Beauty Care</a></li>
+            <li><a data-toggle="tab" href="#sports">Sports and Recreation</a></li>
+            <li><a data-toggle="tab" href="#travel">Travel and Transport</a></li>
+            <li><a data-toggle="tab" href="#build">Building & Construction</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="health" class="tab-pane fade in active">
+                <h3>
+                    </br>
+                </h3>
+
+                <div class="row row_top">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"> <img src="/assets/img/Dentist.png" alt="Dentist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="/showResults/Pune/Dentist">
+                                <h4>Dentist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Homeopathy.png" alt="homeopathy bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Homeopathy Clinics</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img class="img" src="assets/img/Ayurveda.png" alt="Ayurveda bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Ayurvedic Clinics</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/gynecologist.png" alt="Gynecologist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Gynecologist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Dermatologist.png" alt="Dermatologist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Dermatologist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        </br>
+                    </div>
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/ENT.png" alt="E-N-T specialist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>E-N-T Specialist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Urologist.png" alt="Urologist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Urologist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Opthalmologist.png" alt="Opthalmologist bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Opthalmologist</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail img center-block">
+                            <a href="#"><img src="assets/img/laboratory.png" alt="Diagnostic labs bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Diagnostic labs</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+
+                        <div class="caption tabtitle">
+                            <div class="thumbnail center-block">
+                                <a href="#"><img src="assets/img/Gym-&-Fitness.png" alt="Gym-and-fitness bizzbazar"></a>
+                            </div>
+                            <a href="#">
+                                <h4>Gym & fitness</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                </div>
+            </div>
+
+
+            <div id="school" class="tab-pane fade">
+                <h3>
+                    </br>
+                </h3>
+                <div class="row ">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Preschool.png" alt="Preschools bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="/showResults/Pune/preschool">
+                                <h4>Preschools</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Institute.png" alt="Insitutes bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Homeopathy Clinics</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"> <img class="img" src="assets/img/Interior.png" alt="Private Turions bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Private Tutions</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+
+            <div id="beauty" class="tab-pane fade">
+                <h3>
+                    </br>
+                </h3>
+                <div class="row row_top">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Salon-Spa.png" alt="Salon & Spa bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Salon & Spa</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+            <div id="sports" class="tab-pane fade">
+                <h3>
+                    </br>
+                </h3>
+                <div class="row row_top">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Sports.png" alt="Sports bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Sports</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Dance-Academy.png" alt="Dance academy bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Dacne Academy</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Musical-Academy.png" alt="Music academy bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Music Academy</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+            <div id="travel" class="tab-pane fade">
+                <h3>
+                    </br>
+                </h3>
+                <div class="row row_top">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Travel-Agent.png" alt="Travel Agents bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Travel Agents</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Movers-&-Packers.png" alt="Packers and Movers bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Packers & Movers</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+            <div id="build" class="tab-pane fade">
+                <h3>
+                    </br>
+                </h3>
+                <div class="row row_top">
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Architect.png" alt="Architects bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Architect</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Landscape-Designier.png" alt="Landscape Designers bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Landscape Designers</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+                        <div class="thumbnail center-block">
+                            <a href="#"><img src="assets/img/Interior.png" alt="Interior Designers bizzbazar"></a>
+                        </div>
+
+                        <div class="caption tabtitle">
+                            <a href="#">
+                                <h4>Interior Designers</h4>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-2 col-md-2">
+
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

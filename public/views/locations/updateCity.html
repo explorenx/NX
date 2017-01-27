@@ -1,0 +1,34 @@
+<div  class="row" ng-controller="citiesController" ng-init="initUpdateCity()">
+
+            <div class="col-sm-8 col-sm-offset-2 text-center" >
+				<form name="citiesform">
+					<div class="form-group">
+						<label for="Category" >City</label>
+						<input type="hidden" ng-model="formData._id" >
+						<input type="text" ng-model="formData.city" name="city1" class="form-control text-center" placeholder="Enter City" ng-required="true">
+						<div ng-show="citiesform.city1.$touched && citiesform.city1.$invalid">
+							<small style="color: red; display: block; text-align: center">Please Enter City</small>
+						</div>
+						<div ng-repeat="cat in tempCategories">
+							<label for="Category" >Area</label>
+							<input type="text" ng-model="cat.id" name="area" class="form-control text-center" placeholder="Enter a area" ng-required="true">
+							<div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
+								<small style="color: red; display: block; text-align: center">Please Enter Area</small>
+							</div>
+							<hr />
+							<label for="choice" >Sub-Area</label>
+							<div class="form-group" ng-repeat="choice in cat.subs">
+								<input type="text" ng-model="choice.name" name="subarea"  class="form-control text-center" placeholder="Enter a sub area">
+							</div>
+							<button class="btn btn-outline-info"  ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
+							<hr />
+							<button class="btn btn-default"  ng-click="addNewCategory()" >Add Area</button>
+								<button class="btn btn-info"  ng-click="clearForm()" >Clear Form</button>
+						</div>
+					</div>
+
+					<br />
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
+				</form>
+			</div>
+</div>

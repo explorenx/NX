@@ -1,0 +1,40 @@
+<div id="myForm" class="row" ng-controller="categoriesController">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form name="categoryForm">
+            <div class="form-group">
+                <label for="Category">Main Category </label>
+                <input type="hidden" ng-model="formData._id">
+                <input type="text" ng-model="formData.mainCategoryName" name="MainCategory" class="form-control text-center" placeholder="Enter a Main Category" ng-required="true">
+                <div ng-show="categoryForm.MainCategory.$touched && categoryForm.MainCategory.$invalid">
+                    <small style="color: red; display: block; text-align: center">Please Enter Main Category</small>
+                </div>
+                <div ng-repeat="cat in tempCategories">
+                    <label for="Category">Category</label>
+                    <input type="text" ng-model="cat.id" name="category" class="form-control text-center" placeholder="Enter a category" ng-required="true">
+                    <input type="text" ng-model="cat.categoryDescription" name="" class="form-control text-center" placeholder="Enter a categoryDescription">
+                    <input type="text" ng-model="cat.subCategoryDescription" name="" class="form-control text-center" placeholder="Enter a subCategoryDescription">
+
+                    <div ng-show="categoryForm.category.$touched && categoryForm.category.$invalid">
+                        <small style="color: red; display: block; text-align: center">Please Enter Category</small>
+                    </div>
+                    <hr />
+                    <label for="choice">Sub-categories</label>
+                    <div class="form-group" ng-repeat="choice in cat.subs">
+                        <input type="text" ng-model="choice.name" name="" class="form-control text-center" placeholder="Enter a sub category">
+
+
+                    </div>
+                    <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-category</button>
+                    <hr />
+                    <button class="btn btn-default" ng-click="addNewCategory()">Add Category</button>
+                </div>
+            </div>
+
+            <br />
+            <button type="submit" class="btn btn-primary btn-lg" ng-disabled="categoryForm.$invalid" ng-click="createEditRec()">{{btnValue}}</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- refer this link  http://plnkr.co/edit/JCCa1f?p=preview-->

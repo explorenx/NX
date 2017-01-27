@@ -1,0 +1,594 @@
+<!--
+<div class="text-center" ng-controller="dashResultsController">
+            <label>Search: <input ng-model="userSearch" class="form-control input-lg text-center"></label>
+        </div>
+        <div class="col-xs-6" ng-repeat="item in results | filter:userSearch">
+            <div class ="panel panel-info">
+                <div class ="row">
+                        <div class ="col-xs-4 doc-photo-container">
+                            <div ng-if="todo.imageUrl != ''">
+                                <img src="{{item.imageUrl }}" class="img-rounded"  width="100" height="120" style="position:relative; width: 100px; height: 120px;margin-left:10px;margin-top:10px;">
+                            </div>
+                            <div ng-if="todo.imageUrl == ''">
+                                <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" width="100" height="120" style="position:relative; width: 100px; height: 120px;margin-left:10px;margin-top:10px;">
+                            </div>
+                        </div>
+                        <div class ="col-xs-4 doc-details-block">
+                            <h4>{{item.first_name}} {{item.last_name}}</h4>
+                            <p>{{item.qualification}} , {{item.speciality}}, {{item.experience}}</p>
+                        </div>
+
+                        <div class="patient_experience_score recommend">
+
+                            <span> <p>Cardiologist , 25 Years Experience</p></span>
+                                        <span class="practo-icon icon-like"></span>
+                                            93%  <span class="doctor-votes">(46  votes)</span>
+                        </div>
+                                    <a href="#" class="fm-source">{{item.contact}} </a>
+                                    <span itemprop="addressLocality">Kalyani Nagar</span>, <span itemprop="addressRegion">Pune</span>
+                                    <span class="fees-amount">INR 500</span>
+                        <div class="timings-block">
+                            <p><span class="strong days-timing">MON-SAT</span><br><span class="hours-timing">4:00 PM-8:00 PM</span></p>
+                            <div class="text-center">
+                                <span class="fa fa-pencil" aria-hidden="true" ng-click="editClient(todo._id)"></span>
+                                <span class="fa fa-trash-o " aria-hidden="true"  ng-click="deleteTodo(todo._id)"></span>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>-->
+<!--  new code  -->
+
+<div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1" ng-controller="InstantSearchController">
+    <div class="col-md-12 col-xs-12">
+        <form>
+            <div class="col-md-3 col-xs-12 pull-left" style="padding-left: 10px; padding-top: 20px">
+
+                <!--<label for="exampleInputEmail1"></label>-->
+                <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
+
+                <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+											</select>
+                <!--{{client.selectedCityModel}}-->
+
+
+            </div>
+
+            <div class="col-md-3 col-xs-12 pull-left" style=" padding-top: 20px">
+                <div>
+                    <!--<label for="exampleInputPassword1"></label>
+                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
+                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas " ng-disabled="disabled">
+												<option value="">Select Area</option>
+											</select>
+                    <!--{{MainAreas.selectedAreaModel}}-->
+                </div>
+                <!--<div class="bar" ng-init="EnableData = false">
+												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
+												<ul ng-show="EnableData" >
+													<li ng-repeat="i in items | searchFor:searchString" >
+														<a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
+														<p>{{i.title}}</p>
+													</li>
+
+													{{EnableData}}
+												 </ul>
+											</div>-->
+
+
+
+            </div>
+
+
+            <div class="col-md-5 col-xs-8 pull-left">
+
+                <div class="form-group" ng-blur="EnableData = false">
+                    <label for="exampleInputPassword1"></label>
+                    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                    />
+
+                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                        <div ng-repeat="i in Categories |  filter : searchString track by $index" class="list_dropdown">
+                            <span><a href="" ng-click="gotoResultsPageByCategory(i)">
+                                                                    <img ng-src=""  /><b>{{i}}</b>
+                                                                </a>
+                                                                
+                                                        </span>
+                        </div>
+                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index" class="list_dropdown">
+                            <span><a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                                                    <b>{{i}}</b>
+                                                                </a>
+                                                                
+                                                        </span>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /> {{i.ClinicName}}
+                                <br/></a>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <span class="text-center"> {{i.DoctorName}}</span>
+                                <br/>
+                            </a>
+                        </div>
+
+                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
+
+                            <a href="/homepage/{{i._id}}">
+                                <span class="text-center"> {{i.speciality}}</span>
+                                <br/>
+                            </a>
+                        </div>
+
+
+
+                        <div>
+                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
+                                                            Clinics named "{{searchString}}"({{searchString.length}})
+                                                        </a><br/>
+                            <hr style="border-color: lightskyblue;">
+                        </div>
+                        <div>
+                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
+                                                            Doctors named "{{searchString}}"({{searchString.length}})
+                                                        </a><br/>
+                            <hr style="border-color: lightskyblue;">
+                        </div>
+
+
+
+                    </div>
+                    <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                                
+                                                <div ng-show="EnableTextInputResult == true">
+                                                    
+                                                    <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                                        <h5 ng-show="$index == 0"> Doctors </h5>
+                                                        <a href="/homepage/{{i._id}}"><img ng-src="" />{{i.DoctorName}}</a><br/>
+                                                        <span> {{i.ClinicName}} </span><br/>
+                                                        <span>{{i.speciality}}</span>
+                                                        <hr style="border-color: lightskyblue;">
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>-->
+                    <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
+                                                <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
+                                                    <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
+
+                                                </div>
+                                            </div>-->
+
+                </div>
+            </div>
+
+            <div class="col-md-1 col-xs-2 pull-left topmargin">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container" ng-controller="dashResultsController">
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12 ">
+        <div class="col-md-9 col-xs-12">
+            <div class="well_new">
+                <h4 class="text-center" style="color:#1e97cc; font-weight:bold;">{{client.ClinicName}}</h4>
+            </div>
+
+            <!-- Profile Title End -->
+            <div class="clearfix"></div>
+            <!-- Client Profile Start -->
+            <div class="col-md-12 col-sm-12 col-xs-12 well_new">
+                <div class="col-md-4 col-sm-6 col-xs-12 ">
+                    <div ng-if="client.imageUrl != ''">
+                        <img src="{{client.imageUrl }}" class="img-rounded img-responsive" style="position:relative; width: 200px; height: 200px;margin-left:10px;margin-top:10px;">
+                    </div>
+                    <div ng-if="client.imageUrl == ''">
+                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-12 profileheight">
+
+                                <h4 style="color:#1e97cc;"><b>{{client.DoctorName}}</b></h4>
+                                <span>{{client.Profession}} | {{client.speciality}}</span>
+                                <br>
+                                <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong> </span>{{client.Experience}} Years
+                                <br>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-3">
+                                        <span style="color:#1e97cc;"><strong><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :</strong></span>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <span>{{client.FirstHalfTime}} | </span><br />
+                                        <span>{{client.SecondHalfTime}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <span style="color:#1e97cc;"><strong><i class="fa fa-map-marker" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span> &nbsp;{{client.Area}}</span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 profileheight">
+
+                            <span style="color:#1e97cc;"><b> Address :</b></span><br>
+
+                            <span>{{client.address1}}</span><br>
+                            <span> {{client.address2}},</span><br>
+                            <span>{{client.Area}},{{client.City}}</span><br>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-xs-12 text-right topmargin">
+                        <!--<button type="button" class="btn btn-info">Book Appiontment Online</button>-->
+                        <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal">Enquire Now</button>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3 class="modal-title pull-left">Call For Assistance</h3>
+                                    </div>
+                                    <div class="modal-body pull-left">
+                                        <h4>{{item.ClinicName}}</h4>
+                                        <p>
+                                            <h3>Call-8381057555 (Extension Number-{{client.extensionNo}})</h3>
+                                        </p>
+                                        <p><b>Note-</b>Please mention Extension Number After Calling</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--<div class="text-center">
+                            <span class="fa fa-pencil" aria-hidden="true" ng-click="editClient(item._id)"></span>
+                            <span class="fa fa-trash-o " aria-hidden="true" ng-click="deleteRec(item._id)"></span>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <!-- Client Menu Start -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <nav class="navbar  navbar-default">
+
+                    <!-- <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+
+                                </button>
+
+                            </div>-->
+                    <div class="collapse navbar-collapse">
+                        <!--<ul class="nav navbar-nav">-->
+                        <!--<li class="active"><a data-toggle="tab" href="#"> Home</a></li>-->
+                        <!--<li><a data-toggle="tab" href="#">Services</a></li>-->
+                        <!--<li><a data-toggle="tab" href="#">Feedback</a></li>-->
+                        <!--<li><a data-toggle="tab" href="#">Gallery</a></li>-->
+                        <!--<li><a data-toggle="tab" href="#">Contact Us</a></li>-->
+                        <!--</ul>-->
+
+                        <ul class="nav1 navbar-nav" ng-repeat="tab in tabs">
+                            <li ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)">{{tab.title}}</li>
+                        </ul>
+
+
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="login">
+                                <a href="{{client.Socical.facebook}}" ng-show="client.Socical.facebook" title="{{client.Socical.facebook}}"> <i class=" fa fa-facebook"></i></a>
+                            </li>
+                            <li class="login">
+                                <a href="{{client.Socical.twitter}}" ng-show="client.Socical.twitter " title="{{client.Socical.twitter}}"> <i class=" fa fa-twitter"></i> </a>
+                            </li>
+                            </a>
+                            </li>
+                            <li><a href="{{client.Socical.google}}" ng-show="client.Socical.google" title="{{client.Socical.google}}"><i class=" fa fa-google-plus"></i></a></li>
+                            </a>
+                            </li>
+                            <li><a href="{{client.Socical.Youtube}}" ng-show="client.Socical.Youtube" title="{{client.Socical.Youtube}}"><i class=" fa fa-youtube-play" ></i></a></li>
+                            </a>
+                            </li>
+                            <li><a href="{{client.Socical.instagram}}" ng-show="client.Socical.instagram" title="{{client.Socical.instagram}}"><i class=" fa fa-star-o"></i></a></li>
+                            </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+            </div>
+            <!-- Client Menu End -->
+            <div id="mainView">
+                <div ng-include="currentTab"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--   new code end here  -->
+
+    <!-- <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form name="homeform">
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+    <!--  <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">-->
+    <!-- <input type="hidden" ng-model="formData._id">
+                        <h4>Profile Info</h4>
+                        <input type="text" ng-model="formData.Profile.address1" name="" class="form-control text-center" placeholder="Please Enter Address Line 1">
+                        <input type="text" ng-model="formData.Profile.address2" name="" class="form-control text-center" placeholder="Please Enter Address Line 2">
+
+                        <h4>Profile Home Info</h4>
+                        <input type="text" ng-model="formData.Home.Image" name="" class="form-control text-center" placeholder="Please Enter Image Url">
+                        <input type="text" ng-model="formData.Home.DocName" name="" class="form-control text-center" placeholder="Please Enter Doctor Name">
+                        <textarea ng-model="formData.Home.Description" class="form-control text-center" placeholder="Please Enter Doctor Description"></textarea>
+                        <!--<input type="text" ng-model="formData.Home.Description" name="" class="form-control text-center" placeholder="Please Enter Doctor Description">-->
+    <!--  <input type="text" ng-model="formData.Home.OtherInfo1" name="" class="form-control text-center" placeholder="Please Enter Doctor OtherInfo1">
+                        <input type="text" ng-model="formData.Home.OtherInfo2" name="" class="form-control text-center" placeholder="Please Enter Doctor OtherInfo2"><br />
+                        <input type="button" value="Add Another Doctor" ng-click=""/>
+                        <h4>Profile Services Info</h4>
+                        <input type="text" ng-model="formData.Services.ServiceName" name="" class="form-control text-center" placeholder="Please Enter Service Name">
+                        <input type="text" ng-model="formData.Services.ServiceimageUrl" name="" class="form-control text-center" placeholder="Please Enter Service Image Url">
+                        <textarea ng-model="formData.Services.ServiceInfo" class="form-control text-center" placeholder="Please Enter Service Info"></textarea><br />
+                        <!--<input type="text" ng-model="formData.Services.ServiceInfo" name="" class="form-control text-center" placeholder="Please Enter Service Info"><br />-->
+    <!--<input type="button" value="Add Another Service" ng-click=""/>
+                        <h4>Profile Gallary</h4>
+                        <input type="text" ng-model="formData.Gallery.GallaryImages" name="" class="form-control text-center" placeholder="Please Enter Gallary Image Url"><br />
+                        <input type="button" value="Add Another Photo" ng-click=""/>
+                        <h4>Profile Contact</h4>
+                        <input type="text" ng-model="formData.Contact.address" name="" class="form-control text-center" placeholder="Please Enter Address">
+                        <input type="text" ng-model="formData.Contact.email" name="" class="form-control text-center" placeholder="Please Enter Email">
+                        <input type="text" ng-model="formData.Contact.contact" name="" class="form-control text-center" placeholder="Please Enter Contact Number">
+                        <input type="text" ng-model="formData.Contact.lat" name="" class="form-control text-center" placeholder="Please Enter Latitude">
+                        <input type="text" ng-model="formData.Contact.long" name="" class="form-control text-center" placeholder="Please Enter Longitude">
+
+                        <h4>Profile Social Media</h4>
+                        <input type="text" ng-model="formData.DoctorSocialMedia.Facebook" name="" class="form-control text-center" placeholder="Please Enter Facebook Link">
+                        <input type="text" ng-model="formData.DoctorSocialMedia.Twitter" name="" class="form-control text-center" placeholder="Please Enter Twitter Link">
+                        <input type="text" ng-model="formData.DoctorSocialMedia.Google" name="" class="form-control text-center" placeholder="Please Enter Google Link">
+                        <input type="text" ng-model="formData.DoctorSocialMedia.Youtube" name="" class="form-control text-center" placeholder="Please Enter Youtube Link">
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+    <!-- <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()" ng-disabled="homeform.$invalid">{{btnValue}}</button>
+                    <button class="btn btn-primary" ng-click="reset(); homeform.$setPristine()">RESET</button>
+                </form>
+            </div>
+        </div>-->
+</div>
+</div>
+
+<script type="text/ng-template" id="one.tpl.html">
+    <div id="Home">
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in HomeData | filter : data.ClinicId = clientId">
+            <div class="col-lg-12">
+                <h4 class="pull-left">{{data.DoctorName}}</h4>
+            </div>
+            <div class="col-lg-4 col-xs-12 doc-photo-container">
+                <div class="doc-photo-container">
+                    <div ng-if="data.Image != ''">
+                        <img src="{{data.Image }}" class="img-rounded" width="200" height="200" style="position:relative; margin-left:10px;margin-top:10px;">
+                    </div>
+                    <div ng-if="data.Image == ''">
+                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" width="200" height="200" style="position:relative; width: 200px; height: 200px;margin-left:10px;margin-top:10px;">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8 text-justify"> {{data.Description}}</div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="two.tpl.html">
+    <div id="Services">
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ServiceData | filter : data.ClinicId = clientId">
+            <div class="col-md-3  col-xs-12">
+                <div ng-if="data.Image != ''">
+                    <img src="{{data.ServiceImage }}" class="img-rounded" width="150" height="150" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
+                </div>
+                <div ng-if="data.Image == ''">
+                    <img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" style="width: 150px" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <h4>{{data.ServiceName}}</h4>
+                {{data.ServiceInfo}}
+            </div>
+
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <hr>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="three.tpl.html">
+    <div id="Feedback">
+        <div class="col-md-12 col-xs-12 well_new bg-default">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="input-group"> <input ng-model="txtSearch" class="form-control input-lg text-center" placeholder="Search Feedback"></div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                <a class="btn btn-info" data-toggle="modal" data-target="#myModal1"><i class="fa fa-shield" ></i> Give Feedback</a>
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title pull-left">Give Feedback</h3>
+                            </div>
+                            <div class="modal-body pull-left">
+                                <form>
+                                    <div class="form-group">
+                                        <label>Add Feedback</label>
+                                        <input type="hidden" ng-model="formData._id">
+
+                                        <div>
+                                            <label>Username</label>
+                                            <input type="text" ng-model="item.userName" name="" class="form-control text-center" placeholder="Enter a Username ">
+                                            <label>Feedback</label>
+                                            <input type="text" ng-model="item.feedback" name="" class="form-control text-center" placeholder="Enter a Feedback ">
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-lg" ng-click="addFeedback()">Give Feedback</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 help-block"></div>
+        <div class="col-md-12 col-xs-12 help-block"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12" ng-repeat="data in FeedbackData | filter : data.ClinicId = clientId">
+            <div class="col-md-1 col-sm-1 col-xs-1">
+                <i class="fa fa-th fa-3x img-responsive" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-11 col-sm-9 col-xs-9">
+
+                <div class="col-md-12 col-xs-12 pull-left">
+                    <h4 class="pull-left"> {{data.userName}}</h4>
+                </div>
+                <div class="col-md-12 col-xs-12 col-md-offset-1 col-xs-offset-1 pull-left">
+                    <p class="pull-left">{{data.feedback}}</p>
+                </div>
+                <div class="col-md-12 col-xs-12 text-success pull-left">
+                    <p class="text-success pull-left">Was this review useful to you?</p>
+
+                    <i class="fa fa-thumbs-up fa-2x text-primary col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{data.likes}}
+                    <i class="fa fa-thumbs-down fa-2x text-muted col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{data.dislikes}}
+                </div>
+
+
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <hr>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="four.tpl.html">
+    <div id="Gallary">
+        <!-- <div class="carousel" id="slider" style="margin-left: 20px;">
+
+    <label class="labelSecurity"></label><br />
+        <div class="carousel-inner">
+        <div class="item" role="listbox" ng-class="{active:!$index}" ng-repeat="data in GallaryeData | filter : data.ClinicId = clientId">
+            <img src="{{ data.gallaryImage }}" width="460" height="345" class="item" alt="{{client.DoctorName}}">
+       </div>
+       <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+      <span class="fa fa-angle-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#slider" role="button" data-slide="next">
+      <span class="fa fa-angle-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    </div>
+ 
+</div>-->
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
+
+            <div id="pageone" class='col-sm-6 col-xs-12 col-md-3 col-lg-3' ng-repeat="data in GallaryeData | filter : data.ClinicId = clientId">
+
+                <div ng-if="data.gallaryImage != ''">
+                    <img src="{{data.gallaryImage }}" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;" data-toggle="modal" data-target="#my-modal{{$index}}">
+                    <div id="my-modal{{$index}}" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" data-dismiss="modal">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <img src="{{data.gallaryImage }}" class="img-responsive" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div ng-if="data.gallaryImage == ''">
+                    <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;">
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="five.tpl.html">
+    <div id="Contact">
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ContacteData | filter : data.ClinicId = clientId">
+            <div class="col-md-6">
+                <div class="panel panel-default" style="height: 300px">
+
+                    <div class="panel-body ">
+                        <h4>Our Address</h4>
+                        <div>
+                            <span>{{client.address1}}</span><br>
+                            <span> {{client.address2}},</span><br>
+                            <span>{{client.Area}},</span>
+                            <span>{{client.City}}</span>
+                        </div>
+                        <hr />
+                        <div>
+                            <h5>Contact</h5>
+                            #(+91){{data.clinicmobile}}<br /> {{data.clinicemail}}
+                            <br />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="map1" class="col-xs-6 iframe-container">
+            </div>
+
+        </div>
+    </div>
+</script>
