@@ -3,7 +3,7 @@ var express  = require('express');
 var app      = express(); 								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 var passport	= require('passport');
-var port  	 = process.env.PORT || 5000; 				// set the port
+var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
 
 var database = require('./config/database'); 			// load the database config
@@ -111,6 +111,6 @@ var storage = multer.diskStorage({ //multers disk storage settings
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
+app.listen(port, '142.4.14.149');
 console.log("App listening on port " + port);
 
