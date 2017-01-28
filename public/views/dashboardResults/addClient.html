@@ -1,15 +1,15 @@
-<div class="text-center" ng-controller="dashResultsController as up">
+<div class="container text-center" ng-controller="dashResultsController as up">
     <label>Search: <input ng-model="userSearch" class="form-control input-lg text-center"></label>
 
 
     <form name="ClientForm">
         <div class="col-lg-12">
             <input type="hidden" ng-model="formData._id">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="form-group">
                    <label class="col-lg-4">Email:</label>
                 <div class="col-lg-8">
-                    <input type="email" ng-model="formData.email" name="email" class="form-control text-center" placeholder="Enter Email" ng-required="true" />
+                    <input type="email" ng-model="formData.email" name="email" class="form-control text-center" placeholder="Enter Email" />
                     <div ng-show="ClientForm.email.$touched && ClientForm.email.$invalid">
                         <small style="color: red; display: block; text-align: center">Please Enter Valid Email</small>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label class="col-lg-4">Password:</label>
                     <div class="col-lg-8">
-                        <input type="password" ng-model="formData.password" name="password" class="form-control text-center" placeholder="Enter Password" ng-required="true" />
+                        <input type="password" ng-model="formData.password" name="password" class="form-control text-center" placeholder="Enter Password" />
                         <div ng-show="ClientForm.password.$touched && ClientForm.password.$invalid">
                             <small style="color: red; display: block; text-align: center">Please Enter Correct Password</small>
                         </div>
