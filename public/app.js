@@ -444,17 +444,17 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/addCities', {
                 templateUrl : 'views/locations/addCities.html',
                 controller : 'citiesController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
+               // resolve: {
+                  //  auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                     //   var userInfo = authenticationSvc.getUserInfo();
 
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                     //   if (userInfo) {
+                       //     return $q.when(userInfo);
+                       // } else {
+                         //   return $q.reject({ authenticated: false });
+                       // }
+                  //  }]
+               // }
             })
             .when('/updateCity/:id', {
                 templateUrl : 'views/locations/updateCity.html',
@@ -521,17 +521,17 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/categories', {
                 templateUrl : 'views/categories/categories.html',
                 controller : 'categoriesController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
+                //resolve: {
+                   // auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                       // var userInfo = authenticationSvc.getUserInfo();
 
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                       // if (userInfo) {
+                          //  return $q.when(userInfo);
+                      //  } else {
+                          //  return $q.reject({ authenticated: false });
+                       // }
+                   // }]
+                //}
             })
             .when('/addCategories', {
                 templateUrl : 'views/categories/addCategory.html',
