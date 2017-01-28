@@ -371,17 +371,17 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/addClient/:id?', {
                 templateUrl : 'views/dashboardResults/addClient.html',
                 controller : 'dashResultsController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
+                //resolve: {
+                    //auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                     //   var userInfo = authenticationSvc.getUserInfo();
 
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                      //  if (userInfo) {
+                      //      return $q.when(userInfo);
+                      //  } else {
+                      //      return $q.reject({ authenticated: false });
+                      //  }
+                   // }]
+               // }
             })
 
             
