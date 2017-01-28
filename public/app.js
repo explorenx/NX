@@ -394,48 +394,48 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/clientlist', {
                 templateUrl: 'views/dashboardResults/ClientList.html',
                 controller: 'dashResultsController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
+                //resolve: {
+                 //   auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                  //      var userInfo = authenticationSvc.getUserInfo();
 
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                   //     if (userInfo) {
+                   //         return $q.when(userInfo);
+                   //     } else {
+                   //         return $q.reject({ authenticated: false });
+                    //    }
+                  //  }]
+               // }
             })
 
             .when('/aditionalProfile/:id', {
                 templateUrl : 'views/dashboardResults/aditionalProfile.html',
                 controller : 'dashResultsController',
-                 resolve: {
-                            auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                            var userInfo = authenticationSvc.getUserInfo();
+                // resolve: {
+                    //        auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                     //       var userInfo = authenticationSvc.getUserInfo();
 
-                            if (userInfo) {
-                                return $q.when(userInfo);
-                            } else {
-                                return $q.reject({ authenticated: false });
-                            }
-                            }]
-                        }
+                     //       if (userInfo) {
+                     //           return $q.when(userInfo);
+                     //       } else {
+                     //           return $q.reject({ authenticated: false });
+                     //       }
+                     ////       }]
+                   //     }
             })
             .when('/showResults', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
-                  resolve: {
-                            auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                            var userInfo = authenticationSvc.getUserInfo();
+                  //resolve: {
+                         //   auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                          //  var userInfo = authenticationSvc.getUserInfo();
 
-                            if (userInfo) {
-                                return $q.when(userInfo);
-                            } else {
-                                return $q.reject({ authenticated: false });
-                            }
-                            }]
-                        }
+                          //  if (userInfo) {
+                           //     return $q.when(userInfo);
+                         //   } else {
+                          //      return $q.reject({ authenticated: false });
+                         //   }
+                         //   }]
+                     //   }
             })
             .when('/dentist', {
                 templateUrl : 'views/doctors/dentist.html',
