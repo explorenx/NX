@@ -40,143 +40,6 @@
         </div>-->
 <!--  new code  -->
 
-<div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1" ng-controller="InstantSearchController">
-    <div class="col-md-12 col-xs-12">
-        <form>
-            <div class="col-md-3 col-xs-12 pull-left" style="padding-left: 10px; padding-top: 20px">
-
-                <!--<label for="exampleInputEmail1"></label>-->
-                <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
-
-                <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
-												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
-											</select>
-                <!--{{client.selectedCityModel}}-->
-
-
-            </div>
-
-            <div class="col-md-3 col-xs-12 pull-left" style=" padding-top: 20px">
-                <div>
-                    <!--<label for="exampleInputPassword1"></label>
-                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas " ng-disabled="disabled">
-												<option value="">Select Area</option>
-											</select>
-                    <!--{{MainAreas.selectedAreaModel}}-->
-                </div>
-                <!--<div class="bar" ng-init="EnableData = false">
-												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
-												<ul ng-show="EnableData" >
-													<li ng-repeat="i in items | searchFor:searchString" >
-														<a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
-														<p>{{i.title}}</p>
-													</li>
-
-													{{EnableData}}
-												 </ul>
-											</div>-->
-
-
-
-            </div>
-
-
-            <div class="col-md-5 col-xs-8 pull-left">
-
-                <div class="form-group" ng-blur="EnableData = false">
-                    <label for="exampleInputPassword1"></label>
-                    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
-                    />
-
-                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                        <div ng-repeat="i in Categories |  filter : searchString track by $index" class="list_dropdown">
-                            <span><a href="" ng-click="gotoResultsPageByCategory(i)">
-                                                                    <img ng-src=""  /><b>{{i}}</b>
-                                                                </a>
-                                                                
-                                                        </span>
-                        </div>
-                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index" class="list_dropdown">
-                            <span><a href="" ng-click="gotoResultsPageBySubCategory(i)">
-                                                                    <b>{{i}}</b>
-                                                                </a>
-                                                                
-                                                        </span>
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
-
-                            <a href="/homepage/{{i._id}}">
-                                <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /> {{i.ClinicName}}
-                                <br/></a>
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
-
-                            <a href="/homepage/{{i._id}}">
-                                <span class="text-center"> {{i.DoctorName}}</span>
-                                <br/>
-                            </a>
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
-
-                            <a href="/homepage/{{i._id}}">
-                                <span class="text-center"> {{i.speciality}}</span>
-                                <br/>
-                            </a>
-                        </div>
-
-
-
-                        <div>
-                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Clinics named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                            <hr style="border-color: lightskyblue;">
-                        </div>
-                        <div>
-                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Doctors named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                            <hr style="border-color: lightskyblue;">
-                        </div>
-
-
-
-                    </div>
-                    <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                                                
-                                                <div ng-show="EnableTextInputResult == true">
-                                                    
-                                                    <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                                        <h5 ng-show="$index == 0"> Doctors </h5>
-                                                        <a href="/homepage/{{i._id}}"><img ng-src="" />{{i.DoctorName}}</a><br/>
-                                                        <span> {{i.ClinicName}} </span><br/>
-                                                        <span>{{i.speciality}}</span>
-                                                        <hr style="border-color: lightskyblue;">
-                                                    </div>
-                                                   
-                                                </div>
-                                            </div>-->
-                    <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
-                                                <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
-                                                    <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
-
-                                                </div>
-                                            </div>-->
-
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-2 pull-left topmargin">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-            </div>
-        </form>
-    </div>
-</div>
-
 <div class="container" ng-controller="dashResultsController">
 
 
@@ -190,15 +53,15 @@
             <div class="clearfix"></div>
             <!-- Client Profile Start -->
             <div class="col-md-12 col-sm-12 col-xs-12 well_new">
-                <div class="col-md-4 col-sm-6 col-xs-12 ">
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
                     <div ng-if="client.imageUrl != ''">
-                        <img src="{{client.imageUrl }}" class="img-rounded img-responsive" style="position:relative; width: 200px; height: 200px;margin-left:10px;margin-top:10px;">
+                        <img src="{{client.imageUrl }}" alt="{{client.imageUrl }}" class="img-rounded img-responsive" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
                     </div>
                     <div ng-if="client.imageUrl == ''">
-                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
+                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{client.imageUrl }}" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="col-md-12">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="col-md-12 profileheight">
@@ -213,11 +76,12 @@
                                         <span style="color:#1e97cc;"><strong><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :</strong></span>
                                     </div>
                                     <div class="col-xs-9">
-                                        <span>{{client.FirstHalfTime}} | </span><br />
+                                        <span>{{client.FirstHalfTime}}  </span><br />
                                         <span>{{client.SecondHalfTime}}</span>
                                     </div>
                                 </div>
                                 <br>
+
                                 <span style="color:#1e97cc;"><strong><i class="fa fa-map-marker" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span> &nbsp;{{client.Area}}</span>
                             </div>
                         </div>
@@ -237,85 +101,85 @@
                     <div class="col-md-12 col-xs-12 text-right topmargin">
                         <!--<button type="button" class="btn btn-info">Book Appiontment Online</button>-->
                         <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal">Enquire Now</button>
-                            <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog">
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
 
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h3 class="modal-title pull-left">{{client.ClinicName}}</h3>
-                                            </div>
-                                            <div class="modal-body">
-                                                <script src='https://www.google.com/recaptcha/api.js'></script>
-                                               
-                                                     <form name="enquiryForm" class="form-horizontal" role="form">
-                                                        <fieldset>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <script src='https://www.google.com/recaptcha/api.js'></script>
 
-                                                        <!-- Form Name -->
-                                                        
-                                                        <!-- Text input-->
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label" for="textinput">Name : </label>
-                                                            <div class="col-sm-8" style="padding-right: 10px" >
-                                                            <input type="text" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
-                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
-                                                            </div>
-                                                            </div>
+                                        <form name="enquiryForm" class="form-horizontal" role="form">
+                                            <fieldset>
+
+                                                <!-- Form Name -->
+
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="textinput">Name : </label>
+                                                    <div class="col-sm-8" style="padding-right: 10px">
+                                                        <input type="text" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                        <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                            <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                         </div>
+                                                    </div>
+                                                </div>
 
-                                                        <!-- Text input-->
-                                                        <div class="form-group" style="padding-right: 10px">
-                                                            <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
-                                                            <div class="col-sm-4">
-                                                            <input type="text" name="mobile" placeholder="Enter Mobile Number"  ng-minlength="10" ng-maxlength="10"  class="form-control" ng-required="true">
-                                                            <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
-                                                                <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
-                                                            </div>
-                                                            </div>
-
-                                                            <label class="col-sm-2 control-label" for="textinput">Email : </label>
-                                                            <div class="col-sm-4">
-                                                            <input type="email" placeholder="Enter Valid Email " class="form-control">
-                                                            </div>
+                                                <!-- Text input-->
+                                                <div class="form-group" style="padding-right: 10px">
+                                                    <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" name="mobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
+                                                        <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                            <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                         </div>
+                                                    </div>
 
-                                                        <!-- Text input-->
-                                                        
+                                                    <label class="col-sm-2 control-label" for="textinput">Email : </label>
+                                                    <div class="col-sm-4">
+                                                        <input type="email" placeholder="Enter Valid Email " class="form-control">
+                                                    </div>
+                                                </div>
 
-                                                        <!-- Text input-->
-                                                        <div class="form-group" style="padding-right: 10px">
-                                                            <label class="col-sm-2 control-label" for="textinput">Date : </label>
-                                                            <div class="col-sm-4">
-                                                            <input type="date" placeholder="Pick Date" class="form-control">
-                                                            </div>
-
-                                                            <label class="col-sm-2 control-label" for="textinput">Time : </label>
-                                                            <div class="col-sm-4">
-                                                            <input type="time" placeholder="Pick Time" class="form-control">
-                                                            </div>
-                                                        </div>
+                                                <!-- Text input-->
 
 
+                                                <!-- Text input-->
+                                                <div class="form-group" style="padding-right: 10px">
+                                                    <label class="col-sm-2 control-label" for="textinput">Date : </label>
+                                                    <div class="col-sm-4">
+                                                        <input type="date" placeholder="Pick Date" class="form-control">
+                                                    </div>
 
-                                                        <!-- Text input-->
-                                                     
-                                                                   
-                                                                    <div class="col-md-6">
-                                                                       
-                                                                    </div>
-                                                        </fieldset>
-                                                     </form>
-                                                    <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Enquire Now</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                            </div>
+                                                    <label class="col-sm-2 control-label" for="textinput">Time : </label>
+                                                    <div class="col-sm-4">
+                                                        <input type="time" placeholder="Pick Time" class="form-control">
+                                                    </div>
+                                                </div>
+
+
+
+                                                <!-- Text input-->
+
+
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                        <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Enquire Now</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <!--<div class="text-center">
                             <span class="fa fa-pencil" aria-hidden="true" ng-click="editClient(item._id)"></span>
                             <span class="fa fa-trash-o " aria-hidden="true" ng-click="deleteRec(item._id)"></span>
@@ -450,7 +314,7 @@
             <div class="col-lg-4 col-xs-12 doc-photo-container">
                 <div class="doc-photo-container">
                     <div ng-if="data.Image != ''">
-                        <img src="{{data.Image }}" class="img-rounded" width="200" height="200" style="position:relative; margin-left:10px;margin-top:10px;">
+                        <img src="{{data.Image }}" alt="{{data.Image }}" class="img-rounded" width="200" height="200" style="position:relative; margin-left:10px;margin-top:10px;">
                     </div>
                     <div ng-if="data.Image == ''">
                         <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" width="200" height="200" style="position:relative; width: 200px; height: 200px;margin-left:10px;margin-top:10px;">
@@ -469,7 +333,7 @@
         <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ServiceData | filter : data.ClinicId = clientId">
             <div class="col-md-3  col-xs-12">
                 <div ng-if="data.Image != ''">
-                    <img src="{{data.ServiceImage }}" class="img-rounded" width="150" height="150" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
+                    <img src="{{data.ServiceImage }}" alt="{{data.ServiceImage }}" class="img-rounded" width="150" height="150" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
                 </div>
                 <div ng-if="data.Image == ''">
                     <img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" style="width: 150px" class="img-responsive">
@@ -494,7 +358,8 @@
                 <div class="input-group"> <input ng-model="txtSearch" class="form-control input-lg text-center" placeholder="Search Feedback"></div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 text-center">
-                <a class="btn btn-info" data-toggle="modal" data-target="#myModal1"><i class="fa fa-shield" ></i> Give Feedback</a>
+                <a class="btn btn-info" data-toggle="modal" data-target="myModal1"><i class="fa fa-shield" ></i> Give Feedback</a>
+                <!--# removed for data-target="#myModal1" -->
                 <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog">
 
@@ -598,7 +463,7 @@
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <img src="{{data.gallaryImage }}" class="img-responsive" style="width: 100%;">
+                                    <img src="{{data.gallaryImage }}" alt="{{data.gallaryImage }}" class="img-responsive" style="width: 100%;">
                                 </div>
                             </div>
                         </div>
@@ -607,7 +472,7 @@
 
                 </div>
                 <div ng-if="data.gallaryImage == ''">
-                    <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;">
+                    <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{data.gallaryImage }}" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;">
                 </div>
 
 
@@ -619,30 +484,29 @@
 
 <script type="text/ng-template" id="five.tpl.html">
     <div id="Contact">
-        <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ContacteData | filter : data.ClinicId = clientId">
-            <div class="col-md-6">
-                <div class="panel panel-default" style="height: 300px">
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
+            <div class="col-md-12">
+                <div class="panel panel-default">
 
                     <div class="panel-body ">
                         <h4>Our Address</h4>
                         <div>
-                            <span>{{client.address1}}</span><br>
-                            <span> {{client.address2}},</span><br>
-                            <span>{{client.Area}},</span>
-                            <span>{{client.City}}</span>
+                            <span>{{ContacteData.address1}}</span><br>
+                            <span> {{ContacteData.address2}}</span><br>
+
+                            <input type="hidden" id="lat" value="{{ContacteData.lat}}" />
+                            <input type="hidden" id="lng" value="{{ContacteData.long}}" />
+
+                            <div my-map="" lat="{{ContacteData.lat}}" lng="{{ContacteData.long}}" address1="{{ContacteData.address1}}" address2="{{ContacteData.address2}}"></div>
                         </div>
                         <hr />
-                        <div>
-                            <h5>Contact</h5>
-                            #(+91){{data.clinicmobile}}<br /> {{data.clinicemail}}
-                            <br />
-                        </div>
 
                     </div>
                 </div>
             </div>
 
-            <div id="map1" class="col-xs-6 iframe-container">
+            <div id="map" class="col-xs-6">
+
             </div>
 
         </div>
