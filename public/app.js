@@ -362,6 +362,17 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/homepage/:id', {
                 templateUrl : 'views/homepage.html',
                 //controller : 'homeController'
+                 resolve: {
+                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                        var userInfo = authenticationSvc.getUserInfo();
+
+                        if (userInfo) {
+                            return $q.when(userInfo);
+                        } else {
+                            return $q.reject({ authenticated: false });
+                        }
+                    }]
+                }
             })
 
              .when('/profilepage/:id?', {
