@@ -221,7 +221,7 @@ img {
 /***** Footer *****/
 
 footer {
-    padding-bottom: 70px;
+    padding-bottom: 0px;
     color: #fff;
 }
 
@@ -263,4 +263,16 @@ footer a {
     h2 {
         font-size: 32px;
     }
+}
+
+.btn-defaultsearch {
+    color: #fff;
+    background-color: #477CB8;
+    border-color: #ccc;
+}
+
+.btn-defaultsearch:hover {
+    color: #000000;
+    background-color: #fff;
+    border-color: #adadad;
 }
