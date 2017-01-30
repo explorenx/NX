@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Optimize mobile viewport -->
     <base href="/">
-    <title ng-bind=title></title>
+    <title ng-bind="title">NX-Search</title>
     <meta name="fragment" content="!">
     <!--<title cc="{{metaData}}"> {{metaData}}</title>-->
-    
-    <meta name="title" >
-    <meta name="description" >
-    <meta name="keywords" >
+
+    <meta name="title">
+    <meta name="description">
+    <meta name="keywords">
     <!--<meta property="<og></og>:title" content="{{ metaData }}" />
     <meta property="og:description" content="{{ngMeta.description}}" />-->
     <link rel="stylesheet" href="assets/css/footer.css">
@@ -78,10 +78,11 @@
 
 
     <style>
-    #gmaps {
-        width: 300px;
-        height: 300px;
-    }
+        #gmaps {
+            width: 821px;
+            height: 250px;
+        }
+        
         .bar {
             background-color: #5c9bb7;
             /*background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
@@ -113,7 +114,7 @@
         }
         
         body {
-            background-color : #477CB8;
+            background-color: #477CB8;
         }
     </style>
 
@@ -257,7 +258,7 @@
 
     </div>
 
-    <footer>
+    <footer class="container" style="background-color:#00334d;">
         <div class="footer" id="footer">
             <div class="container">
                 <div class="container">
@@ -272,7 +273,7 @@
                     <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                         <h3> FOR CLIENTS</h3>
                         <ul>
-                            <li> <a href="/packages"> Packages </a> </li>
+                            <!--<li> <a href="/packages"> Packages </a> </li>-->
 
                         </ul>
                     </div>
@@ -310,13 +311,13 @@
 
         <div class="footer-bottom">
             <div class="container">
-                <p class="text-center"> Copyright © NX-Search 2017. All right reserved. </p>
+                <p class="text-center"> Copyright © <b>NX-Search</b> 2017. All right reserved. </p>
             </div>
         </div>
 
     </footer>
 </body>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHjhSI5CjvWTR2jhqPsUkTLHCCoaTggi8" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHjhSI5CjvWTR2jhqPsUkTLHCCoaTggi8"></script>
 
 
 </html>
