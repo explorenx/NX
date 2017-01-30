@@ -203,7 +203,7 @@
                                             <div class="modal-body">
                                                 <script src='https://www.google.com/recaptcha/api.js'></script>
                                                
-                                                     <form class="form-horizontal" role="form">
+                                                     <form name="enquiryForm" class="form-horizontal" role="form">
                                                         <fieldset>
 
                                                         <!-- Form Name -->
@@ -212,7 +212,10 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Name : </label>
                                                             <div class="col-sm-8" style="padding-right: 10px" >
-                                                            <input type="text" placeholder="Enter Name" class="form-control">
+                                                            <input type="text" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                            </div>
                                                             </div>
                                                         </div>
 
@@ -220,7 +223,10 @@
                                                         <div class="form-group" style="padding-right: 10px">
                                                             <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
                                                             <div class="col-sm-4">
-                                                            <input type="tel" placeholder="Enter Mobile Number" class="form-control">
+                                                            <input type="text" name="mobile" placeholder="Enter Mobile Number"  ng-minlength="10" ng-maxlength="10"  class="form-control" ng-required="true">
+                                                            <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                            </div>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Email : </label>
@@ -236,12 +242,12 @@
                                                         <div class="form-group" style="padding-right: 10px">
                                                             <label class="col-sm-2 control-label" for="textinput">Date : </label>
                                                             <div class="col-sm-4">
-                                                            <input type="text" placeholder="Pick Date" class="form-control">
+                                                            <input type="date" placeholder="Pick Date" class="form-control">
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Time : </label>
                                                             <div class="col-sm-4">
-                                                            <input type="text" placeholder="Pick Time" class="form-control">
+                                                            <input type="time" placeholder="Pick Time" class="form-control">
                                                             </div>
                                                         </div>
 
@@ -249,27 +255,15 @@
 
                                                         <!-- Text input-->
                                                      
-                                                                    <div class="col-sm-4">
-                                                                        <div class="form-control-wrapper">
-                                                                            <input type="text" id="date" class="form-control floating-label" placeholder="Date">
-                                                                        </div>
-                                                                    </div>
+                                                                   
                                                                     <div class="col-md-6">
-                                                                        <code>
-                                                                            <p>Code</p>
-                                                                            $('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
-                                                                        </code>
+                                                                       
                                                                     </div>
-                                                               
-                                                        
-                                                          
-                                                       
-
                                                         </fieldset>
                                                      </form>
                                                     <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-primary">Enquire Now</button>
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
