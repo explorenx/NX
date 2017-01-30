@@ -237,29 +237,85 @@
                     <div class="col-md-12 col-xs-12 text-right topmargin">
                         <!--<button type="button" class="btn btn-info">Book Appiontment Online</button>-->
                         <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal">Enquire Now</button>
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h3 class="modal-title pull-left">Call For Assistance</h3>
-                                    </div>
-                                    <div class="modal-body pull-left">
-                                        <h4>{{item.ClinicName}}</h4>
-                                        <p>
-                                            <h3>Call-8381057555 (Extension Number-{{client.extensionNo}})</h3>
-                                        </p>
-                                        <p><b>Note-</b>Please mention Extension Number After Calling</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h3 class="modal-title pull-left">{{client.ClinicName}}</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <script src='https://www.google.com/recaptcha/api.js'></script>
+                                               
+                                                     <form name="enquiryForm" class="form-horizontal" role="form">
+                                                        <fieldset>
+
+                                                        <!-- Form Name -->
+                                                        
+                                                        <!-- Text input-->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label" for="textinput">Name : </label>
+                                                            <div class="col-sm-8" style="padding-right: 10px" >
+                                                            <input type="text" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Text input-->
+                                                        <div class="form-group" style="padding-right: 10px">
+                                                            <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
+                                                            <div class="col-sm-4">
+                                                            <input type="text" name="mobile" placeholder="Enter Mobile Number"  ng-minlength="10" ng-maxlength="10"  class="form-control" ng-required="true">
+                                                            <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                            </div>
+                                                            </div>
+
+                                                            <label class="col-sm-2 control-label" for="textinput">Email : </label>
+                                                            <div class="col-sm-4">
+                                                            <input type="email" placeholder="Enter Valid Email " class="form-control">
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Text input-->
+                                                        
+
+                                                        <!-- Text input-->
+                                                        <div class="form-group" style="padding-right: 10px">
+                                                            <label class="col-sm-2 control-label" for="textinput">Date : </label>
+                                                            <div class="col-sm-4">
+                                                            <input type="date" placeholder="Pick Date" class="form-control">
+                                                            </div>
+
+                                                            <label class="col-sm-2 control-label" for="textinput">Time : </label>
+                                                            <div class="col-sm-4">
+                                                            <input type="time" placeholder="Pick Time" class="form-control">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <!-- Text input-->
+                                                     
+                                                                   
+                                                                    <div class="col-md-6">
+                                                                       
+                                                                    </div>
+                                                        </fieldset>
+                                                     </form>
+                                                    <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Enquire Now</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
                         <!--<div class="text-center">
                             <span class="fa fa-pencil" aria-hidden="true" ng-click="editClient(item._id)"></span>
                             <span class="fa fa-trash-o " aria-hidden="true" ng-click="deleteRec(item._id)"></span>
