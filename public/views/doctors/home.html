@@ -72,14 +72,14 @@
 
                         <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
 
-                            <a href="/homepage/{{i._id}}">
+                            <a href="/profilepage/{{i._id}}">
                                 <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /> {{i.ClinicName}}
                                 <br/></a>
                         </div>
 
                         <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
 
-                            <a href="/homepage/{{i._id}}">
+                            <a href="/profilepage/{{i._id}}">
                                 <span class="text-center"> {{i.DoctorName}}</span>
                                 <br/>
                             </a>
@@ -87,7 +87,7 @@
 
                         <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)" class="list_dropdown">
 
-                            <a href="/homepage/{{i._id}}">
+                            <a href="/profilepage/{{i._id}}">
                                 <span class="text-center"> {{i.speciality}}</span>
                                 <br/>
                             </a>
