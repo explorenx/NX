@@ -594,7 +594,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 //                        alert(vm.file);
                 if (vm.file) {
                     var datetimestamp = Date.now();
-                    var ImageName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + 'nxsearch' + '-' + $routeParams.id + '.jpg';
+                    var ImageName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + 'nxsearch' + '-' + $routeParams.id + datetimestamp+'.jpg';
                     value.gallaryImage = 'uploads/clientRelatedImages/' + ImageName;
                     //    alert(vm.file.name);
 
