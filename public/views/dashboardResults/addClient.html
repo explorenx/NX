@@ -9,7 +9,7 @@
                 <div class="form-group">
                    <label class="col-lg-4">Email:</label>
                 <div class="col-lg-8">
-                    <input type="email" ng-model="formData.email" name="email" class="form-control text-center" placeholder="Enter Email" />
+                    <input type="hidden" ng-model="formData.email" name="email" class="form-control text-center" placeholder="Enter Email" />
                     <div ng-show="ClientForm.email.$touched && ClientForm.email.$invalid">
                         <small style="color: red; display: block; text-align: center">Please Enter Valid Email</small>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label class="col-lg-4">Password:</label>
                     <div class="col-lg-8">
-                        <input type="password" ng-model="formData.password" name="password" class="form-control text-center" placeholder="Enter Password" />
+                        <input type="hidden" ng-model="formData.password" name="password" class="form-control text-center" placeholder="Enter Password" />
                         <div ng-show="ClientForm.password.$touched && ClientForm.password.$invalid">
                             <small style="color: red; display: block; text-align: center">Please Enter Correct Password</small>
                         </div>
@@ -106,7 +106,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
 
-                                    <label ng-repeat="sub in subCategories  " style="padding: 5px;">
+                                    <label ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
 
                                 <div class="col-xs-12">
                                     <input type="checkbox" checklist-model="SubCatetories.subs" checklist-value="sub">
