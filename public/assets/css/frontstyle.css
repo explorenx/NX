@@ -22,7 +22,7 @@
 
 .formbackground2 {
     border-radius: 4px;
-    padding: 10px;
+    padding: 0px;
     margin-bottom: 20px;
     -webkit-animation-name: example;
     /* Safari 4.0 - 8.0 */
@@ -124,4 +124,38 @@
 .list_dropdown:hover {
     background: #cee1ff;
     box-shadow: 0 0 5px #2bace0;
+}
+
+.navbar-toggle1 {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 25px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+.navbar-toggle1:focus {
+    outline: 0;
+}
+
+.navbar-toggle1 .icon-bar {
+    /*display: block;*/
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+
+.navbar-toggle1 .icon-bar+.icon-bar {
+    margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+    .navbar-toggle1 {
+        display: none;
+    }
 }
