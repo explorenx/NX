@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Optimize mobile viewport -->
     <base href="/">
-    <title ng-bind="title">NX-Search</title>
+    <title>NX-Search</title>
     <meta name="fragment" content="!">
     <!--<title cc="{{metaData}}"> {{metaData}}</title>-->
 
@@ -18,10 +18,10 @@
     <meta name="keywords">
     <!--<meta property="<og></og>:title" content="{{ metaData }}" />
     <meta property="og:description" content="{{ngMeta.description}}" />-->
-    <link rel="stylesheet" href="assets/css/footer.css">
+
     <!-- SCROLLS -->
     <!--<link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- load bootstrap -->
-
+    <link rel="stylesheet" href="assets/css/footer.css">
     <script src="assets/js/jquery.min.js"></script>
 
 
@@ -130,53 +130,16 @@
     <div class="container" style="background-color:#fff; padding-bottom:50px;">
         <div class="row" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
             <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="col-md-3">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="/"><img src="assets/img/nxsearch-logo1.png"></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-8 col-md-offset-1">
-                        <div class="col-md-9">
-
-                            <div class="col-md-12"><br/></div>
-                            <div class="col-md-12"><br/><br/>
-
-                                <div class="col-md-12 text-right">
-                                    <a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>
-                                    <a href="#"><img src="assets/img/facebook-bizzbazar.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                    <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
-                                    <a href="#"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                    <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>
-                                </div>
-
-                                <div class="col-md-12"><br/></div>
-
+                <div class="container">
+                    <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:20px">
+                        <div class="col-md-10 col-xs-12 col-sm-12 text-center">
+                            <div class="container">
+                                <a href="/" class="text-center"><img src="assets/img/nxsearch-logo1.png" class="img-responsive" width="180px" height="73px"></a>
                             </div>
-                            <div class="col-md-12"><br/></div>
                         </div>
-
-                        <div class="col-md-3">
-                            <div class="col-md-12"><br/></div>
-                            <div class="col-md-12"><br/><br/>
-                                <div class="col-md-12">
-
-                                    <ul class="nav">
-                                        <li><a href="#"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
-
-
-
-
+                        <div class="col-md-2 col-xs-12 col-sm-12 text-center" style="margin-top: 20px;">
+                            <a href="#"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
                         </div>
-
                     </div>
                 </div>
 
@@ -262,37 +225,42 @@
         <div class="footer" id="footer">
             <div class="container">
                 <div class="container">
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
                         <h3>About </h3>
                         <ul>
                             <li> <a href="/aboutus"> About </a> </li>
                             <li> <a href="/career"> Career </a> </li>
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                        <h3> FOR CLIENTS</h3>
-                        <ul>
-                            <!--<li> <a href="/packages"> Packages </a> </li>-->
 
                         </ul>
                     </div>
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                        <h3> NXsearch </h3>
-                        <ul>
-
-                            <li> <a href="/career"> Career </a> </li>
-                            <li> <a href="/contactus"> Contact Us </a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                        <h3> More... </h3>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>NXsearch</h3>
                         <ul>
                             <li> <a href="/privacypolicy"> Privacy Policy </a> </li>
                             <li> <a href="#"> Terms and Conditions </a> </li>
                         </ul>
                     </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li> <a href="/contactus"> Contact Us </a> </li>
+                            <li> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-4 col-sm-12 col-xs-12">
+                        <h3> Follow Us </h3>
+                        <ul>
+                            <li>
+                                <a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>
+                                <a href="#"><img src="assets/img/facebook-bizzbazar.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
+                                <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                <a href="#"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
                         <h3> SubScribe </h3>
                         <ul>
                             <li>
@@ -303,7 +271,7 @@
                             </li>
                         </ul>
 
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
