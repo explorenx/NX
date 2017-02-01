@@ -32,6 +32,7 @@ app.use(passport.initialize());
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
 
+app.use(require('prerender-node').set('prerenderToken', 'SjUEgsLfXx3jKnpdpgmF'));
 app.use(express.static(__dirname + '/public')); 				// set the static files location /public/img will be /img for users
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); 										// log every request to the console
