@@ -28,20 +28,27 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         var city = $routeParams.city;
         var category = $routeParams.category;
+        var area = $routeParams.Area;
 
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
 
+        if(area)
+        url = url + '&Area' + area;
+       // alert(url);
         if (category)
             url = url + '&Categories=' + category;
+            
         if (category && city)
             url = url + '&City=' + city;
         if (!category && city)
             url = url + '&City=' + city;
 
 
-        $window.document.getElementsByName('title')[0].content = category + ' in ' + city;
-        $window.document.getElementsByName('description')[0].content = category + ' in ' + city;
+        //$window.document.getElementsByTagName('title')[0].content = category + ' in '  + city;
+        $window.document.getElementsByName('title')[0].content = category + ' in '  + city;
+        $window.document.getElementsByName('description')[0].content = category + ' in '+area + city;
+         $window.document.getElementsByName('keywords')[0].content = category + ' in ' + city;
 
         $http.get(url)
             .success(function(data) {
@@ -168,15 +175,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                 var metaInfo = {
                     title: data.ClinicName,
-                    description: data.ClinicName + '|' + 'nxsearch',
-                    keywords: data.ClinicName + 'nxsearch'
+                    description: data.ClinicName,
+                    keywords: data.ClinicName 
                 };
 
                 savedMetaData.setData(metaInfo);
                 console.log(metaInfo);
 
-                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in Pune';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in Pune';
+                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
+                 $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
 
             })
             .error(function(data) {
