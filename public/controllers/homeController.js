@@ -105,6 +105,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
     $window.document.getElementsByName('title')[0].content = dd.title;
     $window.document.getElementsByName('description')[0].content = dd.description;
+    $window.document.getElementsByName('keywords')[0].content = dd.keywords;
 
 
 
@@ -161,7 +162,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                 console.log('Error: ' + data);
             });
     }
-
+    //$rootScope.Area = $rootScope.Area;
     $scope.$watch('MainAreas.selectedAreaModel', function(newVal, oldVal) {
         //alert(JSON.stringify($rootScope.client));
 
@@ -172,6 +173,9 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             $http.get('/api/dashbord/results/?Area=' + newVal.Area)
                 .success(function(data) {
                     $scope.clients = data;
+                    $rootScope.Area = newVal;
+                    //alert($rootScope.Area);
+                    //alert(JSON.stringify($rootScope.Area));
                     //$scope.cities = data;
                     console.log(data);
                 })
