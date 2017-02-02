@@ -28,13 +28,19 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         var city = $routeParams.city;
         var category = $routeParams.category;
-        var area = $routeParams.Area;
-
+        var area;
+        
+        if($rootScope.Area != null){
+        //alert(JSON.stringify($rootScope.Area.Area));
+            area = $rootScope.Area.Area;
+            //alert(JSON.stringify(area));
+            //var area = $routeParams.Area;
+        }
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
 
         if(area)
-        url = url + '&Area' + area;
+        url = url + '&Area=' + area;
        // alert(url);
         if (category)
             url = url + '&Categories=' + category;
@@ -45,10 +51,11 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             url = url + '&City=' + city;
 
 
-        //$window.document.getElementsByTagName('title')[0].content = category + ' in '  + city;
-        $window.document.getElementsByName('title')[0].content = category + ' in '  + city;
-        $window.document.getElementsByName('description')[0].content = category + ' in '+area + city;
-         $window.document.getElementsByName('keywords')[0].content = category + ' in ' + city;
+
+        $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
+        $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
+        $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
+        $window.document.getElementsByName('keywords')[0].content = category + ' in '+area + ' ' + city;
 
         $http.get(url)
             .success(function(data) {
