@@ -233,14 +233,34 @@
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
+                                                <script language="javascript">
+                                                    function validate() {
+                                                        if (document.getElementById("username").value == '') {
+                                                            alert("Please provide your full name");
+                                                            document.getElementById("username").focus();
+                                                            return false;
+                                                        }
+                                                        if (document.getElementById("useremail").value == '') {
+                                                            alert("Please provide email address");
+                                                            document.getElementById("useremail").focus();
+                                                            return false;
+                                                        }
+                                                        if (document.getElementById("usermobile").value == '') {
+                                                            alert("Please provide Mobile No.");
+                                                            document.getElementById("usermobile").focus();
+                                                            return false;
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="modal-header">
+
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
                                                 </div>
                                                 <div class="modal-body">
                                                     <script src='https://www.google.com/recaptcha/api.js'></script>
 
-                                                    <form name="enquiryForm" class="form-horizontal" role="form">
+                                                    <form name="enquiryForm" method="POST" class="form-horizontal" role="form" action="contact.php">
                                                         <fieldset>
 
                                                             <!-- Form Name -->
@@ -249,7 +269,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-sm-2 control-label" for="textinput">Name : </label>
                                                                 <div class="col-sm-8" style="padding-right: 10px">
-                                                                    <input type="text" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                                    <input type="text" name="username" id="username" placeholder="Enter Name" class="form-control">
                                                                     <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                         <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                                     </div>
@@ -260,7 +280,7 @@
                                                             <div class="form-group" style="padding-right: 10px">
                                                                 <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="text" name="mobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
+                                                                    <input type="text" name="usermobile" id="usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control">
                                                                     <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                         <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                     </div>
@@ -268,7 +288,7 @@
 
                                                                 <label class="col-sm-2 control-label" for="textinput">Email : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="email" placeholder="Enter Valid Email " class="form-control">
+                                                                    <input type="email" name="useremail" id="useremail" placeholder="Enter Valid Email " class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -279,12 +299,12 @@
                                                             <div class="form-group" style="padding-right: 10px">
                                                                 <label class="col-sm-2 control-label" for="textinput">Date : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="date" placeholder="Pick Date" class="form-control">
+                                                                    <input type="date" name="date" placeholder="Pick Date" class="form-control">
                                                                 </div>
 
                                                                 <label class="col-sm-2 control-label" for="textinput">Time : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="time" placeholder="Pick Time" class="form-control">
+                                                                    <input type="time" name="time" placeholder="Pick Time" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -300,7 +320,9 @@
                                                     </form>
                                                     <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Enquire Now</button>
+                                                        <h4 class="pull-left">Your Enquiry For :</h4><input type="text" name="ClinicName" class="form-control" value="{{item.ClinicName}}" readonly>
+                                                        <button type="submit" class="btn btn-primary" value="submit" onclick="javascript: return validate();">Enquire Now</button>
+
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
