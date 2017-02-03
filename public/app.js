@@ -320,6 +320,13 @@ $rootScope.$on("$routeChangeSuccess", function($rootScope,currentRoute, previous
    
   });
 
+  $rootScope.$on("$routeChangeSuccess", function($rootScope){
+    //Change page title, based on Route information
+   var url = $location.$$absUrl;
+   //alert(url);
+
+  });
+
   $rootScope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl){
     // TODO What you want on the event.
     $rootScope.currentPath = newUrl;
@@ -393,10 +400,10 @@ app.config(function($routeProvider, $locationProvider) {
                         }
                     }]
                 }
-            })
+           })
 
             
-            .when('/showResults/:city/:category?', {
+            .when('/results/:city/:area/:category?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
@@ -467,8 +474,13 @@ app.config(function($routeProvider, $locationProvider) {
                     }]
                 }
             })
+
+           
             .when('/updateCity/:id', {
                 templateUrl : 'views/locations/updateCity.html',
+            })
+            .when('/updateSitemap/:id', {
+                templateUrl : 'views/updatesitemap.html',
             })
             .when('/updateCategory/:id', {
                 templateUrl : 'views/categories/updateCategory.html',
@@ -526,7 +538,7 @@ app.config(function($routeProvider, $locationProvider) {
             })
             .when('/packages', {
                 templateUrl : 'views/packages.html',
-                //controller : 'homeController'
+                controller : 'sitemapsController'
             })
 
             .when('/categories', {
@@ -550,6 +562,10 @@ app.config(function($routeProvider, $locationProvider) {
             })
             .when('/userfeedback', {
                 templateUrl : 'views/userfeedback.html',
+                //controller : 'homeController'
+            })
+            .when('/sitemap', {
+                templateUrl : 'views/sitemap.xml',
                 //controller : 'homeController'
             })
 
