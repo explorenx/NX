@@ -162,7 +162,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                 console.log('Error: ' + data);
             });
     }
-    //$rootScope.Area = $rootScope.Area;
+   // $rootScope.Area = $rootScope.Area;
     $scope.$watch('MainAreas.selectedAreaModel', function(newVal, oldVal) {
         //alert(JSON.stringify($rootScope.client));
 
@@ -304,7 +304,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             alert('Please enter City to begin search !');
 
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category)
-            $location.path('/showResults/' + $scope.client.selectedCityModel + '/' + category);
+            $location.path('/results/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
@@ -318,7 +318,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             alert('Please enter City to begin search !');
 
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory)
-            $location.path('/showResults/' + $rootScope.client.selectedCityModel + '/' + subCategory);
+            $location.path('/results/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
