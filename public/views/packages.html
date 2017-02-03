@@ -1,101 +1,91 @@
-<h2>Packages</h2>
+<div id="todo-form1" class="container" ng-controller="sitemapsController">
+    <div class="col-xs-12">
+        <h5>sitemap page</h5>
+         
 
-<!-- PRICING TABLE STYLE 1-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
-            <div class="price_table_container">
-                <div class="price_table_heading">Silver</div>
-                <div class="price_table_body">
-                    <div class="price_table_row cost warning-bg"><strong>Rs. 5,000</strong><span>/YEAR</span></div>
-                    <div class="price_table_row">1 Portal Listing</div>
-                    <div class="price_table_row">Mini Website</div>
-                    <div class="price_table_row">SEO</div>
-                    <div class="price_table_row">Cross E-mailing Marketing</div>
-                    <div class="price_table_row">Ads on every page</div>
-                    <div class="price_table_row">Bizzbazar Domain</div>
-                    <div class="price_table_row">5 main Links</div>
-                    <div class="price_table_row">10 Sub Links</div>
-                    <div class="price_table_row">No E-mails service</div>
-                    <div class="price_table_row">Pre-design Template</div>
-                    <div class="price_table_row">500 email campaign(x2)</div>
-                    <div class="price_table_row">3 No Facebook Promotion</div>
+        <div class ="col-sm-6 panel" ng-repeat="city in cities">
+				<span class="strong days-timing">{{city.loc}}</span>
+					<span class="fa fa-trash-o  pull-right" aria-hidden="true"  ng-click="deletecity(city._id)"></span>
+                    <span><a href="/updateSitemap/{{city._id}}"> Edit</a></span>
+		</div>
+        <!--<table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th> City</th>
+                    <th> Area</th>
+                    <th> Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="city in cities">
+                    <td>{{city.city}} <a href="/updateCity/{{city._id}}"> (Edit) </a> </td>
+                    <td> <label ng-repeat="rec in city.areas"> {{rec.Area}}<span ng-if="rec.Area.length">, </span>  </label> </td>
+                    <td><input type="button" value="Delete" class="btn btn-danger pull-right" aria-hidden="true" data-toggle="modal" data-target="#myModal{{$index}}">
+                        <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                               <!-- <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3 class="modal-title pull-left">Are You Want To Delete <b>{{city.city}}</b></h3>
+                                    </div>
+                                    <div class="modal-body pull-left">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button ng-click="deletecity(city._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>-->
+    </div>
+
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <!--<form>
+					<div class="form-group">
+						<input type="hidden" ng-model="addr._id">
+                        <input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="addr.City">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Area" ng-model="addr.Area">
+                        <input type="text" class="form-control input-lg text-center" placeholder="SubArea" ng-model="addr.SubArea">
+						<br />
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createaddr()">{{btnValue}}</button>
+				</form>-->
+        <form name="citiesform">
+            <div class="form-group">
+                <label for="Category">Link</label>
+                <input type="hidden" ng-model="formData._id">
+                <input type="text" ng-model="formData.loc" name="url" class="form-control text-center" placeholder="Enter url" ng-required="true">
+                <div ng-show="citiesform.url.$touched && citiesform.url.$invalid">
+                    <small style="color: red; display: block; text-align: center">Please Enter url</small>
                 </div>
-                <a href="#" class="btn btn-warning btn-lg btn-block">Sign Up</a>
+               <!-- <div ng-repeat="cat in tempCategories">
+                    <label for="Category">Area</label>
+                    <input type="text" ng-model="cat.id" name="area" class="form-control text-center" placeholder="Enter a area" ng-required="true">
+                    <div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
+                        <small style="color: red; display: block; text-align: center">Please Enter Area</small>
+                    </div>
+                    <hr />
+                    <label for="choice">Sub-Area</label>
+                    <div class="form-group" ng-repeat="choice in cat.subs">
+                        <input type="text" ng-model="choice.name" name="subarea" class="form-control text-center" placeholder="Enter a sub area">
+                    </div>
+                    <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
+                    <hr />
+                    <button class="btn btn-default" ng-click="addNewCategory()">Add Area</button>
+                    <button class="btn btn-info" ng-click="clearForm()">Clear Form</button>
+                </div>-->
             </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
-
-            <div class="price_table_container">
-                <div class="price_table_heading">Gold</div>
-                <div class="price_table_body">
-                    <div class="price_table_row cost primary-bg"><strong>Rs. 8,000</strong><span>/YEAR</span></div>
-                    <div class="price_table_row">Portal Listing</div>
-                    <div class="price_table_row">Mini Website</div>
-                    <div class="price_table_row">SEO</div>
-                    <div class="price_table_row">Cross E-mailing Marketing</div>
-                    <div class="price_table_row">No Ads page</div>
-                    <div class="price_table_row">Bizzbazar Domain</div>
-                    <div class="price_table_row">5 main Links</div>
-                    <div class="price_table_row">10 Sub Links</div>
-                    <div class="price_table_row">No E-mails service</div>
-                    <div class="price_table_row">Pre-design Template</div>
-                    <div class="price_table_row">500 email campaign(x2)</div>
-                    <div class="price_table_row">5 No Facebook Promotion</div>
-                </div>
-                <a href="#" class="btn btn-primary btn-lg btn-block">Sign Up</a>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
-            <div class="recommended"><strong><span class="fa fa-heart" aria-hidden="true"></span> RECOMMENDED</strong></div>
-            <div class="price_table_container">
-                <div class="price_table_heading">Platinum</div>
-                <div class="price_table_body">
-                    <div class="price_table_row cost success-bg"><strong>Rs. 10,000</strong><span>/YEAR</span></div>
-                    <div class="price_table_row"> Portal Listing</div>
-                    <div class="price_table_row">Mini Website</div>
-                    <div class="price_table_row">SEO</div>
-                    <div class="price_table_row">Cross E-mailing Marketing</div>
-                    <div class="price_table_row">No Ads</div>
-                    <div class="price_table_row">Custom Domain</div>
-                    <div class="price_table_row">5 main Links</div>
-                    <div class="price_table_row">10 Sub Links</div>
-                    <div class="price_table_row">2 E-mails</div>
-                    <div class="price_table_row">Pre-design Template</div>
-                    <div class="price_table_row">1000 email campaign(x4)</div>
-                    <div class="price_table_row">5 No Facebook Promotion</div>
-                </div>
-                <a href="#" class="btn btn-success btn-lg btn-block">Sign Up</a>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
-            <div class="price_table_container">
-                <div class="price_table_heading">Diamond</div>
-                <div class="price_table_body">
-                    <div class="price_table_row cost info-bg"><strong>Rs. 15,000</strong><span>/YEAR</span></div>
-                    <div class="price_table_row"> Portal Listing</div>
-                    <div class="price_table_row">Mini Website</div>
-                    <div class="price_table_row">SEO</div>
-                    <div class="price_table_row">Cross E-mailing Marketing</div>
-                    <div class="price_table_row">No Ads</div>
-                    <div class="price_table_row">Custom Domain</div>
-                    <div class="price_table_row">8 main Links</div>
-                    <div class="price_table_row">10 Sub Links</div>
-                    <div class="price_table_row">5 E-mails</div>
-                    <div class="price_table_row">Custom design</div>
-                    <div class="price_table_row">2000 email campaign(x4)</div>
-                    <div class="price_table_row">8No Facebook Promotion</div>
-                </div>
-                <a href="#" class="btn btn-info btn-lg btn-block">Sign Up</a>
-            </div>
-        </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="clearForm()" ng-disabled="citiesform.$invalid">clearForm</button>
+        </form>
     </div>
 </div>
-<!-- PRICING TABLE STYLE 1-->
-
-<!-- SPACER-->
-<div class="spacer"></div>
-<!-- SPACER-->
