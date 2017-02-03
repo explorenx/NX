@@ -15,7 +15,7 @@ $mail->Username = "enquiry@nxsearch.com";  // SMTP username
 $mail->Password = "pune123##"; // SMTP password
 //It should be same as that of the SMTP user
 
-$redirect_url = "http://".$_SERVER['localhost']; //Redirect URL after submit the form
+$redirect_url = "http://nxsearch.com/showResults/".$_SERVER['localhost']; //Redirect URL after submit the form
 
 $mail->From = $mail->Username;	//Default From email same as smtp user
 $mail->FromName = "enquiryForm";
