@@ -24,6 +24,7 @@ $mail->AddAddress("enquiry@nxsearch.com", "NXsearch Enquiry"); //Email address w
 
 $mail->WordWrap = 50;                                 // set word wrap to 50 characters
 $mail->IsHTML(true);                                  // set email format to HTML
+$to ='enquiry@nxsearch.com';
 
 
 $mail->Subject = To Client Name: $_POST['ClinicName'];
