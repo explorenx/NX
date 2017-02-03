@@ -408,6 +408,11 @@ app.config(function($routeProvider, $locationProvider) {
                 controller : 'dashResultsController',
                
             })
+            .when('/showResults/:city/:category?', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+               
+            })
             
             .when('/clientlist', {
                 templateUrl: 'views/dashboardResults/ClientList.html',
