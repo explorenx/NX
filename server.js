@@ -5,7 +5,8 @@ var mongoose = require('mongoose'); 					// mongoose for mongodb
 var passport	= require('passport');
 var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
-var seo = require('mean-seo')
+var SitemapGenerator = require('sitemap-generator');
+ var XMLWriter = require('xml-writer');
 
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
@@ -17,6 +18,7 @@ var clinicServiceData = require('./app/controllers/dashboard/clinicServicesContr
 var clinicGallaryData = require('./app/controllers/dashboard/clinicGallaryController');
 var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackController');
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
+var sitemap = require('./app/controllers/home/sitemap');  
 
 var accountController = require('./app/controllers/account/accountController');
 
@@ -42,7 +44,7 @@ app.use(bodyParser.urlencoded({'extended':'true'})); 			// parse application/x-w
 app.use(bodyParser.json()); 									// parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
-app.use(seo());
+//app.use(seo());
 
 
 
@@ -59,6 +61,8 @@ app.use('/api/service', clinicServiceData);
 app.use('/api/gallary', clinicGallaryData);
 app.use('/api/feedback', clinicfeedbackData);
 app.use('/api/contact', cliniccontactData);
+app.use('/api/sitemap', sitemap);
+
 
 app.use('/api/account', accountController);
 
@@ -107,6 +111,27 @@ var storage = multer.diskStorage({ //multers disk storage settings
         })
     });
 
+ // create generator
+var generator = new SitemapGenerator('http://localhost:8080');
+
+// register event listeners
+generator.on('done', function (sitemap) {
+    
+    
+    //xw.startDocument()
+    //.startElement('loc',sitemap);
+    //xw.writeAttribute('foo', 'value');
+    //xw.text(sitemap);
+    //xw.endDocument();
+ 
+    //console.log(xw.toString());
+  console.log(sitemap); // => prints xml sitemap
+  
+});
+
+// start the crawler
+generator.start();
+
 
 	//application -------------------------------------------------------------
 	app.get('*', function(req, res) {
@@ -114,6 +139,6 @@ var storage = multer.diskStorage({ //multers disk storage settings
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen(port, '142.4.14.149');
+app.listen(port);
 console.log("App listening on port " + port);
 
