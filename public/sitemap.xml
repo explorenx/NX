@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated at http://www.timestampgenerator.com/tools/xml-sitemap-from-list/ -->
-<urlset>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
 <url>
 	<loc>http://nxsearch.com/</loc>
 	<priority>.5</priority>
