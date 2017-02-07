@@ -408,7 +408,7 @@ app.config(function($routeProvider, $locationProvider) {
                 controller : 'dashResultsController',
                
             })
-            .when('/showResults/:city/:category?', {
+            .when('/results/:city/:category?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
@@ -535,6 +535,10 @@ app.config(function($routeProvider, $locationProvider) {
             })
             .when('/privacypolicy', {
                 templateUrl : 'views/privacyPolicy.html',
+                //controller : 'homeController'
+            })
+             .when('/termsandconditions', {
+                templateUrl : 'views/Terms.html',
                 //controller : 'homeController'
             })
             .when('/login', {
