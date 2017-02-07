@@ -541,6 +541,10 @@ app.config(function($routeProvider, $locationProvider) {
                 templateUrl : 'views/Terms.html',
                 //controller : 'homeController'
             })
+            .when('/register', {
+                templateUrl : 'views/Register.html',
+                //controller : 'registerController'
+            })
             .when('/login', {
                 templateUrl : 'views/login.html',
                 //controller : 'homeController'
