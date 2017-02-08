@@ -61,6 +61,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             .success(function(data) {
                 $scope.results = data;
                 console.log(JSON.stringify(data));
+                //alert(JSON.stringify(url));
                 if (data.length == 0) {
                     $http.get('/api/dashbord/results/?&City=' + city + '&SubCategories=' + category)
                         .success(function(resdata) {
@@ -285,7 +286,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         if (vm.file) {
             alert(vm.file.name);
-            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-nxsearch.jpg';
+            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-'+$routeParams.id + '-nxsearch.jpg';
             $scope.formData.imageUrl = 'uploads/clientProfilePictures/' + fileName;
             vm.file.name = fileName;
             //       alert('new file name -' + vm.file.name);//
@@ -293,7 +294,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
             vm.file = Upload.rename(vm.file, fileName);
             Upload.upload({
-                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
+                url: 'http://localhost:8080/uploadProfileImage', //webAPI exposed to upload the file
                 data: { file: vm.file } //pass file as data, should be user ng-model
             }).then(function(resp) { //upload function returns a promise
                 if (resp.data.error_code === 0) { //validate success
@@ -465,7 +466,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/showResults");
+                $location.path("/aditionalProfile/"+$routeParams.id);
 
             });
 
@@ -560,7 +561,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/showResults");
+                $location.path("/aditionalProfile/"+$routeParams.id);
 
             });
 
@@ -660,7 +661,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/showResults");
+                $location.path("/aditionalProfile/"+$routeParams.id);
 
             });
 
@@ -707,7 +708,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/showResults");
+               $location.path("/aditionalProfile/"+$routeParams.id);
 
             });
 
@@ -759,7 +760,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/showResults");
+                $location.path("/homepage/"+$routeParams.id);
 
             });
 
@@ -967,4 +968,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             'Error: Your browser doesn\'t support geolocation.');
     }
 
+
+function site(){
+    //alert(JSON.stringify(url));
+      $http.post('api/sitemap/sitemap', $rootScope.url)
+   .success(function(data) {
+                            //$scope.formData = {}; // clear the form so our user is ready to enter another
+    //alert(data);
+
+   });
+}
+site();
+   
 });
