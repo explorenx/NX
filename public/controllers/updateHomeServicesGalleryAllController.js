@@ -54,7 +54,7 @@ var vm = this;
             .success(function(data) {
                 //$scope.formData = {};
                 //$scope.cities = data;
-                $location.path('/clientlist');
+                history.go(-1)
             })
     }
     ////For Updating Service Data single record Ends here.
