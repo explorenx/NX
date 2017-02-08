@@ -294,7 +294,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
             vm.file = Upload.rename(vm.file, fileName);
             Upload.upload({
-                url: 'http://localhost:8080/uploadProfileImage', //webAPI exposed to upload the file
+                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
                 data: { file: vm.file } //pass file as data, should be user ng-model
             }).then(function(resp) { //upload function returns a promise
                 if (resp.data.error_code === 0) { //validate success
