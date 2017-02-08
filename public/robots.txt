@@ -1,0 +1,12 @@
+# robots.txt for http://nxsearch.com/
+User-agent: *
+Allow: /assets/css
+Allow: /assets/js
+Allow: /assets/img
+Disallow: /addClient
+Disallow: /addCities
+Disallow: /categories
+Disallow: /clientlist
+Disallow: /homepage/?
+
+Sitemap: http://nxsearch.com/sitemap.xml
