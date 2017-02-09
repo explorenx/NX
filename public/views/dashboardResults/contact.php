@@ -27,8 +27,7 @@ $mail->IsHTML(true);                                  // set email format to HTM
 $to ='enquiry@nxsearch.com';
 
 
-$mail->Subject = To Client Name: $_POST['ClinicName'];
-$mail->Subject = A Enquiry From Following User //$_POST['subject'];
+
 $message = "Name of the enquirer :".$_POST['username']." \r\n <br>Email Adrress :".$_POST['useremail']." \r\n <br> Mobile No. :".$_POST['usermobile']." 
             \r\n <br>Selected Enquiry Date :".$_POST['date']." \r\n <br>Selected Enquiry Time :".$_POST['time'];
 $mail->Body    = $message;
