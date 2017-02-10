@@ -1,12 +1,17 @@
 // set up ======================================================================
 var express  = require('express');
-var app      = express(); 								// create our app w/ express
+var nodemailer = require("nodemailer");
+var app      = express(); 
+
+
+								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 var passport	= require('passport');
 var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
  var XMLWriter = require('xml-writer');
+ 
 
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
@@ -20,6 +25,25 @@ var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackCont
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var sitemap = require('./app/controllers/home/sitemap');  
 
+nodemailer.createTransport('smtps://nxsearch.com:pass@smtp.gmail.com');
+var smtpConfig = {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+        user: 'agogweb1@gmail.com',
+        pass: 'Pune123##'
+    }
+};
+var transporter = nodemailer.createTransport(smtpConfig);
+//var smtpTransport = nodemailer.createTransport(nodemailer,{
+    //service: "mail.nxsearch.com",
+   // auth: {
+   //     user: "enquiry@nxsearch.com",
+   //     pass: "pune123##"
+  //  }
+//});
+
 var accountController = require('./app/controllers/account/accountController');
 
 var morgan = require('morgan'); 		// log requests to the console (express4)
@@ -28,6 +52,7 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 
 var multer = require('multer');
 app.use(require('prerender-node').set('prerenderToken', 'SjUEgsLfXx3jKnpdpgmF'));
+app.use(require('prerender-node').set('forwardHeaders', true));
 // Use the passport package in our application
 app.use(passport.initialize());
  
@@ -62,6 +87,7 @@ app.use('/api/gallary', clinicGallaryData);
 app.use('/api/feedback', clinicfeedbackData);
 app.use('/api/contact', cliniccontactData);
 app.use('/api/sitemap', sitemap);
+
 
 
 app.use('/api/account', accountController);
@@ -111,8 +137,37 @@ var storage = multer.diskStorage({ //multers disk storage settings
         })
     });
 
+
+//app.get('/',function(req,res){
+ //   res.sendfile('index.html');
+//});
+app.get('/send',function(req,res){
+    var mailOptions={
+    from: req.query.from, // sender address
+    to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
+    subject: "NX-search Enquiry for " + req.query.subject, // Subject line
+    //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
+   html: "Enquiry for :"+ "<b>"+req.query.subject+" </b>"+"<br>"+"Name : "+"<b>"+req.query.to+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
+            +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Appointment Date :"+"<b>"+req.query.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+req.query.time +"</b>" +"<br>"
+       // to : req.query.to,
+       // subject : req.query.subject,
+       // text : req.query.text
+    }
+    console.log(mailOptions);
+    transporter.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+          transporter.close();
+});
+});
+
  // create generator
-var generator = new SitemapGenerator('http://localhost:8080');
+var generator = new SitemapGenerator('http://nxsearch.com');
 
 // register event listeners
 generator.on('done', function (sitemap) {
@@ -139,6 +194,6 @@ generator.start();
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
+app.listen('142.4.14.149', port);
 console.log("App listening on port " + port);
 
