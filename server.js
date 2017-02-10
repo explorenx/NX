@@ -2,7 +2,7 @@
 var express  = require('express');
 var nodemailer = require("nodemailer");
 var app      = express(); 
-
+var smtpTransport = require('nodemailer-smtp-transport');
 
 								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
