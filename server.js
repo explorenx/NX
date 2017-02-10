@@ -27,12 +27,12 @@ var sitemap = require('./app/controllers/home/sitemap');
 
 nodemailer.createTransport('smtps://nxsearch.com:pass@smtp.gmail.com');
 var smtpConfig = {
-    host: 'mail.nxsearch.com',
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: '	enquiry@nxsearch.com',
-        pass: 'pune123##'
+        user: 'agogweb1@gmail.com',
+        pass: 'Pune123##'
     }
 };
 var transporter = nodemailer.createTransport(smtpConfig);
