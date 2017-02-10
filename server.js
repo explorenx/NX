@@ -194,6 +194,6 @@ generator.start();
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen('142.4.14.149', port);
+app.listen(port);
 console.log("App listening on port " + port);
 
