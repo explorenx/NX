@@ -25,7 +25,7 @@ var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackCont
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var sitemap = require('./app/controllers/home/sitemap');  
 
-nodemailer.createTransport('smtps://142.4.14.149:pass@smtp.gmail.com');
+nodemailer.createTransport('smtps://142.4.14.149:8080:pass@smtp.gmail.com');
 var smtpConfig = {
     host: 'smtp.gmail.com',
     port: 465,
