@@ -25,14 +25,14 @@ var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackCont
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var sitemap = require('./app/controllers/home/sitemap');  
 
-nodemailer.createTransport('smtps://142.4.14.149:8080:pass@smtp.gmail.com');
+nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.nxsearch.com');
 var smtpConfig = {
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // use SSL
+    host: 'mail.nxsearch.com',
+    port: 25,
+    secure: false, // use SSL
     auth: {
-        user: 'agogweb1@gmail.com',
-        pass: 'Pune123##'
+        user: 'enquiry@nxsearch.com',
+        pass: 'pune123##'
     }
 };
 var transporter = nodemailer.createTransport(smtpConfig);
