@@ -136,6 +136,30 @@
         ga('create', 'UA-64739177-2', 'auto');
         ga('send', 'pageview');
     </script>
+
+ <script>
+                                                            $(document).ready(function(){
+                                                                var from,to,subject,text,date,time;
+                                                                $("#send_email").click(function(){      
+                                                                    to=$("#username").val();
+                                                                    subject=$("#ClinicName").val();
+                                                                    text=$("#usermobile").val();
+                                                                    from=$("#useremail").val();
+                                                                    date=$("#date").val();
+                                                                    time=$("#time").val();
+                                                                    $("#message").text("Sending E-mail...Please wait");
+                                                                    $.get("http://localhost:8080/send",{to:to,subject:subject,text:text},function(data){
+                                                                    if(data=="sent")
+                                                                    {
+                                                                        $("#message").empty().html("Enquiry send successfully");
+                                                                    }
+
+                                                            });
+                                                                });
+                                                            });
+                                                            </script>
+
+
     <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
     <meta name="google-site-verification" content="Hn1ybtufUg4QiGD_ZRDyBc5468PuSMoiHgM8Ijn2D2k" />
 </head>
@@ -237,7 +261,7 @@
 
     </div>
 
-    <footer class="container" style="background-color:#00334d;">
+    <footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
         <div class="footer" id="footer">
             <div class="container">
                 <div class="container">
@@ -270,7 +294,7 @@
                             <li>
                                 <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
                                 <a href="https://www.facebook.com/nxsearch" target="blank"><img src="assets/img/facebook-bizzbazar.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                               <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
                                 <a href="#"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
                                 <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
                             </li>
