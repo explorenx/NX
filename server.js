@@ -28,8 +28,8 @@ var sitemap = require('./app/controllers/home/sitemap');
 nodemailer.createTransport('smtps://nxsearch.com:pass@smtp.gmail.com');
 var smtpConfig = {
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // use SSL
+    port: 587,
+    secure: false, // use SSL
     auth: {
         user: 'agogweb1@gmail.com',
         pass: 'Pune123##'
