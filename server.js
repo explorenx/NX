@@ -25,7 +25,7 @@ var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackCont
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var sitemap = require('./app/controllers/home/sitemap');  
 
-nodemailer.createTransport('smtps://localhost:pass@smtp.gmail.com');
+nodemailer.createTransport('smtps://mail.nxsearch.com:pass@smtp.gmail.com');
 var smtpConfig = {
     host: 'smtp.gmail.com',
     port: 465,
