@@ -25,7 +25,7 @@ var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackCont
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var sitemap = require('./app/controllers/home/sitemap');  
 
-nodemailer.createTransport('smtps://mail.nxsearch.com:pass@smtp.gmail.com');
+nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.gmail.com');
 var smtpConfig = {
     host: 'smtp.gmail.com',
     port: 465,
@@ -167,10 +167,10 @@ app.get('/send',function(req,res){
 });
 
  // create generator
-var generator = new SitemapGenerator('http://nxsearch.com');
+//var generator = new SitemapGenerator('http://nxsearch.com');
 
 // register event listeners
-generator.on('done', function (sitemap) {
+//generator.on('done', function (sitemap) {
     
     
     //xw.startDocument()
@@ -180,12 +180,12 @@ generator.on('done', function (sitemap) {
     //xw.endDocument();
  
     //console.log(xw.toString());
-  console.log(sitemap); // => prints xml sitemap
+  //console.log(sitemap); // => prints xml sitemap
   
-});
+//});
 
 // start the crawler
-generator.start();
+//generator.start();
 
 
 	//application -------------------------------------------------------------
@@ -194,6 +194,6 @@ generator.start();
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
+app.listen('142.4.14.149', port);
 console.log("App listening on port " + port);
 
