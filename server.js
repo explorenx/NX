@@ -30,7 +30,7 @@ nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.nxsearch.com');
 var smtpConfig = {
     host: 'mail.nxsearch.com',
     port: 25,
-    secure: false, // use SSL
+   // secure: false, // use SSL
     auth: {
         user: 'enquiry@nxsearch.com',
         pass: 'pune123##'
