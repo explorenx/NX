@@ -11,7 +11,7 @@ var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
  var XMLWriter = require('xml-writer');
- 
+ var nodemailer = require("nodemailer");
 
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
