@@ -174,7 +174,7 @@
 
 
         <div class="col-md-9 col-xs-12">
-            <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index ">
+            <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:5 | filter : userSearch track by $index ">
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;">
                     <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 250px">
 
@@ -227,13 +227,13 @@
                         <!-- <a  href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Additional Profile Data </a></br>
                     </div>-->
                                 <div class="col-md-6 col-md-offset-4 col-xs-12 col-xs-offset-5">
-                                    <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</label></button>
+                                    <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal{{$index}}"><label>Enquire Now</label></button>
                                     <div class="modal fade" id="myModal{{$index}}" role="dialog">
                                         <div class="modal-dialog">
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                                <script language="javascript">
+                                               <!-- <script language="javascript">
                                                     function validate() {
                                                         if (document.getElementById("username").value == '') {
                                                             alert("Please provide your full name");
@@ -251,25 +251,43 @@
                                                             return false;
                                                         }
                                                     }
-                                                </script>
+                                                </script>-->
                                                 <div class="modal-header">
+                                                    <script>
+                                                            $(document).ready(function(){
+                                                                var from,to,subject,text,date,time;
+                                                                $("#send_email").click(function(){      
+                                                                    to=$("#username").val();
+                                                                    subject=$("#ClinicName").val();
+                                                                    text=$("#usermobile").val();
+                                                                    from=$("#useremail").val();
+                                                                    date=$("#date").val();
+                                                                    time=$("#time").val();
+                                                                    $("#message").text("Sending E-mail...Please wait");
+                                                                    $.get("http://nxsearch.com/send",{to:to,subject:subject,text:text,from:from,date:date,time:time},function(data){
+                                                                    if(data=="sent")
+                                                                    {
+                                                                        $("#message").empty().html("Enquiry send successfully");
+                                                                    }
 
+                                                            });
+                                                                });
+                                                            });
+                                                            </script>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                                                 <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
 
-                                                    <form name="enquiryForm" class="form-horizontal" role="form" action="contact.php" method="post">
-                                                        <fieldset>
-
+                                                    <form name="enquiryForm" class="form-horizontal" role="form">                                                       
                                                             <!-- Form Name -->
 
                                                             <!-- Text input-->
                                                             <div class="form-group">
                                                                 <label class="col-sm-2 control-label" for="textinput">Name : </label>
                                                                 <div class="col-sm-8" style="padding-right: 10px">
-                                                                    <input type="text" name="username" id="username" placeholder="Enter Name" class="form-control">
+                                                                    <input type="text" name="username" id="username" placeholder="Enter Name" class="form-control" ng-required="true">
                                                                     <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                         <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                                     </div>
@@ -280,7 +298,7 @@
                                                             <div class="form-group" style="padding-right: 10px">
                                                                 <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="text" name="usermobile" id="usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control">
+                                                                    <input type="text" name="usermobile" id="usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
                                                                     <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                         <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                     </div>
@@ -288,7 +306,7 @@
 
                                                                 <label class="col-sm-2 control-label" for="textinput">Email : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="email" name="useremail" id="useremail" placeholder="Enter Valid Email " class="form-control">
+                                                                    <input type="email" name="useremail" id="useremail" placeholder="Enter Valid Email " class="form-control" ng-required="true">
                                                                 </div>
                                                             </div>
 
@@ -299,37 +317,29 @@
                                                             <div class="form-group" style="padding-right: 10px">
                                                                 <label class="col-sm-2 control-label" for="textinput">Date : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="date" name="date" placeholder="Pick Date" class="form-control">
+                                                                    <input type="date" id="date" name="date" placeholder="Pick Date" class="form-control" ng-required="true">
                                                                 </div>
 
                                                                 <label class="col-sm-2 control-label" for="textinput">Time : </label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="time" name="time" placeholder="Pick Time" class="form-control">
+                                                                    <input type="time" id="time" name="time" placeholder="Pick Time" class="form-control" ng-required="true">
                                                                 </div>
                                                             </div>
 
-
+                                                          <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
 
                                                             <!-- Text input-->
-
-
-                                                            <div class="col-md-6">
-
+                                                            <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" name="ClinicName" class="form-control" value="{{item.ClinicName}}" readonly>
+                                                        
+                                                            <input name="btnSubmit" type="submit" class="bt btn-primary" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                            </form>
                                                             </div>
+                                                        <div class="modal-footer">
+                                                           <span id="message"></span>
+                                                        </div>
 
-                                                            <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
-                                                            <div class="modal-footer">
-                                                                <h4 class="pull-left">Your Enquiry For :</h4><input type="text" name="ClinicName" class="form-control" value="{{item.ClinicName}}" readonly>
-
-                                                                <input name="btnSubmit" type="submit" onclick="javascript: return validate();" value="Submit" />
-
-                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </fieldset>
-                                                    </form>
-
-
-                                                </div>
+                                                    
                                             </div>
                                         </div>
                                     </div>
