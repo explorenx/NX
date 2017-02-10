@@ -12,6 +12,7 @@ var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
  var XMLWriter = require('xml-writer');
  var nodemailer = require("nodemailer");
+ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
