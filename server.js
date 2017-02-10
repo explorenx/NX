@@ -167,10 +167,10 @@ app.get('/send',function(req,res){
 });
 
  // create generator
-//var generator = new SitemapGenerator('http://nxsearch.com');
+var generator = new SitemapGenerator('http://nxsearch.com');
 
 // register event listeners
-//generator.on('done', function (sitemap) {
+generator.on('done', function (sitemap) {
     
     
     //xw.startDocument()
@@ -180,12 +180,12 @@ app.get('/send',function(req,res){
     //xw.endDocument();
  
     //console.log(xw.toString());
-  //console.log(sitemap); // => prints xml sitemap
+  console.log(sitemap); // => prints xml sitemap
   
-//});
+});
 
 // start the crawler
-//generator.start();
+generator.start();
 
 
 	//application -------------------------------------------------------------
