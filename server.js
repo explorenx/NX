@@ -52,8 +52,9 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 var multer = require('multer');
-app.use(require('prerender-node').set('prerenderToken', 'SjUEgsLfXx3jKnpdpgmF'));
-app.use(require('prerender-node').set('forwardHeaders', true));
+app.use(require('prerender-node').set('prerenderToken', 'SjUEgsLfXx3jKnpdpgmF').set('forwardHeaders', true));
+//app.use(require('prerender-node').set('prerenderToken', 'SjUEgsLfXx3jKnpdpgmF'));
+//app.use(require('prerender-node').set('forwardHeaders', true));
 // Use the passport package in our application
 app.use(passport.initialize());
  
