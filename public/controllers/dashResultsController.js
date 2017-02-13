@@ -52,7 +52,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
 
 
-        $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
+        $window.document.title = category + ' in '+area+' '  + city +"| NXsearch";
         $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
         $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
         $window.document.getElementsByName('keywords')[0].content = category + ' in '+area + ' ' + city;
@@ -190,6 +190,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 savedMetaData.setData(metaInfo);
                 console.log(metaInfo);
 
+                 $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                  $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
