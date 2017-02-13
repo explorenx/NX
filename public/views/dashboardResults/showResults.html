@@ -174,22 +174,22 @@
 
 
         <div class="col-md-9 col-xs-12">
-            <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index ">
-                <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;">
+            <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index" >
+                <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
                     <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 250px">
 
                         <div class="col-md-4 col-xs-12 text-center doc-photo-container">
                             <div ng-if="item.imageUrl != ''">
-                                <img src="{{item.imageUrl }}" alt="{{item.imageUrl }}" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="{{item.imageUrl }}" alt="{{item.imageUrl }}" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
                             </div>
                             <div ng-if="item.imageUrl == '' ">
-                                <img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.imageUrl }}" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.imageUrl }}" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
                             </div>
                         </div>
 
                         <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
-                            <h5 class=""><a href="/profilepage/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
-                            <span style="font-size:12px;"><b> {{item.DoctorName}}</b></span></br>
+                            <h5 class=""><a itemprop="url" href="/profilepage/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <span itemprop="person" style="font-size:12px;"><b> {{item.DoctorName}}</b></span></br>
                             <span style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</span></br>
 
                             <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong></span><span style="font-size:12px;">{{item.Experience}} Years </span></br>
@@ -197,12 +197,12 @@
                                 <div class="col-xs-3">
                                     <span style="color:#1e97cc;"><strong><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </strong></span>
                                 </div>
-                                <div class="col-xs-9">
+                                <div class="col-xs-9" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
                                     <div class="col-xs-12">
-                                        <span style="font-size:12px;">{{item.FirstHalfTime}} |</span>
+                                        <span itemprop="opens" style="font-size:12px;">{{item.FirstHalfTime}} |</span>
                                     </div>
                                     <div class="col-xs-12">
-                                        <span style="font-size:12px;">{{item.SecondHalfTime}}</span>
+                                        <span itemprop="closes" style="font-size:12px;">{{item.SecondHalfTime}}</span>
                                     </div>
 
                                 </div>
@@ -212,8 +212,8 @@
                                     <span style="color:#1e97cc;"><strong><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span>
                                 </div>
                                 <div class="col-xs-9">
-                                    <div class="col-xs-12">
-                                        <span style="font-size:13px;">{{item.Area}}</span>
+                                    <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                        <span itemprop="addressLocality" style="font-size:13px;">{{item.Area}}</span>
                                     </div>
                                 </div>
                             </div>
