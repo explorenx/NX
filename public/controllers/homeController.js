@@ -206,7 +206,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             });
 
             //alert(JSON.stringify($location.path));
-            if ($location.path == 'http://localhost:5000/') {
+            if ($location.path == 'http://nxsearch.com/') {
 
                 $window.document.getElementsByName('title')[0].content = metaKeys;
                 $window.document.getElementsByName('description')[0].content = metaDesc;
@@ -409,7 +409,7 @@ app.controller('ImageUploadController', function(Upload, $window, $scope, $http)
     vm.upload = function(file) {
         file = Upload.rename(file, "hhh.jpeg");
         Upload.upload({
-            url: 'http://localhost:5000/uploadProfileImage', //webAPI exposed to upload the file
+            url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
         }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
