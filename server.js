@@ -3,7 +3,7 @@ var express  = require('express');
 var nodemailer = require("nodemailer");
 var app      = express(); 
 var smtpTransport = require('nodemailer-smtp-transport');
-
+ h5bp = require('h5bp');
 								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 var passport	= require('passport');
@@ -63,7 +63,7 @@ app.use(passport.initialize());
 // configuration ===============================================================
 mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
 
-
+app.use(h5bp({ root: __dirname + '/public' }));
 app.use(express.static(__dirname + '/public')); 				// set the static files location /public/img will be /img for users
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); 										// log every request to the console
@@ -151,6 +151,32 @@ app.get('/send',function(req,res){
     //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
    html: "Enquiry for :"+ "<b>"+req.query.subject+" </b>"+"<br>"+"Name : "+"<b>"+req.query.to+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
             +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Appointment Date :"+"<b>"+req.query.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+req.query.time +"</b>" +"<br>"
+       // to : req.query.to,
+       // subject : req.query.subject,
+       // text : req.query.text
+    }
+    console.log(mailOptions);
+    transporter.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+          transporter.close();
+});
+});
+
+app.get('/registerfree',function(req,res){
+    var mailOptions={
+    from: req.query.from, // sender address
+    to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
+    subject: "NX-search Registration from " + req.query.bname, // Subject line
+    //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
+   html: "Registration Request from :"+ "<b>"+req.query.bname+" </b>"+"<br>"+"Owner Name : "+"<b>"+req.query.oname+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
+            +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Address :"+"<b>"+req.query.address +"</b>" +"<br>"+"Business Type :"+"<b>"+req.query.business +"</b>" +"<br>"+"Qualification :"+"<b>"+req.query.quali +"</b>" +"<br>"
+              +"Speciality :"+"<b>"+req.query.speciality +"</b>" +"<br>" +"Experience :"+"<b>"+req.query.experience +"</b>" +"<br>" +"Message:"+"<b>"+req.query.message +"</b>" +"<br>"
        // to : req.query.to,
        // subject : req.query.subject,
        // text : req.query.text
