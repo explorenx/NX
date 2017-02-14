@@ -1,9 +1,33 @@
+ <script>
+                                                            $(document).ready(function(){
+                                                                var from,to,subject,text,date,time;
+                                                                $("#send_email").click(function(){      
+                                                                    bname=$("#bname").val();
+                                                                    oname=$("#oname").val();
+                                                                    text=$("#phone").val();
+                                                                    from=$("#email").val();
+                                                                    address=$("#address").val();
+                                                                    business=$("#business").val();
+                                                                    quali=$("#quali").val();
+                                                                    speciality=$("#speciality").val();
+                                                                    experience=$("#experience").val();
+                                                                     message=$("#message").val();
+                                                                     $("#message1").text("Sending E-mail...Please wait");
+                                                                    $.get("http://nxsearch.com/registerfree",{bname:bname,oname:oname,text:text,from:from,address:address,business:business,quali:quali,speciality:speciality,experience:experience,message:message},function(data){
+                                                                    if(data=="sent")
+                                                                    {
+                                                                        $("#message1").empty().html("Enquiry send successfully");
+                                                                    }
 
+                                                            });
+                                                                });
+                                                            });
+                                                            </script>
  <script src='https://www.google.com/recaptcha/api.js'></script>
       <section>
-           <div class="container" style="background-color: gray" >
+           <div class="container" style="background-color: gray">
                <div class="col-md-6 col-md-offset-3" >
-        
+                    <span id="message1"></span>
                     <form class="form-horizontal" name="registerForm" method="post" style="padding-top: 20px; ">
                         
                             <h2 class="text-center header text1">Register Your Business</h2>
@@ -11,7 +35,7 @@
                             <div class="form-group">
                                <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Name :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="name" name="Businessname" type="text" placeholder="Enter Business Name Here" ng-model="formData.clientName" class="form-control" ng-required="true">
+                                    <input id="bname" name="Businessname" type="text" placeholder="Enter Business Name Here" ng-model="formData.clientName" class="form-control" ng-required="true">
                                      <div ng-show="registerForm.Businessname.$touched && registerForm.Businessname.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Business Name</small>
                                      </div>
@@ -21,7 +45,7 @@
                              <div class="form-group">
                                <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Owner Name :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="name" name="name" type="text" placeholder="Enter Owner Name Here" ng-model="formData.Name" class="form-control" ng-required="true">
+                                    <input id="oname" name="name" type="text" placeholder="Enter Owner Name Here" ng-model="formData.Name" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.name.$touched && registerForm.name.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Owner Name</small>
                                      </div>
@@ -56,13 +80,13 @@
                             <div class="form-group">
                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Address :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <textarea class="form-control" id="message" name="message" ng-model="formData.address" placeholder="Enter your Address for us here." rows="3" ng-required="true"></textarea>
+                                    <textarea class="form-control" id="address" name="message" ng-model="formData.address" placeholder="Enter your Address for us here." rows="3" ng-required="true"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business :</label></div>
+                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Type :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="business" name="business" type="text" placeholder="Enter your business here" ng-model="formData.business" class="form-control" ng-required="true">
+                                    <input id="business" name="business" type="text" placeholder="Clinic, Preschool, Salone, Spa, Private Tuition" ng-model="formData.business" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.business.$touched && registerForm.business.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Business</small>
                                      </div>
@@ -72,7 +96,7 @@
                              <div class="form-group">
                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Qualification :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="business" name="Qualification" type="text" placeholder="Enter your Qualification here" ng-model="formData.qualification" class="form-control" ng-required="true">
+                                    <input id="quali" name="Qualification" type="text" placeholder="Enter your Qualification here" ng-model="formData.qualification" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.Qualification.$touched && registerForm.Qualification.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Qualification</small>
                                      </div>
@@ -91,7 +115,7 @@
                             <div class="form-group">
                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Experience :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="Experience" name="Experience" type="text" placeholder="Enter your Experience here" ng-model="formData.Experience" class="form-control" ng-required="true">
+                                    <input id="experience" name="Experience" type="text" placeholder="Enter your Experience in Year(s) here" ng-model="formData.Experience" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.Experience.$touched && registerForm.Experience.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Experience</small>
                                      </div>
@@ -100,7 +124,7 @@
                              <div class="form-group">
                                   <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Massage :</label></div>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" id="message" name="message" ng-model="formData.Massage" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="3" ng-required="true"></textarea>
+                                    <textarea class="form-control" id="message" name="message" ng-model="formData.Massage" placeholder="Enter your massage for us here. We will get back to you." rows="3" ng-required="true"></textarea>
                                 </div>
                             </div>
                              <div  id="recaptcha" ng-required="true">
@@ -108,7 +132,7 @@
                              </div><br/>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary btn-lg" ng-disabled="registerForm.$invalid">Register</button>
+                                    <button id="send_email" type="submit" class="btn btn-primary btn-lg" ng-disabled="registerForm.$invalid">Register</button>
                                 </div>
                             </div>
                         
