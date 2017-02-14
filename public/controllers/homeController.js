@@ -199,7 +199,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                 angular.forEach(value.category, function(cat, key2) {
                     //alert(JSON.stringify(cat));
                     if (cat.categoryDescription && cat.subCategoryDescription) {
-                        metaDesc += cat.categoryDescription + ' in Pune ';
+                        metaDesc += cat.categoryDescription + ' in Pune '+ ' nxsearch';
                         metaKeys += cat.subCategoryDescription + ' in Pune ';
                     }
                 });
@@ -264,7 +264,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                         //return el.category.name; 
                     });
 
-                    $window.document.getElementsByName('title')[0].content = metaKeys;
+                    $window.document.getElementsByName('title')[0].content = metakeys;
                     $window.document.getElementsByName('description')[0].content = metaDesc;
 
                     //alert($scope.Categories);
