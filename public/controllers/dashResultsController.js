@@ -25,34 +25,38 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     //console.log($routeParams.id)
     //var clientId = $routeParams.id;
     function getData() {
-
+        // var area = $routeParams.Area.Area;
+        // alert(area);
         var city = $routeParams.city;
         var category = $routeParams.category;
-        var area;
-        
-        if($rootScope.Area != null){
+         if($rootScope.Area != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             area = $rootScope.Area.Area;
             //alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
+        var area = $routeParams.area;
+      //  $routeParams.area = area;
+        alert( $routeParams.area);
+       
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
 
-        if(area)
-        url = url + '&Area=' + area;
-       // alert(url);
-        if (category)
-            url = url + '&Categories=' + category;
+       // if(area)
+        //url = url + '&Area=' + area;
+        //alert(url);
+        if (category && area)
+           url = url + '&Categories=' + category + '&Area=' + area;
             
-        if (category && city)
-            url = url + '&City=' + city;
-        if (!category && city)
-            url = url + '&City=' + city;
+        if (category && city && area)
+            url = url + '&City=' + city ;
+            alert(url);
+        if (!category && city && area)
+            url = url + '&City=' + city + '&Area=' + area;
 
 
 
-        $window.document.title = category + ' in '+area+' '  + city +"| NXsearch";
+        $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
         $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
         $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
         $window.document.getElementsByName('keywords')[0].content = category + ' in '+area + ' ' + city;
@@ -190,7 +194,6 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 savedMetaData.setData(metaInfo);
                 console.log(metaInfo);
 
-                 $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                  $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
@@ -955,7 +958,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: formData.lat, lng: formDatalong },
+            center: { lat: formData.lat, lng: formData.long },
             zoom: 6
         });
         var infoWindow = new google.maps.InfoWindow({ map: map });
