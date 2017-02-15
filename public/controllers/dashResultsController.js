@@ -37,7 +37,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }
         var area = $routeParams.area;
       //  $routeParams.area = area;
-        alert( $routeParams.area);
+       // alert( $routeParams.area);
        
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
