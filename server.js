@@ -13,7 +13,7 @@ var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
  var XMLWriter = require('xml-writer');
  var nodemailer = require("nodemailer");
- //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
@@ -29,9 +29,9 @@ var sitemap = require('./app/controllers/home/sitemap');
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
-    host: 'mail.nxsearch.com',
+    host: '142.4.14.149',
     port: 25,
-   // secure: false, // use SSL
+   secure: false, // use SSL
     auth: {
         user: 'enquiry@nxsearch.com',
         pass: 'pune123##'
@@ -144,12 +144,63 @@ var storage = multer.diskStorage({ //multers disk storage settings
 //});
 app.get('/send',function(req,res){
     var mailOptions={
-    from: req.query.from, // sender address
+    from: 'enquiry@nxsearch.com', // sender address
     to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
     subject: "NX-search Enquiry for " + req.query.subject, // Subject line
     //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
    html: "Enquiry for :"+ "<b>"+req.query.subject+" </b>"+"<br>"+"Name : "+"<b>"+req.query.to+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
             +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Appointment Date :"+"<b>"+req.query.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+req.query.time +"</b>" +"<br>"
+       // to : req.query.to,
+       // subject : req.query.subject,
+       // text : req.query.text
+    }
+    console.log(mailOptions);
+    transporter.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+          transporter.close();
+});
+});
+
+app.get('/registerfree',function(req,res){
+    var mailOptions={
+    from: 'enquiry@nxsearch.com', // sender address
+    to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
+    subject: "NX-search Registratio Request for " + req.query.bname, // Subject line
+    //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
+   html: "Registratio Request from :"+ "<b>"+req.query.bname+" </b>"+"<br>"+"Owner Name : "+"<b>"+req.query.oname+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
+            +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Address :"+"<b>"+req.query.address +"</b>" +"<br>"+"Business type :"+"<b>"+req.query.business +"</b>" +"<br>"
+            +"Qualification :"+"<b>"+req.query.quali +"</b>" +"<br>"+"speciality :"+"<b>"+req.query.speciality +"</b>" +"<br>"+"experience :"+"<b>"+req.query.experience +"</b>" +"<br>"+"message :"+"<b>"+req.query.message +"</b>" +"<br>"
+       // to : req.query.to,
+       // subject : req.query.subject,
+       // text : req.query.text
+    }
+    console.log(mailOptions);
+    transporter.sendMail(mailOptions, function(error, response){
+     if(error){
+            console.log(error);
+        res.end("error");
+     }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+         }
+          transporter.close();
+});
+});
+
+app.get('/apply',function(req,res){
+    var mailOptions={
+    from: 'enquiry@nxsearch.com', // sender address
+    to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
+    subject: "Application from " + req.query.name, // Subject line
+    //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
+   html: "Name :"+ "<b>"+req.query.name+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
+            +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Message :"+"<b>"+req.query.message +"</b>" +"<br>"+"Attache file :"+"<b>"+req.query.file +"</b>" +"<br>"
        // to : req.query.to,
        // subject : req.query.subject,
        // text : req.query.text
