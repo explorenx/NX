@@ -50,7 +50,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             
         if (category && city && area)
             url = url + '&City=' + city ;
-            alert(url);
+           // alert(url);
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
 
