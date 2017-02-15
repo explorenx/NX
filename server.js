@@ -167,7 +167,7 @@ app.get('/send',function(req,res){
 });
 });
 
-app.get('/registerfree',function(req,res){
+app.get('/register',function(req,res){
     var mailOptions={
     from: 'enquiry@nxsearch.com', // sender address
     to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
