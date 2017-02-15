@@ -55,7 +55,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             url = url + '&City=' + city + '&Area=' + area;
 
 
-
+            $window.document.title = category + ' in '+area+' '  + city;
         $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
         $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
         $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
