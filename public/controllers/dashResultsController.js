@@ -32,7 +32,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
          if($rootScope.Area != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             area = $rootScope.Area.Area;
-            //alert(JSON.stringify(area));
+            alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
         var area = $routeParams.area;
@@ -45,6 +45,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
        // if(area)
         //url = url + '&Area=' + area;
         //alert(url);
+        if (category)
+        url = url + '&Categories=' + category
+       // alert(url);
         if (category && area)
            url = url + '&Categories=' + category + '&Area=' + area;
             
@@ -54,8 +57,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
 
+if($location.path == 'localhost:8080/'){
+     $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        $window.document.getElementsByTagName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+}
 
-            $window.document.title = category + ' in '+area+' '  + city;
+        $window.document.title = category + ' in '+area+' '  + city;
         $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
         $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
         $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
@@ -196,7 +206,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                  $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
-                 $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
+                 $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area +'| ' + data.Tags +' Pune' + ' ' + 'NXsearch';
 
             })
             .error(function(data) {
@@ -958,9 +968,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
+            
             center: { lat: formData.lat, lng: formData.long },
+            
             zoom: 6
         });
+        
         var infoWindow = new google.maps.InfoWindow({ map: map });
 
     }
