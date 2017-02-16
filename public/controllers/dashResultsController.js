@@ -45,7 +45,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
        // if(area)
         //url = url + '&Area=' + area;
         //alert(url);
-        if (category)
+        if (category && !area)
         url = url + '&Categories=' + category
        // alert(url);
         if (category && area)
@@ -57,8 +57,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
 
-if($location.path == 'localhost:8080/'){
-     $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        if($location.path == 'localhost:8080/'){
+        $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         $window.document.getElementsByTagName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
