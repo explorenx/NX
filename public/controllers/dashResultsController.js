@@ -32,7 +32,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
          if($rootScope.Area != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             area = $rootScope.Area.Area;
-            alert(JSON.stringify(area));
+           // alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
         var area = $routeParams.area;
