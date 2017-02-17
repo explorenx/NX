@@ -6,7 +6,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
 
-    //$scope.currentPath = $location.path();
+    $scope.currentPath = $location.path();
     console.log($location.path())
     console.log('LS.getCookieData');
     console.log(LS.getCookieData());
@@ -27,6 +27,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     function getData() {
         // var area = $routeParams.Area.Area;
         // alert(area);
+        if($rootScope.Tags != null){
+        //alert(JSON.stringify($rootScope.Area.Area));
+            tags = $rootScope.Tags.Tags;
+            alert(tags);
+           // alert(JSON.stringify(area));
+            //var area = $routeParams.Area;
+        }
+        
         var city = $routeParams.city;
         var category = $routeParams.category;
          if($rootScope.Area != null){
@@ -35,9 +43,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
            // alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
+         if($rootScope.subCategory != null){
+        //alert(JSON.stringify($rootScope.Area.Area));
+            subcategory = $rootScope.subCategory.subCategory;
+           // alert(JSON.stringify(area));
+            //var area = $routeParams.Area;
+        }
         var area = $routeParams.area;
+        var subcategory = $routeParams.subcategory;
       //  $routeParams.area = area;
-       // alert( $routeParams.area);
+        //alert(subcategory);
        
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
@@ -57,19 +72,13 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
 
-        if($location.path == 'localhost:8080/'){
-        $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-        $window.document.getElementsByTagName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-        $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-        $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-        $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-}
 
-        $window.document.title = category + ' in '+area+' '  + city;
+
+        $window.document.title = category + ' in '+ area+' '  + city;
         $window.document.getElementsByTagName('title')[0].content = category + ' in '+area+' '  + city;
-        $window.document.getElementsByName('title')[0].content = category + ' in ' +area + ' '+ city;
         $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city;
         $window.document.getElementsByName('keywords')[0].content = category + ' in '+area + ' ' + city;
+         //$window.document.getElementsByTagName('title')[0].getAttribute("co").content = category + ' in '+area+' '  + city;
 
         $http.get(url)
             .success(function(data) {
@@ -77,7 +86,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
                 if (data.length == 0) {
-                    $http.get('/api/dashbord/results/?&City=' + city + '&SubCategories=' + category)
+                    $http.get('/api/dashbord/results/?&City=' + city + '&Area=' + area + '&SubCategories=' + category)
                         .success(function(resdata) {
                             $scope.results = resdata;
                             console.log(data);
@@ -133,9 +142,29 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/category/categories')
             .success(function(data) {
                 $scope.categories = data;
-                console.log(data);
-
+               // alert(JSON.stringify(data));
+                  //  alert($scope.data.mainCategoryName);
                 $scope.sample = data;
+               //  var metaKeys = metaDesc = metaTitle = '';
+
+        //    angular.forEach(data, function(value, key1) {
+            //    angular.forEach(value.category, function(cat, key2) {
+                    //alert(JSON.stringify(cat));
+                 
+            //        if (cat.categoryDescription && cat.subCategoryDescription) {
+            //            metaDesc += cat.categoryDescription + ' nxsearch';
+            //            metaKeys += cat.subCategoryDescription + ' nxsearch ';
+                       
+            //        }
+                
+              //              });
+           // });
+           // alert(metaDesc);
+           
+              
+               // window.document.getElementsByName('description')[0].content = metaDesc;
+              //  $window.document.getElementsByName('keywords')[0].content = metaKeys;
+            
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
@@ -203,10 +232,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                 savedMetaData.setData(metaInfo);
                 console.log(metaInfo);
-                 $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
+                $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
-                 $window.document.getElementsByName('keywords')[0].content = data.ClinicName + ' in ' + data.Area +'| ' + data.Tags +' Pune' + ' ' + 'NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' Pune' + ' ' + 'NXsearch';
+                $window.document.getElementsByName('keywords')[0].content = data.Tags  + ' | ' + 'NXsearch';
 
             })
             .error(function(data) {
