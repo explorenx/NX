@@ -22,7 +22,7 @@ var Provider = restful.model('ClinicAndDoctors', new mongoose.Schema({
     ContactNumber2 :   String,
     ContactNumber3 :   String,
     RegistrationNo : String,
-    Order :String,
+    Order : Number,
     Tags: String,
     address1: String,
     address2 : String,
