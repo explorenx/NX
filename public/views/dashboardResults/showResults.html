@@ -171,10 +171,12 @@
     </div>-->
 
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
-
-
+        
         <div class="col-md-9 col-xs-12">
+           <div> <span> <a href="{{ currentPath}}">{{ currentPath}}</a></span></div>
+
             <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
+                
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
                     <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; height: 255px">
 
@@ -188,7 +190,7 @@
                         </div>
 
                         <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
-                            <h5 class=""><a itemprop="url" href="/profilepage/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify}}/{{item._id | slugify}}"><b> {{item.ClinicName}}</b></a></h5>
                             <span itemprop="person" style="font-size:12px;"><h5> {{item.DoctorName}}</h5></span>
                             <h6 style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</h6>
 
@@ -360,6 +362,9 @@
 
             </div>
             <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
+           
         </div>
+        
     </div>
+
 </div>
