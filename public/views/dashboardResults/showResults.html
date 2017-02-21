@@ -180,17 +180,17 @@
 
                         <div class="col-md-4 col-xs-12 text-center doc-photo-container">
                             <div ng-if="item.imageUrl != ''">
-                                <img itemprop="photo" src="{{item.imageUrl }}" alt="{{item.ClinicName }}-{{item.Area }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="{{item.imageUrl }}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
                             </div>
                             <div ng-if="item.imageUrl == '' ">
-                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
                             </div>
                         </div>
 
                         <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
                             <h5 class=""><a itemprop="url" href="/profilepage/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
-                            <span itemprop="person" style="font-size:12px;"><b> {{item.DoctorName}}</b></span></br>
-                            <span style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</span></br>
+                            <span itemprop="person" style="font-size:12px;"><h5> {{item.DoctorName}}</h5></span>
+                            <h6 style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</h6>
 
                             <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong></span><span style="font-size:12px;">{{item.Experience}} Years </span></br>
                             <div class="col-xs-12">
