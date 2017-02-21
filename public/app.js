@@ -31,7 +31,22 @@ app.filter('searchFor', function(){
 
 });
 
+ app.filter('slugify', function() {
+        return function(input) {
+            input = input || '';
 
+            return input.replace(/ /g, '-').toLowerCase();
+       }
+    });
+
+    app.filter('slug', function() {
+        return function(input) {
+            input = input || '';
+
+
+            return input.replace(/^[a-z0-9\s-]+/g, '');
+       }
+    });
 
 app.directive('clickAnywhereButHere', function($document){
   return {
@@ -382,7 +397,7 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             })
 
-             .when('/profilepage/:id?', {
+             .when('/profile/:city/:area/:clinicname/:id?', {
                 templateUrl : 'views/doctors/ProfilePage.html',
                 //controller : 'homeController'
             })
@@ -402,18 +417,24 @@ app.config(function($routeProvider, $locationProvider) {
                 }
            })
 
+           .when('/results/:city/:area/:category/:subcategory?', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+               
+            })   
             
+             .when('/result/:city/:category?', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+               
+            })
             .when('/results/:city/:area/:category?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
             })
-            .when('/result/:city/:category?', {
-                templateUrl : 'views/dashboardResults/showResults.html',
-                controller : 'dashResultsController',
-               
-            })
-            
+
+                  
             .when('/clientlist', {
                 templateUrl: 'views/dashboardResults/ClientList.html',
                 controller: 'dashResultsController',
