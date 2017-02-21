@@ -212,10 +212,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12 well_new">
                 <div class="col-md-3 col-sm-6 col-xs-12 ">
                     <div ng-if="client.imageUrl != ''">
-                        <img itemprop="photo" src="{{client.imageUrl }}" alt="{{client.imageUrl }}" class="img-rounded img-responsive" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
+                        <img itemprop="photo" src="{{client.imageUrl }}" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" class="img-rounded img-responsive" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
                     </div>
                     <div ng-if="client.imageUrl == ''">
-                        <img itemprop="photo" src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{client.imageUrl }}" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
+                        <img itemprop="photo" src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -280,7 +280,7 @@
                                                                     if(data=="sent")
                                                                     {
                                                                         $("#message").empty().html("Enquiry send successfully");
-                                                                    }
+                                                                    }else{$("#message").empty().html("Error");}
 
                                                             });
                                                                 });
