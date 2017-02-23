@@ -5,7 +5,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-
+   
     $scope.currentPath = $location.path();
     console.log($location.path())
     console.log('LS.getCookieData');
@@ -30,7 +30,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         if($rootScope.Tags != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             tags = $rootScope.Tags.Tags;
-            alert(tags);
+           // alert(tags);
            // alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
@@ -40,13 +40,13 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
          if($rootScope.Area != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             area = $rootScope.Area.Area;
-           // alert(JSON.stringify(area));
+          //  alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
          if($rootScope.subCategory != null){
         //alert(JSON.stringify($rootScope.Area.Area));
             subcategory = $rootScope.subCategory.subCategory;
-           // alert(JSON.stringify(area));
+           // alert(JSON.stringify(subcategory));
             //var area = $routeParams.Area;
         }
         var area = $routeParams.area;
@@ -71,7 +71,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
            // alert(url);
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
-
+        
 
 
         $window.document.title = category + ' in '+ area+' '  + city;
@@ -217,12 +217,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     var vm = this;
 
+ 
+ //alert($routeParams._id);
     if ($routeParams.id) {
         //$scope.getRecById = function(id) {
+           
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-
+               // alert( $scope.formData);
 
                 var metaInfo = {
                     title: data.ClinicName,
@@ -231,10 +234,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 };
 
                 savedMetaData.setData(metaInfo);
-                console.log(metaInfo);
-                $window.document.title = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
-                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' Pune' + ' ' + 'NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' Pune' + ' ' + 'NXsearch';
+                //alert(data.ClinicName);
+                $window.document.title = data.ClinicName + ' in ' + data.Area + ' ' + data.City + ' ' + '| NXsearch';
+                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' ' +data.City+ ' ' + '| NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' ' +data.City+ ' ' +data.Tags+ ' | NXsearch';
                 $window.document.getElementsByName('keywords')[0].content = data.Tags  + ' | ' + 'NXsearch';
 
             })
@@ -439,7 +442,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     // };
 
     var clientId = $routeParams.id;
-
+   
 
 
     $scope.addNewCategory = function() {
@@ -617,7 +620,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/dashbord/results/' + clientId)
             .success(function(data) {
                 $scope.client = data;
-                console.log(data);
+          console.log(data);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
@@ -798,7 +801,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $http.post('/api/contact/cliniccontact', value)
                     .success(function(data) {
                         //$scope.formData = {}; // clear the form so our user is ready to enter another
-                        console.log(data);
+                        alert(JSON.stringify(data));
                     })
                     .error(function(data) {
                         console.log('Error: ' + data);
@@ -817,10 +820,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }, {
             title: 'Services',
             url: 'two.tpl.html'
-        }, {
-            title: 'Feedback',
-            url: 'three.tpl.html'
-        },
+        }, 
         {
             title: 'Gallary',
             url: 'four.tpl.html'
