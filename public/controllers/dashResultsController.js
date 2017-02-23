@@ -74,15 +74,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         
 
 
-        $window.document.title = category + ' in '+ area+' '  + city + ' | NXsearch';
-        $window.document.getElementsByName('title')[0].content = category + ' in '+area+' '  + city + ' | NXsearch';
-        $window.document.getElementsByName('description')[0].content = category + ' in '+area + ' ' + city + ' | NXsearch';
-        $window.document.getElementsByName('keywords')[0].content = category + ' in '+area + ' ' + city + ' | NXsearch';
+        $window.document.title = category + ' in '+ area + ', '  + city + ' | NXsearch';
+        $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', '  + city + ' | NXsearch';
+        $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
-         document.querySelector('[property="og:title"]').content = category + ' in '+area+' '  + city + ' | NXsearch';
-         document.querySelector('[property="og:description"]').content = category + ' in '+area+' '  + city + ' | NXsearch';
-         document.querySelector('[name="twitter:title"]').content = category + ' in '+area+' '  + city + ' | NXsearch';
-         document.querySelector('[name="twitter:description"]').content = category + ' in '+area+' '  + city + ' | NXsearch';
+         document.querySelector('[property="og:title"]').content = category + ' in ' + area +', '  + city + ' | NXsearch';
+         document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
+         document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
+         document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
 
 
         $http.get(url)
@@ -240,15 +240,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                 savedMetaData.setData(metaInfo);
                 //alert(data.ClinicName);
-                $window.document.title = data.ClinicName + ' in ' + data.Area + ' ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ' ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' ' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
                 $window.document.getElementsByName('keywords')[0].content = data.Tags  + ' | ' + 'NXsearch';
 
-                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ' ' + data.City + ' ' + '| NXsearch';
-                 document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' ' + data.City + ' | ' + data.Tags + ' | NXsearch';
-                 document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ' ' + data.City + ' ' + '| NXsearch';
-                 document.querySelector('[name="twitter:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ data.Tags +' ' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                 document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                 document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                 document.querySelector('[name="twitter:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
                   document.querySelector('[name="twitter:image"]').content = 'www.nxsearch.com/' + data.imageUrl;
 
             })
