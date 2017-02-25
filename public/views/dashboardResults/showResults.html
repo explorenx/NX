@@ -171,14 +171,14 @@
     </div>-->
 
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
-        
+
         <div class="col-md-9 col-xs-12">
-           <div> <span> <a href="{{ currentPath}}">{{ currentPath}}</a></span></div>
+            <div> <span> <a href="{{ currentPath}}">{{ currentPath}}</a></span></div>
 
             <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
-                
+
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
-                    <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; height: 255px">
+                    <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 260px">
 
                         <div class="col-md-4 col-xs-12 text-center doc-photo-container">
                             <div ng-if="item.imageUrl != ''">
@@ -362,9 +362,9 @@
 
             </div>
             <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
-           
+
         </div>
-        
+
     </div>
 
 </div>
