@@ -87,7 +87,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id | slugify}}">
                                     <div class="list_dropdown">
                                         <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
                                         <br/>
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
-                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
                             <span itemprop="person" style="font-size:12px;"><h5> {{item.DoctorName}}</h5></span>
                             <h6 style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</h6>
 
