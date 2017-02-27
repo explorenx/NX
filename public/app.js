@@ -44,7 +44,7 @@ app.filter('searchFor', function(){
             input = input || '';
 
 
-            return input.replace(/^[a-z0-9\s-]+/g, '');
+            return input.replace(/\./g,'');
        }
     });
 
