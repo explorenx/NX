@@ -3,7 +3,7 @@ var app = express.Router();
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
 
-var Provider = restful.model('ClinicAndDoctors', new mongoose.Schema({
+var Provider = restful.model('ClinicAndDoctors', new mongoose.Schema({    
     ClinicName :   String,
     DoctorName : String,
     Profession: String,
@@ -30,6 +30,7 @@ var Provider = restful.model('ClinicAndDoctors', new mongoose.Schema({
     ClinicId : String,
     imageUrl : String,
     extensionNo : String,
+    
     Socical : {
         facebook : String,
         twitter : String,
