@@ -37,7 +37,7 @@
                 <div>
                     <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas " ng-disabled="disabled">
+                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
 												<option value="">Select Area</option>
 											</select>
                     <!--{{MainAreas.selectedAreaModel}}-->
@@ -73,17 +73,17 @@
                                 </div>
                             </a>
                         </div>
-                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index | orderBy">
                             <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                 <div class="list_dropdown">
-                                    <b>{{i}}</b><small class="pull-right">Service</small>
+                                    <b>{{i}}</b>
                                 </div>
                             </a>
 
 
                         </div>
 
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
                             <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
                                 <div class="list_dropdown">
                                     <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
@@ -92,7 +92,7 @@
                             </a>
                         </div>
 
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
                             <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
                                 <div class="list_dropdown">
                                     <span class="text-center; font-weight: bold;">{{i.DoctorName}}</span>
@@ -101,7 +101,7 @@
                             </a>
                         </div>
 
-                        <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
 
                             <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
                                 <div class="list_dropdown">
