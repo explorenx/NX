@@ -5,8 +5,9 @@ var express  = require('express');
 var app      = express(); 
 
 
-								// create our app w/ express
+var slug = require('mongoose-slug-generator');								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
+mongoose.plugin(slug);
 var passport	= require('passport');
 var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
@@ -167,11 +168,11 @@ app.get('/send',function(req,res){
 });
 });
 
-app.get('/register',function(req,res){
+app.get('/registerfree',function(req,res){
     var mailOptions={
-    from: 'enquiry@nxsearch.com', // sender address
+    from: 'Registration Request<enquiry@nxsearch.com> ' , // sender address
     to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
-    subject: "NX-search Registratio Request for " + req.query.bname, // Subject line
+    subject: "NX-search Registration Request for " + req.query.bname, // Subject line
     //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
    html: "Registratio Request from :"+ "<b>"+req.query.bname+" </b>"+"<br>"+"Owner Name : "+"<b>"+req.query.oname+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
             +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Address :"+"<b>"+req.query.address +"</b>" +"<br>"+"Business type :"+"<b>"+req.query.business +"</b>" +"<br>"
@@ -218,27 +219,7 @@ app.get('/apply',function(req,res){
 });
 });
 
- // create generator
-var generator = new SitemapGenerator('http://nxsearch.com');
-
-// register event listeners
-generator.on('done', function (sitemap) {
-    
-    
-    //xw.startDocument()
-    //.startElement('loc',sitemap);
-    //xw.writeAttribute('foo', 'value');
-    //xw.text(sitemap);
-    //xw.endDocument();
  
-    //console.log(xw.toString());
-  console.log(sitemap); // => prints xml sitemap
-  
-});
-
-// start the crawler
-generator.start();
-
 
 	//application -------------------------------------------------------------
 	app.get('*', function(req, res) {
