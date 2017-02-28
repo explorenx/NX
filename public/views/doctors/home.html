@@ -73,7 +73,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index | orderBy">
+                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
                             <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                 <div class="list_dropdown">
                                     <b>{{i}}</b>
