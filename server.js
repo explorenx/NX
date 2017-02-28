@@ -9,7 +9,7 @@ var slug = require('mongoose-slug-generator');								// create our app w/ expre
 var mongoose = require('mongoose'); 					// mongoose for mongodb
 mongoose.plugin(slug);
 var passport	= require('passport');
-var port  	 = process.env.PORT || 8080; 				// set the port
+var port  	 = process.env.PORT || 80; 				// set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
  var XMLWriter = require('xml-writer');
@@ -227,6 +227,6 @@ app.get('/apply',function(req,res){
 	});
 
 // listen (start app with node server.js) ======================================
-app.listen(port);
+app.listen('142.4.14.149',port);
 console.log("App listening on port " + port);
 
