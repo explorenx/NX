@@ -173,7 +173,15 @@
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
 
         <div class="col-md-9 col-xs-12">
-            <div> <span> <a href="{{ currentPath}}">{{ currentPath}}</a></span></div>
+           
+               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
+               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
+               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+              &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp  <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                
 
             <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
 
