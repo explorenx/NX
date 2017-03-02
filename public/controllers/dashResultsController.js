@@ -138,7 +138,7 @@ if(area != undefined){
                     $http.get('/api/dashbord/results/?&City=' + city + '&Area=' + area + '&SubCategories=' + category)
                         .success(function(resdata) {
                             $scope.results = resdata;
-                           
+                            $scope.aaa = $scope.results.length;
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
