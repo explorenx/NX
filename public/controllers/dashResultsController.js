@@ -5,7 +5,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-   
+   var limitStep = 1;
+$scope.limit = limitStep;
+$scope.incrementLimit = function() {
+    $scope.limit += limitStep;
+};
+$scope.decrementLimit = function() {
+    $scope.limit -= limitStep;
+};
     $scope.currentPath = $location.path();
     console.log($location.path())
     console.log('LS.getCookieData');
@@ -21,79 +28,117 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.btnValue = "Save";
 
 
-
+     var tags = $routeParams.tags;
     //console.log($routeParams.id)
     //var clientId = $routeParams.id;
     function getData() {
         // var area = $routeParams.Area.Area;
         // alert(area);
-        if($rootScope.Tags != null){
-        //alert(JSON.stringify($rootScope.Area.Area));
+        if ($rootScope.Tags != null) {
+            //alert(JSON.stringify($rootScope.Area.Area));
             tags = $rootScope.Tags.Tags;
-           // alert(tags);
-           // alert(JSON.stringify(area));
+             
+            // alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
+       
         
         var city = $routeParams.city;
         var category = $routeParams.category;
-         if($rootScope.Area != null){
-        //alert(JSON.stringify($rootScope.Area.Area));
+        if ($rootScope.Area != null) {
+            //alert(JSON.stringify($rootScope.Area.Area));
             area = $rootScope.Area.Area;
-          //  alert(JSON.stringify(area));
+            //  alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
-         if($rootScope.subCategory != null){
-        //alert(JSON.stringify($rootScope.Area.Area));
+        if ($rootScope.subCategory != null) {
+            //alert(JSON.stringify($rootScope.Area.Area));
             subcategory = $rootScope.subCategory.subCategory;
-           // alert(JSON.stringify(subcategory));
+            // alert(JSON.stringify(subcategory));
             //var area = $routeParams.Area;
         }
         var area = $routeParams.area;
         var subcategory = $routeParams.subcategory;
-      //  $routeParams.area = area;
+        //  $routeParams.area = area;
         //alert(subcategory);
-       
+
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
 
-       // if(area)
+        // if(area)
         //url = url + '&Area=' + area;
         //alert(url);
         if (category && !area)
-        url = url + '&Categories=' + category
-       // alert(url);
+            url = url + '&Categories=' + category
+            // alert(url);
         if (category && area)
-           url = url + '&Categories=' + category + '&Area=' + area;
-            
+            url = url + '&Categories=' + category + '&Area=' + area;
+
         if (category && city && area)
-            url = url + '&City=' + city ;
-           // alert(url);
+            url = url + '&City=' + city;
+        // alert(url);
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
-        
 
+if(area != undefined){
+         var myurl = '/result'+ '/'+city+'/'+category;
+         document.getElementById('categry').href=myurl;
 
-        $window.document.title = category + ' in '+ area + ', '  + city + ' | NXsearch';
-        $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', '  + city + ' | NXsearch';
+       //  var cityurl = '/showResults';
+        // document.getElementById('citylink').href=cityurl;
+
+         document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;  
+          document.getElementById('category').innerHTML = category ;  
+          document.getElementById('area').innerHTML = area ;  
+          document.getElementById('city').innerHTML = city ;
+        $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
-         document.querySelector('[property="og:title"]').content = category + ' in ' + area +', '  + city + ' | NXsearch';
-         document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
-         document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
-         document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', '  + city + ' | NXsearch';
+        document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        
+        document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        }
+
+        if(area == undefined){
+             var myurl = '/result'+ '/'+city+'/'+category;
+         document.getElementById('categry').href=myurl;
+
+         // var cityurl = '/showResults';
+        // document.getElementById('citylink').href=cityurl;
+
+         document.getElementById('keyword').innerHTML = category + ' in ' +  city; 
+          document.getElementById('category').innerHTML = category ; 
+           document.getElementById('area').innerHTML = '' ;
+        $window.document.title = category + ' in ' + city + ' | NXsearch';
+           document.getElementById('city').innerHTML = city ;
+        $window.document.getElementsByName('title')[0].content = category + ' in '   + city + ' | NXsearch';
+        $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
+        $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
+        // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
+        document.querySelector('[property="og:title"]').content = category + ' in '   + city + ' | NXsearch';
+        document.querySelector('[property="og:description"]').content = category + ' in '   + city + ' | NXsearch';
+        document.querySelector('[name="twitter:title"]').content = category + ' in '  + city + ' | NXsearch';
+        
+        document.querySelector('[name="twitter:description"]').content = category + ' in '   + city + ' | NXsearch';
+        }
 
 
         $http.get(url)
             .success(function(data) {
                 $scope.results = data;
+                 $scope.aaa = $scope.results.length;
+                            //alert($scope.aaa);
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
                 if (data.length == 0) {
                     $http.get('/api/dashbord/results/?&City=' + city + '&Area=' + area + '&SubCategories=' + category)
                         .success(function(resdata) {
                             $scope.results = resdata;
+                           
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -147,29 +192,29 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/category/categories')
             .success(function(data) {
                 $scope.categories = data;
-               // alert(JSON.stringify(data));
-                  //  alert($scope.data.mainCategoryName);
+                // alert(JSON.stringify(data));
+                //  alert($scope.data.mainCategoryName);
                 $scope.sample = data;
-               //  var metaKeys = metaDesc = metaTitle = '';
+                //  var metaKeys = metaDesc = metaTitle = '';
 
-        //    angular.forEach(data, function(value, key1) {
-            //    angular.forEach(value.category, function(cat, key2) {
-                    //alert(JSON.stringify(cat));
-                 
-            //        if (cat.categoryDescription && cat.subCategoryDescription) {
-            //            metaDesc += cat.categoryDescription + ' nxsearch';
-            //            metaKeys += cat.subCategoryDescription + ' nxsearch ';
-                       
-            //        }
-                
-              //              });
-           // });
-           // alert(metaDesc);
-           
-              
-               // window.document.getElementsByName('description')[0].content = metaDesc;
-              //  $window.document.getElementsByName('keywords')[0].content = metaKeys;
-            
+                //    angular.forEach(data, function(value, key1) {
+                //    angular.forEach(value.category, function(cat, key2) {
+                //alert(JSON.stringify(cat));
+
+                //        if (cat.categoryDescription && cat.subCategoryDescription) {
+                //            metaDesc += cat.categoryDescription + ' nxsearch';
+                //            metaKeys += cat.subCategoryDescription + ' nxsearch ';
+
+                //        }
+
+                //              });
+                // });
+                // alert(metaDesc);
+
+
+                // window.document.getElementsByName('description')[0].content = metaDesc;
+                //  $window.document.getElementsByName('keywords')[0].content = metaKeys;
+
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
@@ -222,34 +267,34 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     var vm = this;
 
- 
- //alert($routeParams._id);
+
+    //alert($routeParams._id);
     if ($routeParams.id) {
         //$scope.getRecById = function(id) {
-           
+
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-               // alert( $scope.formData);
+                // alert( $scope.formData);
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
-                    keywords: data.ClinicName 
+                    keywords: data.ClinicName
                 };
 
                 savedMetaData.setData(metaInfo);
                 //alert(data.ClinicName);
                 $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' '+', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
-                $window.document.getElementsByName('keywords')[0].content = data.Tags  + ' | ' + 'NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' ' + ', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                $window.document.getElementsByName('keywords')[0].content = data.Tags + ' | ' + 'NXsearch';
 
-                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                 document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
-                 document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                 document.querySelector('[name="twitter:description"]').content = data.ClinicName + ' in ' + data.Area + ' '+ ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
-                  document.querySelector('[name="twitter:image"]').content = 'www.nxsearch.com/' + data.imageUrl;
+                document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                document.querySelector('[name="twitter:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                document.querySelector('[name="twitter:image"]').content = 'www.nxsearch.com/' + data.imageUrl;
 
             })
             .error(function(data) {
@@ -343,7 +388,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         if (vm.file) {
             alert(vm.file.name);
-            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-'+$routeParams.id + '-nxsearch.jpg';
+            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + '-nxsearch.jpg';
             $scope.formData.imageUrl = 'uploads/clientProfilePictures/' + fileName;
             vm.file.name = fileName;
             //       alert('new file name -' + vm.file.name);//
@@ -453,7 +498,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     // };
 
     var clientId = $routeParams.id;
-   
+
 
 
     $scope.addNewCategory = function() {
@@ -523,7 +568,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/aditionalProfile/"+$routeParams.id);
+                $location.path("/aditionalProfile/" + $routeParams.id);
 
             });
 
@@ -618,7 +663,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/aditionalProfile/"+$routeParams.id);
+                $location.path("/aditionalProfile/" + $routeParams.id);
 
             });
 
@@ -631,7 +676,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/dashbord/results/' + clientId)
             .success(function(data) {
                 $scope.client = data;
-          console.log(data);
+                console.log(data);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
@@ -667,7 +712,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 //                        alert(vm.file);
                 if (vm.file) {
                     var datetimestamp = Date.now();
-                    var ImageName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + 'nxsearch' + '-' + $routeParams.id + datetimestamp+'.jpg';
+                    var ImageName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + 'nxsearch' + '-' + $routeParams.id + datetimestamp + '.jpg';
                     value.gallaryImage = 'uploads/clientRelatedImages/' + ImageName;
                     //    alert(vm.file.name);
 
@@ -718,7 +763,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/aditionalProfile/"+$routeParams.id);
+                $location.path("/aditionalProfile/" + $routeParams.id);
 
             });
 
@@ -765,7 +810,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-               $location.path("/aditionalProfile/"+$routeParams.id);
+                $location.path("/aditionalProfile/" + $routeParams.id);
 
             });
 
@@ -817,7 +862,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/homepage/"+$routeParams.id);
+                $location.path("/homepage/" + $routeParams.id);
 
             });
 
@@ -831,7 +876,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }, {
             title: 'Services',
             url: 'two.tpl.html'
-        }, 
+        },
         {
             title: 'Gallary',
             url: 'four.tpl.html'
@@ -1008,12 +1053,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            
+
             center: { lat: formData.lat, lng: formData.long },
-            
+
             zoom: 6
         });
-        
+
         var infoWindow = new google.maps.InfoWindow({ map: map });
 
     }
@@ -1026,15 +1071,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     }
 
 
-function site(){
-    //alert(JSON.stringify(url));
-      $http.post('api/sitemap/sitemap', $rootScope.url)
-   .success(function(data) {
-                            //$scope.formData = {}; // clear the form so our user is ready to enter another
-    //alert(data);
+    function site() {
+        //alert(JSON.stringify(url));
+        $http.post('api/sitemap/sitemap', $rootScope.url)
+            .success(function(data) {
+                //$scope.formData = {}; // clear the form so our user is ready to enter another
+                //alert(data);
 
-   });
-}
-site();
-   
+            });
+    }
+    site();
+
 });
