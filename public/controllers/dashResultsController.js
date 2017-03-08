@@ -5,6 +5,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
+    //console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
 $scope.incrementLimit = function() {
@@ -81,49 +82,49 @@ $scope.decrementLimit = function() {
             url = url + '&City=' + city + '&Area=' + area;
 
 if(area != undefined){
-         var myurl = '/result'+ '/'+city+'/'+category;
-         document.getElementById('categry').href=myurl;
+        var myurl = '/result'+ '/'+city+'/'+category;
+         $window.document.getElementById('categry').href=myurl;
 
        //  var cityurl = '/showResults';
         // document.getElementById('citylink').href=cityurl;
 
-         document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;  
-          document.getElementById('category').innerHTML = category ;  
-          document.getElementById('area').innerHTML = area ;  
-          document.getElementById('city').innerHTML = city ;
+         $window.document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;  
+          $window.document.getElementById('category').innerHTML = category ;  
+          $window.document.getElementById('area').innerHTML = area ;  
+          $window.document.getElementById('city').innerHTML = city ;
         $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
-        document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         
-        document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         }
 
         if(area == undefined){
              var myurl = '/result'+ '/'+city+'/'+category;
-         document.getElementById('categry').href=myurl;
+         $window.document.getElementById('categry').href=myurl;
 
          // var cityurl = '/showResults';
         // document.getElementById('citylink').href=cityurl;
 
-         document.getElementById('keyword').innerHTML = category + ' in ' +  city; 
-          document.getElementById('category').innerHTML = category ; 
-           document.getElementById('area').innerHTML = '' ;
+         $window.document.getElementById('keyword').innerHTML = category + ' in ' +  city; 
+          $window.document.getElementById('category').innerHTML = category ; 
+           $window.document.getElementById('area').innerHTML = '' ;
         $window.document.title = category + ' in ' + city + ' | NXsearch';
-           document.getElementById('city').innerHTML = city ;
+           $window.document.getElementById('city').innerHTML = city ;
         $window.document.getElementsByName('title')[0].content = category + ' in '   + city + ' | NXsearch';
         $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
         $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
         // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
-        document.querySelector('[property="og:title"]').content = category + ' in '   + city + ' | NXsearch';
-        document.querySelector('[property="og:description"]').content = category + ' in '   + city + ' | NXsearch';
-        document.querySelector('[name="twitter:title"]').content = category + ' in '  + city + ' | NXsearch';
+        $window.document.querySelector('[property="og:title"]').content = category + ' in '   + city + ' | NXsearch';
+        $window.document.querySelector('[property="og:description"]').content = category + ' in '   + city + ' | NXsearch';
+        $window.document.querySelector('[name="twitter:title"]').content = category + ' in '  + city + ' | NXsearch';
         
-        document.querySelector('[name="twitter:description"]').content = category + ' in '   + city + ' | NXsearch';
+        $window.document.querySelector('[name="twitter:description"]').content = category + ' in '   + city + ' | NXsearch';
         }
 
 
