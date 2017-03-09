@@ -76,13 +76,11 @@ app.controller('InstantSearchController', InstantSearchController);
 
 function InstantSearchController($scope, $http, $location, $rootScope, savedMetaData, $window) {
 
-
-
     //$scope.currentPath = $location.path();
     // The data model. These items would normally be requested via AJAX,
     // but are hardcoded here for simplicity. See the next example for
     // tips on using AJAX.
-
+console.log = function() {};
 
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
