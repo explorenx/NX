@@ -1,10 +1,18 @@
 <div class="container text-center" ng-controller="dashResultsController as up">
     <label>Search: <input ng-model="userSearch" class="form-control input-lg text-center"></label>
-
+<div class="ng-hide">
+        <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
+               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
+               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+              &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp  <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+        </div>
 
     <form name="ClientForm">
         <div class="col-lg-12">
-            <input type="hidden" ng-model="formData._id">
+           
             <div class="col-lg-6">
                 <div class="form-group">
                    <label class="col-lg-4">Email:</label>
