@@ -1085,7 +1085,7 @@ if(area != undefined){
     }
 $scope.fpath = $location.absUrl();
 $window.document.getElementById('shareBtn').onclick = function() {
-    alert($scope.fpath);
+    //alert($scope.fpath);
   FB.ui({
     method: 'share',
     display: 'popup',
