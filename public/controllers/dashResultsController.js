@@ -1083,13 +1083,13 @@ if(area != undefined){
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
     }
-$scope.fpath = $location.path();
+$scope.fpath = $location.absUrl();
 $window.document.getElementById('shareBtn').onclick = function() {
-    //alert($scope.fpath);
+    alert($scope.fpath);
   FB.ui({
     method: 'share',
     display: 'popup',
-    href: 'https://nxsearch.com'+$scope.fpath,
+    href: $scope.fpath,
    
   }, function(response){})
 }
