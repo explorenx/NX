@@ -5,7 +5,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-    console.log = function() {};
+    //console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
 $scope.incrementLimit = function() {
@@ -276,7 +276,7 @@ if(area != undefined){
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                // alert( $scope.formData);
+                 //alert( JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
@@ -285,7 +285,19 @@ if(area != undefined){
                 };
 
                 savedMetaData.setData(metaInfo);
-                //alert(data.ClinicName);
+                $scope.services=data.SubCategories;
+                //alert($scope.services);
+                $scope.slength=  $scope.services.length;
+                //alert($scope.slength);
+                for(var i=0;i<$scope.slength;i++){
+                $scope.serviceurl='results/'+data.City+ '/' + data.Area +'/'+$scope.services[i];
+                }
+                //alert( $scope.serviceurl);
+                
+                 $window.document.getElementById('demo1').innerHTML=data.ClinicName;
+                 $window.document.getElementById('city1').innerHTML=data.City;
+                 $window.document.getElementById('area1').innerHTML= data.Area;
+                $window.document.getElementById('bbb').innerHTML= data.Categories;
                 $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' ' + ', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
@@ -677,6 +689,7 @@ if(area != undefined){
         $http.get('/api/dashbord/results/' + clientId)
             .success(function(data) {
                 $scope.client = data;
+               
                 console.log(data);
             })
             .error(function(data) {
@@ -1070,9 +1083,35 @@ if(area != undefined){
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
     }
-
-
-    function site() {
+$scope.fpath = $location.path();
+$window.document.getElementById('shareBtn').onclick = function() {
+    //alert($scope.fpath);
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: 'https://nxsearch.com'+$scope.fpath,
+   
+  }, function(response){})
+}
+var isMobile = {
+    Windows: function() {
+        return /IEMobile/i.test(navigator.userAgent);
+    },
+    Android: function() {
+        return /Android/i.test(navigator.userAgent);
+    },
+    BlackBerry: function() {
+        return /BlackBerry/i.test(navigator.userAgent);
+    },
+    iOS: function() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+    }
+}
+//alert(JSON.stringify(isMobile));
+    /*function site() {
         //alert(JSON.stringify(url));
         $http.post('api/sitemap/sitemap', $rootScope.url)
             .success(function(data) {
@@ -1081,6 +1120,6 @@ if(area != undefined){
 
             });
     }
-    site();
+site();*/
 
 });
