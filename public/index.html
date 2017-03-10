@@ -1,11 +1,11 @@
 ﻿<!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html lang="en-US" xmlns:og="http://ogp.me/ns#" ng-app="ClinicApp" ng-controller="InstantSearchController" >
+<html lang="en-US" xmlns:og="http://ogp.me/ns#" ng-app="ClinicApp" ng-controller="InstantSearchController">
 
-<head >
+<head>
     <!-- META -->
-    
+
     <meta name="fragment" content="!">
     <meta name="google-site-verification" content="Hn1ybtufUg4QiGD_ZRDyBc5468PuSMoiHgM8Ijn2D2k" />
     <meta charset="utf-8">
@@ -15,16 +15,16 @@
     <base href="/">
 
 
-    
+
     <title> Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search</title>
     <meta name="title" content="Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search">
     <meta name="description" content="Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search">
     <meta name="keywords" content="Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search">
-   
+
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="app">
-   <!-- <meta name="twitter:site" content="">-->
+    <!-- <meta name="twitter:site" content="">-->
     <meta name="twitter:title" content="Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search">
     <meta name="twitter:description" content="Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search">
     <meta name="twitter:image" content="">
@@ -34,6 +34,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{currentPath}}" />
     <meta property="og:site_name" content="NXsearch" />
+    <meta property="og:image" content="http://www.nxsearch.com/assets/img/nxsearch-logo1.png">
+    <meta property="fb:app_id" content="{1013740418769636}" />
     <!-- SCROLLS -->
     <!--<link rel="stylesheet" href="assets/css/bootstrap.min.css"> load bootstrap -->
     <link rel="stylesheet" href="assets/css/footer.css">
@@ -55,7 +57,7 @@
     <link rel="stylesheet" href="assets/css/validation.css">
 
 
-    <!-- SPELLS -->
+    <!-- SPELLS  -->
 
     <script src="assets/js/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
@@ -87,12 +89,30 @@
     <script src="controllers/loginController.js"></script>
     <script src="controllers/updateHomeServicesGalleryAllController.js"></script>
     <script src="controllers/sitemapController.js"></script>
-
+    <script type="text/javascript" src="assets/js/ng-text-truncate.js"></script>
 
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+<link rel="icon" href="assets/img/favicon.ico">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1013740418769636',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
 
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
     <style>
         #gmaps {
             width: 821px;
@@ -128,12 +148,14 @@
             outline: none;
             text-indent: 40px;
         }
+        
         @media (max-width: 768px) {
-        html, body {
-        width: auto !important;
-        overflow-x: hidden !important;
-}
-}
+            html,
+            body {
+                width: auto !important;
+                overflow-x: hidden !important;
+            }
+        }
         
         body {
             background-color: #477CB8;
@@ -156,16 +178,16 @@
         ga('send', 'pageview');
     </script>
 
- 
+
 
     <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
-    
+
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE ng-hide="currentPath == 'http://localhost:5000/'" FUNCTION -->
 
-<body >
+<body>
 
-    <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype ="http://schema.org/LocalBusiness">
+    <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
         <div class="row" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
             <nav class="navbar">
                 <div class="container">
@@ -175,7 +197,7 @@
                                 <a href="/" itemprop="logo"><img itemprop="logo" src="http://www.nxsearch.com/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
                             </div>
                         </div>
-                        <div class="col-md-2 col-xs-12 col-sm-12 text-center" style="margin-top: 20px;" itemscope itemtype ="https://schema.org/RegisterAction">
+                        <div class="col-md-2 col-xs-12 col-sm-12 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
                             <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
                         </div>
                     </div>
@@ -266,17 +288,17 @@
                     <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
                         <h3>About </h3>
                         <ul>
-                            <li> <a itemprop="url" href="/aboutus" > About <b> NX-Search</b> </a> </li>
-                            <li> <a itemprop="url" href="/career" > Career </a> </li>
+                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
+                            <li> <a itemprop="url" href="/career"> Career </a> </li>
 
 
                         </ul>
                     </div>
                     <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>NXsearch</h3>
+                        <h3>NX-search</h3>
                         <ul>
-                            <li> <a itemprop="url" href="/privacypolicy" > Privacy Policy </a> </li>
-                            <li> <a itemprop="url" href="/termsandconditions" > Terms and Conditions </a> </li>
+                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
+                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
                         </ul>
                     </div>
                     <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
@@ -286,13 +308,14 @@
                             <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
                         </ul>
                     </div>
+                   
                     <div class="col-lg-3  col-md-4 col-sm-6 col-xs-12">
                         <h3> Follow Us </h3>
                         <ul>
                             <li>
                                 <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
                                 <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                               <a href="https://twitter.com/nxsearch"  target="blank" itemprop="url"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
                                 <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
                                 
                                 <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
