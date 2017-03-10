@@ -171,17 +171,13 @@
     </div>-->
 
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
-
+        <div class="ng-hide"><button id="shareBtn">share</button></div>
         <div class="col-md-9 col-xs-12">
            
-               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
-               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
-               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
-               &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
-               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
-               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
-              &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp  <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
-                
+               
+               <div class="col-md-12"> 
+                        <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+               </div>
 
             <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
 
@@ -372,7 +368,76 @@
             <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
 
         </div>
-
+        <div class="col-md-12">
+  <h3> Popular Searches on <a href="/"> NX-search.com</a></h3>
+        </div>  
+<div class="col-md-12 sidebarList">
+            <div class="col-md-12">
+                <h5><b> Popular Searches in Health and Medicine</b></h5>
+            </div>
+            <div class="col-md-12 bottomlinks">
+                <ul>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Dentist"> Dentists in Pune</a></h5>
+                    </li>
+                   <!-- <li>
+                        <a href="#"> Optalmology Clinics in Pune</a>
+                    </li>-->
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Homeopathy"> Homeopathy Clinics in Pune</a></h5>
+                    </li>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Ayurveda"> Ayurvedic Clinics in Pune</a></h5>
+                    </li>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Gynecologist"> Gynecology Clinics in Pune</a></h5>
+                    </li>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Dermatologist"> Dermatology Clinics in Pune</a></h5>
+                    </li>
+                    <li>
+                        <h5><a itemprop="url" href="/result/Pune/Ear-Nose-Throat-(ENT)"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
+                    </li>
+                    <li>
+                        <h5><a itemprop="url" href="/result/Pune/Diagnostic-Lab"> Diagnostic-Labs Clinics in Pune</a></h5>
+                    </li>
+            </div>
+            <div class="col-md-12"><hr/></div>
+             <div class="col-md-12">
+                <h5><b> Popular Searches in School and Institutes</b></h5>
+            </div>
+            <div class="col-md-12 bottomlinks">
+                <ul>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/preschool"> Preschools in Pune</a></h5>
+                    </li>
+                     <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Private-Tuitions"> Private-Tuitions in Pune</a></h5>
+                    </li>
+                    
+        </div>
+           <div class="col-md-12"><hr/></div>
+             <div class="col-md-12">
+                <h5><b> Popular Searches in Beauty Care</b></h5>
+            </div>
+            <div class="col-md-12 bottomlinks">
+                <ul>
+                    <li>
+                       <h5> <a itemprop="url" href="/result/Pune/Salon-and-Spa"> Salon-and-Spa in Pune</a></h5>
+                    </li>
+                     
+                    
+        </div>
+       
     </div>
-
+    <div class="col-md-12"><hr/></div>
+    <div class="col-md-12" style="background-color:  #e6e6e6">
+ <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
+               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
+               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
+               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+    </div>
 </div>
