@@ -5,7 +5,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-    //console.log = function() {};
+  console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
 $scope.incrementLimit = function() {
