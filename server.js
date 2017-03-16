@@ -30,7 +30,7 @@ var sitemap = require('./app/controllers/home/sitemap');
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
-    host: '142.4.14.149',
+    host: '174.141.224.162',
     port: 25,
    secure: false, // use SSL
     auth: {
