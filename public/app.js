@@ -404,17 +404,7 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/addClient/:id?', {
                 templateUrl : 'views/dashboardResults/addClient.html',
                 controller : 'dashResultsController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                
            })
 
            .when('/results/:city/:area/:category/:subcategory?', {
@@ -438,17 +428,7 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/clientlist', {
                 templateUrl: 'views/dashboardResults/ClientList.html',
                 controller: 'dashResultsController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                       }
-                    }]
-               }
+               
             })
 
             .when('/aditionalProfile/:id', {
@@ -488,17 +468,7 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/addCities', {
                 templateUrl : 'views/locations/addCities.html',
                 controller : 'citiesController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                
             })
 
            
@@ -578,17 +548,7 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/categories', {
                 templateUrl : 'views/categories/categories.html',
                 controller : 'categoriesController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                        }
-                    }]
-                }
+                
             })
             .when('/addCategories', {
                 templateUrl : 'views/categories/addCategory.html',
