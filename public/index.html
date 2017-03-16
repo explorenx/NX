@@ -225,11 +225,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
-                    <li  ng-show="isAuthenticated"><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
-                    <li ng-show="isAuthenticated"><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
+                    <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
+                    <li><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
                     <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
-                    <li ng-show="isAuthenticated"><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
-                    <li ng-show="isAuthenticated"><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                    <li ><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
+                    <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
                     <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
                     <li ng-controller="loginController" ng-show="isAuthenticated"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
                     <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
