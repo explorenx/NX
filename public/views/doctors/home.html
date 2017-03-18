@@ -11,12 +11,13 @@
 
 
 
-<div class="col-lg-12">
+<div class="col-lg-12" ng-controller="InstantSearchController">
     <div class="tabtitle">
         <h3>Search Your Requirement</h3>
+       <div id="mymodal1" style="color: red;"></div>
     </div>
 </div>
-
+ 
 <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
     <div class="col-md-12 col-xs-12" style="padding-left: 28px">
         <form>
@@ -37,7 +38,7 @@
                 <div>
                     <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled" required>
 												<option value="">Select Area</option>
 											</select>
                     <!--{{MainAreas.selectedAreaModel}}-->
