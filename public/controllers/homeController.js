@@ -80,7 +80,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     // The data model. These items would normally be requested via AJAX,
     // but are hardcoded here for simplicity. See the next example for
     // tips on using AJAX.
-console.log = function() {};
+//console.log = function() {};
 
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
@@ -301,8 +301,14 @@ console.log = function() {};
         if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
             alert('Please enter City to begin search !');
 
+             if ($scope.MainAreas.selectedAreaModel.Area == null){
+                 $window.document.getElementById("mymodal1").className = "alert alert-danger";
+                 $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
+                 alert('Please Select Area to begin search !');
+             }else{
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category)
             $location.path('/results/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
+             }
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
@@ -315,8 +321,15 @@ console.log = function() {};
         if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
             alert('Please enter City to begin search !');
 
+             if ($scope.MainAreas.selectedAreaModel.Area == null){
+            alert('Please Select Area to begin search !');
+            $window.document.getElementById("mymodal1").className = "alert alert-danger";
+             $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
+             }else{
+
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory)
             $location.path('/results/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
+             }
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
