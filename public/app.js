@@ -1,4 +1,4 @@
-var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq']);
+var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','ng.deviceDetector']);
 
 
 app.filter('searchFor', function(){
@@ -30,7 +30,9 @@ app.filter('searchFor', function(){
 	};
 
 });
-
+app.config(['deviceDetectorProvider', function(deviceDetectorProvider) {
+  deviceDetectorProvider.addCustom("My_Custom_Detector",{or:["\\bChrome\\b","\\bFirefox\\b","\\bSafari\\b"]});
+}]);
  app.filter('slugify', function() {
         return function(input) {
             input = input || '';
@@ -505,7 +507,7 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/updateCity/:id', {
                 templateUrl : 'views/locations/updateCity.html',
             })
-            .when('/updateSitemap/:id', {
+            .when('/updateSitemap', {
                 templateUrl : 'views/updatesitemap.html',
             })
             .when('/updateCategory/:id', {
