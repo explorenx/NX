@@ -1197,16 +1197,6 @@ $window.document.getElementById('shareBtn').onclick = function() {
   }, function(response){})
 }
 
-//alert(JSON.stringify(isMobile));
-    /*function site() {
-        //alert(JSON.stringify(url));
-        $http.post('api/sitemap/sitemap', $rootScope.url)
-            .success(function(data) {
-                //$scope.formData = {}; // clear the form so our user is ready to enter another
-                //alert(data);
 
-            });
-    }
-site();*/
 
 });
