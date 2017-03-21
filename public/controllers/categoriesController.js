@@ -27,11 +27,35 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
             });
     };
 
+
     $scope.tempCategories = [{
         id: 'cat1',
         categoryDescription: '',
-        subCategoryDescription: '',
-        subs: [{ id: 'choice1' }, { id: 'choice2' }, { id: 'choice3' }]
+        categoryDescriptionLong : '',
+        categoryKeywords : '',
+        subs: [
+                {
+                    id: 'choice1',
+                    subCategoryName : '',
+                    subCategoryDescriptionShort: '',
+                    subCategoryDescriptionLong: '',
+                    subCategoryKeywords: '',
+                },
+                {
+                    id: 'choice2',
+                    subCategoryName : '',
+                    subCategoryDescriptionShort: '',
+                    subCategoryDescriptionLong: '',
+                    subCategoryKeywords: '',
+                },
+                {
+                    id: 'choice3',
+                    subCategoryName : '',
+                    subCategoryDescriptionShort: '',
+                    subCategoryDescriptionLong: '',
+                    subCategoryKeywords: '',
+                }
+            ]
     }];
     $scope.addNewSubCategories = function(id) {
 
@@ -40,13 +64,53 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
             if ($scope.tempCategories[i].id === id) {
                 console.log(JSON.stringify($scope.tempCategories[i].subs));
                 var newItemNo = $scope.tempCategories[i].subs.length + 1;
-                $scope.tempCategories[i].subs.push({ 'id': 'choice' + newItemNo });
+                $scope.tempCategories[i].subs.push(
+                    {
+                        id: 'choice' + newItemNo ,
+                        subCategoryName : '',
+                        subCategoryDescriptionShort: '',
+                        subCategoryDescriptionLong: '',
+                        subCategoryKeywords: '',
+                    }
+                    );
             }
         }
     };
     $scope.addNewCategory = function() {
             var newCategoryNo = $scope.tempCategories.length + 1;
-            $scope.tempCategories.push({ 'id': 'cat' + newCategoryNo, categoryDescription: '', subCategoryDescription: '', subs: [{ id: 'choice1' }, { id: 'choice2' }, { id: 'choice3' }] });
+            $scope.tempCategories.push(
+                {
+                    id: 'cat' + newCategoryNo,
+                    categoryDescription: '',
+                    categoryDescriptionLong : '',
+                    categoryKeywords : '',
+                    subs: [
+                            {
+                                id: 'choice1',
+                                subCategoryName : '',
+                                subCategoryDescriptionShort: '',
+                                subCategoryDescriptionLong: '',
+                                subCategoryKeywords: '',
+                            },
+                            {
+                                id: 'choice2',
+                                subCategoryName : '',
+                                subCategoryDescriptionShort: '',
+                                subCategoryDescriptionLong: '',
+                                subCategoryKeywords: '',
+                            },
+                            {
+                                id: 'choice3',
+                                subCategoryName : '',
+                                subCategoryDescriptionShort: '',
+                                subCategoryDescriptionLong: '',
+                                subCategoryKeywords: '',
+                            }
+                        ]
+                }
+                //{ 'id': 'cat' + newCategoryNo, categoryDescription: '', subCategoryDescription: '', subs: [{ id: 'choice1' }, { id: 'choice2' }, { id: 'choice3' }] }
+                
+                );
         }
         // $scope.showAddChoice = function(choice) {
 
@@ -64,12 +128,28 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
         angular.forEach($scope.tempCategories, function(value, key) {
             console.log(JSON.stringify(value));
             if (value.id.length > 0) {
-                var subCats = value.subs.map(function(el) {
-                    return el.name;
-                });
-                var subCats = subCats.filter(function(e) { return e === 0 || e });
+                // var subCats = value.subs.map(function(el) {
+                //     return el.name;
+                // });
+                alert(JSON.stringify(value.subs));
+                var subCats = value.subs.filter(
+                    function (rec) {
+                                        //console.log(rec.subCategoryName + 'length ' + rec.subCategoryName.length);
+                                        return rec.subCategoryName.length > 0;
+                                    }
+                    );
                 //                alert(JSON.stringify(subCats));
-                $scope.formData.category.push({ name: value.id, categoryDescription: value.categoryDescription, subCategoryDescription: value.subCategoryDescription, subcategories: subCats })
+                $scope.formData.category.push(
+                        { 
+                            name: value.id, 
+                            categoryDescription: value.categoryDescription, 
+
+                            categoryDescriptionLong: value.categoryDescriptionLong, 
+                            categoryKeywords: value.categoryKeywords, 
+
+                            subcategories: subCats
+                        }
+                    )
                     //subs.push(value);
             }
         });
@@ -127,6 +207,7 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
     };
 
 
+
     $scope.initUpdateCategory = function() {
         var clientId = $routeParams.id;
         //alert(clientId);
@@ -145,11 +226,19 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                             // id = value.Area; 
                             // subs.push(value.subArea);        
                             //$scope.tempCategories.push({id : value.Area, subs : value.subArea});
-                            var subcategories = [];
-                            angular.forEach(value.subcategories, function(value, key) {
-                                subcategories.push({ name: value });
-                            });
-                            $scope.tempCategories.push({ 'id': value.name, categoryDescription: value.categoryDescription, subCategoryDescription: value.subCategoryDescription, subs: subcategories });
+                            //var subcategories = [];
+                            // angular.forEach(value.subcategories, function(value, key) {
+                            //     subcategories.push({ name: value });
+                            // });
+                            $scope.tempCategories.push(
+                                { 
+                                    'id': value.name, 
+                                    categoryDescription: value.categoryDescription, 
+                                    categoryDescriptionLong : value.categoryDescriptionLong,
+                                    categoryKeywords : value.categoryKeywords,
+                                    //subCategoryDescription: value.subCategoryDescription, 
+                                    subs: value.subcategories }
+                                );
                         }
                         console.log(JSON.stringify($scope.tempCategories));
                     });
