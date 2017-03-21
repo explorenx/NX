@@ -5,8 +5,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-     $scope.deviceDetector=deviceDetector;
-  //console.log = function() {};
+     
+  console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
 
@@ -230,7 +230,7 @@ if(area != undefined){
                                     angular.forEach(cat.subcategories, function(value, key) {
                                             if(value.subCategoryName == $routeParams.category)
                                             {
-                                                alert(JSON.stringify($routeParams.area));
+                                                //alert(JSON.stringify($routeParams.area));
                                                     metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryDescriptionShort + '| Nx-search';
                                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
                                                      longDesc = value.subCategoryDescriptionLong;
