@@ -9,8 +9,16 @@ var Provider = restful.model('categories', new mongoose.Schema({
                     {
                       name : String,
                       categoryDescription: String,
-                      subCategoryDescription: String,
-                      subcategories : []
+                      categoryDescriptionLong: String,
+                      categoryKeywords: String,
+                      subcategories : [
+                                {
+                                  subCategoryName : String,
+                                  subCategoryDescriptionShort: String,
+                                  subCategoryDescriptionLong: String,
+                                  subCategoryKeywords: String,
+                                }
+                      ]
                     }
                 ],
 	
