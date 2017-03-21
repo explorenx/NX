@@ -248,12 +248,16 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                         metaKeys = el.subCategoryDescription;
                         var sss = el.category.map(function(s) {
                             $scope.Categories.push(s.name);
-
-                            var subCats = s.subcategories.map(function(subs) {
-                                $scope.SubCategories.push(subs);
+                            
+                            angular.forEach(s.subcategories, function(value, key) {
+                                               $scope.SubCategories.push(value.subCategoryName);
+                                                
+                           });
+                           // var subCats = s.subcategories.map(function(subs) {
+                               // $scope.SubCategories.push(subs);
                                 // alert(subs);
-                                return subs;
-                            });
+                             //   return subs;
+                           // });
 
                             return s.name;
                         });
