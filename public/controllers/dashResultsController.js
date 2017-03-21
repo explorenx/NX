@@ -254,7 +254,7 @@ if(area != undefined){
 
                  $window.document.getElementsByName('description')[0].content = metaDesc;
                   $window.document.getElementsByName('keywords')[0].content = metaKeys;
-                   $window.document.getElementById('longdescription').innerHTML = longDesc;
+                   //$window.document.getElementById('longdescription').innerHTML = longDesc;
                    // $window.document.getElementById('categoryname').innerHTML = catname;
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
