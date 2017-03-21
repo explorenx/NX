@@ -13,7 +13,9 @@
                     <label for="Category">Category</label>
                     <input type="text" ng-model="cat.id" name="area" class="form-control text-center" placeholder="Enter a Category" ng-required="true">
                     <input type="text" ng-model="cat.categoryDescription" name="" class="form-control text-center" placeholder="Enter a categoryDescription">
-                    <input type="text" ng-model="cat.subCategoryDescription" name="" class="form-control text-center" placeholder="Enter a subCategoryDescription">
+                    <input type="text" ng-model="cat.categoryDescriptionLong" name="" class="form-control text-center" placeholder="Enter a categoryDescriptionLong">
+                    <input type="text" ng-model="cat.categoryKeywords" name="" class="form-control text-center" placeholder="Enter a categoryKeywords">
+                    <!--<input type="text" ng-model="cat.subCategoryDescription" name="" class="form-control text-center" placeholder="Enter a subCategoryDescription">-->
 
                     <div ng-show="categoryform.area.$touched && categoryform.area.$invalid">
                         <small style="color: red; display: block; text-align: center">Please Enter Area</small>
@@ -21,7 +23,11 @@
                     <hr />
                     <label for="choice">Sub-Category</label>
                     <div class="form-group" ng-repeat="choice in cat.subs">
-                        <input type="text" ng-model="choice.name" name="subarea" class="form-control text-center" placeholder="Enter a sub Category">
+                        <!--<input type="text" ng-model="choice.name" name="subarea" class="form-control text-center" placeholder="Enter a sub Category">-->
+                        <input type="text" ng-model="choice.subCategoryName" name="" class="form-control text-center" placeholder="Enter a subCategoryName">
+                        <input type="text" ng-model="choice.subCategoryDescriptionShort" name="" class="form-control text-center" placeholder="Enter a subCategoryDescriptionShort">
+                        <input type="text" ng-model="choice.subCategoryDescriptionLong" name="" class="form-control text-center" placeholder="Enter a subCategoryDescriptionLong">
+                        <input type="text" ng-model="choice.subCategoryKeywords" name="" class="form-control text-center" placeholder="Enter a subCategoryKeywords">
                     </div>
                     <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Category</button>
                     <hr />
