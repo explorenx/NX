@@ -210,29 +210,22 @@ var vm = this;
     $scope.EditContact = function(){  /// simple update Call to the database
 
          var geocoder = new google.maps.Geocoder();
-            var source =  $scope.formData.address1 + ' ' +  $scope.formData.address2;
+                var source = value.address1 + ' ' + value.address2;
 
-            var sourceLat = sourceLong = 0;
-            if (source != null) {
                 geocoder.geocode({ 'address': source }, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        sourceLat = results[0].geometry.location.lat();
-                        sourceLong = results[0].geometry.location.lng();
-                        $scope.formData.lat = sourceLat.toString();
-                        $scope.formData.long = sourceLong.toString();
-                        alert(JSON.stringify($scope.formData));
-                        //initMap(sourceLat, sourceLong)
-                    } else {
-                        alert(" Lat long not found .... Request failed.")
-                    }
-                });
-            }
-            
-
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            value.lat = results[0].geometry.location.lat();
+                            value.long = results[0].geometry.location.lng();
+           alert( $scope.formData.lat);
+                        alert( $scope.formData.long); 
+                        }
+                        });
+//alert(JSON.stringify($scope.formData));
 if($scope.formData._id){
         $http.put('/api/contact/cliniccontact/' + $scope.formData._id, $scope.formData)
             .success(function(data) {
                 //$scope.formData = {};
+                
                 //$scope.cities = data;
                history.go(-1)
             })
@@ -243,6 +236,7 @@ if($scope.formData._id){
                 .success(function(data) {
                     //$scope.formData = {};
                     //$scope.cities = data;
+                    alert(JSON.stringify($scope.formData));
                 history.go(-1)
                 });
 
