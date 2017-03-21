@@ -1,13 +1,17 @@
-app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq) {
+app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq,deviceDetector) {
     $scope.formData = {};
     $scope.location = {};
 
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-  console.log = function() {};
+     $scope.deviceDetector=deviceDetector;
+  //console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
+
+$scope.area11 = $routeParams.area;
+
 $scope.incrementLimit = function() {
     $scope.limit += limitStep;
 };
@@ -94,9 +98,9 @@ if(area != undefined){
           $window.document.getElementById('city').innerHTML = city ;
         $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
+      //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+      //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+        
         $window.document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
@@ -117,15 +121,17 @@ if(area != undefined){
         $window.document.title = category + ' in ' + city + ' | NXsearch';
            $window.document.getElementById('city').innerHTML = city ;
         $window.document.getElementsByName('title')[0].content = category + ' in '   + city + ' | NXsearch';
-        $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
-        $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
-        // $window.document.getAttribute("og:title").content = category + ' in '+area+' '  + city;
+       // $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
+       // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
+       
         $window.document.querySelector('[property="og:title"]').content = category + ' in '   + city + ' | NXsearch';
         $window.document.querySelector('[property="og:description"]').content = category + ' in '   + city + ' | NXsearch';
         $window.document.querySelector('[name="twitter:title"]').content = category + ' in '  + city + ' | NXsearch';
         
         $window.document.querySelector('[name="twitter:description"]').content = category + ' in '   + city + ' | NXsearch';
-        }
+    }
+    
+    
 
 
         $http.get(url)
@@ -193,29 +199,63 @@ if(area != undefined){
         $http.get('/api/category/categories')
             .success(function(data) {
                 $scope.categories = data;
-                // alert(JSON.stringify(data));
+               //  alert(JSON.stringify(data));
                 //  alert($scope.data.mainCategoryName);
                 $scope.sample = data;
-                //  var metaKeys = metaDesc = metaTitle = '';
+ 
+               // alert(JSON.stringify($scope.subCategories1));
+                //alert($routeParams.category);
+                 var metaKeys = metaDesc = metaTitle = '';
 
-                //    angular.forEach(data, function(value, key1) {
-                //    angular.forEach(value.category, function(cat, key2) {
-                //alert(JSON.stringify(cat));
+                   angular.forEach(data, function(value, key1) {
+                        
+                        
+                        angular.forEach(value.category, function(cat, key2) {
+                       //  alert(JSON.stringify(cat.name));
+                                if(cat.name == $routeParams.category)
+                                {
+                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryDescription + '| Nx-search';
+                                    metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryKeywords + '| Nx-search';
+                                    longDesc = cat.categoryDescriptionLong;
+                                    catname = cat.name;
+                                     //alert( $scope.SubCategories);
 
-                //        if (cat.categoryDescription && cat.subCategoryDescription) {
-                //            metaDesc += cat.categoryDescription + ' nxsearch';
-                //            metaKeys += cat.subCategoryDescription + ' nxsearch ';
+                                     $scope.SubCategoriesLinks=[];
+                                    angular.forEach(cat.subcategories, function(value, key) {
+                                               $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                                 //alert(JSON.stringify(cat.name));
+                                     });
+                                }
+                                
+                                    angular.forEach(cat.subcategories, function(value, key) {
+                                            if(value.subCategoryName == $routeParams.category)
+                                            {
+                                                alert(JSON.stringify($routeParams.area));
+                                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryDescriptionShort + '| Nx-search';
+                                                    metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
+                                                     longDesc = value.subCategoryDescriptionLong;
+                                                     catname = value.subCategoryName;
+                                            }
+                                                 //alert(JSON.stringify(cat.name));
+                                     });
+                              
+                             });
+                });
 
-                //        }
+                $scope.city2 = $routeParams.city;
+                 $scope.area2 = $routeParams.area;
+                    $scope.categoryname = catname;
+               //alert($location.absUrl());
+               if ($location.path == 'http://nxsearch.com/'){
+                  $window.document.getElementsByName('description')[0].content = "Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search";
+                  $window.document.getElementsByName('keywords')[0].content = "Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search";
+                  // $window.document.getElementById('longdescription').innerHTML = longDesc;
+              }
 
-                //              });
-                // });
-                // alert(metaDesc);
-
-
-                // window.document.getElementsByName('description')[0].content = metaDesc;
-                //  $window.document.getElementsByName('keywords')[0].content = metaKeys;
-
+                 $window.document.getElementsByName('description')[0].content = metaDesc;
+                  $window.document.getElementsByName('keywords')[0].content = metaKeys;
+                   $window.document.getElementById('longdescription').innerHTML = longDesc;
+                   // $window.document.getElementById('categoryname').innerHTML = catname;
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
@@ -231,12 +271,25 @@ if(area != undefined){
 
         //$scope.selectedvalues= 'Name: ' + $scope.selitem.mainCategoryName + ' Id: ' + $scope.selitem._id;
     }
-    $scope.getCatsselectval = function() {
-        $scope.subCategories = $scope.selitemCats.subcategories;
 
-        $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
-        console.log($scope.selitemCats.name);
-    }
+    $scope.getCatsselectval = function() {
+       //$scope.subCategories = $scope.selitemCats.subcategories;
+       $scope.subCategories = [];
+       angular.forEach($scope.selitemCats.subcategories, function(rec, key) {
+                           $scope.subCategories.push(rec.subCategoryName);
+                           //alert(JSON.stringify(value));
+       });
+
+       $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
+       console.log($scope.selitemCats.name);
+   }
+
+    //$scope.getCatsselectval = function() {
+       // $scope.subCategories = $scope.selitemCats.subcategories;
+
+      //  $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
+      //  console.log($scope.selitemCats.name);
+   // }
 
 
     function getLocationsData() {
@@ -429,6 +482,10 @@ if(area != undefined){
         }
 
 
+        
+
+
+
         if ($scope.formData._id) {
             $http.put('/api/dashbord/results/' + $scope.formData._id, $scope.formData)
                 .success(function(data) {
@@ -451,6 +508,35 @@ if(area != undefined){
                         .success(function(data) {
                             //$scope.formData = {}; // clear the form so our user is ready to enter another
                             console.log(data);
+
+                                        var geocoder = new google.maps.Geocoder();
+                                        var source = $scope.formData.address1 + ' ' + $scope.formData.address2;
+                                        
+                                        geocoder.geocode({ 'address': source }, function (results, status) {
+                                                if (status == google.maps.GeocoderStatus.OK) {
+                                                    $scope.formData.lat = results[0].geometry.location.lat();
+                                                    $scope.formData.long = results[0].geometry.location.lng();
+
+                                                    var recordToInsert = {
+                                                         ClinicId : data._id,
+                                                         lat : $scope.formData.lat,
+                                                         long : $scope.formData.long
+                                                    };
+                                                    $http.post('/api/contact/cliniccontact',  recordToInsert)
+                                                    .success(function(data) {
+                                                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                                                        alert(JSON.stringify(data));
+                                                    })
+                                                    .error(function(data) {
+                                                        console.log('Error: ' + data);
+                                                    });
+                                                    
+                                                    console.log("Latitude: " +  value.lat + "\nLongitude: " + value.long);
+                                                } else {
+                                                    alert("Request failed.")
+                                                }
+                                            });
+
                         })
                         .error(function(data) {
                             console.log('Error: ' + data);
@@ -867,19 +953,36 @@ if(area != undefined){
 
             angular.forEach($scope.tempContactData, function(value, key) {
                 value.ClinicId = clientId;
-                alert(value);
-                $http.post('/api/contact/cliniccontact', value)
-                    .success(function(data) {
-                        //$scope.formData = {}; // clear the form so our user is ready to enter another
-                        alert(JSON.stringify(data));
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
+
+                var geocoder = new google.maps.Geocoder();
+                var source = value.address1 + ' ' + value.address2;
+
+                geocoder.geocode({ 'address': source }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            value.lat = results[0].geometry.location.lat();
+                            value.long = results[0].geometry.location.lng();
+
+                            $http.post('/api/contact/cliniccontact', value)
+                            .success(function(data) {
+                                //$scope.formData = {}; // clear the form so our user is ready to enter another
+                                alert(JSON.stringify(data));
+                            })
+                            .error(function(data) {
+                                console.log('Error: ' + data);
+                            });
+                            
+                            console.log("Latitude: " +  value.lat + "\nLongitude: " + value.long);
+                        } else {
+                            alert("Request failed.")
+                        }
                     });
+
+
+                //alert(JSON.stringify(value));
+                
                 $location.path("/homepage/" + $routeParams.id);
 
             });
-
         }
     };
 
