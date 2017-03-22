@@ -10,6 +10,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
    var limitStep = 1;
 $scope.limit = limitStep;
 
+
 $scope.area11 = $routeParams.area;
 
 $scope.incrementLimit = function() {
@@ -73,18 +74,23 @@ $scope.decrementLimit = function() {
         // if(area)
         //url = url + '&Area=' + area;
         //alert(url);
+        var c = category;
+        
         if (category && !area)
             url = url + '&Categories=' + category
             // alert(url);
         if (category && area)
+        {
+            //category = category.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
-
+        }
         if (category && city && area)
             url = url + '&City=' + city;
         // alert(url);
         if (!category && city && area)
             url = url + '&City=' + city + '&Area=' + area;
 
+           
 if(area != undefined){
         var myurl = '/result'+ '/'+city+'/'+category;
          $window.document.getElementById('categry').href=myurl;
@@ -217,7 +223,8 @@ if(area != undefined){
                                     metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryDescription + '| Nx-search';
                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryKeywords + '| Nx-search';
                                     longDesc = cat.categoryDescriptionLong;
-                                    catname = cat.name;
+                                    //$scope.catname = cat.name;
+                                     //$window.document.getElementById('categoryname').innerHTML = catname;
                                      //alert( $scope.SubCategories);
 
                                      $scope.SubCategoriesLinks=[];
@@ -234,28 +241,28 @@ if(area != undefined){
                                                     metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryDescriptionShort + '| Nx-search';
                                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
                                                      longDesc = value.subCategoryDescriptionLong;
-                                                     catname = value.subCategoryName;
+                                                    // $scope.catname1 = value.subCategoryName;
+                                                      //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
                                             }
                                                  //alert(JSON.stringify(cat.name));
                                      });
                               
                              });
                 });
-
+                //alert(metaDesc);
+                 
+                 $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
                  $scope.area2 = $routeParams.area;
-                    $scope.categoryname = catname;
+                   // $scope.categoryname = catname;
                //alert($location.absUrl());
-               if ($location.path == 'http://nxsearch.com/'){
-                  $window.document.getElementsByName('description')[0].content = "Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search";
-                  $window.document.getElementsByName('keywords')[0].content = "Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search";
-                  // $window.document.getElementById('longdescription').innerHTML = longDesc;
-              }
-
+               
                  $window.document.getElementsByName('description')[0].content = metaDesc;
                   $window.document.getElementsByName('keywords')[0].content = metaKeys;
-                   //$window.document.getElementById('longdescription').innerHTML = longDesc;
-                   // $window.document.getElementById('categoryname').innerHTML = catname;
+                  $window.document.getElementById('longdescription').innerHTML = longDesc;
+                 
+                   
+                     
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
