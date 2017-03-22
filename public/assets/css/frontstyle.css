@@ -180,7 +180,7 @@
     background-color: #fff;
     box-sizing: border-box;
     border: 1px solid #dce0e0;
-    margin-top: 10px;
+    /* margin-top: 10px;*/
     padding: 16px !important;
 }
 
@@ -199,4 +199,9 @@
 .bottomlinks li a {
     display: block;
     padding-right: 32px;
+}
+
+.subs label {
+    font-weight: normal;
+    cursor: pointer;
 }
