@@ -23,7 +23,7 @@
 
 
     <!-- Twitter Card data -->
-    
+
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="{{currentPath}}">
 
@@ -38,7 +38,7 @@
     <meta property="og:url" content="{{currentPath}}" />
     <meta property="og:site_name" content="NXsearch" />
     <meta property="og:image" content="http://www.nxsearch.com/assets/img/favicon.png">
-    <meta property="fb:app_id" content="{1013740418769636}" />
+    <meta type="hidden" property="fb:app_id" content="{1013740418769636}" />
     <!-- SCROLLS -->
     <!--<link rel="stylesheet" href="assets/css/bootstrap.min.css"> load bootstrap -->
     <link rel="stylesheet" href="assets/css/footer.css">
@@ -96,31 +96,34 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
- <script src="https://rawgit.com/srfrnk/re-tree/master/re-tree.js" type="text/javascript"></script>
-  <script src="https://rawgit.com/srfrnk/ng-device-detector/master/ng-device-detector.js" type="text/javascript"></script>
-  
-<link rel="icon" href="assets/img/favicon.ico">
-<script>
-    document.write('<base href="' + document.location + '" />');
-  </script>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1013740418769636',
-      xfbml      : true,
-      version    : 'v2.8'
-    });
-    FB.AppEvents.logPageView();
-  };
+    <script src="https://rawgit.com/srfrnk/re-tree/master/re-tree.js" type="text/javascript"></script>
+    <script src="https://rawgit.com/srfrnk/ng-device-detector/master/ng-device-detector.js" type="text/javascript"></script>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+    <link rel="icon" href="assets/img/favicon.ico">
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '1013740418769636',
+                xfbml: true,
+                version: 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <style>
         #gmaps {
             width: 821px;
@@ -309,21 +312,21 @@
                             <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
                         </ul>
                     </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
                         <h3>Contact Us</h3>
                         <ul>
                             <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
                             <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
                         </ul>
                     </div>
-                   
-                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-12">
+
+                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
                         <h3> Follow Us </h3>
                         <ul>
                             <li>
                                 <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
                                 <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-bizzbazar.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
                                 <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
                                 
                                 <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
@@ -355,7 +358,7 @@
 
     </footer>
 </body>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHjhSI5CjvWTR2jhqPsUkTLHCCoaTggi8"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQhbsIozl3rAQIDhwlsuQ_ZB5P-cZHMxs"></script>
 
 
 </html>
