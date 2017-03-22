@@ -74,7 +74,7 @@ app.controller('InstantSearchController', InstantSearchController);
 // The controller
 
 
-function InstantSearchController($scope, $http, $location, $rootScope, savedMetaData, $window) {
+function InstantSearchController($scope, $http, $location, $rootScope, savedMetaData, $window,$routeParams) {
 
     //$scope.currentPath = $location.path();
     // The data model. These items would normally be requested via AJAX,
@@ -85,6 +85,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
     // 
+
     $rootScope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
         // TODO What you want on the event.
         $rootScope.currentPath = newUrl;
@@ -310,8 +311,11 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                  $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
                  alert('Please Select Area to begin search !');
              }else{
-        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category)
-            $location.path('/results/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
+        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category){
+                    //category = category.replace(/ /g, '-');
+
+                    $location.path('/results/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
+                }
              }
         // if(category)
         //     $location.path('/showResults/'+ category);
@@ -331,8 +335,10 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
              $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
              }else{
 
-        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory)
+        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory){
+            //subCategory = subCategory.replace(/ /g, '-');
             $location.path('/results/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
+        }
              }
         // if(category)
         //     $location.path('/showResults/'+ category);
@@ -340,7 +346,8 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
         //     $location.path('/showResults/'+ $scope.client.selectedCityModel);
     }
 
-
+$scope.selectedCategory = $routeParams.category;
+//document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
         //        alert(1313);
