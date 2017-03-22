@@ -276,3 +276,21 @@ footer a {
     background-color: #fff;
     border-color: #adadad;
 }
+
+.Searches {
+    font-size: 12px;
+    line-height: 13px;
+}
+
+.hrline {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.dashboard input {
+    margin-bottom: 10px;
+}
+
+.dashboard textarea {
+    margin-bottom: 10px;
+}
