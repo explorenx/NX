@@ -33,6 +33,21 @@ h3 {
     line-height: 30px;
 }
 
+@media (max-width: 415px) {
+    h3 {
+        font-size: 19px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 415px) {
+    h5 {
+        margin-top: 1px;
+        margin-bottom: 10px;
+    }
+}
+
 img {
     max-width: 100%;
 }
