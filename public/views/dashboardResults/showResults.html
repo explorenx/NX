@@ -65,7 +65,7 @@
 
                     <div class="form-group" ng-blur="EnableData = false">
                         <label for="exampleInputPassword1"></label>
-                        <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                        <input type="text" ng-value="selectedCategory" class="form-control" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
                         />
 
                         <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
@@ -132,7 +132,7 @@
 
 
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -147,48 +147,45 @@
 
     <div ng-controller="dashResultsController">
 
-        <div class="col-lg-12 well_new">
-
+        <div class="col-lg-12 col-xs-12">
+            <div class="col-md-11 col-xs-12">
                 <h1 style="font-size: 14px; display: inline; padding-left: 10px; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
-                    
-                        <ul class="nav navbar-nav pull-right">
-                                        <li class="login">
-                                             <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 5px;"></i>
-                                        </li>
-                                        <li class="login">
-                                            <a href=" http://twitter.com/share?text=text goes here&url=http://{{fpath}}" title="Share on Twitter" target="_blank" style="padding-top: 5px; padding-bottom: 5px;padding-right: 5px;padding-right: 5px;">
-                                                 <i class="fa fa-twitter-square fa-2x" style="color: #1DA1F2; cursor: pointer;"></i>
-                                            </a>
-                                        
-                                        </li>
-                                        
-                                        <li class="login">
-                                            <a href="https://plus.google.com/share?url=http://{{fpath}}" title="Share on Google+" target="_blank" style="padding-top: 5px; padding-bottom: 5px;">
-                                                 <i class="fa fa-google-plus-square fa-2x" style="color: #dd4b39; cursor: pointer;"></i>
-                                            </a>
-                                        </li>
-                                        
-                                        
-                                        <li ng-if="{{isMobile}} != ''"><a href="whatsapp://send?text=http://{{fpath}}"><img src="assets/img/whatsapp-nxsearch.png"> </a></li>
-                                                            
-                                    </ul>                     
-                    
-                
-    </div>
+            </div>
+            <div class="col-md-1 col-xs-4 col-offset-xs-8 text-center">
+                <div class="col-xs-4">
+                    <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer;"></i>
+                </div>
+                <div class="col-xs-4">
+                    <a href=" http://twitter.com/share?text=text goes here&url={{fpath}}" title="Share on Twitter" target="_blank" style="padding-top: 5px; padding-bottom: 5px;">
+                        <i class="fa fa-twitter-square fa-2x" style="color: #1DA1F2; cursor: pointer;"></i>
+                    </a>
+
+                </div>
+
+                <div class="col-xs-4">
+                    <a href="https://plus.google.com/share?url={{fpath}}" title="Share on Google+" target="_blank" style="padding-top: 5px; padding-bottom: 5px;">
+                        <i class="fa fa-google-plus-square fa-2x" style="color: #dd4b39; cursor: pointer;"></i>
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
 
         <!--<div class="col-xs-12 text-center">
 			<label>Search: <input ng-model="userSearch" class="form-control input-lg text-center"></label>
     </div>-->
 
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
-        
+
         <div class="col-md-9 col-xs-12">
-           
+
 
             <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
 
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
-                    <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 260px">
+                    <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 262px">
 
                         <div class="col-md-4 col-xs-12 text-center">
                             <div ng-if="item.imageUrl != ''">
@@ -245,7 +242,7 @@
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                               
+
                                                 <div class="modal-header">
                                                     <script>
                                                         $(document).ready(function() {
@@ -357,45 +354,52 @@
 
         </div>
 
-         <div class="col-md-12">
-            <h3>Find Similar Searches :</h3>  
+        <div class="col-md-12 col-xs-12">
+            <h3>Find Similar Searches :</h3>
             <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
-                <a itemprop="url" href="/results/{{city2}}/{{area2}}/{{ss}}"><ul><li class="Searches"> {{ss}}</li></ul></a>
-               <!--<span>{{ss}}</span>-->
+                <a itemprop="url" href="/results/{{city2}}/{{area2}}/{{ss}}">
+                    <ul>
+                        <li class="Searches"> {{ss}}</li>
+                    </ul>
+                </a>
+                <!--<span>{{ss}}</span>-->
+            </div>
         </div>
- </div>
-<div class="col-md-12"><hr/></div>
- <div class="col-md-12 ">
-<h4>About {{categoryname}} </h4>
-<p class="text-justify" id="longdescription"></p>
- </div>
+        <div class="col-md-12 col-xs-12">
+            <hr/>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <h4>About {{catname}} </h4>
+            <p class="text-justify" id="longdescription"></p>
 
-        <div class="col-md-12">
-  <h3> Popular Searches on <a href="/"> NX-search.com</a></h3>
-        </div>  
-<div class="col-md-12 sidebarList">
-            <div class="col-md-12">
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <h3> Popular Searches on <a href="/"> NX-search.com</a></h3>
+        </div>
+        <div class="col-md-12 col-xs-12 sidebarList">
+            <div class="col-md-12 col-xs-12">
                 <h5><b> Popular Searches in Health and Medicine</b></h5>
             </div>
-            <div class="col-md-12 bottomlinks">
+            <div class="col-md-12 col-xs-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
                     </li>
-                   <!-- <li>
+                    <!-- <li>
                         <a href="#"> Optalmology Clinics in Pune</a>
                     </li>-->
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
                         <h5><a itemprop="url" href="/result/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
@@ -404,42 +408,50 @@
                         <h5><a itemprop="url" href="/result/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
                     </li>
             </div>
-            <div class="col-md-12 " ><hr class="hrline"></div>
-             <div class="col-md-12">
+            <div class="col-md-12 col-xs-12">
+                <hr class="hrline">
+            </div>
+            <div class="col-md-12 col-xs-12">
                 <h5><b> Popular Searches in School and Institutes</b></h5>
             </div>
-            <div class="col-md-12 bottomlinks">
+            <div class="col-md-12 col-xs-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/preschool" class="Searches"> Preschools in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/preschool" class="Searches"> Preschools in Pune</a></h5>
                     </li>
-                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
+                    <li class="Searches">
+                        <h5> <a itemprop="url" href="/result/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
                     </li>
-                    
-                </div>
-           <div class="col-md-12"><hr class="hrline"></div>
-             <div class="col-md-12">
+
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <hr class="hrline">
+            </div>
+            <div class="col-md-12 col-xs-12">
                 <h5><b> Popular Searches in Beauty Care</b></h5>
             </div>
             <div class="col-md-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                       <h5> <a itemprop="url" href="/result/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/result/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
                     </li>
-                     
-                    
+
+
+            </div>
+
         </div>
-       
+        <div class="col-md-12 col-xs-12">
+            <hr class="hrline">
+        </div>
+        <div class="col-md-12 col-xs-12" style="background-color:  #e6e6e6">
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+            <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+            &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a id="categry" href=""> <span id="category"></span></a>
+            </h5>&nbsp
+            <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+        </div>
     </div>
-    <div class="col-md-12"><hr class="hrline"></div>
-    <div class="col-md-12" style="background-color:  #e6e6e6">
- <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
-               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
-               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
-               &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
-               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
-               <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
-    </div>
-</div>
