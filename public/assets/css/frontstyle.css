@@ -71,7 +71,7 @@
 
 .well_new {
     min-height: 20px;
-    padding: 10px;
+    padding: 10px ! important;
     margin-bottom: 10px;
     background-color: #f5f5f5;
     border: 1px solid #e3e3e3;
@@ -194,7 +194,6 @@
 
 .bottomlinks li {
     float: left;
-    
 }
 
 .bottomlinks li a {
