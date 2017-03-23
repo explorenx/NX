@@ -33,6 +33,10 @@ h3 {
     line-height: 30px;
 }
 
+h4 {
+    font-size: 15px !important;
+}
+
 @media (max-width: 415px) {
     h3 {
         font-size: 19px;
@@ -311,9 +315,7 @@ footer a {
 }
 
 .tabtitle {
-    display: block;
     text-align: center;
-    margin: 0 auto;
 }
 
 .topmargin {
@@ -523,4 +525,15 @@ footer a {
 .subs label {
     font-weight: normal;
     cursor: pointer;
+}
+
+.thumbnail_home {
+    display: block;
+    padding-left: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    width: 55px;
 }
