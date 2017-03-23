@@ -312,9 +312,9 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                  alert('Please Select Area to begin search !');
              }else{
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category){
-                    //category = category.replace(/ /g, '-');
+                    category = category.replace(/ /g, '-');
 
-                    $location.path('/results/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
+                    $location.path('/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
                 }
              }
         // if(category)
@@ -336,8 +336,8 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
              }else{
 
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory){
-            //subCategory = subCategory.replace(/ /g, '-');
-            $location.path('/results/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
+            subCategory = subCategory.replace(/ /g, '-');
+            $location.path('/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
         }
              }
         // if(category)
@@ -347,6 +347,8 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     }
 
 $scope.selectedCategory = $routeParams.category;
+$scope.selectedArea = $routeParams.area;
+
 //document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
