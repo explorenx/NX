@@ -313,7 +313,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
              }else{
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category){
                     category = category.replace(/ /g, '-');
-
+                    $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
                     $location.path('/' + $scope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + category);
                 }
              }
@@ -337,6 +337,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
         if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory){
             subCategory = subCategory.replace(/ /g, '-');
+            $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
             $location.path('/' + $rootScope.client.selectedCityModel + '/'+ $scope.MainAreas.selectedAreaModel.Area+'/' + subCategory);
         }
              }
