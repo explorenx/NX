@@ -349,7 +349,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
 $scope.selectedCategory = $routeParams.category;
 $scope.selectedArea = $routeParams.area;
-
+//alert($scope.selectedArea);
 //document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
