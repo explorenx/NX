@@ -82,6 +82,7 @@ $scope.decrementLimit = function() {
         if (category && area)
         {
             category = category.replace(/-/g, ' ');
+             area = area.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
         }
         if (category && city && area)
@@ -194,7 +195,6 @@ if(area != undefined){
             });
     }
     getData();
-
 
     $scope.SubCatetories = {
         subs: []
@@ -359,7 +359,7 @@ if(area != undefined){
                 $scope.slength=  $scope.services.length;
                 //alert($scope.slength);
                 for(var i=0;i<$scope.slength;i++){
-                $scope.serviceurl='results/'+data.City+ '/' + data.Area +'/'+$scope.services[i];
+                $scope.serviceurl='/'+data.City+ '/' + data.Area +'/'+$scope.services[i];
                 }
                 //alert( $scope.serviceurl);
                 
