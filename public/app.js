@@ -407,94 +407,6 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             })
 
-             .when('/profile/:city/:area/:clinicname/:id?', {
-                templateUrl : 'views/doctors/ProfilePage.html',
-                //controller : 'homeController'
-            })
-            .when('/addClient/:id?', {
-                templateUrl : 'views/dashboardResults/addClient.html',
-                controller : 'dashResultsController',
-                 resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                       }
-                    }]
-               }
-           })
-
-           //.when('/results/:city/:area/:category/:subcategory?', {
-              //  templateUrl : 'views/dashboardResults/showResults.html',
-               // controller : 'dashResultsController',
-               
-          //  })   
-            
-             .when('/:city/:category?', {
-                templateUrl : 'views/dashboardResults/showResults.html',
-                controller : 'dashResultsController',
-               
-            })
-            .when('/:city/:area/:category?', {
-                templateUrl : 'views/dashboardResults/showResults.html',
-                controller : 'dashResultsController',
-               
-            })
-
-                  
-            .when('/clientlist', {
-                templateUrl: 'views/dashboardResults/ClientList.html',
-                controller: 'dashResultsController',
-                resolve: {
-                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                        var userInfo = authenticationSvc.getUserInfo();
-
-                        if (userInfo) {
-                            return $q.when(userInfo);
-                        } else {
-                            return $q.reject({ authenticated: false });
-                       }
-                    }]
-               }
-            })
-
-            .when('/aditionalProfile/:id', {
-                templateUrl : 'views/dashboardResults/aditionalProfile.html',
-                controller : 'dashResultsController',
-                resolve: {
-                       auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                      var userInfo = authenticationSvc.getUserInfo();
-
-                           if (userInfo) {
-                                return $q.when(userInfo);
-                            } else {
-                                return $q.reject({ authenticated: false });
-                            }
-                            }]
-                        }
-            })
-            .when('/showResults', {
-                templateUrl : 'views/dashboardResults/showResults.html',
-                controller : 'dashResultsController',
-                  //resolve: {
-                         //   auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
-                          //  var userInfo = authenticationSvc.getUserInfo();
-
-                          //  if (userInfo) {
-                           //     return $q.when(userInfo);
-                         //   } else {
-                          //      return $q.reject({ authenticated: false });
-                         //   }
-                         //   }]
-                     //   }
-            })
-            .when('/dentist', {
-                templateUrl : 'views/doctors/dentist.html',
-                //controller : mainController
-            })
             .when('/addCities', {
                 templateUrl : 'views/locations/addCities.html',
                 controller : 'citiesController',
@@ -615,14 +527,103 @@ app.config(function($routeProvider, $locationProvider) {
                     }]
                }
             })
+
+             .when('/profile/:city/:area/:clinicname/:id?', {
+                templateUrl : 'views/doctors/ProfilePage.html',
+                //controller : 'homeController'
+            })
+            .when('/addClient/:id?', {
+                templateUrl : 'views/dashboardResults/addClient.html',
+                controller : 'dashResultsController',
+                 resolve: {
+                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                        var userInfo = authenticationSvc.getUserInfo();
+
+                        if (userInfo) {
+                            return $q.when(userInfo);
+                        } else {
+                            return $q.reject({ authenticated: false });
+                       }
+                    }]
+               }
+           })
+
+
+            .when('/aditionalProfile/:id', {
+                templateUrl : 'views/dashboardResults/aditionalProfile.html',
+                controller : 'dashResultsController',
+                resolve: {
+                       auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                      var userInfo = authenticationSvc.getUserInfo();
+
+                           if (userInfo) {
+                                return $q.when(userInfo);
+                            } else {
+                                return $q.reject({ authenticated: false });
+                            }
+                            }]
+                        }
+            })
+                  
+            .when('/clientlist', {
+                templateUrl: 'views/dashboardResults/ClientList.html',
+                controller: 'dashResultsController',
+                resolve: {
+                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                        var userInfo = authenticationSvc.getUserInfo();
+
+                        if (userInfo) {
+                            return $q.when(userInfo);
+                        } else {
+                            return $q.reject({ authenticated: false });
+                       }
+                    }]
+               }
+            })
+
+           //.when('/results/:city/:area/:category/:subcategory?', {
+              //  templateUrl : 'views/dashboardResults/showResults.html',
+               // controller : 'dashResultsController',
+               
+          //  })   
+            
+             .when('/:city/:category?', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+               
+            })
+            .when('/:city/:area/:category?', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+               
+            })
+
+           
+            .when('/showResults', {
+                templateUrl : 'views/dashboardResults/showResults.html',
+                controller : 'dashResultsController',
+                  //resolve: {
+                         //   auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                          //  var userInfo = authenticationSvc.getUserInfo();
+
+                          //  if (userInfo) {
+                           //     return $q.when(userInfo);
+                         //   } else {
+                          //      return $q.reject({ authenticated: false });
+                         //   }
+                         //   }]
+                     //   }
+            })
+            .when('/dentist', {
+                templateUrl : 'views/doctors/dentist.html',
+                //controller : mainController
+            })
+            
             .when('/userfeedback', {
                 templateUrl : 'views/userfeedback.html',
                 //controller : 'homeController'
             })
-            .when('/sitemap', {
-                templateUrl : 'views/sitemap.xml',
-                //controller : 'homeController'
-            })
+           
 
 
 
