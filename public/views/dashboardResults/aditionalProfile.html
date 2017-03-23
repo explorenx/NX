@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQguSQA07nEPpUJ58qHhAlin9Pd0LHBEA"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQguSQA07nEPpUJ58qHhAlin9Pd0LHBEA"></script>-->
 
 
 <div id="todo-form" class="container" ng-controller="dashResultsController as up">
@@ -160,6 +160,8 @@
                 <input type="hidden" ng-model="formData._id">
 
                 <div ng-repeat="item in tempContactData">
+                    <input type="hidden" ng-model="formData.lat">
+                    <input type="hidden" ng-model="formData.long">
                     <label>Address1</label>
                     <input type="text" ng-model="item.address1" name="" class="form-control text-center" placeholder="Enter a Address ">
                     <label>Address2</label>
