@@ -81,7 +81,7 @@ $scope.decrementLimit = function() {
             // alert(url);
         if (category && area)
         {
-            //category = category.replace(/-/g, ' ');
+            category = category.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
         }
         if (category && city && area)
@@ -92,7 +92,7 @@ $scope.decrementLimit = function() {
 
            
 if(area != undefined){
-        var myurl = '/result'+ '/'+city+'/'+category;
+        var myurl =  '/'+city+'/'+category;
          $window.document.getElementById('categry').href=myurl;
 
        //  var cityurl = '/showResults';
@@ -115,7 +115,7 @@ if(area != undefined){
         }
 
         if(area == undefined){
-             var myurl = '/result'+ '/'+city+'/'+category;
+             var myurl = '/'+city+'/'+category;
          $window.document.getElementById('categry').href=myurl;
 
          // var cityurl = '/showResults';
@@ -220,9 +220,16 @@ if(area != undefined){
                        //  alert(JSON.stringify(cat.name));
                                 if(cat.name == $routeParams.category)
                                 {
+
+                                    if($routeParams.area != undefined){
                                     metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryDescription + '| Nx-search';
                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryKeywords + '| Nx-search';
                                     longDesc = cat.categoryDescriptionLong;
+                                    }else{
+                                         metaDesc  = $routeParams.category + " in " + $routeParams.city+ " | " + cat.categoryDescription + '| Nx-search';
+                                    metaKeys = $routeParams.category + " in " + $routeParams.city+ " | " + cat.categoryKeywords + '| Nx-search';
+                                    longDesc = cat.categoryDescriptionLong;
+                                    }
                                     //$scope.catname = cat.name;
                                      //$window.document.getElementById('categoryname').innerHTML = catname;
                                      //alert( $scope.SubCategories);
@@ -235,12 +242,14 @@ if(area != undefined){
                                 }
                                 
                                     angular.forEach(cat.subcategories, function(value, key) {
-                                            if(value.subCategoryName == $routeParams.category)
+                                            if(value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' '))
                                             {
                                                 //alert(JSON.stringify($routeParams.area));
+                                                
                                                     metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryDescriptionShort + '| Nx-search';
                                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
                                                      longDesc = value.subCategoryDescriptionLong;
+                                                     
                                                     // $scope.catname1 = value.subCategoryName;
                                                       //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
                                             }
