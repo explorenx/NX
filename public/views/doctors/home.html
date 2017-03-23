@@ -14,6 +14,20 @@
     ga('create', 'UA-64739177-2', 'auto');
     ga('send', 'pageview');
 </script>
+<script>
+    $(function() {
+        $('.nav-tabs a').on('click', function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+
+    $(function() {
+        $('.navbar-toggle1 collapsed').on('click', function(e) {
+            $(this).tab('show');
+        });
+    });
+</script>
 
 
 
@@ -169,11 +183,7 @@
     </div>
 </div>
 
-
-
-
-<div class="row">
-
+<div class="container">
 
     <button type="button" class="navbar-toggle1 collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
@@ -183,16 +193,14 @@
                         <span class="icon-bar"></span>
                     </button>
 
-
-
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a data-toggle="tab" href="#health">Health & Medicine</a></li>
-            <li><a data-toggle="tab" href="#school">Schools & Institutes</a></li>
-            <li><a data-toggle="tab" href="#beauty">Beauty Care</a></li>
-            <li><a data-toggle="tab" href="#sports">Sports & Recreation</a></li>
-            <li><a data-toggle="tab" href="#travel">Travel & Transport</a></li>
-            <li><a data-toggle="tab" href="#build">Building & Construction</a></li>
+            <li class="active"><a href="#health" data-toggle="tab">Health & Medicine</a></li>
+            <li><a href="#school" data-toggle="tab" aria-expanded="false">Schools & Institutes</a></li>
+            <li><a href="#beauty" data-toggle="tab" aria-expanded="false">Beauty Care</a></li>
+            <li><a href="#sports" data-toggle="tab" aria-expanded="false">Gym & Academies</a></li>
+            <li><a href="#travel" data-toggle="tab" aria-expanded="false">Travel & Transport</a></li>
+            <li><a href="#build" data-toggle="tab" aria-expanded="false">Building & Construction</a></li>
         </ul>
     </div>
     <!--/.nav-collapse -->
@@ -201,7 +209,7 @@
 </div>
 
 <div class="tab-content">
-    <div id="health" class="tab-pane fade in active">
+    <div id="health" class="tab-pane active">
         </br>
 
         <div class="row row_top">
@@ -392,6 +400,15 @@
             </div>
 
             <div class="col-sm-2 col-md-2">
+                <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/School>
+                    <a href="/Pune/Home-Tutors"> <img src="assets/img/home-tutor.png" width="50px" height="50px" alt="Home Tutors in Pune nx-search"></a>
+                </div>
+
+                <div class="caption tabtitle" itemscope itemtype=https://schema.org/School>
+                    <a href="/Pune/Home-Tutors">
+                        <h4>Home Tutors</h4>
+                    </a>
+                </div>
 
             </div>
 
@@ -425,7 +442,15 @@
             </div>
 
             <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/UnisexSalon>
+                    <a href="/Pune/unisex-salons"><img src="assets/img/unisex-saloons.png" width="50px" height="50px" alt="Unisex solon in Pune nx-search"></a>
+                </div>
 
+                <div class="caption tabtitle" itemscope itemtype=https://schema.org/DaySpa>
+                    <a href="/Pune/unisex-salons">
+                        <h4>Unisex Salon</h4>
+                    </a>
+                </div>
             </div>
 
             <div class="col-sm-2 col-md-2 col-xs-6">
@@ -449,10 +474,7 @@
         </br>
 
         <div class="row row_top">
-            <div class="col-sm-1"></div>
-
             <div class="col-sm-2 col-md-2 col-xs-6">
-
                 <div class="thumbnail_home center-block">
                     <a href="#"><img src="assets/img/Sports.png" width="50px" height="50px" alt="Sports nx-search"></a>
                 </div>
@@ -495,16 +517,34 @@
                 </div>
                 <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
                     <a href="#">
-                        <h4>Gym</h4>
+                        <h4>Gym & Fitness</h4>
                     </a>
                 </div>
             </div>
 
             <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
+                    <a href="#"><img src="assets/img/yoga.png" width="50px" height="50px" alt="Yoga-academy nx-search"></a>
+                </div>
+                <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
+                    <a href="#">
+                        <h4>Yoga Academy</h4>
+                    </a>
+                </div>
 
             </div>
 
-            <div class="col-sm-1"></div>
+            <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/zumba-classes>
+                    <a href="#"><img src="assets/img/zumba-classes.png" width="50px" height="50px" alt="Zumba classes Pune nx-search"></a>
+                </div>
+                <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
+                    <a href="#">
+                        <h4>Zumba Classes</h4>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </div>
 
