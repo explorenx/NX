@@ -77,6 +77,7 @@ $scope.decrementLimit = function() {
         var c = category;
         
         if (category && !area)
+        category = category.replace(/-/g, ' ');
             url = url + '&Categories=' + category
             // alert(url);
         if (category && area)
@@ -89,6 +90,7 @@ $scope.decrementLimit = function() {
             url = url + '&City=' + city;
         // alert(url);
         if (!category && city && area)
+         area = area.replace(/-/g, ' ');
             url = url + '&City=' + city + '&Area=' + area;
 
            
