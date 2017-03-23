@@ -41,6 +41,14 @@ app.config(['deviceDetectorProvider', function(deviceDetectorProvider) {
        }
     });
 
+     app.filter('slug1', function() {
+        return function(input) {
+            input = input || '';
+
+            return input.replace(/-/g, ' ');
+       }
+    });
+
     app.filter('slug', function() {
         return function(input) {
             input = input || '';
@@ -419,18 +427,18 @@ app.config(function($routeProvider, $locationProvider) {
                }
            })
 
-           .when('/results/:city/:area/:category/:subcategory?', {
-                templateUrl : 'views/dashboardResults/showResults.html',
-                controller : 'dashResultsController',
+           //.when('/results/:city/:area/:category/:subcategory?', {
+              //  templateUrl : 'views/dashboardResults/showResults.html',
+               // controller : 'dashResultsController',
                
-            })   
+          //  })   
             
-             .when('/result/:city/:category?', {
+             .when('/:city/:category?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
             })
-            .when('/results/:city/:area/:category?', {
+            .when('/:city/:area/:category?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
