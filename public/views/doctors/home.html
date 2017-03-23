@@ -70,21 +70,21 @@
 
                 <div class="form-group" ng-blur="EnableData = false">
                     <label for="exampleInputPassword1"></label>
-                    <input type="text" value="{{selectedCategory}}" class="form-control" id="exampleInputPassword2" placeholder="Start Typing" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()"
+                    <input type="text" value="{{selectedCategory}}" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()"
                         click-anywhere-but-here="EnableData=false" />
 
-                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
                         <div ng-repeat="i in Categories |  filter : searchString track by $index">
                             <a href="" ng-click="gotoResultsPageByCategory(i)">
                                 <div class="list_dropdown">
-                                    <img ng-src="" /><b>{{i}}</b>
+                                    <img ng-src="" />{{i}}
                                 </div>
                             </a>
                         </div>
                         <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
                             <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                 <div class="list_dropdown">
-                                    <b>{{i}}</b>
+                                    {{i}}
                                 </div>
                             </a>
 
@@ -103,7 +103,7 @@
                         <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
                             <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
                                 <div class="list_dropdown">
-                                    <span class="text-center; font-weight: bold;">{{i.DoctorName}}</span>
+                                    <span class="text-center;">{{i.DoctorName}}</span>
                                     <br/>
                                 </div>
                             </a>
@@ -113,7 +113,7 @@
 
                             <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
                                 <div class="list_dropdown">
-                                    <span class="text-center; font-weight: bold;">{{i.speciality}}</span>
+                                    <span class="text-center;">{{i.speciality}}</span>
                                     <br/>
                                 </div>
                             </a>
@@ -121,7 +121,7 @@
 
 
 
-                        <div>
+                      <!--  <div>
                             <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}">
                                 <b> Clinics named "{{searchString}}"({{searchString.length}})</b>
                             </a><br/>
@@ -132,7 +132,7 @@
                                 <b> Doctors named "{{searchString}}"({{searchString.length}})</b>
                             </a><br/>
                             <hr style="border-color: lightskyblue;">
-                        </div>
+                        </div>-->
 
 
 
@@ -210,7 +210,7 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/Dentist>
-                    <a itemprop="url" href="/result/Pune/Dentist"> <img src="/assets/img/Dentist.png" alt="Dentist nx-search">
+                    <a itemprop="url" href="/Pune/Dentist"> <img src="/assets/img/Dentist.png" alt="Dentist nx-search">
                 </div>
 
                 <div class="caption tabtitle">
@@ -225,11 +225,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div itemscope itemtype=https://schema.org/Homeopathic class="thumbnail center-block">
-                    <a itemprop="url" href="/result/Pune/Homeopathy"><img src="assets/img/Homeopathy.png" alt="homeopathy nx-search"></a>
+                    <a itemprop="url" href="/Pune/Homeopathy"><img src="assets/img/Homeopathy.png" alt="homeopathy nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/Homeopathic>
-                    <a itemprop="url" href="/result/Pune/Homeopathy">
+                    <a itemprop="url" href="/Pune/Homeopathy">
                         <h4>Homeopathy Clinics</h4>
                     </a>
                 </div>
@@ -238,11 +238,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://health-lifesci.schema.org/Ayurvedic>
-                    <a href="/result/Pune/Ayurveda"><img class="img" src="assets/img/Ayurveda.png" alt="Ayurveda nx-search"></a>
+                    <a href="/Pune/Ayurveda"><img class="img" src="assets/img/Ayurveda.png" alt="Ayurveda nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle">
-                    <a href="/result/Pune/Ayurveda" itemscope itemtype=https://health-lifesci.schema.org/Ayurvedic>
+                    <a href="/Pune/Ayurveda" itemscope itemtype=https://health-lifesci.schema.org/Ayurvedic>
                         <h4>Ayurvedic Clinics</h4>
                     </a>
                 </div>
@@ -251,11 +251,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/Physician>
-                    <a href="/result/Pune/Gynecologist"><img src="assets/img/Gynecologist.png" alt="Gynecologist nx-search"></a>
+                    <a href="/Pune/Gynecologist"><img src="assets/img/Gynecologist.png" alt="Gynecologist nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
-                    <a href="/result/Pune/Gynecologist">
+                    <a href="/Pune/Gynecologist">
                         <h4>Gynecologist</h4>
                     </a>
                 </div>
@@ -264,11 +264,11 @@
             <div class="col-sm-2 col-md-2" itemscope itemtype=https://schema.org/Dermatology>
 
                 <div class="thumbnail center-block">
-                    <a href="/result/Pune/Dermatologist"><img src="assets/img/Dermatologist.png" alt="Dermatologist nx-search"></a>
+                    <a href="/Pune/Dermatologist"><img src="assets/img/Dermatologist.png" alt="Dermatologist nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/Dermatology>
-                    <a href="/result/Pune/Dermatologist">
+                    <a href="/Pune/Dermatologist">
                         <h4>Dermatologist</h4>
                     </a>
                 </div>
@@ -285,11 +285,11 @@
 
             <div class="col-sm-2 col-md-2">
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/Physician>
-                    <a href="/result/Pune/Ear-Nose-Throat-(ENT)"><img src="assets/img/ENT.png" alt="E-N-T specialist nx-search"></a>
+                    <a href="/Pune/Ear-Nose-Throat-(ENT)"><img src="assets/img/ENT.png" alt="E-N-T specialist nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
-                    <a href="/result/Pune/Ear-Nose-Throat-(ENT)">
+                    <a href="/Pune/Ear-Nose-Throat-(ENT)">
                         <h4>E-N-T Specialist</h4>
                     </a>
                 </div>
@@ -321,11 +321,11 @@
 
             <div class="col-sm-2 col-md-2">
                 <div class="thumbnail img center-block" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
-                    <a href="/result/Pune/Diagnostic-Lab"><img src="assets/img/laboratory.png" alt="Diagnostic labs nx-search"></a>
+                    <a href="/Pune/Diagnostic-Lab"><img src="assets/img/laboratory.png" alt="Diagnostic labs nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
-                    <a href="/result/Pune/Diagnostic-Lab">
+                    <a href="/Pune/Diagnostic-Lab">
                         <h4>Diagnostic labs</h4>
                     </a>
                 </div>
@@ -360,11 +360,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/Preschool>
-                    <a itemprop="url" href="/result/Pune/preschool"><img src="assets/img/Preschool.png" alt="Preschools nx-search"></a>
+                    <a itemprop="url" href="/Pune/preschool"><img src="assets/img/Preschool.png" alt="Preschools nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/Preschool>
-                    <a itemprop="url" href="/result/Pune/preschool">
+                    <a itemprop="url" href="/Pune/preschool">
                         <h4>Preschools</h4>
                     </a>
                 </div>
@@ -386,11 +386,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/School>
-                    <a href="/result/Pune/Private-Tuitions"> <img class="img" src="assets/img/Interior.png" alt="Private Turions nx-search"></a>
+                    <a href="/Pune/Private-Tuitions"> <img class="img" src="assets/img/Interior.png" alt="Private Turions nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/School>
-                    <a href="/result/Pune/Private-Tuitions">
+                    <a href="/Pune/Private-Tuitions">
                         <h4>Private Tuitions</h4>
                     </a>
                 </div>
@@ -419,11 +419,11 @@
             <div class="col-sm-2 col-md-2">
 
                 <div class="thumbnail center-block" itemscope itemtype=https://schema.org/DaySpa>
-                    <a href="/result/Pune/Salon-and-Spa"><img src="assets/img/Salon-Spa.png" alt="Salon & Spa nx-search"></a>
+                    <a href="/Pune/Salon-and-Spa"><img src="assets/img/Salon-Spa.png" alt="Salon & Spa nx-search"></a>
                 </div>
 
                 <div class="caption tabtitle" itemscope itemtype=https://schema.org/DaySpa>
-                    <a href="/result/Pune/Salon-and-Spa">
+                    <a href="/Pune/Salon-and-Spa">
                         <h4>Salon & Spa</h4>
                     </a>
                 </div>
