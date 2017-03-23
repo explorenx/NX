@@ -258,7 +258,7 @@ if(area != undefined){
                               
                              });
                 });
-                //alert(metaDesc);
+              alert(metaDesc);
                  
                  $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
