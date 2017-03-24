@@ -1,6 +1,7 @@
 // set up ======================================================================
 var connect_s4a = require('connect-s4a');
 var token = "18a9d76bd14a9b98fc80582c0a86db5b";
+var compression = require('compression');
 var express  = require('express');
 var app      = express(); 
 
@@ -54,7 +55,7 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 var multer = require('multer');
-
+app.use(compression());
 app.use(passport.initialize());
  
 
