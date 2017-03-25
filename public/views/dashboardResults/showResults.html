@@ -87,7 +87,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
                                         <br/>
@@ -96,7 +96,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.DoctorName}}</span>
                                         <br/>
@@ -106,7 +106,7 @@
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
 
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.speciality}}</span>
                                         <br/>
@@ -181,14 +181,14 @@
         <div class="col-md-9 col-xs-12">
 
 
-            <div class="col-md-6 col-xs-12" dir-paginate="item in results |  orderBy:'Order' | itemsPerPage:10 | filter : userSearch track by $index">
+            <div class="col-md-6 col-xs-12" dir-paginate="item in results | itemsPerPage:10 | filter : userSearch track by $index">
 
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
                     <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 262px">
 
                         <div class="col-md-4 col-xs-12 text-center">
                             <div ng-if="item.imageUrl != ''">
-                                <img itemprop="photo" src="{{item.imageUrl}}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="{{item.imageUrl}}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="100" height="100" style="position:relative; margin-top:10px; border: 1px solid #33b3e2; ">
                             </div>
                             <div ng-if="item.imageUrl == '' ">
                                 <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
@@ -196,7 +196,7 @@
                         </div>
 
                         <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
-                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
                             <span itemprop="person" style="font-size:12px;"><h5> {{item.DoctorName}}</h5></span>
                             <h6 style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</h6>
 
@@ -243,10 +243,12 @@
                                             <div class="modal-content">
 
                                                 <div class="modal-header">
-                                                    <script>
+                                                    <script>0 
                                                         $(document).ready(function() {
                                                             var from, to, subject, text, date, time;
-                                                            $("#send_email").click(function() {
+                                                            $("#send_email").click(function(e) {
+                                                                console.log('fired');
+                                                                event.preventDefault();
                                                                 to = $("#username").val();
                                                                 subject = $("#ClinicName").val();
                                                                 text = $("#usermobile").val();
@@ -261,11 +263,10 @@
                                                                     from: from,
                                                                     date: date,
                                                                     time: time
-                                                                }, function(data) {
-                                                                    if (data == "sent") {
+                                                                }) .done(function(data) {
+                                                                    
                                                                         $("#message").empty().html("Enquiry send successfully");
-                                                                    }
-
+                                                                    
                                                                 });
                                                             });
                                                         });
@@ -326,13 +327,13 @@
 
                                                         <!-- Text input-->
                                                         <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" name="ClinicName" class="form-control" value="{{item.ClinicName}}" readonly>
-
-                                                        <input name="btnSubmit" type="submit" class="bt btn-primary" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                        <br/>
+                                                        
+                                                       <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-primary pull-right" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <span id="message"></span>
+                                                   
                                                 </div>
 
 
@@ -352,11 +353,11 @@
             <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
 
         </div>
-
+        
         <div class="col-md-12 col-xs-12">
-            <h3>Find Similar Searches :</h3>
-            <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
-                <a itemprop="url" href="/results/{{city2}}/{{area2}}/{{ss}}">
+            <h3>Find Similar Searches : {{area2}}</h3>
+            <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40" >
+                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
                         <li class="Searches"> {{ss}}</li>
                     </ul>
@@ -364,6 +365,7 @@
                 <!--<span>{{ss}}</span>-->
             </div>
         </div>
+       
         <div class="col-md-12 col-xs-12">
             <hr/>
         </div>
@@ -383,28 +385,28 @@
             <div class="col-md-12 col-xs-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Dentist" onclick="$(window).scrollTop(10);" class="Searches"> Dentists in Pune</a></h5>
                     </li>
                     <!-- <li>
                         <a href="#"> Optalmology Clinics in Pune</a>
                     </li>-->
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Homeopathy" onclick="$(window).scrollTop(10);" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Ayurveda" onclick="$(window).scrollTop(10);" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Gynecologist" onclick="$(window).scrollTop(10);" class="Searches"> Gynecology Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Dermatologist" onclick="$(window).scrollTop(10);" class="Searches"> Dermatology Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
+                        <h5><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" onclick="$(window).scrollTop(10);" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
+                        <h5><a itemprop="url" href="/Pune/Diagnostic-Lab" onclick="$(window).scrollTop(10);" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
                     </li>
             </div>
             <div class="col-md-12 col-xs-12">
@@ -416,10 +418,10 @@
             <div class="col-md-12 col-xs-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/preschool" class="Searches"> Preschools in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/preschool" onclick="$(window).scrollTop(10);" class="Searches"> Preschools in Pune</a></h5>
                     </li>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Private-Tuitions" onclick="$(window).scrollTop(10);" class="Searches"> Private-Tuitions in Pune</a></h5>
                     </li>
 
             </div>
@@ -432,7 +434,7 @@
             <div class="col-md-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Salon-and-Spa" onclick="$(window).scrollTop(10);" class="Searches"> Salon-and-Spa in Pune</a></h5>
                     </li>
 
 
