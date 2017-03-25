@@ -24,6 +24,8 @@ var Provider = restful.model('ClinicAndDoctors', new mongoose.Schema({
     RegistrationNo : String,
     Order : Number,
     Tags: String,
+    isPaidClient : Boolean,
+    isSponsoredClient : Boolean,
     address1: String,
     address2 : String,
     userId : String,
