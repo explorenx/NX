@@ -41,6 +41,14 @@ app.config(['deviceDetectorProvider', function(deviceDetectorProvider) {
        }
     });
 
+     app.filter('slugifynolower', function() {
+        return function(input) {
+            input = input || '';
+
+            return input.replace(/ /g, '-');
+       }
+    });
+
      app.filter('slug1', function() {
         return function(input) {
             input = input || '';
@@ -528,7 +536,7 @@ app.config(function($routeProvider, $locationProvider) {
                }
             })
 
-             .when('/profile/:city/:area/:clinicname/:id?', {
+             .when('/profile/:city/:category/:area/:clinicname/:id?', {
                 templateUrl : 'views/doctors/ProfilePage.html',
                 //controller : 'homeController'
             })
@@ -592,7 +600,7 @@ app.config(function($routeProvider, $locationProvider) {
                 controller : 'dashResultsController',
                
             })
-            .when('/:city/:area/:category?', {
+            .when('/:city/:category/:area?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
