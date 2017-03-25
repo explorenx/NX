@@ -6,6 +6,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
      
+ 
+
   console.log = function() {};
    var limitStep = 1;
 $scope.limit = limitStep;
@@ -143,15 +145,35 @@ if(area != undefined){
 
         $http.get(url)
             .success(function(data) {
-                $scope.results = data;
-                 $scope.aaa = $scope.results.length;
+                
+                // $scope.results = data;
+                $scope.results = shuffle(data, 'isPaidClient');
+                if($scope.results>0){
+                var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
+                
+                 if(sponsoredClients.length > 0)
+                {
+                    $scope.FirstSponsoredClient = sponsoredClients[0];
+                    $scope.SecondSponsoredClient = sponsoredClients[1];
+                     
+                }
+                }
+               $scope.aaa = $scope.results.length;
+                
                             //alert($scope.aaa);
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
                 if (data.length == 0) {
                     $http.get('/api/dashbord/results/?&City=' + city + '&Area=' + area + '&SubCategories=' + category)
                         .success(function(resdata) {
-                            $scope.results = resdata;
+                            $scope.results = shuffle(resdata, 'isPaidClient');
+                            var sponsoredClients = shuffle(resdata, 'isSponsoredClient');
+                            if(sponsoredClients.length > 0)
+                            {
+                                $scope.FirstSponsoredClient = sponsoredClients[0];
+                                $scope.SecondSponsoredClient = sponsoredClients[1];
+                            }
+                            //$scope.results = resdata;
                             $scope.aaa = $scope.results.length;
                             console.log(data);
                             if (resdata.length == 0) {
@@ -161,7 +183,16 @@ if(area != undefined){
                                         //$scope.results = resClinicsdata;
                                         console.log(resClinicsdata);
                                         //if(resClinicsdata.length == 0){
-
+                                        var tempresClinicsdata = resClinicsdata;
+                                        resClinicsdata = [];
+                                        resClinicsdata = shuffle(resClinicsdata, 'isPaidClient');
+                                        var sponsoredClients = shuffle(resClinicsdata, 'isSponsoredClient');
+                                        if(sponsoredClients.length > 0)
+                                        {
+                                            $scope.FirstSponsoredClient = sponsoredClients[0];
+                                            $scope.SecondSponsoredClient = sponsoredClients[1];
+                                        }
+                                        
                                         angular.forEach(resClinicsdata, function(value, key) {
                                             if (value.ClinicName.toLowerCase().indexOf(category.toLowerCase()) != -1) {
                                                 $scope.results.push(value);
@@ -195,6 +226,49 @@ if(area != undefined){
             });
     }
     getData();
+   
+    function shuffle(array, condition) {  
+        var arr = new Array();
+        var arrNotProcessed = new Array();
+        for(i = 0; i< array.length; i++)
+        {
+            if(array[i][condition] == true){
+                    arr.push(array[i]);
+                console.log(array[i]);
+                console.log(arr.length);        
+                }else  {
+                arrNotProcessed.push(array[i]);    
+            }
+        }
+        var currentIndex = arr.length, temporaryValue, randomIndex ;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            // And swap it with the current element.
+            temporaryValue = arr[currentIndex];
+            arr[currentIndex] = arr[randomIndex];
+            arr[randomIndex] = temporaryValue;
+        }  
+        for(i = 0; i<  arrNotProcessed.length; i++)
+        {
+            arr.push(arrNotProcessed[i]);
+        }
+        if(condition == 'isSponsoredClient')
+        {
+            var tempSponsoredClients = new Array();
+            if(arr[0].isSponsoredClient == true)
+                tempSponsoredClients.push(arr[0]);
+            if(arr[1].isSponsoredClient == true)
+                tempSponsoredClients.push(arr[1]);
+            return tempSponsoredClients;
+        }
+        else{
+                return arr;
+        }
+    }
 
     $scope.SubCatetories = {
         subs: []
@@ -215,7 +289,6 @@ if(area != undefined){
 
                    angular.forEach(data, function(value, key1) {
                         
-                        
                         angular.forEach(value.category, function(cat, key2) {
                        //  alert(JSON.stringify(cat.name));
                                 if(cat.name == $routeParams.category)
@@ -233,15 +306,18 @@ if(area != undefined){
                                     //$scope.catname = cat.name;
                                      //$window.document.getElementById('categoryname').innerHTML = catname;
                                      //alert( $scope.SubCategories);
-
+                                     //alert($routeParams.area);
                                      $scope.SubCategoriesLinks=[];
+                                     
                                     angular.forEach(cat.subcategories, function(value, key) {
                                                $scope.SubCategoriesLinks.push(value.subCategoryName);
                                                  //alert(JSON.stringify(cat.name));
                                      });
+                                      
                                 }
                                 
                                     angular.forEach(cat.subcategories, function(value, key) {
+                                        //alert(value.subCategoryName);
                                             if(value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' '))
                                             {
                                                 //alert(JSON.stringify($routeParams.area));
@@ -361,7 +437,7 @@ if(area != undefined){
                 for(var i=0;i<$scope.slength;i++){
                 $scope.serviceurl='/'+data.City+ '/' + data.Area +'/'+$scope.services[i];
                 }
-                //alert( $scope.serviceurl);
+               // alert( $scope.serviceurl);
                 
                  $window.document.getElementById('demo1').innerHTML=data.ClinicName;
                  $window.document.getElementById('city1').innerHTML=data.City;
@@ -503,6 +579,7 @@ if(area != undefined){
 
 
         if ($scope.formData._id) {
+            //alert(JSON.stringify($scope.formData));
             $http.put('/api/dashbord/results/' + $scope.formData._id, $scope.formData)
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
