@@ -127,7 +127,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
                                         <br/>
@@ -136,7 +136,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.DoctorName}}</span>
                                         <br/>
@@ -146,7 +146,7 @@
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
 
-                                <a href="/profile/{{i.City | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify}}/{{i._id | slugify}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.speciality}}</span>
                                         <br/>
@@ -247,7 +247,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 well_new">
                     <div class="col-md-3 col-sm-6 col-xs-12 ">
                         <div class="text-center" ng-if="client.imageUrl != ''">
-                            <img itemprop="photo" src="{{client.imageUrl }}" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" class="img-rounded" style="position:relative; width: 150px; height: 150px;margin-left:10px;margin-top:10px;">
+                            <img itemprop="photo" src="{{client.imageUrl }}" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" width="150" height="150"  style="position:relative; border: 1px solid #33b3e2;margin-left:10px;margin-top:10px;">
                         </div>
                         <div class="text-center" ng-if="client.imageUrl == ''">
                             <img itemprop="photo" src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" class="img-rounded" style="position:relative; width: 300px; height: 250px;margin-left:10px;margin-top:10px;">
@@ -532,7 +532,7 @@
             <div class="col-md-12">
                 <h3 class="text-center">Other Services</h3>
                 <div itemprop="availableService" class="col-md-3 bottomlinks center-block" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
-                    <a itemprop="url" href="/results/{{formData.City}}/{{formData.Area}}/{{s}}">
+                    <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{formData.City}}/{{s | slugifynolower}}/{{formData.Area | slugifynolower}}">
                         <ul>
                             <li> {{s}}</li>
                         </ul>
