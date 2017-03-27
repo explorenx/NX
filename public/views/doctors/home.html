@@ -16,7 +16,7 @@
 </script>
 <script>
     $(function() {
-        $('.nav-tabs a').on('click', function(e) {
+        $('.nav-tabsH a').on('click', function(e) {
             e.preventDefault();
             $(this).tab('show');
         });
@@ -25,6 +25,12 @@
     $(function() {
         $('.navbar-toggle1 collapsed').on('click', function(e) {
             $(this).tab('show');
+        });
+    });
+
+    $(function() {
+        $('.navbar-nav .open .dropdown-menu').on('click', function(e) {
+            $(this).tab('hide');
         });
     });
 </script>
@@ -194,7 +200,7 @@
                     </button>
 
     <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav nav-tabs nav-justified">
+        <ul class="nav nav-tabsH nav-justified">
             <li class="active"><a href="#health" data-toggle="tab">Health & Medicine</a></li>
             <li><a href="#school" data-toggle="tab" aria-expanded="false">Schools & Institutes</a></li>
             <li><a href="#beauty" data-toggle="tab" aria-expanded="false">Beauty Care</a></li>
