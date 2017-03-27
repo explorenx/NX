@@ -61,14 +61,14 @@ $scope.decrementLimit = function() {
         }
         if ($rootScope.subCategory != null) {
             //alert(JSON.stringify($rootScope.Area.Area));
-            subcategory = $rootScope.subCategory.subCategory;
+            subCategory = $rootScope.subCategory;
             // alert(JSON.stringify(subcategory));
             //var area = $routeParams.Area;
         }
         var area = $routeParams.area;
-        var subcategory = $routeParams.subcategory;
+        var subcategory = $routeParams.subCategory;
         //  $routeParams.area = area;
-        //alert(subcategory);
+        //alert( $routeParams.subCategory);
 
         //alert(category + '  ' + city);
         var url = '/api/dashbord/results/?';
@@ -78,21 +78,26 @@ $scope.decrementLimit = function() {
         //alert(url);
         var c = category;
         
-        if (category && !area)
-            url = url + '&Categories=' + category
+        if (category && !area && city){
+         category = category.replace(/-/g, ' ');
+            url = url + '&City=' + city + '&Categories=' + category
             // alert(url);
+        }
+       
         if (category && area)
         {
             category = category.replace(/-/g, ' ');
              area = area.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
         }
-        if (category && city && area)
+       
+        if (category && city && area){
             url = url + '&City=' + city;
         // alert(url);
-        if (!category && city && area)
+        }
+        if (!category && city && area){
             url = url + '&City=' + city + '&Area=' + area;
-
+        }
            
 if(area != undefined){
         var myurl =  '/'+city+'/'+category;
@@ -143,6 +148,11 @@ if(area != undefined){
     
 
 
+
+// if(city == undefined){
+//     url.replace('Categories','SubCategories')
+// }
+
         $http.get(url)
             .success(function(data) {
                 
@@ -151,12 +161,12 @@ if(area != undefined){
                 if($scope.results>0){
                 var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
                 
-                 if(sponsoredClients.length > 0)
-                {
-                    $scope.FirstSponsoredClient = sponsoredClients[0];
-                    $scope.SecondSponsoredClient = sponsoredClients[1];
-                     
-                }
+                    if(sponsoredClients.length > 0)
+                    {
+                        $scope.FirstSponsoredClient = sponsoredClients[0];
+                        $scope.SecondSponsoredClient = sponsoredClients[1];
+                        
+                    }
                 }
                $scope.aaa = $scope.results.length;
                 
@@ -164,7 +174,14 @@ if(area != undefined){
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
                 if (data.length == 0) {
-                    $http.get('/api/dashbord/results/?&City=' + city + '&Area=' + area + '&SubCategories=' + category)
+                   
+                    var urlWithSubcategory;
+                    if(area == undefined){
+                        urlWithSubcategory =  '&SubCategories=' + category
+                    }else{
+                        urlWithSubcategory =  '&Area=' + area + '&SubCategories=' + category
+                    }
+                    $http.get('/api/dashbord/results/?&City=' + city + urlWithSubcategory)
                         .success(function(resdata) {
                             $scope.results = shuffle(resdata, 'isPaidClient');
                             var sponsoredClients = shuffle(resdata, 'isSponsoredClient');
@@ -178,7 +195,7 @@ if(area != undefined){
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
-                                $http.get('/api/dashbord/results/?&City=' + city)
+                                $http.get('/api/dashbord/results/?&City=' + city )
                                     .success(function(resClinicsdata) {
                                         //$scope.results = resClinicsdata;
                                         console.log(resClinicsdata);
@@ -295,7 +312,7 @@ if(area != undefined){
                                 {
 
                                     if($routeParams.area != undefined){
-                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryDescription + '| Nx-search';
+                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " , " + $routeParams.city+ " , " + cat.categoryDescription + '| Nx-search';
                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryKeywords + '| Nx-search';
                                     longDesc = cat.categoryDescriptionLong;
                                     }else{
@@ -322,7 +339,7 @@ if(area != undefined){
                                             {
                                                 //alert(JSON.stringify($routeParams.area));
                                                 
-                                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryDescriptionShort + '| Nx-search';
+                                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
                                                     metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
                                                      longDesc = value.subCategoryDescriptionLong;
                                                      
@@ -1226,7 +1243,21 @@ if(area != undefined){
     }
     getData1();
 
-
+ $scope.loading = false;
+  $scope.send = function (item){
+    $scope.loading = true;
+    $http.post('/sendmail', {
+      from: 'NXsearch <enquiry@nxsearch.com>',
+      to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+      subject: 'NXsearch Enquiry for '+ item.ClinicName,
+      //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+      html:"Enquiry for :"+ "<b>"+item.ClinicName+" </b>"+"<br>"+"Name : "+"<b>"+item.username+" </b>"+"<br>"+"Mobile No :"+"<b>"+item.usermobile +"</b>" +"<br>" // html body
+            +"Email Id :"+"<b>"+item.useremail +"</b>" +"<br>" +"Appointment Date :"+"<b>"+item.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+item.time +"</b>" +"<br>"
+    }).then(res=>{
+        $scope.loading = false;
+        $scope.serverMessage = 'Email sent successfully';
+    });
+  }
 
     // delete a contact after checking it
     $scope.deleteRec1 = function(id) {
@@ -1293,3 +1324,20 @@ $window.document.getElementById('shareBtn').onclick = function() {
 
 
 });
+
+
+//app.controller('MailController', function ($scope,$http) {
+ //$scope.loading = false;
+  //$scope.send = function (mail){
+  //  $scope.loading = true;
+  //  $http.post('/sendmail', {
+  //    from: 'NXsearch <enquiry@nxsearch.com>',
+   //   to: 'agogweb1@gmail.com',
+   //   subject: 'Message from AngularCode',
+   //   text: mail.username
+  //  }).then(res=>{
+  //      $scope.loading = false;
+   //     $scope.serverMessage = 'Email sent successfully';
+  //  });
+//  }
+//})
