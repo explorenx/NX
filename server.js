@@ -13,6 +13,7 @@ var passport	= require('passport');
 var port  	 = process.env.PORT || 8080; 				// set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
+var sgTransport = require('nodemailer-sendgrid-transport');
  var XMLWriter = require('xml-writer');
  var nodemailer = require("nodemailer");
  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -140,34 +141,25 @@ var storage = multer.diskStorage({ //multers disk storage settings
         })
     });
 
-
+app.post('/sendmail', function(req, res){
+    var options = {
+        auth: {
+            api_key: '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'
+        }
+    }
+    var mailer = nodemailer.createTransport(sgTransport(options));
+    mailer.sendMail(req.body, function(error, info){
+        if(error){
+            res.status('401').json({err: info});
+        }else{
+            res.status('200').json({success: true});
+        }
+    });
+});
 //app.get('/',function(req,res){
  //   res.sendfile('index.html');
 //});
-app.get('/send',function(req,res){
-    var mailOptions={
-    from: 'enquiry@nxsearch.com', // sender address
-    to: "agogweb1@gmail.com,bizzbazar1@gmail.com", // list of receivers
-    subject: "NX-search Enquiry for " + req.query.subject, // Subject line
-    //text: req.query.text+req.query.subject+req.query.to+req.query.from+req.query.date+req.query.time, // plaintext body
-   html: "Enquiry for :"+ "<b>"+req.query.subject+" </b>"+"<br>"+"Name : "+"<b>"+req.query.to+" </b>"+"<br>"+"Mobile No :"+"<b>"+req.query.text +"</b>" +"<br>" // html body
-            +"Email Id :"+"<b>"+req.query.from +"</b>" +"<br>" +"Appointment Date :"+"<b>"+req.query.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+req.query.time +"</b>" +"<br>"
-       // to : req.query.to,
-       // subject : req.query.subject,
-       // text : req.query.text
-    }
-    console.log(mailOptions);
-    transporter.sendMail(mailOptions, function(error, response){
-     if(error){
-            console.log(error);
-        res.end("error");
-     }else{
-            console.log("Message sent: " + response.message);
-        res.end("sent");
-         }
-          transporter.close();
-});
-});
+
 
 app.get('/registerfree',function(req,res){
     var mailOptions={
