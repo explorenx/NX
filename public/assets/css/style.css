@@ -337,7 +337,8 @@ footer a {
 .formbackground2 {
     border-radius: 4px;
     padding: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     -webkit-animation-name: example;
     /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 4s;
@@ -404,6 +405,11 @@ footer a {
 
 .lineheight {
     line-height: inherit;
+}
+
+.list_specialty {
+    font-size: 12px;
+    line-height: 19px;
 }
 
 .btn-booking {
@@ -536,4 +542,185 @@ footer a {
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out;
     width: 55px;
+}
+
+.btn1 {
+    display: inline-block;
+    /* padding: 6px 35px; */
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+}
+
+.btn1-info {
+    color: #fff;
+    background-color: #33b3e2;
+    border-color: #46b8da;
+}
+
+.btn2 {
+    display: inline-block;
+    /* padding: 6px 35px; */
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+}
+
+.btn2-info {
+    color: #fff;
+    background-color: #33b3e2;
+    border-color: #46b8da;
+    width: 100%;
+}
+
+.Profile_title {
+    white-space: nowrap;
+    width: 98%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list_borderd h5,
+h4,
+h6 {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.list_specialty h6 {
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.Profile_time {
+    white-space: nowrap;
+    width: 98%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listing_image {
+    position: relative;
+    border: 1px solid #33b3e2;
+}
+
+
+/* Home tabs */
+
+.nav-tabsH {
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabsH>li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav-tabsH>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+.nav-tabsH>li>a:hover {
+    border-color: #eee #eee #ddd;
+    background-color: rgba(30, 151, 204, 0.55);
+}
+
+.nav-tabsH>li.active>a,
+.nav-tabsH>li.active>a:hover,
+.nav-tabsH>li.active>a:focus {
+    color: #fff;
+    cursor: default;
+    background-color: #1e97cc;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.nav-tabsH.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+}
+
+.nav-tabsH.nav-justified>li {
+    float: none;
+}
+
+.nav-tabsH.nav-justified>li>a {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.nav-tabsH.nav-justified>.dropdown .dropdown-menu {
+    top: auto;
+    left: auto;
+}
+
+@media (min-width: 768px) {
+    .nav-tabsH.nav-justified>li {
+        display: table-cell;
+        width: 1%;
+    }
+    .nav-tabsH.nav-justified>li>a {
+        margin-bottom: 0;
+    }
+}
+
+.nav-tabsH.nav-justified>li>a {
+    margin-right: 0;
+    border-radius: 4px;
+}
+
+.nav-tabsH.nav-justified>.active>a,
+.nav-tabsH.nav-justified>.active>a:hover,
+.nav-tabsH.nav-justified>.active>a:focus {
+    border: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+    .nav-tabsH.nav-justified>li>a {
+        border-bottom: 1px solid #ddd;
+        border-radius: 4px 4px 0 0;
+    }
+    .nav-tabsH.nav-justified>.active>a,
+    .nav-tabsH.nav-justified>.active>a:hover,
+    .nav-tabsH.nav-justified>.active>a:focus {
+        border-bottom-color: #fff;
+    }
+}
+
+.bredcrumb h1 {
+    font-size: 12px;
+    display: inline;
+    padding-left: 10px;
+    line-height: 28px;
 }
