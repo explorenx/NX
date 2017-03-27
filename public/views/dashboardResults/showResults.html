@@ -16,8 +16,6 @@
 </script>
 
 
-
-<div><br/></div>
 <div class="container">
     <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
         <div class="col-md-12 col-xs-12" style="padding-left: 28px">
@@ -39,7 +37,7 @@
                     <div>
                         <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                        <select class="form-control"  select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                        <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
 												<option value="">Select Area</option>
 											</select>
                         <!--{{MainAreas.selectedAreaModel}}-->
@@ -147,8 +145,8 @@
     <div ng-controller="dashResultsController">
 
         <div class="col-lg-12 col-xs-12">
-            <div class="col-md-11 col-xs-12">
-                <h1 style="font-size: 14px; display: inline; padding-left: 10px; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+            <div class="col-md-11 col-xs-12 bredcrumb">
+                <h1> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
             </div>
             <div class="col-md-1 col-xs-4 col-offset-xs-8 text-center">
                 <div class="col-xs-4">
@@ -184,42 +182,40 @@
             <div class="col-md-6 col-xs-12" dir-paginate="item in results | itemsPerPage:10 | filter : userSearch track by $index">
 
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
-                    <div class="col-md-12 col-xs-12 list_borderd" style="padding-left: 20px; min-height: 262px">
-
-                        <div class="col-md-4 col-xs-12 text-center">
+                    <div class="col-md-12 col-xs-12 list_borderd">
+                        <!--image box-->
+                        <div class="col-md-3 col-xs-4">
                             <div ng-if="item.imageUrl != ''">
-                                <img itemprop="photo" src="{{item.imageUrl}}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="100" height="100" style="position:relative; margin-top:10px; border: 1px solid #33b3e2; ">
+                                <img class="listing_image" itemprop="photo" src="{{item.imageUrl}}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="98" height="98">
                             </div>
                             <div ng-if="item.imageUrl == '' ">
-                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" class="img-rounded " width="150" height="150" style="position:relative; width: 150px; height: 150px; margin-top:10px;">
+                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="98" height="98" style="position:relative; border: 1px solid #33b3e2;">
                             </div>
                         </div>
+                        <!--listing description box-->
+                        <div class="col-md-9 col-xs-8 list_specialty" style="padding-left: 3%;">
 
-                        <div class="col-md-8 col-xs-11" style="padding-left: 20px;">
-                            <h5 class=""><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
-                            <span itemprop="person" style="font-size:12px;"><h5> {{item.DoctorName}}</h5></span>
-                            <h6 style="font-size:12px;">{{item.Profession}} | {{item.speciality}}</h6>
+                            <h5 class="Profile_title"><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
 
-                            <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong></span><span style="font-size:12px;">{{item.Experience}} Years </span></br>
+                            <span itemprop="person"> {{item.DoctorName}}</span><br/>
+                            <h6>{{item.Profession}} | {{item.speciality}}</h6>
+
+                            <span style="color:#1e97cc;"><b><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </b></span><span style="font-size:12px;">{{item.Experience}} Years </span><br/>
                             <div class="col-xs-12">
-                                <div class="col-xs-3">
-                                    <span style="color:#1e97cc;"><strong><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </strong></span>
+                                <div class="col-md-3 col-xs-4">
+                                    <span style="color:#1e97cc;"><b><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </b></span>
                                 </div>
-                                <div class="col-xs-9" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
-                                    <div class="col-xs-12">
-                                        <span itemprop="opens" style="font-size:12px;">{{item.FirstHalfTime}} |</span>
+                                <div class="col-md-9 col-xs-8" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
+                                    <div class="col-xs-12 Profile_time">
+                                        <span class="" itemprop="opens">{{item.FirstHalfTime}} | {{item.SecondHalfTime}}</span>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <span itemprop="closes" style="font-size:12px;">{{item.SecondHalfTime}}</span>
-                                    </div>
-
                                 </div>
                             </div>
                             <div class="col-xs-12">
-                                <div class="col-xs-3">
-                                    <span style="color:#1e97cc;"><strong><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span>
+                                <div class="col-md-3 col-xs-4">
+                                    <span style="color:#1e97cc;"><b><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </b></span>
                                 </div>
-                                <div class="col-xs-9">
+                                <div class="col-md-9 col-xs-8">
                                     <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                                         <span itemprop="addressLocality" style="font-size:13px;">{{item.Area}}</span>
                                     </div>
@@ -227,50 +223,24 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-12">
-                            <div class="col-lg-4"></div>
-                            <div class="col-lg-8 topmargin">
+                        <!-- Enquire now button box-->
+                        <div class="col-md-12 col-xs-12">
+                            <div class="col-md-12 col-xs-12">
                                 <!--<div class="col-lg-6 text-center">
                         <button type="button" class="btn btn-info">Book Appointment</label></button>
-                        <!-- <a  href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Additional Profile Data </a></br>
+                        <a  href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Additional Profile Data </a></br>
                     </div>-->
-                                <div class="col-md-6 col-md-offset-4 col-xs-12 col-xs-offset-5">
-                                    <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal{{$index}}"><label>Enquire Now</label></button>
+                                <div class="col-xs-12" style="margin-top:5px;">
+                                    <button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</button>
                                     <div class="modal fade" id="myModal{{$index}}" role="dialog">
                                         <div class="modal-dialog">
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
 
+                                                </script>
                                                 <div class="modal-header">
-                                                    <script>0 
-                                                        $(document).ready(function() {
-                                                            var from, to, subject, text, date, time;
-                                                            $("#send_email").click(function(e) {
-                                                                console.log('fired');
-                                                                event.preventDefault();
-                                                                to = $("#username").val();
-                                                                subject = $("#ClinicName").val();
-                                                                text = $("#usermobile").val();
-                                                                from = $("#useremail").val();
-                                                                date = $("#date").val();
-                                                                time = $("#time").val();
-                                                                $("#message").text("Sending E-mail...Please wait");
-                                                                $.get("http://nxsearch.com/send", {
-                                                                    to: to,
-                                                                    subject: subject,
-                                                                    text: text,
-                                                                    from: from,
-                                                                    date: date,
-                                                                    time: time
-                                                                }) .done(function(data) {
-                                                                    
-                                                                        $("#message").empty().html("Enquiry send successfully");
-                                                                    
-                                                                });
-                                                            });
-                                                        });
-                                                    </script>
+
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
                                                 </div>
@@ -284,7 +254,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Name : </label>
                                                             <div class="col-sm-8" style="padding-right: 10px">
-                                                                <input type="text" name="username" id="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                                <input type="text" name="username" id="username" ng-model="item.username" value="{{item.ClinicName}}" placeholder="Enter Name" class="form-control" ng-required="true">
                                                                 <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                                 </div>
@@ -295,7 +265,7 @@
                                                         <div class="form-group" style="padding-right: 10px">
                                                             <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" name="usermobile" id="usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
+                                                                <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                 </div>
@@ -303,7 +273,7 @@
 
                                                             <label class="col-sm-2 control-label" for="textinput">Email : </label>
                                                             <div class="col-sm-4">
-                                                                <input type="email" name="useremail" id="useremail" placeholder="Enter Valid Email " class="form-control" ng-required="true">
+                                                                <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Enter Valid Email " class="form-control" ng-required="true">
                                                             </div>
                                                         </div>
 
@@ -314,26 +284,27 @@
                                                         <div class="form-group" style="padding-right: 10px">
                                                             <label class="col-sm-2 control-label" for="textinput">Date : </label>
                                                             <div class="col-sm-4">
-                                                                <input type="date" id="date" name="date" placeholder="Pick Date" class="form-control" ng-required="true">
+                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="form-control" ng-required="true">
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Time : </label>
-                                                            <div class="col-sm-4">
-                                                                <input type="time" id="time" name="time" placeholder="Pick Time" class="form-control" ng-required="true">
+                                                            <div class="col-sm-4 input-group bootstrap-timepicker">
+                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="form-control input-small" ng-required="true">
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                                             </div>
                                                         </div>
 
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
 
                                                         <!-- Text input-->
-                                                        <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" name="ClinicName" class="form-control" value="{{item.ClinicName}}" readonly>
+                                                        <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
                                                         <br/>
-                                                        
-                                                       <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-primary pull-right" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
+                                                        <b>{{serverMessage}}</b>
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-primary pull-right" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                   
+
                                                 </div>
 
 
@@ -353,10 +324,10 @@
             <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
 
         </div>
-        
+
         <div class="col-md-12 col-xs-12">
             <h3>Find Similar Searches : {{area2}}</h3>
-            <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40" >
+            <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
                         <li class="Searches"> {{ss}}</li>
@@ -365,7 +336,7 @@
                 <!--<span>{{ss}}</span>-->
             </div>
         </div>
-       
+
         <div class="col-md-12 col-xs-12">
             <hr/>
         </div>
@@ -388,8 +359,8 @@
                         <h5> <a itemprop="url" href="/Pune/Dentist" onclick="$(window).scrollTop(10);" class="Searches"> Dentists in Pune</a></h5>
                     </li>
                     <!-- <li>
-                        <a href="#"> Optalmology Clinics in Pune</a>
-                    </li>-->
+                    <a href="#"> Optalmology Clinics in Pune</a>
+                </li>-->
                     <li class="Searches">
                         <h5> <a itemprop="url" href="/Pune/Homeopathy" onclick="$(window).scrollTop(10);" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                     </li>
@@ -456,3 +427,18 @@
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
         </div>
     </div>
+    <script>
+        var $div = $('.scrollable-menu');
+        $(document.body).click(function() {
+            if (!$div.has(this).length) { // if the click was not within $div
+                $div.hide();
+            }
+
+        });
+        $("#exampleInputPassword2").click(function() {
+            // if the click was not within $div
+            $div.show();
+
+
+        });
+    </script>
