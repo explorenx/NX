@@ -43,33 +43,33 @@
         <div id="mymodal1" style="color: red;"></div>
     </div>
 </div>
+<div class="container">
+    <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
+        <div class="col-md-12 col-xs-12" style="padding-left: 28px">
+            <form>
+                <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
 
-<div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
-    <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-        <form>
-            <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
+                    <!--<label for="exampleInputEmail1"></label>-->
+                    <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
 
-                <!--<label for="exampleInputEmail1"></label>-->
-                <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
-
-                <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                    <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
 												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> </option>
 											</select>
-                <!--{{client.selectedCityModel}}-->
+                    <!--{{client.selectedCityModel}}-->
 
 
-            </div>
+                </div>
 
-            <div class="col-md-3 col-xs-11 pull-left" style=" padding-top: 20px">
-                <div>
-                    <!--<label for="exampleInputPassword1"></label>
+                <div class="col-md-3 col-xs-11 pull-left" style=" padding-top: 20px">
+                    <div>
+                        <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                    <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled" required>
+                        <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled" required>
 												<option value="">Select Area</option>
 											</select>
-                    <!--{{MainAreas.selectedAreaModel}}-->
-                </div>
-                <!--<div class="bar" ng-init="EnableData = false">
+                        <!--{{MainAreas.selectedAreaModel}}-->
+                    </div>
+                    <!--<div class="bar" ng-init="EnableData = false">
 												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
 												<ul ng-show="EnableData" >
 													<li ng-repeat="i in items | searchFor:searchString" >
@@ -83,65 +83,65 @@
 
 
 
-            </div>
+                </div>
 
 
-            <div class="col-md-5 col-xs-8 pull-left">
+                <div class="col-md-5 col-xs-8 pull-left">
 
-                <div class="form-group" ng-blur="EnableData = false">
-                    <label for="exampleInputPassword1"></label>
-                    <input type="text" value="{{selectedCategory}}" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()"
-                        click-anywhere-but-here="EnableData=false" />
+                    <div class="form-group" ng-blur="EnableData = false">
+                        <label for="exampleInputPassword1"></label>
+                        <input type="text" value="{{selectedCategory}}" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()"
+                            click-anywhere-but-here="EnableData=false" />
 
-                    <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
-                        <div ng-repeat="i in Categories |  filter : searchString track by $index">
-                            <a href="" ng-click="gotoResultsPageByCategory(i)">
-                                <div class="list_dropdown">
-                                    <img ng-src="" />{{i}}
-                                </div>
-                            </a>
-                        </div>
-                        <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
-                            <a href="" ng-click="gotoResultsPageBySubCategory(i)">
-                                <div class="list_dropdown">
-                                    {{i}}
-                                </div>
-                            </a>
-
-
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                            <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                <div class="list_dropdown">
-                                    <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
-                                    <br/>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                            <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                <div class="list_dropdown">
-                                    <span class="text-center;">{{i.DoctorName}}</span>
-                                    <br/>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-
-                            <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                <div class="list_dropdown">
-                                    <span class="text-center;">{{i.speciality}}</span>
-                                    <br/>
-                                </div>
-                            </a>
-                        </div>
+                        <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
+                            <div ng-repeat="i in Categories |  filter : searchString track by $index">
+                                <a href="" ng-click="gotoResultsPageByCategory(i)">
+                                    <div class="list_dropdown">
+                                        <img ng-src="" />{{i}}
+                                    </div>
+                                </a>
+                            </div>
+                            <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                <a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                    <div class="list_dropdown">
+                                        {{i}}
+                                    </div>
+                                </a>
 
 
+                            </div>
 
-                        <!--  <div>
+                            <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                    <div class="list_dropdown">
+                                        <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
+                                        <br/>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                    <div class="list_dropdown">
+                                        <span class="text-center;">{{i.DoctorName}}</span>
+                                        <br/>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
+
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                    <div class="list_dropdown">
+                                        <span class="text-center;">{{i.speciality}}</span>
+                                        <br/>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                            <!--  <div>
                             <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}">
                                 <b> Clinics named "{{searchString}}"({{searchString.length}})</b>
                             </a><br/>
@@ -156,8 +156,8 @@
 
 
 
-                    </div>
-                    <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                        </div>
+                        <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
                                                 
                                                 <div ng-show="EnableTextInputResult == true">
                                                     
@@ -171,7 +171,7 @@
                                                    
                                                 </div>
                                             </div>-->
-                    <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
+                        <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
                                                 <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
                                                     <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
 
@@ -179,15 +179,17 @@
                                             </div>-->
 
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-1 col-xs-2 pull-left topmargin">
-                <button type="submit" class="btn btn-defaultsearch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-            </div>
-        </form>
+                <div class="col-md-1 col-xs-2 pull-left topmargin">
+                    <button type="submit" class="btn btn-defaultsearch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+<div><br/></div>
 
 <div class="container">
 
@@ -206,12 +208,13 @@
             <li><a href="#beauty" data-toggle="tab" aria-expanded="false">Beauty Care</a></li>
             <li><a href="#sports" data-toggle="tab" aria-expanded="false">Gym & Academies</a></li>
             <li><a href="#travel" data-toggle="tab" aria-expanded="false">Travel & Transport</a></li>
-            <li><a href="#build" data-toggle="tab" aria-expanded="false">Building & Construction</a></li>
+            <li><a href="#build" data-toggle="tab" aria-expanded="false">Professionals</a></li>
         </ul>
     </div>
     <!--/.nav-collapse -->
 
     <!--/.container-fluid -->
+
 </div>
 
 <div class="tab-content">
@@ -405,7 +408,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-2 col-md-2">
+            <div class="col-sm-2 col-md-2 col-xs-6">
                 <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/School>
                     <a href="/Pune/Home-Tutors"> <img src="assets/img/home-tutor.png" width="50px" height="50px" alt="Home Tutors in Pune nx-search"></a>
                 </div>
@@ -663,9 +666,11 @@
 
 
 
+
+
 </div>
-</div>
-</div>
+
+
 <script>
     var $div = $('.scrollable-menu');
     $(document.body).click(function() {
