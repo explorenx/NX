@@ -173,9 +173,13 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                 .success(function(data) {
                     $scope.clients = data;
                     $rootScope.Area = newVal;
-                    //alert($rootScope.Area);
-                    //alert(JSON.stringify($rootScope.Area));
-                    //$scope.cities = data;
+                   // alert(JSON.stringify($rootScope.Area));
+                   // alert(JSON.stringify($routeParams.category));
+                    if ($rootScope.Area !=0 && $routeParams.category != undefined){
+                       // alert(11);
+                         $location.path('/' + $scope.client.selectedCityModel+'/' + $routeParams.category + '/'+ $scope.MainAreas.selectedAreaModel.Area);
+                    }
+
                     console.log(data);
                 })
                 .error(function(data) {
