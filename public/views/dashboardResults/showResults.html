@@ -327,7 +327,7 @@
 
         <div class="col-md-12 col-xs-12">
             <h3>Find Similar Searches : {{area2}}</h3>
-            <div class="col-md-3" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
+            <div class="col-md-3 col-xs-4" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
                         <li class="Searches"> {{ss}}</li>
@@ -427,3 +427,18 @@
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
         </div>
     </div>
+    <script>
+        var $div = $('.scrollable-menu');
+        $(document.body).click(function() {
+            if (!$div.has(this).length) { // if the click was not within $div
+                $div.hide();
+            }
+
+        });
+        $("#exampleInputPassword2").click(function() {
+            // if the click was not within $div
+            $div.show();
+
+
+        });
+    </script>
