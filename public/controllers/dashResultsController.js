@@ -6,7 +6,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
      
- 
+  
 
   console.log = function() {};
    var limitStep = 1;
