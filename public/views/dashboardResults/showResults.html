@@ -143,7 +143,7 @@
 
 
     <div ng-controller="dashResultsController">
-
+                  
         <div class="col-lg-12 col-xs-12">
             <div class="col-md-11 col-xs-12 bredcrumb">
                 <h1> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
@@ -201,25 +201,16 @@
                             <h6>{{item.Profession}} | {{item.speciality}}</h6>
 
                             <span style="color:#1e97cc;"><b><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </b></span><span style="font-size:12px;">{{item.Experience}} Years </span><br/>
-                            <div class="col-xs-12">
-                                <div class="col-md-3 col-xs-4">
-                                    <span style="color:#1e97cc;"><b><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </b></span>
-                                </div>
-                                <div class="col-md-9 col-xs-8" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
-                                    <div class="col-xs-12 Profile_time">
-                                        <span class="" itemprop="opens">{{item.FirstHalfTime}} | {{item.SecondHalfTime}}</span>
-                                    </div>
-                                </div>
+                            <div class="col-xs-12 Profile_time" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
+
+                                <span style="color:#1e97cc;"><b><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </b></span>
+                                <span class="" itemprop="opens">{{item.FirstHalfTime}} | {{item.SecondHalfTime}}</span>
+
                             </div>
-                            <div class="col-xs-12">
-                                <div class="col-md-3 col-xs-4">
-                                    <span style="color:#1e97cc;"><b><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </b></span>
-                                </div>
-                                <div class="col-md-9 col-xs-8">
-                                    <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                        <span itemprop="addressLocality" style="font-size:13px;">{{item.Area}}</span>
-                                    </div>
-                                </div>
+                            <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+
+                                <span style="color:#1e97cc;"><b><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </b></span>
+                                <span itemprop="addressLocality" style="font-size:13px;">{{item.Area}}</span>
                             </div>
 
                         </div>
@@ -230,6 +221,7 @@
                         <button type="button" class="btn btn-info">Book Appointment</label></button>
                         <a  href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Additional Profile Data </a></br>
                     </div>-->
+
                                 <div class="col-xs-12" style="margin-top:5px;">
                                     <button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</button>
                                     <div class="modal fade" id="myModal{{$index}}" role="dialog">
@@ -240,67 +232,67 @@
 
                                                 </script>
                                                 <div class="modal-header">
-
+                                                    
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
+                                                    <div ng-cloak ng-if="!loading && serverMessage"><i class="material-icons center">done</i>{{serverMessage}}</div>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body well_new">
                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
 
                                                     <form name="enquiryForm" class="form-horizontal" role="form">
                                                         <!-- Form Name -->
 
                                                         <!-- Text input-->
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label" for="textinput">Name : </label>
-                                                            <div class="col-sm-8" style="padding-right: 10px">
-                                                                <input type="text" name="username" id="username" ng-model="item.username" value="{{item.ClinicName}}" placeholder="Enter Name" class="form-control" ng-required="true">
-                                                                <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-                                                                    <small style="color: red; display: block; text-align: center">Please Enter Name</small>
-                                                                </div>
+                                                        <div class="col-xs-12">
+                                                            <input type="text" name="username" id="username" ng-model="item.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
+                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                             </div>
                                                         </div>
 
+
                                                         <!-- Text input-->
-                                                        <div class="form-group" style="padding-right: 10px">
-                                                            <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
-                                                            <div class="col-sm-4">
-                                                                <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-2">
+                                                                <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <div class="col-sm-2 col-xs-3">
+                                                                <h5>Pick Date</h5>
+                                                            </div>
+                                                            <div class="col-sm-4 col-xs-10">
+                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
+                                                            </div>
 
-                                                            <label class="col-sm-2 control-label" for="textinput">Email : </label>
-                                                            <div class="col-sm-4">
-                                                                <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Enter Valid Email " class="form-control" ng-required="true">
+                                                            <div class="col-sm-1">
+                                                            </div>
+                                                            <div class="col-sm-2 col-xs-3">
+                                                                <h5>Pick Time</h5>
+                                                            </div>
+                                                            <div class="col-sm-3 col-xs-10 input-group bootstrap-timepicker">
+                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
                                                             </div>
                                                         </div>
 
-                                                        <!-- Text input-->
-
-
-                                                        <!-- Text input-->
-                                                        <div class="form-group" style="padding-right: 10px">
-                                                            <label class="col-sm-2 control-label" for="textinput">Date : </label>
-                                                            <div class="col-sm-4">
-                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="form-control" ng-required="true">
-                                                            </div>
-
-                                                            <label class="col-sm-2 control-label" for="textinput">Time : </label>
-                                                            <div class="col-sm-4 input-group bootstrap-timepicker">
-                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="form-control input-small" ng-required="true">
-                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                                                            </div>
-                                                        </div>
 
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
 
-                                                        <!-- Text input-->
-                                                        <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
+                                                        <h4 class="pull-left">Your Enquiry For :</h4>
+                                                        <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
                                                         <br/>
                                                         <b>{{serverMessage}}</b>
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-primary pull-right" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
@@ -327,7 +319,7 @@
 
         <div class="col-md-12 col-xs-12">
             <h3>Find Similar Searches : {{area2}}</h3>
-            <div class="col-md-3 col-xs-4" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
+            <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
                         <li class="Searches"> {{ss}}</li>
