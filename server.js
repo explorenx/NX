@@ -1,6 +1,8 @@
 // set up ======================================================================
+var dotenv = require('dotenv');
+dotenv.load();
 var connect_s4a = require('connect-s4a');
-var token = "18a9d76bd14a9b98fc80582c0a86db5b";
+var token = '18a9d76bd14a9b98fc80582c0a86db5b';
 var compression = require('compression');
 var express  = require('express');
 var app      = express(); 
@@ -32,12 +34,12 @@ var cliniccontactData = require('./app/controllers/dashboard/clinicContactContro
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
-    host: '174.141.224.162',
+    host: process.env.SMTP_HOST,
     port: 25,
    secure: false, // use SSL
     auth: {
-        user: 'enquiry@nxsearch.com',
-        pass: 'pune123##'
+        user: process.env.USR_NAME,
+        pass: process.env.USR_PASS
     }
 };
 var transporter = nodemailer.createTransport(smtpConfig);
@@ -144,7 +146,7 @@ var storage = multer.diskStorage({ //multers disk storage settings
 app.post('/sendmail', function(req, res){
     var options = {
         auth: {
-            api_key: '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'
+            api_key: process.env.SEND_KEY
         }
     }
     var mailer = nodemailer.createTransport(sgTransport(options));
