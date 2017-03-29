@@ -177,6 +177,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                    // alert(JSON.stringify($routeParams.category));
                     if ($rootScope.Area !=0 && $routeParams.category != undefined){
                        // alert(11);
+                       $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
                          $location.path('/' + $scope.client.selectedCityModel+'/' + $routeParams.category + '/'+ $scope.MainAreas.selectedAreaModel.Area);
                     }
 
