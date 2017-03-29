@@ -218,6 +218,7 @@ return {
 
 });
 
+
 app.directive('myMap', function() {
     // directive link function
     var link = function(scope, element, attrs) {
@@ -633,7 +634,7 @@ app.config(function($routeProvider, $locationProvider) {
             })
            
 
-
+            .otherwise({redirectTo:'/'});
 
 
     // use the HTML5 History API
