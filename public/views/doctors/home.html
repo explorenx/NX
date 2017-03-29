@@ -46,7 +46,7 @@
 <div class="container">
     <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
         <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-            <form>
+            <form formAutofillFix>
                 <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
 
                     <!--<label for="exampleInputEmail1"></label>-->
@@ -112,7 +112,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
                                         <br/>
@@ -121,7 +121,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.DoctorName}}</span>
                                         <br/>
@@ -131,7 +131,7 @@
 
                             <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
 
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.speciality}}</span>
                                         <br/>
