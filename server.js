@@ -146,10 +146,10 @@ app.post('/sendmail', function(req, res){
         auth: {
            // api_key: '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'
            user: 'enquiry@nxsearch.com',
-           pass: 'pune123##'
+             pass: 'pune123##'
         }
     }
-    var mailer = nodemailer.createTransport(sgTransport(options));
+    var mailer = nodemailer.createTransport(options);
     mailer.sendMail(req.body, function(error, info){
         if(error){
             res.status('401').json({err: info});
