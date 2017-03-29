@@ -144,7 +144,9 @@ var storage = multer.diskStorage({ //multers disk storage settings
 app.post('/sendmail', function(req, res){
     var options = {
         auth: {
-            api_key: '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'
+           // api_key: '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'
+           user: 'enquiry@nxsearch.com',
+           pass: 'pune123##'
         }
     }
     var mailer = nodemailer.createTransport(sgTransport(options));
