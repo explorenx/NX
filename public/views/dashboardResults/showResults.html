@@ -16,10 +16,10 @@
 </script>
 
 
-<div class="container">
+<div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
     <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
         <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-            <form formAutofillFix>
+            <form>
                 <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
 
                     <!--<label for="exampleInputEmail1"></label>-->
@@ -85,7 +85,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
                                         <br/>
@@ -94,7 +94,7 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.DoctorName}}</span>
                                         <br/>
@@ -104,7 +104,7 @@
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
 
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                     <div class="list_dropdown">
                                         <span class="text-center;">{{i.speciality}}</span>
                                         <br/>
@@ -228,7 +228,7 @@
                                         <div class="modal-dialog">
 
                                             <!-- Modal content-->
-                                            <div class="modal-content">
+                                            <div class="modal-content" style="width: 340px">
 
                                                 </script>
                                                 <div class="modal-header">
@@ -265,32 +265,27 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12">
-                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
+                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP(item)" ng-required="true">
                                                         </div>
                                                         <div class="col-xs-12">
-                                                            <div class="col-sm-2 col-xs-3">
-                                                                <h5>Pick Date</h5>
-                                                            </div>
-                                                            <div class="col-sm-4 col-xs-10">
                                                                 <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
                                                             </div>
 
-                                                            <div class="col-sm-1">
+                                                            
+                                                            
+                                                            <div class="col-xs-12">                                                           
+                                                            <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
                                                             </div>
-                                                            <div class="col-sm-2 col-xs-3">
-                                                                <h5>Pick Time</h5>
-                                                            </div>
-                                                            <div class="col-sm-3 col-xs-10 input-group bootstrap-timepicker">
-                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
-                                                            </div>
-                                                        </div>
+                                                        
 
 
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
+                                                        <h4>Enter OTP :</h4>
+                                                        <input type="text"  ng-model="item.OTP"  class="form-control" ng-required="true">
 
-                                                        <h4 class="pull-left">Your Enquiry For :</h4>
+                                                        <h4>Your Enquiry For :</h4>
                                                         <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
-                                                        <br/>
+                                                        <br />
                                                         <b>{{serverMessage}}</b>
                                                         <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
                                                     </form>
@@ -381,7 +376,7 @@
             <div class="col-md-12 col-xs-12 bottomlinks">
                 <ul>
                     <li class="Searches">
-                        <h5> <a itemprop="url" href="/Pune/preschool" onclick="$(window).scrollTop(10);" class="Searches"> Preschools in Pune</a></h5>
+                        <h5> <a itemprop="url" href="/Pune/Preschool" onclick="$(window).scrollTop(10);" class="Searches"> Preschools in Pune</a></h5>
                     </li>
                     <li class="Searches">
                         <h5> <a itemprop="url" href="/Pune/Private-Tuitions" onclick="$(window).scrollTop(10);" class="Searches"> Private-Tuitions in Pune</a></h5>
