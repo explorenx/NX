@@ -128,6 +128,13 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     }
     getData();
 
+    
+$scope.removeSearchString = function(d){
+    console.log(d);
+    //var d = $scope.searchString;
+    //$scope.searchString = d.slice(d.length);
+}
+
     $rootScope.$watch('client.selectedCityModel', function(newVal, oldVal) {
         if (oldVal == newVal) return;
         //alert(newVal);
@@ -354,7 +361,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
 $scope.selectedCategory = $routeParams.category;
 $scope.selectedArea = $routeParams.area;
-//alert($scope.selectedArea);
+//alert($scope.selectedCategory);
 //document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
