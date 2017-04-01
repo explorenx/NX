@@ -38,7 +38,7 @@
                         <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
                         <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
-												<option value="">Select Area</option>
+												<option ng-selected="selectedArea">Select Area</option>
 											</select>
                         <!--{{MainAreas.selectedAreaModel}}-->
                     </div>
@@ -143,7 +143,10 @@
 
 
     <div ng-controller="dashResultsController">
-                  
+        <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Success!</strong> {{serverMessage}}.
+            </div>
         <div class="col-lg-12 col-xs-12">
             <div class="col-md-11 col-xs-12 bredcrumb">
                 <h1> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
@@ -195,7 +198,7 @@
                         <!--listing description box-->
                         <div class="col-md-9 col-xs-8 list_specialty" style="padding-left: 3%;">
 
-                            <h5 class="Profile_title"><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugify}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <h5 class="Profile_title"><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
 
                             <span itemprop="person"> {{item.DoctorName}}</span><br/>
                             <h6>{{item.Profession}} | {{item.speciality}}</h6>
@@ -231,19 +234,22 @@
                                             <div class="modal-content" style="width: 340px">
 
                                                 </script>
-                                                <div class="modal-header">
-                                                    
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h3 class="modal-title pull-left">{{item.ClinicName}}</h3>
-                                                    <div ng-cloak ng-if="!loading && serverMessage"><i class="material-icons center">done</i>{{serverMessage}}</div>
-                                                </div>
+                                               
                                                 <div class="modal-body well_new">
                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
-
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <form name="enquiryForm" class="form-horizontal" role="form">
                                                         <!-- Form Name -->
 
                                                         <!-- Text input-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Your Enquiry For :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-xs-12">
                                                             <input type="text" name="username" id="username" ng-model="item.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
                                                             <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
@@ -264,35 +270,48 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                 <b>Pick Date :</b>
+                                                            </div>
+                                                              <div class="col-xs-8">
+                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
+                                                              </div>
+                                                            </div>
+
+                                                            
+                                                            
+                                                            <div class="col-xs-12"> 
+                                                                <div class="col-xs-4">
+                                                                 <b>Pick Time :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">                                                          
+                                                                 <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
+                                                            </div>
+                                                            </div>
                                                         <div class="col-xs-12">
                                                             <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP(item)" ng-required="true">
                                                         </div>
-                                                        <div class="col-xs-12">
-                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
-                                                            </div>
-
-                                                            
-                                                            
-                                                            <div class="col-xs-12">                                                           
-                                                            <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
-                                                            </div>
-                                                        
 
 
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
-                                                        <h4>Enter OTP :</h4>
-                                                        <input type="text"  ng-model="item.OTP"  class="form-control" ng-required="true">
-
-                                                        <h4>Your Enquiry For :</h4>
-                                                        <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                 <b>Enter OTP :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                 <input type="text"  ng-model="item.OTP"  class="form-control" ng-required="true">
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        
                                                         <br />
                                                         <b>{{serverMessage}}</b>
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" id="send_email" />
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
                                                     </form>
                                                 </div>
-                                                <div class="modal-footer">
-
-                                                </div>
+                                                
 
 
                                             </div>
@@ -429,3 +448,4 @@
 
         });
     </script>
+    
