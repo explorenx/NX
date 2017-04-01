@@ -336,7 +336,19 @@
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
-                        <li class="Searches"> {{ss}}</li>
+                    <li class="Searches"> {{ss}} {{areaonlink}}</li>
+                    </ul>
+                </a>
+                <!--<span>{{ss}}</span>-->
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xs-12 ng-hide" >
+            <h3>Find Similar Searches : {{area2}}</h3>
+            <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks">
+                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
+                    <ul>
+                    <li class="Searches"> {{ss}} {{areaonlink}}</li>
                     </ul>
                 </a>
                 <!--<span>{{ss}}</span>-->
