@@ -1302,6 +1302,75 @@ if(area != undefined){
                 }).then(res=>{
                     $scope.loading = false;
                     $scope.serverMessage = 'Email sent successfully';
+                   
+            });
+       }
+    }).
+    error(function(status) {
+        //your code when fails
+    });
+
+  }
+
+   $scope.sendOTP1 = function (client){
+
+    if(client.usermobile != undefined && client.usermobile.length == 10){
+            $http.defaults.headers.post['Content-Type'] = 'application/json';
+            $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+            $http({
+                method: 'POST',
+                url: 'https://sendotp.msg91.com/api/generateOTP',
+                data :   {
+                            countryCode: "91",
+                            mobileNumber: client.usermobile                    
+                        }
+            }).
+            success(function(status) {
+                //your code when success
+                console.log(status);
+            if(status != indefined && status.status == 'success')
+            {
+                //show popup message that OTP has sent to your mobile number
+            }
+            });
+    }
+ }
+
+
+  $scope.send1 = function (client){
+    $scope.loading = true;
+
+    //validate OTP post Request
+    $http.defaults.headers.post['Content-Type'] = 'application/json';
+    $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+    $http({
+        method: 'POST',
+        url: 'https://sendotp.msg91.com/api/verifyOTP',
+        data :   {
+                    countryCode: "91",
+                    mobileNumber: client.usermobile,
+                    oneTimePassword: client.OTP                    
+                }
+    }).
+    success(function(status) {
+        //your code when success
+        console.log(status);
+       
+       if(status != undefined && status.status == 'success')
+       {
+            $scope.loading = false;
+            $scope.serverMessage = 'Email sent successfully';
+
+            $http.post('/sendmail12', {
+                from: 'NXsearch <enquiry@nxsearch.com>',
+                to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                subject: 'NXsearch Enquiry for '+ client.ClinicName,
+                //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                html:"Enquiry for :"+ "<b>"+client.ClinicName+" </b>"+"<br>"+"Name : "+"<b>"+client.username+" </b>"+"<br>"+"Mobile No :"+"<b>"+client.usermobile +"</b>" +"<br>" // html body
+                        +"Email Id :"+"<b>"+client.useremail +"</b>" +"<br>" +"Appointment Date :"+"<b>"+client.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+client.time +"</b>" +"<br>"
+                }).then(res=>{
+                    $scope.loading = false;
+                    $scope.serverMessage = 'Email sent successfully';
             });
        }
     }).
