@@ -163,6 +163,30 @@ app.post('/sendmail', function(req, res){
         mailer.close();
     });
 });
+
+app.post('/sendmail12', function(req, res){
+    var options = {
+         host: '174.141.224.162',
+            port: 587,
+            secure: false,
+        auth: {
+           // api_key: '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'
+           user: 'enquiry@nxsearch.com',
+             pass: 'pune123##'
+        }
+    }
+    var mailer = nodemailer.createTransport(options);
+    
+    mailer.sendMail(req.body, function(error, info){
+        if(error){
+            res.status('401').json({err: info});
+        }else{
+            res.status('200').json({success: true});
+        }
+        mailer.close();
+    });
+});
+
 //app.get('/',function(req,res){
  //   res.sendfile('index.html');
 //});
