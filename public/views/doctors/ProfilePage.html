@@ -56,6 +56,8 @@
             </div>
         </div>-->
 <!--  new code  -->
+ <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
+
 <div id="mymodal1" style="color: red;"></div>
 <div class="container">
     <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
@@ -79,7 +81,7 @@
                         <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
                         <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
-												<option value="">Select Area</option>
+												<option ng-selected="selectedArea" value="">Select Area</option>
 											</select>
                         <!--{{MainAreas.selectedAreaModel}}-->
                     </div>
@@ -204,6 +206,10 @@
 
 
     <div class="container" ng-controller="dashResultsController">
+        <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Success!</strong> {{serverMessage}}.
+            </div>
         <div ng-repeat="post in posts">
             <div>{{post.title}}</div>
             <div>{{post.content}}</div>
@@ -297,111 +303,84 @@
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                    <div class="modal-content" style="width: 340px">
+                                       
+                                      <div class="modal-body well_new">
+                                                    <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <form name="enquiryForm" class="form-horizontal" role="form">
+                                                        <!-- Form Name -->
 
-                                            <script>
-                                                $(document).ready(function() {
-                                                    var from, to, subject, text, date, time;
-                                                    $("#send_email").click(function() {
-                                                        to = $("#username").val();
-                                                        subject = $("#ClinicName").val();
-                                                        text = $("#usermobile").val();
-                                                        from = $("#useremail").val();
-                                                        date = $("#date").val();
-                                                        time = $("#time").val();
-                                                        $("#message").text("Sending E-mail...Please wait");
-                                                        $.get("http://nxsearch.com/send", {
-                                                            to: to,
-                                                            subject: subject,
-                                                            text: text,
-                                                            from: from,
-                                                            date: date,
-                                                            time: time
-                                                        }, function(data) {
-                                                            if (data == "sent") {
-                                                                $("#message").empty().html("Enquiry send successfully");
-                                                            } else {
-                                                                $("#message").empty().html("Error");
-                                                            }
-
-                                                        });
-                                                    });
-                                                });
-                                            </script>
-
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h3 class="modal-title pull-left">{{client.ClinicName}}</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <script src='https://www.google.com/recaptcha/api.js'></script>
-
-                                            <form name="enquiryForm" class="form-horizontal" role="form">
-                                                <fieldset>
-
-                                                    <!-- Form Name -->
-
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">Name : </label>
-                                                        <div class="col-sm-8" style="padding-right: 10px">
-                                                            <input type="text" id="username" name="username" placeholder="Enter Name" class="form-control" ng-required="true">
+                                                        <!-- Text input-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Your Enquiry For :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" id="ClinicName" ng-model="client.ClinicName" name="ClinicName" class="form-control" ng-value="client.ClinicName" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <input type="text" name="username" id="username" ng-model="client.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
                                                             <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                 <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!-- Text input-->
-                                                    <div class="form-group" style="padding-right: 10px">
-                                                        <label class="col-sm-2 control-label" for="textinput">Mobile : </label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="usermobile" name="mobile" placeholder="Enter Mobile Number" ng-minlength="10" ng-maxlength="10" class="form-control" ng-required="true">
-                                                            <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
-                                                                <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+
+                                                        <!-- Text input-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-2">
+                                                                <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" name="usermobile" id="usermobile" ng-model="client.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
+                                                                <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                    <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                 <b>Pick Date :</b>
+                                                            </div>
+                                                              <div class="col-xs-8">
+                                                                <input type="date" id="date" name="date" ng-model="client.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
+                                                              </div>
+                                                            </div>
 
-                                                        <label class="col-sm-2 control-label" for="textinput">Email : </label>
-                                                        <div class="col-sm-4">
-                                                            <input type="email" id="useremail" placeholder="Enter Valid Email " class="form-control">
+                                                            
+                                                            
+                                                            <div class="col-xs-12"> 
+                                                                <div class="col-xs-4">
+                                                                 <b>Pick Time :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">                                                          
+                                                                 <input type="time" id="datetimepicker3" name="time" ng-model="client.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
+                                                            </div>
+                                                            </div>
+                                                        <div class="col-xs-12">
+                                                            <input type="email" name="useremail" ng-model="client.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP1(client)" ng-required="true">
                                                         </div>
-                                                    </div>
-
-                                                    <!-- Text input-->
 
 
-                                                    <!-- Text input-->
-                                                    <div class="form-group" style="padding-right: 10px">
-                                                        <label class="col-sm-2 control-label" for="textinput">Date : </label>
-                                                        <div class="col-sm-4">
-                                                            <input type="date" id="date" placeholder="Pick Date" class="form-control">
+                                                        <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                 <b>Enter OTP :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                 <input type="text"  ng-model="client.OTP"  class="form-control" ng-required="true">
+                                                            </div>
                                                         </div>
-
-                                                        <label class="col-sm-2 control-label" for="textinput">Time : </label>
-                                                        <div class="col-sm-4 input-group bootstrap-timepicker timepicker">
-                                                            <input type="text" id="timepicker1" placeholder="Pick Time" class="timepicker">
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <!-- Text input-->
-
-
-                                                    <div class="col-md-6">
-                                                        <h4 class="pull-left">Your Enquiry For :</h4><input type="text" id="ClinicName" name="ClinicName" class="form-control" value="{{client.ClinicName}}" readonly>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                            <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>
-                                            <div class="modal-footer">
-                                                <button type="submit" id="send_email" class="btn btn-primary">Enquire Now</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <span id="message"></span>
-                                            </div>
-                                        </div>
+                                                        <br />
+                                                        
+                                                        <br />
+                                                        <b>{{serverMessage}}</b>
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
+                                                    </form>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -777,6 +756,7 @@
 
     </div>
 </div>
+ </div>
 <script>
     var $div = $('.scrollable-menu');
     $(document.body).click(function() {
