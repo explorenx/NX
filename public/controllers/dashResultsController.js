@@ -325,7 +325,8 @@ if(area != undefined){
                                      //alert( $scope.SubCategories);
                                      //alert($routeParams.area);
                                      $scope.SubCategoriesLinks=[];
-                                     
+                                     $scope.areaonlink = 'in ' + $routeParams.area;
+                                     alert($scope.areaonlink);
                                     angular.forEach(cat.subcategories, function(value, key) {
                                                $scope.SubCategoriesLinks.push(value.subCategoryName);
                                                  //alert(JSON.stringify(cat.name));
