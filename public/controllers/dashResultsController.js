@@ -454,9 +454,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('area1').innerHTML = data.Area;
                 $window.document.getElementById('bbb').innerHTML = data.Categories;
                 $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' ' + ', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
-                $window.document.getElementsByName('keywords')[0].content = data.Tags + ' | ' + 'NXsearch';
+                $window.document.getElementsByName('title')[0].content = data.ClinicName + data.Categories + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.Tags + ' | NXsearch';
+                $window.document.getElementsByName('keywords')[0].content = data.ClinicName + data.Categories + ' in ' + data.Area + ', ' + data.City + data.Tags + ' | ' + 'NXsearch';
 
                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
