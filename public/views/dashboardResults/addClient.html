@@ -1,3 +1,23 @@
+
+ <div style="background-color: #f1efef;">
+     <div class="col-md-3">
+ <nav class="navbar navbar-inverse">
+     <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+                    <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                    <li ><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
+                    <li ><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
+                    <li ><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
+                    <li ><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
+                    <li ><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                    <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+                    <li ng-controller="loginController" ><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
+                    <span   class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
+                </ul>
+                </nav>
+     </div>
+     <div class="col-md-9">
+
 <div class="container text-center" ng-controller="dashResultsController as up">
 
     <div class="col-md-12">
@@ -88,7 +108,7 @@
                     <div class="form-group">
                         <label class="col-lg-4">Main Categories:</label>
                         <div class="col-lg-8">
-                            <select name="category" ng-options="s.mainCategoryName for s in sample" ng-model="selitemMain" ng-change="getMainselectval()" ng-required="true">
+                            <select name="category" ng-options="s.mainCategoryName for s in sample" ng-model="selitemMain" ng-change="getMainselectval()">
                                 <option value="">--Select Category--</option>
                             </select>
                             <div ng-show="ClientForm.category.$touched && ClientForm.category.$invalid">
@@ -105,7 +125,7 @@
                         <label class="col-lg-4">Categories:</label>
                         <div class="col-lg-8">
 
-                            <select name="subcategory" ng-options="s.name for s in SubSample " ng-model="selitemCats" ng-change="getCatsselectval()" ng-required="true">
+                            <select name="subcategory" ng-options="s.name for s in SubSample " ng-model="selitemCats" ng-change="getCatsselectval()" >
                                 <option value="">--Select SubCategory--</option>
                             </select>
                             <div ng-show="ClientForm.subcategory.$touched && ClientForm.subcategory.$invalid">
@@ -191,7 +211,7 @@
                     <div class="form-group">
                         <label class="col-lg-4">Main City:</label>
                         <div class="col-lg-8">
-                            <select name="maincity" ng-options="s.city for s in locations" ng-model="selitemLocations" ng-change="getLocationselectval()" ng-required="true">
+                            <select name="maincity" ng-options="s.city for s in locations" ng-model="selitemLocations" ng-change="getLocationselectval()" >
                                 <option value="">--Select Location--</option>
                             </select>
                             <div ng-show="ClientForm.maincity.$touched && ClientForm.maincity.$invalid">
@@ -207,7 +227,7 @@
                     <div class="form-group">
                         <label class="col-lg-4">Area:</label>
                         <div class="col-lg-8">
-                            <select name="area" ng-options="s.Area for s in SubLocationsSample " ng-model="selitemSubLocations" ng-change="getSubLocationselectval()" ng-required="true">
+                            <select name="area" ng-options="s.Area for s in SubLocationsSample " ng-model="selitemSubLocations" ng-change="getSubLocationselectval()" >
                                 <option value="">--Select Area--</option>
                             </select>
                             <div ng-show="ClientForm.area.$touched && ClientForm.area.$invalid">
@@ -408,6 +428,8 @@
 
         <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="ClientForm.$invalid">{{btnValue}}</button>
     </form>
+</div>
+</div>
 </div>
 </div>
 </div>
