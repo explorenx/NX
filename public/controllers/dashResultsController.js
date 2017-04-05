@@ -1,26 +1,26 @@
-app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq,deviceDetector) {
+app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq, deviceDetector) {
     $scope.formData = {};
     $scope.location = {};
 
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-     
-  
-
-  console.log = function() {};
-   var limitStep = 1;
-$scope.limit = limitStep;
 
 
-$scope.area11 = $routeParams.area;
 
-$scope.incrementLimit = function() {
-    $scope.limit += limitStep;
-};
-$scope.decrementLimit = function() {
-    $scope.limit -= limitStep;
-};
+    console.log = function() {};
+    var limitStep = 1;
+    $scope.limit = limitStep;
+
+
+    $scope.area11 = $routeParams.area;
+
+    $scope.incrementLimit = function() {
+        $scope.limit += limitStep;
+    };
+    $scope.decrementLimit = function() {
+        $scope.limit -= limitStep;
+    };
     $scope.currentPath = $location.path();
     console.log($location.path())
     console.log('LS.getCookieData');
@@ -36,7 +36,7 @@ $scope.decrementLimit = function() {
     $scope.btnValue = "Save";
 
 
-     var tags = $routeParams.tags;
+    var tags = $routeParams.tags;
     //console.log($routeParams.id)
     //var clientId = $routeParams.id;
     function getData() {
@@ -45,12 +45,12 @@ $scope.decrementLimit = function() {
         if ($rootScope.Tags != null) {
             //alert(JSON.stringify($rootScope.Area.Area));
             tags = $rootScope.Tags.Tags;
-             
+
             // alert(JSON.stringify(area));
             //var area = $routeParams.Area;
         }
-       
-        
+
+
         var city = $routeParams.city;
         var category = $routeParams.category;
         if ($rootScope.Area != null) {
@@ -77,116 +77,113 @@ $scope.decrementLimit = function() {
         //url = url + '&Area=' + area;
         //alert(url);
         var c = category;
-        
-        if (category && !area && city){
-         category = category.replace(/-/g, ' ');
-            url = url + '&City=' + city + '&Categories=' + category
-            // alert(url);
-        }
-       
-        if (category && area)
-        {
+
+        if (category && !area && city) {
             category = category.replace(/-/g, ' ');
-             area = area.replace(/-/g, ' ');
+            url = url + '&City=' + city + '&Categories=' + category
+                // alert(url);
+        }
+
+        if (category && area) {
+            category = category.replace(/-/g, ' ');
+            area = area.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
         }
-       
-        if (category && city && area){
+
+        if (category && city && area) {
             url = url + '&City=' + city;
-        // alert(url);
+            // alert(url);
         }
-        if (!category && city && area){
+        if (!category && city && area) {
             url = url + '&City=' + city + '&Area=' + area;
         }
-           
-if(area != undefined){
-        var myurl =  '/'+city+'/'+category;
-         $window.document.getElementById('categry').href=myurl;
 
-       //  var cityurl = '/showResults';
-        // document.getElementById('citylink').href=cityurl;
+        if (area != undefined) {
+            var myurl = '/' + city + '/' + category;
+            $window.document.getElementById('categry').href = myurl;
 
-         $window.document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;  
-          $window.document.getElementById('category').innerHTML = category ;  
-          $window.document.getElementById('area').innerHTML = area ;  
-          $window.document.getElementById('city').innerHTML = city ;
-        $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-      //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-      //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        
-        $window.document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        $window.document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
-        
-        $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            //  var cityurl = '/showResults';
+            // document.getElementById('citylink').href=cityurl;
+
+            $window.document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;
+            $window.document.getElementById('category').innerHTML = category;
+            $window.document.getElementById('area').innerHTML = area;
+            $window.document.getElementById('city').innerHTML = city;
+            $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+
+            $window.document.querySelector('[property="og:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            $window.document.querySelector('[property="og:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+
+            $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         }
 
-        if(area == undefined){
-             var myurl = '/'+city+'/'+category;
-         $window.document.getElementById('categry').href=myurl;
+        if (area == undefined) {
+            var myurl = '/' + city + '/' + category;
+            $window.document.getElementById('categry').href = myurl;
 
-         // var cityurl = '/showResults';
-        // document.getElementById('citylink').href=cityurl;
+            // var cityurl = '/showResults';
+            // document.getElementById('citylink').href=cityurl;
 
-         $window.document.getElementById('keyword').innerHTML = category + ' in ' +  city; 
-          $window.document.getElementById('category').innerHTML = category ; 
-           $window.document.getElementById('area').innerHTML = '' ;
-        $window.document.title = category + ' in ' + city + ' | NXsearch';
-           $window.document.getElementById('city').innerHTML = city ;
-        $window.document.getElementsByName('title')[0].content = category + ' in '   + city + ' | NXsearch';
-       // $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
-       // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
-       
-        $window.document.querySelector('[property="og:title"]').content = category + ' in '   + city + ' | NXsearch';
-        $window.document.querySelector('[property="og:description"]').content = category + ' in '   + city + ' | NXsearch';
-        $window.document.querySelector('[name="twitter:title"]').content = category + ' in '  + city + ' | NXsearch';
-        
-        $window.document.querySelector('[name="twitter:description"]').content = category + ' in '   + city + ' | NXsearch';
-    }
-    
-    
+            $window.document.getElementById('keyword').innerHTML = category + ' in ' + city;
+            $window.document.getElementById('category').innerHTML = category;
+            $window.document.getElementById('area').innerHTML = '';
+            $window.document.title = category + ' in ' + city + ' | NXsearch';
+            $window.document.getElementById('city').innerHTML = city;
+            $window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
+            // $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
+            // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
+
+            $window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
+            $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
+            $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
+
+            $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
+        }
 
 
 
-// if(city == undefined){
-//     url.replace('Categories','SubCategories')
-// }
+
+
+        // if(city == undefined){
+        //     url.replace('Categories','SubCategories')
+        // }
 
         $http.get(url)
             .success(function(data) {
-                
+
                 // $scope.results = data;
                 $scope.results = shuffle(data, 'isPaidClient');
-                if($scope.results>0){
-                var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
-                
-                    if(sponsoredClients.length > 0)
-                    {
+                if ($scope.results > 0) {
+                    var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
+
+                    if (sponsoredClients.length > 0) {
                         $scope.FirstSponsoredClient = sponsoredClients[0];
                         $scope.SecondSponsoredClient = sponsoredClients[1];
-                        
+
                     }
                 }
-               $scope.aaa = $scope.results.length;
-                
-                            //alert($scope.aaa);
+                $scope.aaa = $scope.results.length;
+
+                //alert($scope.aaa);
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
                 if (data.length == 0) {
-                   
+
                     var urlWithSubcategory;
-                    if(area == undefined){
-                        urlWithSubcategory =  '&SubCategories=' + category
-                    }else{
-                        urlWithSubcategory =  '&Area=' + area + '&SubCategories=' + category
+                    if (area == undefined) {
+                        urlWithSubcategory = '&SubCategories=' + category
+                    } else {
+                        urlWithSubcategory = '&Area=' + area + '&SubCategories=' + category
                     }
                     $http.get('/api/dashbord/results/?&City=' + city + urlWithSubcategory)
                         .success(function(resdata) {
                             $scope.results = shuffle(resdata, 'isPaidClient');
                             var sponsoredClients = shuffle(resdata, 'isSponsoredClient');
-                            if(sponsoredClients.length > 0)
-                            {
+                            if (sponsoredClients.length > 0) {
                                 $scope.FirstSponsoredClient = sponsoredClients[0];
                                 $scope.SecondSponsoredClient = sponsoredClients[1];
                             }
@@ -195,7 +192,7 @@ if(area != undefined){
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
-                                $http.get('/api/dashbord/results/?&City=' + city )
+                                $http.get('/api/dashbord/results/?&City=' + city)
                                     .success(function(resClinicsdata) {
                                         //$scope.results = resClinicsdata;
                                         console.log(resClinicsdata);
@@ -204,12 +201,11 @@ if(area != undefined){
                                         resClinicsdata = [];
                                         resClinicsdata = shuffle(resClinicsdata, 'isPaidClient');
                                         var sponsoredClients = shuffle(resClinicsdata, 'isSponsoredClient');
-                                        if(sponsoredClients.length > 0)
-                                        {
+                                        if (sponsoredClients.length > 0) {
                                             $scope.FirstSponsoredClient = sponsoredClients[0];
                                             $scope.SecondSponsoredClient = sponsoredClients[1];
                                         }
-                                        
+
                                         angular.forEach(resClinicsdata, function(value, key) {
                                             if (value.ClinicName.toLowerCase().indexOf(category.toLowerCase()) != -1) {
                                                 $scope.results.push(value);
@@ -243,21 +239,21 @@ if(area != undefined){
             });
     }
     getData();
-   
-    function shuffle(array, condition) {  
+
+    function shuffle(array, condition) {
         var arr = new Array();
         var arrNotProcessed = new Array();
-        for(i = 0; i< array.length; i++)
-        {
-            if(array[i][condition] == true){
-                    arr.push(array[i]);
+        for (i = 0; i < array.length; i++) {
+            if (array[i][condition] == true) {
+                arr.push(array[i]);
                 console.log(array[i]);
-                console.log(arr.length);        
-                }else  {
-                arrNotProcessed.push(array[i]);    
+                console.log(arr.length);
+            } else {
+                arrNotProcessed.push(array[i]);
             }
         }
-        var currentIndex = arr.length, temporaryValue, randomIndex ;
+        var currentIndex = arr.length,
+            temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
@@ -268,22 +264,19 @@ if(area != undefined){
             temporaryValue = arr[currentIndex];
             arr[currentIndex] = arr[randomIndex];
             arr[randomIndex] = temporaryValue;
-        }  
-        for(i = 0; i<  arrNotProcessed.length; i++)
-        {
+        }
+        for (i = 0; i < arrNotProcessed.length; i++) {
             arr.push(arrNotProcessed[i]);
         }
-        if(condition == 'isSponsoredClient')
-        {
+        if (condition == 'isSponsoredClient') {
             var tempSponsoredClients = new Array();
-            if(arr[0].isSponsoredClient == true)
+            if (arr[0].isSponsoredClient == true)
                 tempSponsoredClients.push(arr[0]);
-            if(arr[1].isSponsoredClient == true)
+            if (arr[1].isSponsoredClient == true)
                 tempSponsoredClients.push(arr[1]);
             return tempSponsoredClients;
-        }
-        else{
-                return arr;
+        } else {
+            return arr;
         }
     }
 
@@ -296,76 +289,74 @@ if(area != undefined){
         $http.get('/api/category/categories')
             .success(function(data) {
                 $scope.categories = data;
-               //  alert(JSON.stringify(data));
+                //  alert(JSON.stringify(data));
                 //  alert($scope.data.mainCategoryName);
                 $scope.sample = data;
- 
-               // alert(JSON.stringify($scope.subCategories1));
+
+                // alert(JSON.stringify($scope.subCategories1));
                 //alert($routeParams.category);
-                 var metaKeys = metaDesc = metaTitle = '';
+                var metaKeys = metaDesc = metaTitle = '';
 
-                   angular.forEach(data, function(value, key1) {
-                        
-                        angular.forEach(value.category, function(cat, key2) {
-                       //  alert(JSON.stringify(cat.name));
-                                if(cat.name == $routeParams.category)
-                                {
+                angular.forEach(data, function(value, key1) {
 
-                                    if($routeParams.area != undefined){
-                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ " , " + $routeParams.city+ " , " + cat.categoryDescription + '| Nx-search';
-                                    metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + cat.categoryKeywords + '| Nx-search';
-                                    longDesc = cat.categoryDescriptionLong;
-                                    }else{
-                                         metaDesc  = $routeParams.category + " in " + $routeParams.city+ " | " + cat.categoryDescription + '| Nx-search';
-                                    metaKeys = $routeParams.category + " in " + $routeParams.city+ " | " + cat.categoryKeywords + '| Nx-search';
-                                    longDesc = cat.categoryDescriptionLong;
-                                    }
-                                    //$scope.catname = cat.name;
-                                     //$window.document.getElementById('categoryname').innerHTML = catname;
-                                     //alert( $scope.SubCategories);
-                                     //alert($routeParams.area);
-                                     $scope.SubCategoriesLinks=[];
-                                     $scope.areaonlink = 'in ' + $routeParams.area;
-                                    // alert($scope.areaonlink);
-                                    angular.forEach(cat.subcategories, function(value, key) {
-                                               $scope.SubCategoriesLinks.push(value.subCategoryName);
-                                                 //alert(JSON.stringify(cat.name));
-                                     });
-                                      
-                                }
-                                
-                                    angular.forEach(cat.subcategories, function(value, key) {
-                                        //alert(value.subCategoryName);
-                                            if(value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' '))
-                                            {
-                                                //alert(JSON.stringify($routeParams.area));
-                                                
-                                                    metaDesc  = $routeParams.category + " in " + $routeParams.area+ ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
-                                                    metaKeys = $routeParams.category + " in " + $routeParams.area+ " | " + value.subCategoryKeywords + '| Nx-search';
-                                                     longDesc = value.subCategoryDescriptionLong;
-                                                     
-                                                    // $scope.catname1 = value.subCategoryName;
-                                                      //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
-                                            }
-                                                 //alert(JSON.stringify(cat.name));
-                                     });
-                              
-                             });
+                    angular.forEach(value.category, function(cat, key2) {
+                        //  alert(JSON.stringify(cat.name));
+                        if (cat.name == $routeParams.category) {
+
+                            if ($routeParams.area != undefined) {
+                                metaDesc = $routeParams.category + " in " + $routeParams.area + " , " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
+                                metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + cat.categoryKeywords + '| Nx-search';
+                                longDesc = cat.categoryDescriptionLong;
+                            } else {
+                                metaDesc = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
+                                metaKeys = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
+                                longDesc = cat.categoryDescriptionLong;
+                            }
+                            //$scope.catname = cat.name;
+                            //$window.document.getElementById('categoryname').innerHTML = catname;
+                            //alert( $scope.SubCategories);
+                            //alert($routeParams.area);
+                            $scope.SubCategoriesLinks = [];
+                            $scope.areaonlink = 'in ' + $routeParams.area.replace(/-/g, ' ');
+                            // alert($scope.areaonlink);
+                            angular.forEach(cat.subcategories, function(value, key) {
+                                $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                //alert(JSON.stringify(cat.name));
+                            });
+
+                        }
+
+                        angular.forEach(cat.subcategories, function(value, key) {
+                            //alert(value.subCategoryName);
+                            if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
+                                //alert(JSON.stringify($routeParams.area));
+
+                                metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + value.subCategoryKeywords + '| Nx-search';
+                                longDesc = value.subCategoryDescriptionLong;
+
+                                // $scope.catname1 = value.subCategoryName;
+                                //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
+                            }
+                            //alert(JSON.stringify(cat.name));
+                        });
+
+                    });
                 });
                 //alert(metaDesc);
-                 
-                 $scope.catname = $routeParams.category;
+
+                $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
-                 $scope.area2 = $routeParams.area;
-                   // $scope.categoryname = catname;
-               //alert($location.absUrl());
-               
-                 $window.document.getElementsByName('description')[0].content = metaDesc;
-                  $window.document.getElementsByName('keywords')[0].content = metaKeys;
-                  $window.document.getElementById('longdescription').innerHTML = longDesc;
-                 
-                   
-                     
+                $scope.area2 = $routeParams.area;
+                // $scope.categoryname = catname;
+                //alert($location.absUrl());
+
+                $window.document.getElementsByName('description')[0].content = metaDesc;
+                $window.document.getElementsByName('keywords')[0].content = metaKeys;
+                $window.document.getElementById('longdescription').innerHTML = longDesc;
+
+
+
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
@@ -383,23 +374,23 @@ if(area != undefined){
     }
 
     $scope.getCatsselectval = function() {
-       //$scope.subCategories = $scope.selitemCats.subcategories;
-       $scope.subCategories = [];
-       angular.forEach($scope.selitemCats.subcategories, function(rec, key) {
-                           $scope.subCategories.push(rec.subCategoryName);
-                           //alert(JSON.stringify(value));
-       });
+        //$scope.subCategories = $scope.selitemCats.subcategories;
+        $scope.subCategories = [];
+        angular.forEach($scope.selitemCats.subcategories, function(rec, key) {
+            $scope.subCategories.push(rec.subCategoryName);
+            //alert(JSON.stringify(value));
+        });
 
-       $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
-       console.log($scope.selitemCats.name);
-   }
+        $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
+        console.log($scope.selitemCats.name);
+    }
 
     //$scope.getCatsselectval = function() {
-       // $scope.subCategories = $scope.selitemCats.subcategories;
+    // $scope.subCategories = $scope.selitemCats.subcategories;
 
-      //  $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
-      //  console.log($scope.selitemCats.name);
-   // }
+    //  $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
+    //  console.log($scope.selitemCats.name);
+    // }
 
 
     function getLocationsData() {
@@ -439,7 +430,7 @@ if(area != undefined){
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                 //alert( JSON.stringify($scope.formData));
+                //alert( JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
@@ -448,19 +439,20 @@ if(area != undefined){
                 };
 
                 savedMetaData.setData(metaInfo);
-                $scope.services=data.SubCategories;
+                $scope.services = data.SubCategories;
+                $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
                 //alert($scope.services);
-                $scope.slength=  $scope.services.length;
+                $scope.slength = $scope.services.length;
                 //alert($scope.slength);
-                for(var i=0;i<$scope.slength;i++){
-                $scope.serviceurl='/'+data.City+ '/' + data.Area +'/'+$scope.services[i];
+                for (var i = 0; i < $scope.slength; i++) {
+                    $scope.serviceurl = '/' + data.City + '/' + data.Area + '/' + $scope.services[i];
                 }
-               // alert( $scope.serviceurl);
-                
-                 $window.document.getElementById('demo1').innerHTML=data.ClinicName;
-                 $window.document.getElementById('city1').innerHTML=data.City;
-                 $window.document.getElementById('area1').innerHTML= data.Area;
-                $window.document.getElementById('bbb').innerHTML= data.Categories;
+                // alert( $scope.serviceurl);
+
+                $window.document.getElementById('demo1').innerHTML = data.ClinicName;
+                $window.document.getElementById('city1').innerHTML = data.City;
+                $window.document.getElementById('area1').innerHTML = data.Area;
+                $window.document.getElementById('bbb').innerHTML = data.Categories;
                 $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.ClinicName + ' in ' + data.Area + ' ' + ', ' + data.City + ' | ' + data.Tags + ' | NXsearch';
@@ -592,7 +584,7 @@ if(area != undefined){
         }
 
 
-        
+
 
 
 
@@ -620,33 +612,33 @@ if(area != undefined){
                             //$scope.formData = {}; // clear the form so our user is ready to enter another
                             console.log(data);
 
-                                        var geocoder = new google.maps.Geocoder();
-                                        var source = $scope.formData.address1 + ' ' + $scope.formData.address2;
-                                        
-                                        geocoder.geocode({ 'address': source }, function (results, status) {
-                                                if (status == google.maps.GeocoderStatus.OK) {
-                                                    $scope.formData.lat = results[0].geometry.location.lat();
-                                                    $scope.formData.long = results[0].geometry.location.lng();
+                            var geocoder = new google.maps.Geocoder();
+                            var source = $scope.formData.address1 + ' ' + $scope.formData.address2;
 
-                                                    var recordToInsert = {
-                                                         ClinicId : data._id,
-                                                         lat : $scope.formData.lat,
-                                                         long : $scope.formData.long
-                                                    };
-                                                    $http.post('/api/contact/cliniccontact',  recordToInsert)
-                                                    .success(function(data) {
-                                                        //$scope.formData = {}; // clear the form so our user is ready to enter another
-                                                        alert(JSON.stringify(data));
-                                                    })
-                                                    .error(function(data) {
-                                                        console.log('Error: ' + data);
-                                                    });
-                                                    
-                                                    console.log("Latitude: " +  value.lat + "\nLongitude: " + value.long);
-                                                } else {
-                                                    alert("Request failed.")
-                                                }
-                                            });
+                            geocoder.geocode({ 'address': source }, function(results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    $scope.formData.lat = results[0].geometry.location.lat();
+                                    $scope.formData.long = results[0].geometry.location.lng();
+
+                                    var recordToInsert = {
+                                        ClinicId: data._id,
+                                        lat: $scope.formData.lat,
+                                        long: $scope.formData.long
+                                    };
+                                    $http.post('/api/contact/cliniccontact', recordToInsert)
+                                        .success(function(data) {
+                                            //$scope.formData = {}; // clear the form so our user is ready to enter another
+                                            alert(JSON.stringify(data));
+                                        })
+                                        .error(function(data) {
+                                            console.log('Error: ' + data);
+                                        });
+
+                                    console.log("Latitude: " + value.lat + "\nLongitude: " + value.long);
+                                } else {
+                                    alert("Request failed.")
+                                }
+                            });
 
                         })
                         .error(function(data) {
@@ -886,7 +878,7 @@ if(area != undefined){
         $http.get('/api/dashbord/results/' + clientId)
             .success(function(data) {
                 $scope.client = data;
-               
+
                 console.log(data);
             })
             .error(function(data) {
@@ -1068,12 +1060,12 @@ if(area != undefined){
                 var geocoder = new google.maps.Geocoder();
                 var source = value.address1 + ' ' + value.address2;
 
-                geocoder.geocode({ 'address': source }, function (results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            value.lat = results[0].geometry.location.lat();
-                            value.long = results[0].geometry.location.lng();
+                geocoder.geocode({ 'address': source }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        value.lat = results[0].geometry.location.lat();
+                        value.long = results[0].geometry.location.lng();
 
-                            $http.post('/api/contact/cliniccontact', value)
+                        $http.post('/api/contact/cliniccontact', value)
                             .success(function(data) {
                                 //$scope.formData = {}; // clear the form so our user is ready to enter another
                                 alert(JSON.stringify(data));
@@ -1081,16 +1073,16 @@ if(area != undefined){
                             .error(function(data) {
                                 console.log('Error: ' + data);
                             });
-                            
-                            console.log("Latitude: " +  value.lat + "\nLongitude: " + value.long);
-                        } else {
-                            alert("Request failed.")
-                        }
-                    });
+
+                        console.log("Latitude: " + value.lat + "\nLongitude: " + value.long);
+                    } else {
+                        alert("Request failed.")
+                    }
+                });
 
 
                 //alert(JSON.stringify(value));
-                
+
                 $location.path("/homepage/" + $routeParams.id);
 
             });
@@ -1100,18 +1092,22 @@ if(area != undefined){
 
     $scope.tabs = [{
             title: 'Home',
-            url: 'one.tpl.html'
+            url: 'one.tpl.html',
+            activtab: 'Home'
         }, {
             title: 'Services',
-            url: 'two.tpl.html'
+            url: 'two.tpl.html',
+            activtab: 'Services'
         },
         {
             title: 'Gallary',
-            url: 'four.tpl.html'
+            url: 'four.tpl.html',
+            activtab: 'Gallary'
         },
         {
             title: 'Location',
-            url: 'five.tpl.html'
+            url: 'five.tpl.html',
+            activtab: 'Location'
         }
 
     ];
@@ -1135,10 +1131,13 @@ if(area != undefined){
 
     $scope.onClickTab = function(tab) {
         $scope.currentTab = tab.url;
+          var myEl = angular.element( document.querySelector( '#div1' ) );
+            myEl.addClass('active');
     }
 
     $scope.isActiveTab = function(tabUrl) {
         return tabUrl == $scope.currentTab;
+      
     }
     $scope.deleteRec5 = function(id) {
         $http.delete('/api/profile/clinicProfile/' + id)
@@ -1244,142 +1243,140 @@ if(area != undefined){
     }
     getData1();
 
- $scope.loading = false;
- $scope.sendOTP = function (item){
+    $scope.loading = false;
+    $scope.sendOTP = function(item) {
 
-    if(item.usermobile != undefined && item.usermobile.length == 10){
+        if (item.usermobile != undefined && item.usermobile.length == 10) {
             $http.defaults.headers.post['Content-Type'] = 'application/json';
             $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
             $http({
                 method: 'POST',
                 url: 'https://sendotp.msg91.com/api/generateOTP',
-                data :   {
-                            countryCode: "91",
-                            mobileNumber: item.usermobile                    
-                        }
+                data: {
+                    countryCode: "91",
+                    mobileNumber: item.usermobile
+                }
             }).
             success(function(status) {
                 //your code when success
                 console.log(status);
-            if(status != indefined && status.status == 'success')
-            {
-                //show popup message that OTP has sent to your mobile number
-            }
-            });
-    }
- }
-
-  $scope.send = function (item){
-    $scope.loading = true;
-
-    //validate OTP post Request
-    $http.defaults.headers.post['Content-Type'] = 'application/json';
-    $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
-    $http({
-        method: 'POST',
-        url: 'https://sendotp.msg91.com/api/verifyOTP',
-        data :   {
-                    countryCode: "91",
-                    mobileNumber: item.usermobile,
-                    oneTimePassword: item.OTP                    
+                if (status != indefined && status.status == 'success') {
+                    //show popup message that OTP has sent to your mobile number
                 }
-    }).
-    success(function(status) {
-        //your code when success
-        console.log(status);
-       
-       if(status != undefined && status.status == 'success')
-       {
-            $scope.loading = false;
-            $scope.serverMessage = 'Email sent successfully';
+            });
+        }
+    }
 
-            $http.post('/sendmail', {
-                from: 'NXsearch <enquiry@nxsearch.com>',
-                to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
-                subject: 'NXsearch Enquiry for '+ item.ClinicName,
-                //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
-                html:"Enquiry for :"+ "<b>"+item.ClinicName+" </b>"+"<br>"+"Name : "+"<b>"+item.username+" </b>"+"<br>"+"Mobile No :"+"<b>"+item.usermobile +"</b>" +"<br>" // html body
-                        +"Email Id :"+"<b>"+item.useremail +"</b>" +"<br>" +"Appointment Date :"+"<b>"+item.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+item.time +"</b>" +"<br>"
-                }).then(res=>{
+    $scope.send = function(item) {
+        $scope.loading = true;
+
+        //validate OTP post Request
+        $http.defaults.headers.post['Content-Type'] = 'application/json';
+        $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+        $http({
+            method: 'POST',
+            url: 'https://sendotp.msg91.com/api/verifyOTP',
+            data: {
+                countryCode: "91",
+                mobileNumber: item.usermobile,
+                oneTimePassword: item.OTP
+            }
+        }).
+        success(function(status) {
+            //your code when success
+            console.log(status);
+
+            if (status != undefined && status.status == 'success') {
+                $scope.loading = false;
+                $scope.serverMessage = 'Email sent successfully';
+
+                $http.post('/sendmail', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch Enquiry for ' + item.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + item.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
+                        +
+                        "Email Id :" + "<b>" + item.useremail + "</b>" + "<br>" + "Appointment Date :" + "<b>" + item.date + "</b>" + "<br>" + "Appointment Time :" + "<b>" + item.time + "</b>" + "<br>"
+                }).then(res => {
                     $scope.loading = false;
                     $scope.serverMessage = 'Email sent successfully';
-                   
-            });
-       }
-    }).
-    error(function(status) {
-        //your code when fails
-    });
 
-  }
+                });
+            }
+        }).
+        error(function(status) {
+            //your code when fails
+        });
 
-   $scope.sendOTP1 = function (client){
+    }
 
-    if(client.usermobile != undefined && client.usermobile.length == 10){
+    $scope.sendOTP1 = function(client) {
+
+        if (client.usermobile != undefined && client.usermobile.length == 10) {
             $http.defaults.headers.post['Content-Type'] = 'application/json';
             $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
             $http({
                 method: 'POST',
                 url: 'https://sendotp.msg91.com/api/generateOTP',
-                data :   {
-                            countryCode: "91",
-                            mobileNumber: client.usermobile                    
-                        }
+                data: {
+                    countryCode: "91",
+                    mobileNumber: client.usermobile
+                }
             }).
             success(function(status) {
                 //your code when success
                 console.log(status);
-            if(status != indefined && status.status == 'success')
-            {
-                //show popup message that OTP has sent to your mobile number
-            }
-            });
-    }
- }
-
-
-  $scope.send1 = function (client){
-    $scope.loading = true;
-
-    //validate OTP post Request
-    $http.defaults.headers.post['Content-Type'] = 'application/json';
-    $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
-    $http({
-        method: 'POST',
-        url: 'https://sendotp.msg91.com/api/verifyOTP',
-        data :   {
-                    countryCode: "91",
-                    mobileNumber: client.usermobile,
-                    oneTimePassword: client.OTP                    
+                if (status != indefined && status.status == 'success') {
+                    //show popup message that OTP has sent to your mobile number
                 }
-    }).
-    success(function(status) {
-        //your code when success
-        console.log(status);
-       
-       if(status != undefined && status.status == 'success')
-       {
-            $scope.loading = false;
-            $scope.serverMessage = 'Email sent successfully';
+            });
+        }
+    }
 
-            $http.post('/sendmail12', {
-                from: 'NXsearch <enquiry@nxsearch.com>',
-                to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
-                subject: 'NXsearch Enquiry for '+ client.ClinicName,
-                //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
-                html:"Enquiry for :"+ "<b>"+client.ClinicName+" </b>"+"<br>"+"Name : "+"<b>"+client.username+" </b>"+"<br>"+"Mobile No :"+"<b>"+client.usermobile +"</b>" +"<br>" // html body
-                        +"Email Id :"+"<b>"+client.useremail +"</b>" +"<br>" +"Appointment Date :"+"<b>"+client.date +"</b>" +"<br>"+"Appointment Time :"+"<b>"+client.time +"</b>" +"<br>"
-                }).then(res=>{
+
+    $scope.send1 = function(client) {
+        $scope.loading = true;
+
+        //validate OTP post Request
+        $http.defaults.headers.post['Content-Type'] = 'application/json';
+        $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+        $http({
+            method: 'POST',
+            url: 'https://sendotp.msg91.com/api/verifyOTP',
+            data: {
+                countryCode: "91",
+                mobileNumber: client.usermobile,
+                oneTimePassword: client.OTP
+            }
+        }).
+        success(function(status) {
+            //your code when success
+            console.log(status);
+
+            if (status != undefined && status.status == 'success') {
+                $scope.loading = false;
+                $scope.serverMessage = 'Email sent successfully';
+
+                $http.post('/sendmail12', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch Enquiry for ' + client.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + client.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
+                        +
+                        "Email Id :" + "<b>" + client.useremail + "</b>" + "<br>" + "Appointment Date :" + "<b>" + client.date + "</b>" + "<br>" + "Appointment Time :" + "<b>" + client.time + "</b>" + "<br>"
+                }).then(res => {
                     $scope.loading = false;
                     $scope.serverMessage = 'Email sent successfully';
-            });
-       }
-    }).
-    error(function(status) {
-        //your code when fails
-    });
+                });
+            }
+        }).
+        error(function(status) {
+            //your code when fails
+        });
 
-  }
+    }
 
     // delete a contact after checking it
     $scope.deleteRec1 = function(id) {
@@ -1432,16 +1429,16 @@ if(area != undefined){
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
     }
-$scope.fpath = $location.absUrl();
-$window.document.getElementById('shareBtn').onclick = function() {
-    //alert($scope.fpath);
-  FB.ui({
-    method: 'share',
-    display: 'popup',
-    href: $scope.fpath,
-   
-  }, function(response){})
-}
+    $scope.fpath = $location.absUrl();
+    $window.document.getElementById('shareBtn').onclick = function() {
+        //alert($scope.fpath);
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: $scope.fpath,
+
+        }, function(response) {})
+    }
 
 
 
@@ -1449,17 +1446,17 @@ $window.document.getElementById('shareBtn').onclick = function() {
 
 
 //app.controller('MailController', function ($scope,$http) {
- //$scope.loading = false;
-  //$scope.send = function (mail){
-  //  $scope.loading = true;
-  //  $http.post('/sendmail', {
-  //    from: 'NXsearch <enquiry@nxsearch.com>',
-   //   to: 'agogweb1@gmail.com',
-   //   subject: 'Message from AngularCode',
-   //   text: mail.username
-  //  }).then(res=>{
-  //      $scope.loading = false;
-   //     $scope.serverMessage = 'Email sent successfully';
-  //  });
+//$scope.loading = false;
+//$scope.send = function (mail){
+//  $scope.loading = true;
+//  $http.post('/sendmail', {
+//    from: 'NXsearch <enquiry@nxsearch.com>',
+//   to: 'agogweb1@gmail.com',
+//   subject: 'Message from AngularCode',
+//   text: mail.username
+//  }).then(res=>{
+//      $scope.loading = false;
+//     $scope.serverMessage = 'Email sent successfully';
+//  });
 //  }
 //})
