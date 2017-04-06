@@ -304,7 +304,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                         if (cat.name == $routeParams.category) {
 
                             if ($routeParams.area != undefined) {
-                                metaDesc = $routeParams.category + " in " + $routeParams.area + " , " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
+                                metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
                             } else {
@@ -334,6 +334,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + value.subCategoryKeywords + '| Nx-search';
                                 longDesc = value.subCategoryDescriptionLong;
+                                $scope.SubCategoriesLinks = [];
+                                 angular.forEach(cat.subcategories, function(value, key) {
+                                $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                //alert(JSON.stringify($scope.sublinks));
+                            });
+
 
                                 // $scope.catname1 = value.subCategoryName;
                                 //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
@@ -1242,7 +1248,23 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             });
     }
     getData1();
-
+//$scope.sendmsg = function(){
+  //    $http({
+    //        method: 'POST',
+      //      url: 'https://control.msg91.com/api/sendhttp.php?authkey=138679A23pr5hn5889ca25&mobiles=9527154472&message=test & new&mobile&sender=NXSEAR&route=4',
+            //data: {
+              //  countryCode: "91",
+              //  mobileNumber: item.usermobile,
+              //  oneTimePassword: item.OTP
+           // }
+        //}).         success(function(status) {
+                //your code when success
+          //      console.log(status);
+            //    if (status != indefined && status.status == 'success') {
+                    //show popup message that OTP has sent to your mobile number
+              //  }
+           // });
+//}
     $scope.loading = false;
     $scope.sendOTP = function(item) {
 
@@ -1304,6 +1326,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                 });
             }
+
+          
+
         }).
         error(function(status) {
             //your code when fails
