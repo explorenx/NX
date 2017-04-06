@@ -16,6 +16,7 @@
 </script>
 
 
+
 <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
     <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
         <div class="col-md-12 col-xs-12" style="padding-left: 28px">
@@ -38,7 +39,7 @@
                         <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
                         <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
-												<option ng-selected="selectedArea">Select Area</option>
+												<option value="">Select Area</option>
 											</select>
                         <!--{{MainAreas.selectedAreaModel}}-->
                     </div>
@@ -146,7 +147,7 @@
         <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>Success!</strong> {{serverMessage}}.
-            </div>
+        </div>
         <div class="col-lg-12 col-xs-12">
             <div class="col-md-11 col-xs-12 bredcrumb">
                 <h1> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
@@ -234,7 +235,7 @@
                                             <div class="modal-content" style="width: 340px">
 
                                                 </script>
-                                               
+
                                                 <div class="modal-body well_new">
                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -270,26 +271,26 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-xs-12">
                                                             <div class="col-xs-4">
-                                                                 <b>Pick Date :</b>
+                                                                <b>Pick Date :</b>
                                                             </div>
-                                                              <div class="col-xs-8">
+                                                            <div class="col-xs-8">
                                                                 <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
-                                                              </div>
                                                             </div>
+                                                        </div>
 
-                                                            
-                                                            
-                                                            <div class="col-xs-12"> 
-                                                                <div class="col-xs-4">
-                                                                 <b>Pick Time :</b>
+
+
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Pick Time :</b>
                                                             </div>
-                                                            <div class="col-xs-8">                                                          
-                                                                 <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
+                                                            <div class="col-xs-8">
+                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                         <div class="col-xs-12">
                                                             <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP(item)" ng-required="true">
                                                         </div>
@@ -298,20 +299,20 @@
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
                                                         <div class="col-xs-12">
                                                             <div class="col-xs-4">
-                                                                 <b>Enter OTP :</b>
+                                                                <b>Enter OTP :</b>
                                                             </div>
                                                             <div class="col-xs-8">
-                                                                 <input type="text"  ng-model="item.OTP"  class="form-control" ng-required="true">
+                                                                <input type="text" ng-model="item.OTP" class="form-control" ng-required="true" ng-focus="sendmsg()">
                                                             </div>
                                                         </div>
                                                         <br />
-                                                        
+
                                                         <br />
-                                                        <b>{{serverMessage}}</b>
+
                                                         <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
                                                     </form>
                                                 </div>
-                                                
+
 
 
                                             </div>
@@ -336,19 +337,19 @@
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
-                    <li class="Searches"> {{ss}} {{areaonlink}}</li>
+                        <li class="Searches"> {{ss}} {{areaonlink}}</li>
                     </ul>
                 </a>
                 <!--<span>{{ss}}</span>-->
             </div>
         </div>
 
-        <div class="col-md-12 col-xs-12 ng-hide" >
+        <div class="col-md-12 col-xs-12 ng-hide">
             <h3>Find Similar Searches : {{area2}}</h3>
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks">
                 <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
                     <ul>
-                    <li class="Searches"> {{ss}} {{areaonlink}}</li>
+                        <li class="Searches"> {{ss}} {{areaonlink}}</li>
                     </ul>
                 </a>
                 <!--<span>{{ss}}</span>-->
@@ -460,4 +461,3 @@
 
         });
     </script>
-    
