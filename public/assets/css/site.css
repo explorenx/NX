@@ -20,7 +20,9 @@ html {
 }
 
 .nav1>li:hover,
-.nav1>li:focus {
+.nav1>li:focus,
+.nav1>li:active,
+.nav1>li:visited {
     text-decoration: none;
     background-color: #37A0CE;
     cursor: pointer;
@@ -38,7 +40,7 @@ html {
     background-color: transparent;
 }
 
-.nav1 .open>li,
+.nav1 .open>li:active,
 .nav1 .open>li:hover,
 .nav1 .open>li:focus {
     background-color: #37A0CE;
