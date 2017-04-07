@@ -36,7 +36,7 @@
 </script>
 <script>
     window.onload = function() {
-        document.getelementById("area").onchange = function() {
+        document.getElementById("#area").onchange = function() {
             document.getElementByName("categoryselect")[0].focus();
         }
     }
@@ -84,7 +84,7 @@
                         <div class="form-group" ng-blur="EnableData = false">
                             <label for="exampleInputPassword1"></label>
                             <input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()"
-                                ng-blur="EnableData=true" click-anywhere-but-here="EnableData=false" />
+                                ng-click="EnableData=true" ng-keypress="EnableData=true" click-anywhere-but-here="EnableData=false" />
 
                             <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
