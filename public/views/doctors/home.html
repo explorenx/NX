@@ -107,7 +107,7 @@
                                 <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                         <div class="list_dropdown">
-                                            <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" /><b> {{i.ClinicName}}</b>
+                                            <!-- <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" />--><b> {{i.ClinicName}}</b>
                                             <br/>
                                         </div>
                                     </a>
