@@ -6,7 +6,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
 
-
+    var notSupportedBrowsers = [{'os': 'Any', 'browser': 'MSIE', 'version': 9}, {'os': 'Any', 'browser': 'Firefox', 'version': 1}];
 
     console.log = function() {};
     var limitStep = 1;
@@ -175,9 +175,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     var urlWithSubcategory;
                     if (area == undefined) {
-                        urlWithSubcategory = '&SubCategories=' + category
+                        urlWithSubcategory = '&SubCategories=' + category;
                     } else {
-                        urlWithSubcategory = '&Area=' + area + '&SubCategories=' + category
+                        urlWithSubcategory = '&Area=' + area + '&SubCategories=' + category;
                     }
                     $http.get('/api/dashbord/results/?&City=' + city + urlWithSubcategory)
                         .success(function(resdata) {
@@ -335,6 +335,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + value.subCategoryKeywords + '| Nx-search';
                                 longDesc = value.subCategoryDescriptionLong;
                                 $scope.SubCategoriesLinks = [];
+                                $scope.areaonlink = 'in ' + $routeParams.area.replace(/-/g, ' ');
                                  angular.forEach(cat.subcategories, function(value, key) {
                                 $scope.SubCategoriesLinks.push(value.subCategoryName);
                                 //alert(JSON.stringify($scope.sublinks));
@@ -381,7 +382,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     $scope.getCatsselectval = function() {
         //$scope.subCategories = $scope.selitemCats.subcategories;
+
         $scope.subCategories = [];
+       
         angular.forEach($scope.selitemCats.subcategories, function(rec, key) {
             $scope.subCategories.push(rec.subCategoryName);
             //alert(JSON.stringify(value));
@@ -1319,7 +1322,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + item.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
                         +
-                        "Email Id :" + "<b>" + item.useremail + "</b>" + "<br>" + "Appointment Date :" + "<b>" + item.date + "</b>" + "<br>" + "Appointment Time :" + "<b>" + item.time + "</b>" + "<br>"
+                        "Email Id :" + "<b>" + item.useremail + "</b>"
                 }).then(res => {
                     $scope.loading = false;
                     $scope.serverMessage = 'Email sent successfully';
@@ -1390,7 +1393,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + client.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
                         +
-                        "Email Id :" + "<b>" + client.useremail + "</b>" + "<br>" + "Appointment Date :" + "<b>" + client.date + "</b>" + "<br>" + "Appointment Time :" + "<b>" + client.time + "</b>" + "<br>"
+                        "Email Id :" + "<b>" + client.useremail + "</b>"
                 }).then(res => {
                     $scope.loading = false;
                     $scope.serverMessage = 'Email sent successfully';
