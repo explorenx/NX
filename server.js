@@ -17,7 +17,8 @@ var sgTransport = require('nodemailer-sendgrid-transport');
  var XMLWriter = require('xml-writer');
  var nodemailer = require("nodemailer");
  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+require('core-js');
+var ClassList = require('classlist')
 var database = require('./config/database'); 			// load the database config
 var home = require('./app/controllers/home/homeController');              //added
 var locations = require('./app/controllers/locations/citiesController');
