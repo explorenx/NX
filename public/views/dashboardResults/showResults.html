@@ -71,14 +71,14 @@
                             <div ng-repeat="i in Categories |  filter : searchString track by $index">
                                 <a href="" ng-click="gotoResultsPageByCategory(i)">
                                     <div class="list_dropdown">
-                                        <img ng-src="" />{{i}}
+                                        {{::i}}
                                     </div>
                                 </a>
                             </div>
                             <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
                                 <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                     <div class="list_dropdown">
-                                        {{i}}
+                                        {{::i}}
                                     </div>
                                 </a>
 
@@ -86,49 +86,22 @@
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug}}/{{::i._id}}">
                                     <div class="list_dropdown">
-                                       <b> {{i.ClinicName}}</b>
+                                       <b> {{::i.ClinicName}}</b>
                                         <br/>
                                     </div>
                                 </a>
                             </div>
 
                             <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug}}/{{::i._id}}">
                                     <div class="list_dropdown">
-                                        <span class="text-center;">{{i.DoctorName}}</span>
+                                        <span class="text-center;">{{::i.DoctorName}}</span>
                                         <br/>
                                     </div>
                                 </a>
                             </div>
-
-                            <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                    <div class="list_dropdown">
-                                        <span class="text-center;">{{i.speciality}}</span>
-                                        <br/>
-                                    </div>
-                                </a>
-                            </div>
-
-
-
-                            <!--   <div>
-                                <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Clinics named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                                <hr style="border-color: lightskyblue;">
-                            </div>
-                            <div>
-                                <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Doctors named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                                <hr style="border-color: lightskyblue;">
-                            </div>-->
-
-
                         </div>
 
                     </div>
@@ -146,11 +119,11 @@
     <div ng-controller="dashResultsController">
         <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
             <button type="button" class="close" data-dismiss="alert">x</button>
-            <strong>Success!</strong> {{serverMessage}}.
+            <strong>Success!</strong> {{::serverMessage}}.
         </div>
         <div class="col-lg-12 col-xs-12">
             <div class="col-md-11 col-xs-12 bredcrumb">
-                <h1> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                <h1> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
             </div>
             <div class="col-md-1 col-xs-4 col-offset-xs-8 text-center">
                 <div class="col-xs-4">
@@ -190,31 +163,29 @@
                         <!--image box-->
                         <div class="col-md-3 col-xs-4">
                             <div ng-if="item.imageUrl != ''">
-                                <img class="listing_image" itemprop="photo" src="{{item.imageUrl}}" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="98" height="98">
+                                <img class="listing_image" itemprop="photo" src="{{::item.imageUrl}}" alt="{{::item.ClinicName }}-{{::item.Area }}-{{::item.City }}-NXsearch.com" width="98" height="98">
                             </div>
-                            <div ng-if="item.imageUrl == '' ">
-                                <img itemprop="photo" src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" alt="{{item.ClinicName }}-{{item.Area }}-{{item.City }}-NXsearch.com" width="98" height="98" style="position:relative; border: 1px solid #33b3e2;">
-                            </div>
+                            
                         </div>
                         <!--listing description box-->
                         <div class="col-md-9 col-xs-8 list_specialty" style="padding-left: 3%;">
 
-                            <h5 class="Profile_title"><a itemprop="url" ng-href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b> {{item.ClinicName}}</b></a></h5>
+                            <h5 class="Profile_title"><a itemprop="url" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"><b> {{::item.ClinicName}}</b></a></h5>
 
-                            <span itemprop="person"> {{item.DoctorName}}</span><br/>
-                            <h6>{{item.Profession}} | {{item.speciality}}</h6>
+                            <span itemprop="person"> {{::item.DoctorName}}</span><br/>
+                            <h6>{{::item.Profession}} | {{::item.speciality}}</h6>
 
-                            <span style="color:#1e97cc;"><b><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </b></span><span style="font-size:12px;">{{item.Experience}} Years </span><br/>
+                            <span style="color:#1e97cc;"><b><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </b></span><span style="font-size:12px;">{{::item.Experience}} Years </span><br/>
                             <div class="col-xs-12 Profile_time" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
 
                                 <span style="color:#1e97cc;"><b><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </b></span>
-                                <span class="" itemprop="opens">{{item.FirstHalfTime}} | {{item.SecondHalfTime}}</span>
+                                <span class="" itemprop="opens">{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span>
 
                             </div>
                             <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 
                                 <span style="color:#1e97cc;"><b><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </b></span>
-                                <span itemprop="addressLocality" style="font-size:13px;">{{item.Area}}</span>
+                                <span itemprop="addressLocality" style="font-size:13px;">{{::item.Area}}</span>
                             </div>
 
                         </div>
@@ -232,10 +203,9 @@
                                         <div class="modal-dialog">
 
                                             <!-- Modal content-->
-                                            <div class="modal-content" style="width: 340px">
+                                            <div class="modal-content" style="max-width: 340px; margin:auto;">
 
-                                                </script>
-
+                                               
                                                 <div class="modal-body well_new">
                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -335,9 +305,9 @@
         <div class="col-md-12 col-xs-12">
             <h3>Find Similar Searches : {{area2}}</h3>
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
-                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
+                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}">
                     <ul>
-                        <li class="Searches"> {{ss}} {{areaonlink}}</li>
+                        <li class="Searches"> {{::ss}} {{::areaonlink}}</li>
                     </ul>
                 </a>
                 <!--<span>{{ss}}</span>-->
@@ -345,11 +315,11 @@
         </div>
 
         <div class="col-md-12 col-xs-12 ng-hide">
-            <h3>Find Similar Searches : {{area2}}</h3>
+            <h3>Find Similar Searches : {{::area2}}</h3>
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks">
-                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{city2}}/{{ss | slugifynolower}}/{{area2 | slugifynolower}}">
+                <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}">
                     <ul>
-                        <li class="Searches"> {{ss}} {{areaonlink}}</li>
+                        <li class="Searches"> {{::ss}} {{::areaonlink}}</li>
                     </ul>
                 </a>
                 <!--<span>{{ss}}</span>-->
@@ -360,7 +330,7 @@
             <hr/>
         </div>
         <div class="col-md-12 col-xs-12">
-            <h4>About {{catname}} </h4>
+            <h4>About {{::catname}} </h4>
             <p class="text-justify" id="longdescription"></p>
 
         </div>
