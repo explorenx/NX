@@ -1,11 +1,12 @@
 <div class="container" style="background-color: #f1efef;">
+
     <div class="col-md-3">
         <nav class="navbar navbar-inverse">
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
                 <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
                 <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
-                <li><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
                 <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
                 <li><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
                 <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
@@ -16,6 +17,7 @@
         </nav>
     </div>
     <div class="col-md-9">
+        <a href="#bottom"> <button class="btn1 btn1-info pull-right" id="top" style="left: 0;">Goto Bottom</button></a>
         <div class="col-md-12" ng-controller="categoriesController" ng-init="initUpdateCategory()">
 
             <div class="col-sm-10 col-sm-offset-1 dashboard" style="margin-top: 25px;">
@@ -62,7 +64,7 @@
                                     <textarea type="text" ng-model="cat.categoryDescription" name="" class="form-control" maxlength="5000" placeholder="Enter category Meta Description"></textarea>
                                     <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{cat.categoryDescription.length}}</span></p>
                                 </div>
-                                
+
                                 <div class="col-md-3">
                                     <label for="Category">Category Long Description</label>
                                 </div>
@@ -131,6 +133,18 @@
             <button type="submit" class="btn1 btn-primary text-center" ng-click="createEditRec()" ng-disabled="categoryform.$invalid">{{btnValue}}</button>
         </form>
     </div>
+    <a href="#top"> <button class="btn1 btn1-info pull-right" id="bottom" style="left: 0;">Goto Top</button></a>
 </div>
      </div>
+     
  </div>
+ <script>
+     $("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
+});
+$("a[href='#bottom']").click(function() {
+$('html,body').animate({ scrollTop: 9999 }, 'slow');
+});
+
+     </script>
