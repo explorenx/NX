@@ -61,9 +61,9 @@
     <div id="mymodal1" style="color: red;"></div>
     <div class="col-md-12">
         <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
-            <div class="col-md-12 col-xs-12" style="padding-left: 28px">
+            <div class="col-md-12 col-xs-12 left-pad-form">
                 <form>
-                    <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
+                    <div class="col-md-3 col-xs-6 pull-left" style="padding-top: 20px">
 
                         <!--<label for="exampleInputEmail1"></label>-->
                         <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
@@ -76,7 +76,7 @@
 
                     </div>
 
-                    <div class="col-md-3 col-xs-11 pull-left" style=" padding-top: 20px">
+                    <div class="col-md-3 col-xs-6 pull-left" style=" padding-top: 20px">
                         <div>
                             <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
@@ -113,14 +113,14 @@
                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
                                     <a href="" ng-click="gotoResultsPageByCategory(i)">
                                         <div class="list_dropdown">
-                                            <img ng-src="" />{{i}}
+                                            {{::i}}
                                         </div>
                                     </a>
                                 </div>
                                 <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
                                     <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                         <div class="list_dropdown">
-                                            {{i}}
+                                            {{::i}}
                                         </div>
                                     </a>
 
@@ -128,72 +128,23 @@
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                    <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug |slugifyapostropy}}/{{::i._id}}">
                                         <div class="list_dropdown">
-                                            <b> {{i.ClinicName}}</b>
+                                            <b> {{::i.ClinicName}}</b>
                                             <br/>
                                         </div>
                                     </a>
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                    <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug |slugifyapostropy}}/{{::i._id}}">
                                         <div class="list_dropdown">
-                                            <span class="text-center;">{{i.DoctorName}}</span>
+                                            <span class="text-center;">{{::i.DoctorName}}</span>
                                             <br/>
                                         </div>
                                     </a>
                                 </div>
-
-                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                            <span class="text-center;">{{i.speciality}}</span>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>
-
-
-
-                                <!-- <div>
-                                <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Clinics named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                                <hr style="border-color: lightskyblue;">
                             </div>
-                            <div>
-                                <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}"> 
-                                                            Doctors named "{{searchString}}"({{searchString.length}})
-                                                        </a><br/>
-                                <hr style="border-color: lightskyblue;">
-                            </div>-->
-
-
-
-                            </div>
-                            <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                                                
-                                                <div ng-show="EnableTextInputResult == true">
-                                                    
-                                                    <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                                        <h5 ng-show="$index == 0"> Doctors </h5>
-                                                        <a href="/homepage/{{i._id}}"><img ng-src="" />{{i.DoctorName}}</a><br/>
-                                                        <span> {{i.ClinicName}} </span><br/>
-                                                        <span>{{i.speciality}}</span>
-                                                        <hr style="border-color: lightskyblue;">
-                                                    </div>
-                                                   
-                                                </div>
-                                            </div>-->
-                            <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
-                                                <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
-                                                    <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
-
-                                                </div>
-                                            </div>-->
-
                         </div>
                     </div>
 
@@ -205,14 +156,15 @@
         </div>
 
 
+
         <div class="col-md-12" ng-controller="dashResultsController">
             <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
                 <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>Success!</strong> {{serverMessage}}.
+                <strong>Success!</strong> {{::serverMessage}}.
             </div>
             <div ng-repeat="post in posts">
-                <div>{{post.title}}</div>
-                <div>{{post.content}}</div>
+                <div>{{::post.title}}</div>
+                <div>{{::post.content}}</div>
                 <button class="fb-share-button" ng-click="share(post)">SHARE</button>
             </div>
 
@@ -228,23 +180,23 @@
                 <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
                 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
                 &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-                <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
             </div>
 
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city1"></span></h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{::client.Categories | slugifynolower}}/{{::client.Area | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{::client.Categories | slugifynolower}}/{{::client.Area | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
 
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="demo1"></span>&nbsp</h5>
-            <div class="col-md-12 col-sm-12 col-xs-12" itemscope itemtype=https://schema.org/{{client.Categories}}>
+            <div class="col-md-12 col-sm-12 col-xs-12" itemscope itemtype=https://schema.org/{{::client.Categories}}>
                 <div class="col-md-9 col-xs-12">
                     <div class="well_new">
-                        <h4 class="text-center" style="color:#1e97cc; font-weight:bold;">{{client.ClinicName}}</h4>
+                        <h4 class="text-center" style="color:#1e97cc; font-weight:bold;">{{::client.ClinicName}}</h4>
                     </div>
 
                     <!-- Profile Title End -->
@@ -253,34 +205,37 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 well_new">
                         <div class="col-md-2 col-sm-3 col-xs-5 ">
                             <div ng-if="client.imageUrl != ''">
-                                <img itemprop="photo" src="{{client.imageUrl }}" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" width="130" height="130" class="listing_image">
+                                <img itemprop="photo" src="{{::client.imageUrl }}" class="img-responsive" alt="{{::client.ClinicName }}-{{::client.Area }}-{{::client.City }}-NXsearch" width="130" height="130" class="listing_image">
                             </div>
-                            <div ng-if="client.imageUrl == ''">
-                                <img itemprop="photo" src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{client.ClinicName }}-{{client.Area }}-{{client.City }}-NXsearch" class="img-rounded" class="listing_image">
-                            </div>
+
                         </div>
                         <div class="col-md-5 col-sm-5 col-xs-7" style="padding-left: 20px;">
                             <div class="col-md-12">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="col-md-12 list_specialty">
 
-                                        <h4 itemprop="person" style="color:#1e97cc;"><b>{{client.DoctorName}}</b></h4>
-                                        <span>{{client.Profession}} | {{client.speciality}}</span>
+                                        <h4 itemprop="person" style="color:#1e97cc;"><b>{{::client.DoctorName}}</b></h4>
+                                        <span>{{::client.Profession}} | {{::client.speciality}}</span>
                                         <br>
-                                        <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong> </span>{{client.Experience}} Years
+                                        <span style="color:#1e97cc;"><strong><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </strong> </span>{{::client.Experience}} Years
                                         <br>
-                                        <div class="col-xs-12">
-                                            <div class="col-xs-3">
+                                        <div class="col-md-12 col-xs-12">
+                                            <div class="col-md-2 col-sm-2 col-xs-3">
                                                 <span style="color:#1e97cc;"><strong><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :</strong></span>
                                             </div>
-                                            <div class="col-xs-9" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
-                                                <span itemprop="opens">{{client.FirstHalfTime}}  </span><br />
-                                                <span itemprop="closes">{{client.SecondHalfTime}}</span>
+                                            <div class="col-md-10 col-xs-9" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
+                                                <span itemprop="opens">{{::client.FirstHalfTime}}  </span><br />
+                                                <span itemprop="closes">{{::client.SecondHalfTime}}</span>
                                             </div>
                                         </div>
-                                        <br>
-
-                                        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" style="color:#1e97cc;"><strong><i class="fa fa-map-marker" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span itemprop="addressLocality"> &nbsp;{{client.Area}}</span>
+                                        <div class="col-md-12 col-xs-12">
+                                            <div class="col-md-2 col-xs-3">
+                                                <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" style="color:#1e97cc;"><strong><i class="fa fa-map-marker" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </strong></span>
+                                            </div>
+                                            <div class="col-md-10 col-xs-9">
+                                                <span itemprop="addressLocality">{{::client.Area}}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -289,9 +244,8 @@
                             <div class="col-md-12 col-xs-12">
                                 <span style="color:#1e97cc;"><b> Address :</b></span><br>
 
-                                <span itemprop="streetAddress">{{client.address1}}</span><br>
-                                <span itemprop="streetAddress"> {{client.address2}},</span><br>
-                                <span itemprop="addressLocality">{{client.Area}},{{client.City}}</span><br>
+                                <span itemprop="streetAddress">{{::client.address1}}</span><br>
+                                <span itemprop="streetAddress"> {{::client.address2}}</span>
                             </div>
                             <div class="col-md-12 col-xs-12 col-md-offset-3 text-center topmargin">
                                 <!--<button type="button" class="btn btn-info">Book Appiontment Online</button>-->
@@ -300,7 +254,7 @@
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
-                                        <div class="modal-content" style="max-width: 340px">
+                                        <div class="modal-content" style="max-width: 340px; margin:auto;">
 
                                             <div class="modal-body well_new">
                                                 <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
@@ -374,7 +328,7 @@
                                                     <br />
 
                                                     <br />
-                                                    <b>{{serverMessage}}</b>
+                                                    <b>{{::serverMessage}}</b>
                                                     <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
                                                 </form>
                                             </div>
@@ -463,20 +417,16 @@
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
                                     <div class="doc-photo-container">
                                         <div ng-if="data.Image != ''">
-                                            <img src="{{data.Image }}" alt="{{data.Image }}" class="listing_image" width="100" height="100">
+                                            <img src="{{::data.Image }}" alt="{{::data.Image }}" class="listing_image" width="100" height="100">
                                         </div>
-                                        <div ng-if="data.Image == ''">
-                                            <img src="http://nxsearch.com/uploads/clientProfilePictures/nxsearch-user-logo.png" class="listing_image" width="100" height="100">
-                                        </div>
-
                                     </div>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8 text-justify">
                                     <div class="col-lg-12 col-xs-12">
-                                        <h4 class="pull-left">{{data.DoctorName}}</h4>
+                                        <h4 class="pull-left">{{::data.DoctorName}}</h4>
                                     </div>
                                     <div class="col-xs-12 text-justify list_specialty">
-                                        {{data.Description}}
+                                        {{::data.Description}}
 
                                     </div>
 
@@ -490,17 +440,17 @@
 
                             <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ServiceData | filter : data.ClinicId = clientId">
 
-                                <div class="col-md-2  col-xs-12">
+                                <div class="col-md-2  col-xs-4">
                                     <div ng-if="data.Image != ''">
-                                        <img src="{{data.ServiceImage}}" alt="{{data.ServiceImage}}" class="listing_image" width="100" height="100" style="position:relative;">
+                                        <img src="{{::data.ServiceImage}}" alt="{{::data.ServiceImage}}" class="listing_image  img-responsive" width="100" height="100" style="position:relative;">
                                     </div>
                                     <div ng-if="data.Image == ''">
-                                        <img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" width="100" height="100" class="listing_image">
+                                        <img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" width="100" height="100" class="listing_image img-responsive">
                                     </div>
                                 </div>
-                                <div class="col-md-10 col-xs-12 text-justify list_specialty">
-                                    <h4>{{data.ServiceName}}</h4>
-                                    {{data.ServiceInfo}}
+                                <div class="col-md-10 col-xs-8 text-justify list_specialty">
+                                    <h4>{{::data.ServiceName}}</h4>
+                                    {{::data.ServiceInfo}}
                                 </div>
 
                             </div>
@@ -568,16 +518,16 @@
                                 <div class="col-md-11 col-sm-9 col-xs-9">
 
                                     <div class="col-md-12 col-xs-12 pull-left">
-                                        <h4 class="pull-left"> {{data.userName}}</h4>
+                                        <h4 class="pull-left"> {{::data.userName}}</h4>
                                     </div>
                                     <div class="col-md-12 col-xs-12 col-md-offset-1 col-xs-offset-1 pull-left">
-                                        <p class="pull-left">{{data.feedback}}</p>
+                                        <p class="pull-left">{{::data.feedback}}</p>
                                     </div>
                                     <div class="col-md-12 col-xs-12 text-success pull-left">
                                         <p class="text-success pull-left">Was this review useful to you?</p>
 
-                                        <i class="fa fa-thumbs-up fa-2x text-primary col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{data.likes}}
-                                        <i class="fa fa-thumbs-down fa-2x text-muted col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{data.dislikes}}
+                                        <i class="fa fa-thumbs-up fa-2x text-primary col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{::data.likes}}
+                                        <i class="fa fa-thumbs-down fa-2x text-muted col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{::data.dislikes}}
                                     </div>
 
 
@@ -595,20 +545,20 @@
                             <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
                                 <div id="pageone" class="col-sm-6 col-xs-6 col-md-2 col-lg-2" ng-repeat="data in GallaryeData | filter : data.ClinicId = clientId">
                                     <div ng-if="data.gallaryImage != ''">
-                                        <img src="{{data.gallaryImage }}" alt="{{data.gallaryImage }}" class="listing_image" width="130px" height="130px" style="margin-left:5px;margin-top:5px;" data-toggle="modal" data-target="#my-modal{{$index}}">
+                                        <img src="{{::data.gallaryImage }}" alt="{{::data.gallaryImage }}" class="listing_image" width="130px" height="130px" style="margin-left:5px;margin-top:5px;" data-toggle="modal" data-target="#my-modal{{$index}}">
                                         <div id="my-modal{{$index}}" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
                                             <div class="modal-dialog" data-dismiss="modal">
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <img src="{{data.gallaryImage }}" alt="{{data.gallaryImage }}" class="img-responsive" style="width: 100%;">
+                                                        <img src="{{::data.gallaryImage }}" alt="{{::data.gallaryImage }}" class="img-responsive" style="width: 100%;">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div ng-if="data.gallaryImage == ''">
-                                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{data.gallaryImage }}" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;">
+                                        <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{::data.gallaryImage }}" class="img-rounded" style="position:relative; width: 220px; height: 200px;margin-left:10px;margin-top:10px;">
                                     </div>
 
 
@@ -622,9 +572,9 @@
                         <div id="Contact">
                             <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
                                 <div class="col-md-12">
-                                    <input type="hidden" id="lat" value="{{ContacteData.lat}}" />
-                                    <input type="hidden" id="lng" value="{{ContacteData.long}}" />
-                                    <div my-map="" lat="{{ContacteData.lat}}" lng="{{ContacteData.long}}" address1="{{ContacteData.address1}}" address2="{{ContacteData.address2}}">
+                                    <input type="hidden" id="lat" value="{{::ContacteData.lat}}" />
+                                    <input type="hidden" id="lng" value="{{::ContacteData.long}}" />
+                                    <div my-map="" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
                                     </div>
                                 </div>
                             </div>
@@ -643,9 +593,9 @@
                 <div class="col-md-12">
                     <h3 class="text-center">Other Services</h3>
                     <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
-                        <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{formData.City}}/{{s | slugifynolower}}/{{formData.Area | slugifynolower}}">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}">
                             <ul>
-                                <li> {{s}}{{areaofcats}}</li>
+                                <li> {{::s}}{{::areaofcats}}</li>
                             </ul>
                         </a>
                     </div>
