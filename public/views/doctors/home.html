@@ -41,16 +41,16 @@
         }
     }
 </script>
-<div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
+<div class="container" style="background-color:#fff; padding-bottom:50px;" ng-controller="InstantSearchController" itemscope itemtype="http://schema.org/LocalBusiness">
 
-    <div class="col-lg-12" ng-controller="InstantSearchController">
+    <div class="col-lg-12">
         <div class="tabtitle">
             <h3>Search Your Requirement</h3>
             <div id="mymodal1" style="color: red;"></div>
         </div>
     </div>
     <div class="container">
-        <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" ng-controller="InstantSearchController">
+        <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" >
             <div class="col-md-12 col-xs-12" style="padding-left: 28px">
                 <form formAutofillFix>
                     <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
@@ -105,7 +105,7 @@
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                         <div class="list_dropdown">
                                             <!-- <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" />--><b> {{i.ClinicName}}</b>
                                             <br/>
@@ -114,64 +114,14 @@
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                         <div class="list_dropdown">
                                             <span class="text-center;">{{i.DoctorName}}</span>
                                             <br/>
                                         </div>
                                     </a>
-                                </div>
-
-                                <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugify}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                            <span class="text-center;">{{i.speciality}}</span>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>
-
-
-
-                                <!--  <div>
-                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}">
-                                <b> Clinics named "{{searchString}}"({{searchString.length}})</b>
-                            </a><br/>
-                            <hr style="border-color: lightskyblue;">
-                        </div>
-                        <div>
-                            <a href="/showResults/{{client.selectedCityModel}}/{{searchString}}">
-                                <b> Doctors named "{{searchString}}"({{searchString.length}})</b>
-                            </a><br/>
-                            <hr style="border-color: lightskyblue;">
-                        </div>-->
-
-
-
+                                </div>                  
                             </div>
-                            <!--<div class="scrollable-menu" ng-if="searchString.length && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                                                
-                                                <div ng-show="EnableTextInputResult == true">
-                                                    
-                                                    <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                                        <h5 ng-show="$index == 0"> Doctors </h5>
-                                                        <a href="/homepage/{{i._id}}"><img ng-src="" />{{i.DoctorName}}</a><br/>
-                                                        <span> {{i.ClinicName}} </span><br/>
-                                                        <span>{{i.speciality}}</span>
-                                                        <hr style="border-color: lightskyblue;">
-                                                    </div>
-                                                   
-                                                </div>
-                                            </div>-->
-                            <!--<div ng-show="EnableTextInputResult == false && EnableData" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 192px;">
-                                                <div ng-repeat="i in MainCategoriesData |  filter : searchString track by $index">
-                                                    <span><a href="" ng-click="gotoResultsPage(i)"><img ng-src=""  /><b>{{i}}</b></a><hr></span>
-
-                                                </div>
-                                            </div>-->
-
-
                         </div>
                     </div>
 
@@ -212,20 +162,20 @@
 
     <div class="tab-content">
         <div id="health" class="tab-pane active">
-            </br>
+            <br />
 
             <div class="row row_top">
 
                 <div class="col-sm-2 col-md-2 col-xs-6">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Dentist>
-                        <a itemprop="url" href="/Pune/Dentist"> <img src="/assets/img/Dentist.png" width="50px" height="50px" alt="Dentist nx-search">
+                        <a itemprop="url" href="/Pune/Dentist"> <img src="/assets/img/Dentist.png" width="50px" height="50px" alt="Dentist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
 
-                        <h4>Dental Clinics</h4>
-                        </a>
+                         <a itemprop="url" href="/Pune/Dentist"><h4>Dental Clinics</h4></a>
+                        
                     </div>
                 </div>
 
@@ -296,7 +246,7 @@
 
             <div class="row">
                 <div>
-                    </br>
+                    <br />
                 </div>
 
                 <div class="col-sm-2 col-md-2 col-xs-6">
@@ -357,7 +307,7 @@
 
         <div id="school" class="tab-pane fade">
 
-            </br>
+            <br />
 
             <div class="row ">
                 <div class="col-sm-1"></div>
@@ -425,7 +375,7 @@
 
         <div id="beauty" class="tab-pane fade">
 
-            </br>
+            <br />
 
             <div class="row row_top">
                 <div class="col-sm-1"></div>
@@ -473,7 +423,7 @@
 
         <div id="sports" class="tab-pane fade">
 
-            </br>
+            <br />
 
             <div class="row row_top">
                 <div class="col-sm-2 col-md-2 col-xs-6">
@@ -552,7 +502,7 @@
 
         <div id="travel" class="tab-pane fade">
 
-            </br>
+            <br />
 
             <div class="row row_top">
                 <div class="col-sm-1"></div>
@@ -601,7 +551,7 @@
 
         <div id="build" class="tab-pane fade">
 
-            </br>
+            <br />
 
             <div class="row row_top">
                 <div class="col-sm-1"></div>
