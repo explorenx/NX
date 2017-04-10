@@ -144,9 +144,9 @@
                         <div class="col-lg-10 well">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12 subs" style="border: solid 1px;">
-
+                                     
                                     <label class="col-md-4" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
-
+                                       
                                         <div class="col-md-12 col-xs-12 pull-left">
                                             <input type="checkbox" class="pull-left" checklist-model="SubCatetories.subs" checklist-value="sub">
                                             <span class="pull-left">{{sub}}</span>
@@ -305,7 +305,7 @@
                         <div class="form-group">
                             <label class="col-lg-4">Registration No:</label>
                             <div class="col-lg-8">
-                                <input type="text" ng-model="formData.RegistrationNo" name="registration" class="form-control text-center" placeholder="Enter RegistrationNo" ng-required="true" />
+                                <input type="text" ng-model="formData.RegistrationNo" name="registration" class="form-control text-center" placeholder="Enter RegistrationNo" />
                                 <div ng-show="ClientForm.registration.$touched && ClientForm.registration.$invalid">
                                     <small style="color: red; display: block; text-align: center">Please Enter Registration Number</small>
                                 </div>
@@ -319,7 +319,7 @@
                             <div class="form-group">
                                 <label class="col-lg-4">Order:</label>
                                 <div class="col-lg-8">
-                                    <input type="text" ng-model="formData.Order" name="order" class="form-control text-center" placeholder="Enter Order" ng-required="true" />
+                                    <input type="text" ng-model="formData.Order" name="order" class="form-control text-center" placeholder="Enter Order"  />
                                     <div ng-show="ClientForm.order.$touched && ClientForm.order.$invalid">
                                         <small style="color: red; display: block; text-align: center">Please Enter Order</small>
                                     </div>
@@ -350,9 +350,9 @@
                 <div class="col-lg-12">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="col-lg-4">Extension Number:</label>
+                            <label class="col-lg-4">Mobile Number:</label>
                             <div class="col-lg-8">
-                                <input type="text" ng-model="formData.extensionNo" name="" class="form-control text-center" placeholder="Enter Extension no" ng-required="true">
+                                <input type="text" ng-model="formData.extensionNo" name="" class="form-control text-center" placeholder="Enter Mobile no" >
                             </div>
                         </div>
                     </div>
@@ -389,7 +389,7 @@
                             <div class="form-group">
                                 <label class="col-lg-4">Tags:</label>
                                 <div class="col-lg-8">
-                                    <input type="text" ng-model="formData.Tags" name="tags" class="form-control text-center" placeholder="Enter Tags" ng-required="true" />
+                                    <input type="text" ng-model="formData.Tags" name="tags" class="form-control text-center" placeholder="Enter Tags" />
                                     <div ng-show="ClientForm.tags.$touched && ClientForm.tags.$invalid">
                                         <small style="color: red; display: block; text-align: center">Please Enter Tags</small>
                                     </div>
