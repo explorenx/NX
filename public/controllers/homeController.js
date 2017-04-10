@@ -1,75 +1,3 @@
-app.controller('homeController', function($scope, $http, $rootScope) {
-    $scope.formData = {};
-    $scope.location = {};
-
-    $scope.btnValue = "Save";
-
-    // when landing on the page, get all todos and show them
-    $http.get('/api/home/clinics')
-        .success(function(data) {
-            $scope.todos = data;
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-
-    // when submitting the add form, send the text to the node API
-    $scope.createTodo = function() {
-        $scope.formData.location = new Array();
-
-        $scope.formData.location.push($scope.location);
-        //       alert(JSON.stringify($scope.formData));//
-        //alert($scope.formData._id);
-        if ($scope.formData._id) {
-
-            $http.put('/api/home/clinics', $scope.formData)
-                .success(function(data) {
-                    $scope.formData = {};
-                    $scope.todos = data;
-                    $scope.btnValue = "Save";
-
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-        } else {
-
-            $http.post('/api/home/clinics', $scope.formData)
-                .success(function(data) {
-                    $scope.formData = {}; // clear the form so our user is ready to enter another
-                    $scope.todos = data;
-                    console.log(data);
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-        }
-    };
-
-    $scope.editClient = function(id) {
-        $http.get('/api/home/clinics/' + id)
-            .success(function(data) {
-                $scope.formData = data;
-                $scope.btnValue = "Update";
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    };
-
-    // delete a todo after checking it
-    $scope.deleteTodo = function(id) {
-        $http.delete('/api/home/clinics/' + id)
-            .success(function(data) {
-                $scope.todos = data;
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-    };
-
-});
-
 app.controller('InstantSearchController', InstantSearchController);
 // The controller
 
@@ -91,25 +19,6 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
         $rootScope.currentPath = newUrl;
         //alert(newUrl);
     });
-
-
-    //alert(JSON.stringify(savedMetaData.getData()));//
-    var dd = savedMetaData.getData();
-
-    $scope.metaDataTitle = dd.title;
-    $scope.metaDataDescription = dd.description;
-    $scope.metaDataKeywords = dd.keywords;
-    //alert($scope.metaData);
-
-
-    $window.document.getElementsByName('title')[0].content = dd.title;
-    $window.document.getElementsByName('description')[0].content = dd.description;
-    $window.document.getElementsByName('keywords')[0].content = dd.keywords;
-
-
-
-
-
     function getData() {
         $http.get('/api/locations/area')
             .success(function(data) {
@@ -197,33 +106,9 @@ $scope.removeSearchString = function(d){
     }, true);
 
     $scope.MainCategoriesData = [];
-
-
-
     $http.get('/api/category/categories')
         .success(function(data) {
             console.log(data);
-
-            var metaKeys = metaDesc = metaTitle = '';
-
-            angular.forEach(data, function(value, key1) {
-                angular.forEach(value.category, function(cat, key2) {
-                    //alert(JSON.stringify(cat));
-                    if (cat.categoryDescription && cat.subCategoryDescription) {
-                        metaDesc += cat.categoryDescription + ' in Pune '+ ' nxsearch';
-                        metaKeys += cat.subCategoryDescription + ' in Pune ';
-                    }
-                });
-            });
-
-            //alert(JSON.stringify($location.path));
-            if ($location.path == 'http://nxsearch.com/') {
-
-                $window.document.getElementsByName('title')[0].content = metaKeys;
-                $window.document.getElementsByName('description')[0].content = metaDesc;
-            } else {
-
-            }
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -248,12 +133,6 @@ $scope.removeSearchString = function(d){
                     $scope.categories = data;
                     console.log(data);
                     //alert($scope.clients);
-
-
-
-
-                    var metakeys = metaDesc = metaTitle = '';
-
                     var newData = data.map(function(el) {
 
                         //alert(JSON.stringify(el));
@@ -279,14 +158,7 @@ $scope.removeSearchString = function(d){
                         //return el.category.name; 
                     });
 
-                    $window.document.getElementsByName('title')[0].content = metakeys;
-                    $window.document.getElementsByName('description')[0].content = metaDesc;
-
-                    //alert($scope.Categories);
-                    //$scope.MainCategoriesData = newData;
-                    //alert($scope.clients);
-                    // alert($scope.clients);
-                    // $scope.subCategories = data[0].category[0].subcategories;
+                   
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -397,43 +269,6 @@ $scope.selectedArea = $routeParams.area;
         else
             $scope.isTextEntered = false;
     }
-
-    $scope.items = [{
-            url: 'http://tutorialzine.com/2013/07/50-must-have-plugins-for-extending-twitter-bootstrap/',
-            title: '50 Must-have plugins for extending Twitter Bootstrap',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/07/featured_4-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/08/simple-registration-system-php-mysql/',
-            title: 'Making a Super Simple Registration System With PHP and MySQL',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/08/simple_registration_system-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/08/slideout-footer-css/',
-            title: 'Create a slide-out footer with this neat z-index trick',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/08/slide-out-footer-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/06/digital-clock/',
-            title: 'How to Make a Digital Clock with jQuery and CSS3',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/06/digital_clock-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/05/diagonal-fade-gallery/',
-            title: 'Smooth Diagonal Fade Gallery with CSS3 Transitions',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/05/featured-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/05/mini-ajax-file-upload-form/',
-            title: 'Mini AJAX File Upload Form',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/05/ajax-file-upload-form-100x100.jpg'
-        },
-        {
-            url: 'http://tutorialzine.com/2013/04/services-chooser-backbone-js/',
-            title: 'Your First Backbone.js App – Service Chooser',
-            image: 'http://cdn.tutorialzine.com/wp-content/uploads/2013/04/service_chooser_form-100x100.jpg'
-        }
-    ];
 }
 app.controller('ImageUploadController', function(Upload, $window, $scope, $http) {
 
