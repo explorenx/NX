@@ -1,118 +1,122 @@
 <div class="container" style="background-color: #f1efef;">
-    <div class="col-md-3">
-        <nav class="navbar navbar-inverse">
-            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
-                <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+
+    <div class="col-md-12">
+
+        <div class="col-md-3">
+            <nav class="navbar navbar-inverse">
+                <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+                    <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
-                <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
-                <li><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
-                <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
-                <li><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
-                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
-                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
-                <li ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
-                <span class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-9">
-
-        <div id="myForm" class="col-md-12" ng-controller="categoriesController">
-            <div class="col-sm-10 col-sm-offset-1 dashboard" style="margin-top: 25px;">
-                <form name="categoryForm">
-                    <div class="form-group">
-                        <div class="col-md-12">
+                    <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
+                    <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                    <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
+                    <li><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
+                    <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                    <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+                    <li ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
+                    <span class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <a href="#bottom"> <button class="btn1 btn1-info pull-right" id="top" style="left: 0;">Goto Bottom</button></a>
+            <div id="myForm" class="col-md-12" ng-controller="categoriesController">
+                <div class="col-sm-10 col-sm-offset-1 dashboard" style="margin-top: 25px;">
+                    <form name="categoryForm">
+                        <div class="form-group">
                             <div class="col-md-12">
-                                <h4 for="choice" class="text-center">Add Main Category, Category and Sub-Categories</h4>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Category">Main Category Name</label>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="hidden" ng-model="formData._id">
-                                <input type="text" ng-model="formData.mainCategoryName" name="MainCategory" class="form-control" placeholder="Enter a Main Category" ng-required="true">
-                                <div ng-show="categoryForm.MainCategory.$touched && categoryForm.MainCategory.$invalid">
-                                    <small style="color: red; display: block; text-align: center">Please Enter Main Category</small>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="col-md-12" ng-repeat="cat in tempCategories">
-                            <div class="col-md-12 well_new">
                                 <div class="col-md-12">
-                                    <h4 for="choice" class="text-center">Category</h4>
-                                </div>
+                                    <h4 for="choice" class="text-center">Add Main Category, Category and Sub-Categories</h4>
 
-                                <div class="col-md-3">
-                                    <label for="Category">Category Name</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <input type="text" ng-model="cat.id" name="category" class="form-control" placeholder="Enter Category Name" ng-required="true">
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="Category">Category Meta Description</label>
+                                    <label for="Category">Main Category Name</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea ng-model="cat.categoryDescription" name="" class="form-control" maxlength="5000" placeholder="Enter Category Meta Description"></textarea>
-                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{cat.categoryDescription.length}}</span></p>
+                                    <input type="hidden" ng-model="formData._id">
+                                    <input type="text" ng-model="formData.mainCategoryName" name="MainCategory" class="form-control" placeholder="Enter a Main Category" ng-required="true">
+                                    <div ng-show="categoryForm.MainCategory.$touched && categoryForm.MainCategory.$invalid">
+                                        <small style="color: red; display: block; text-align: center">Please Enter Main Category</small>
+                                    </div>
                                 </div>
+                            </div>
+                            <br>
 
-                                <div class="col-md-3">
-                                    <label for="Category">Category Meta Keywords</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <textarea type="text" ng-model="cat.categoryKeywords" name="" class="form-control" maxlength="5000" placeholder="Enter Category Keywords"></textarea>
-                                    <p> Length of Meta Keywords = <span style="color: #14a516; font-weight: bold;">{{cat.categoryKeywords.length}}</span></p>
-                                </div>
+                            <div class="col-md-12" ng-repeat="cat in tempCategories">
+                                <div class="col-md-12 well_new">
+                                    <div class="col-md-12">
+                                        <h4 for="choice" class="text-center">Category</h4>
+                                    </div>
 
-                                <div class="col-md-3">
-                                    <label for="Category">Category Long Description </label>
-                                </div>
-                                <div class="col-md-9">
-                                    <textarea type="text" ng-model="cat.categoryDescriptionLong" name="" class="form-control" placeholder="Enter Category Description Long"></textarea>
-                                </div>
-
-                                <!--<input type="text" ng-model="cat.subCategoryDescription" name="" class="form-control text-center" placeholder="Enter a subCategoryDescription">-->
-
-                                <div ng-show="categoryForm.category.$touched && categoryForm.category.$invalid">
-                                    <small style="color: red; display: block; text-align: center">Please Enter Category</small>
-                                </div>
-                                <hr />
-
-                                <div class="col-md-12">
-                                    <h4 for="choice" class="text-center">Sub-categories</h4>
-                                </div>
-
-                                <div class="form-group" ng-repeat="choice in cat.subs">
-                                    <!--<input type="text" ng-model="choice.name" name="" class="form-control text-center" placeholder="Enter a sub category">-->
                                     <div class="col-md-3">
-                                        <label for="choice"><b>Sub-Category Name</b></label>
+                                        <label for="Category">Category Name</label>
                                     </div>
                                     <div class="col-md-9">
-                                        <input ng-model="choice.subCategoryName" name="" class="form-control " placeholder="Enter Sub-Category Name">
+                                        <input type="text" ng-model="cat.id" name="category" class="form-control" placeholder="Enter Category Name" ng-required="true">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="choice"><b>Meta Keywords </b></label>
+                                        <label for="Category">Category Meta Description</label>
                                     </div>
                                     <div class="col-md-9">
-                                        <textarea ng-model="choice.subCategoryKeywords" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Keywords"></textarea>
-                                        <p> Length of Meta Keywords = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryKeywords.length}}</span></p>
+                                        <textarea ng-model="cat.categoryDescription" name="" class="form-control" maxlength="5000" placeholder="Enter Category Meta Description"></textarea>
+                                        <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{cat.categoryDescription.length}}</span></p>
                                     </div>
+
                                     <div class="col-md-3">
-                                        <label for="choice"><b>Meta Description </b></label>
+                                        <label for="Category">Category Meta Keywords</label>
                                     </div>
                                     <div class="col-md-9">
-                                        <textarea ng-model="choice.subCategoryDescriptionShort" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
-                                        <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryDescriptionShort.length}}</span></p>
+                                        <textarea type="text" ng-model="cat.categoryKeywords" name="" class="form-control" maxlength="5000" placeholder="Enter Category Keywords"></textarea>
+                                        <p> Length of Meta Keywords = <span style="color: #14a516; font-weight: bold;">{{cat.categoryKeywords.length}}</span></p>
                                     </div>
-                                    
+
                                     <div class="col-md-3">
-                                        <label for="choice"><b>Long Description </b></label>
+                                        <label for="Category">Category Long Description </label>
                                     </div>
                                     <div class="col-md-9">
-                                        <textarea ng-model="choice.subCategoryDescriptionLong" name="" class="form-control" placeholder="Enter Sub-Category Description Long"></textarea>
-                                        <span>
+                                        <textarea type="text" ng-model="cat.categoryDescriptionLong" name="" class="form-control" placeholder="Enter Category Description Long"></textarea>
+                                    </div>
+
+                                    <!--<input type="text" ng-model="cat.subCategoryDescription" name="" class="form-control text-center" placeholder="Enter a subCategoryDescription">-->
+
+                                    <div ng-show="categoryForm.category.$touched && categoryForm.category.$invalid">
+                                        <small style="color: red; display: block; text-align: center">Please Enter Category</small>
+                                    </div>
+                                    <hr />
+
+                                    <div class="col-md-12">
+                                        <h4 for="choice" class="text-center">Sub-categories</h4>
+                                    </div>
+
+                                    <div class="form-group" ng-repeat="choice in cat.subs">
+                                        <!--<input type="text" ng-model="choice.name" name="" class="form-control text-center" placeholder="Enter a sub category">-->
+                                        <div class="col-md-3">
+                                            <label for="choice"><b>Sub-Category Name</b></label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input ng-model="choice.subCategoryName" name="" class="form-control " placeholder="Enter Sub-Category Name">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="choice"><b>Meta Keywords </b></label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea ng-model="choice.subCategoryKeywords" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Keywords"></textarea>
+                                            <p> Length of Meta Keywords = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryKeywords.length}}</span></p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="choice"><b>Meta Description </b></label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea ng-model="choice.subCategoryDescriptionShort" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
+                                            <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryDescriptionShort.length}}</span></p>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label for="choice"><b>Long Description </b></label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea ng-model="choice.subCategoryDescriptionLong" name="" class="form-control" placeholder="Enter Sub-Category Description Long"></textarea>
+                                            <span>
                             </div>
 
                             <div class="col-md-12" style="border-top: double  #79a4ca">
@@ -124,6 +128,7 @@
                         <button class="btn1 btn1-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-category</button>
                         <hr />
                         <button class="btn1 btn-default" ng-click="addNewCategory()">Add New Category</button>
+                        
                     </div>
                 </div>
             </div>
@@ -135,8 +140,23 @@
         </form>
 
     </div>
+    <a href="#top"> <button class="btn1 btn1-info pull-right" id="bottom" style="left: 0;">Goto Top</button></a>
 </div>
      </div>
+     
+    </div>
+    
  </div>
+ <script>
+     $("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
+});
+$("a[href='#bottom']").click(function() {
+$('html,body').animate({ scrollTop: 9999 }, 'slow');
+});
+
+     </script>
+ 
 
 <!-- refer this link  http://plnkr.co/edit/JCCa1f?p=preview-->
