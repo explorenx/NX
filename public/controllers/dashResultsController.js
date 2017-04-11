@@ -6,10 +6,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
 
-    var notSupportedBrowsers = [{'os': 'Any', 'browser': 'MSIE', 'version': 9}, {'os': 'Any', 'browser': 'Firefox', 'version': 1}];
+    var notSupportedBrowsers = [{ 'os': 'Any', 'browser': 'MSIE', 'version': 9 }, { 'os': 'Any', 'browser': 'Firefox', 'version': 1 }];
 
-    console.log = function() {};
-    var limitStep = 1;
+    //console.log = function() {};
+    var limitStep = 2;
     $scope.limit = limitStep;
 
 
@@ -138,10 +138,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
 
             $window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
-            $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
+            // $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
             $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
 
-            $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
+            /// $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
 
 
@@ -155,7 +155,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get(url)
             .success(function(data) {
 
-                // $scope.results = data;
+                $scope.resultsofclient = data;
                 $scope.results = shuffle(data, 'isPaidClient');
                 if ($scope.results > 0) {
                     var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
@@ -166,7 +166,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     }
                 }
-                $scope.aaa = $scope.results.length;
+                $scope.aaa = $scope.resultsofclient.length;
 
                 //alert($scope.aaa);
                 console.log(JSON.stringify(data));
@@ -187,14 +187,18 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 $scope.FirstSponsoredClient = sponsoredClients[0];
                                 $scope.SecondSponsoredClient = sponsoredClients[1];
                             }
-                            //$scope.results = resdata;
-                            $scope.aaa = $scope.results.length;
+                            $scope.allClients = resdata;
+                            $scope.aaa = $scope.allClients.length;
+                            // alert($scope.aaa);
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
                                 $http.get('/api/dashbord/results/?&City=' + city)
                                     .success(function(resClinicsdata) {
-                                        //$scope.results = resClinicsdata;
+                                        $scope.resultsclient = resClinicsdata;
+                                        $scope.aaa = $scope.resultsclient.length;
+
+                                        //alert($scope.aaa);
                                         console.log(resClinicsdata);
                                         //if(resClinicsdata.length == 0){
                                         var tempresClinicsdata = resClinicsdata;
@@ -336,10 +340,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 longDesc = value.subCategoryDescriptionLong;
                                 $scope.SubCategoriesLinks = [];
                                 $scope.areaonlink = 'in ' + $routeParams.area.replace(/-/g, ' ');
-                                 angular.forEach(cat.subcategories, function(value, key) {
-                                $scope.SubCategoriesLinks.push(value.subCategoryName);
-                                //alert(JSON.stringify($scope.sublinks));
-                            });
+                                angular.forEach(cat.subcategories, function(value, key) {
+                                    $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                    //alert(JSON.stringify($scope.sublinks));
+                                });
 
 
                                 // $scope.catname1 = value.subCategoryName;
@@ -361,8 +365,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
                 $window.document.getElementById('longdescription').innerHTML = longDesc;
-
-
+                $window.document.querySelector('[property="og:description"]').content = metaDesc;
+                $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
 
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
@@ -384,7 +388,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         //$scope.subCategories = $scope.selitemCats.subcategories;
 
         $scope.subCategories = [];
-       
+
         angular.forEach($scope.selitemCats.subcategories, function(rec, key) {
             $scope.subCategories.push(rec.subCategoryName);
             //alert(JSON.stringify(value));
@@ -439,14 +443,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                //alert( JSON.stringify($scope.formData));
+                alert(JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-
+                alert(data.Socical.facebook);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
@@ -462,10 +466,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('city1').innerHTML = data.City;
                 $window.document.getElementById('area1').innerHTML = data.Area;
                 $window.document.getElementById('bbb').innerHTML = data.Categories;
-                $window.document.title = data.ClinicName + ' ' + data.Categories + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('title')[0].content = data.ClinicName + ' ' + data.Categories + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.Tags + ' | NXsearch';
-                $window.document.getElementsByName('keywords')[0].content = data.ClinicName + data.Categories + ' in ' + data.Area + ', ' + data.City + data.Tags + ' | ' + 'NXsearch';
+                $window.document.title = data.Social.facebook + '| NXsearch';
+                $window.document.getElementsByName('title')[0].content = data.Social.facebook + '| NXsearch';
+                $window.document.getElementsByName('description')[0].content = data.Social.twitter + ' ' + data.Tag + ' | NXsearch';
+                $window.document.getElementsByName('keywords')[0].content = data.Social.twitter + ' ' + data.Tags + ' | ' + 'NXsearch';
 
                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
@@ -1140,13 +1144,13 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
     $scope.onClickTab = function(tab) {
         $scope.currentTab = tab.url;
-          var myEl = angular.element( document.querySelector( '#div1' ) );
-            myEl.addClass('active');
+        var myEl = angular.element(document.querySelector('#div1'));
+        myEl.addClass('active');
     }
 
     $scope.isActiveTab = function(tabUrl) {
         return tabUrl == $scope.currentTab;
-      
+
     }
     $scope.deleteRec5 = function(id) {
         $http.delete('/api/profile/clinicProfile/' + id)
@@ -1251,23 +1255,23 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             });
     }
     getData1();
-//$scope.sendmsg = function(){
-  //    $http({
+    //$scope.sendmsg = function(){
+    //    $http({
     //        method: 'POST',
-      //      url: 'https://control.msg91.com/api/sendhttp.php?authkey=138679A23pr5hn5889ca25&mobiles=9527154472&message=test & new&mobile&sender=NXSEAR&route=4',
-            //data: {
-              //  countryCode: "91",
-              //  mobileNumber: item.usermobile,
-              //  oneTimePassword: item.OTP
-           // }
-        //}).         success(function(status) {
-                //your code when success
-          //      console.log(status);
-            //    if (status != indefined && status.status == 'success') {
-                    //show popup message that OTP has sent to your mobile number
-              //  }
-           // });
-//}
+    //      url: 'https://control.msg91.com/api/sendhttp.php?authkey=138679A23pr5hn5889ca25&mobiles=9527154472&message=test & new&mobile&sender=NXSEAR&route=4',
+    //data: {
+    //  countryCode: "91",
+    //  mobileNumber: item.usermobile,
+    //  oneTimePassword: item.OTP
+    // }
+    //}).         success(function(status) {
+    //your code when success
+    //      console.log(status);
+    //    if (status != indefined && status.status == 'success') {
+    //show popup message that OTP has sent to your mobile number
+    //  }
+    // });
+    //}
     $scope.loading = false;
     $scope.sendOTP = function(item) {
 
@@ -1330,7 +1334,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 });
             }
 
-          
+
 
         }).
         error(function(status) {
