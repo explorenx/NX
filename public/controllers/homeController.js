@@ -2,13 +2,13 @@ app.controller('InstantSearchController', InstantSearchController);
 // The controller
 
 
-function InstantSearchController($scope, $http, $location, $rootScope, savedMetaData, $window,$routeParams) {
+function InstantSearchController($scope, $http, $location, $rootScope, savedMetaData, $window, $routeParams) {
 
     //$scope.currentPath = $location.path();
     // The data model. These items would normally be requested via AJAX,
     // but are hardcoded here for simplicity. See the next example for
     // tips on using AJAX.
-//console.log = function() {};
+    //console.log = function() {};
 
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
@@ -19,6 +19,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
         $rootScope.currentPath = newUrl;
         //alert(newUrl);
     });
+
     function getData() {
         $http.get('/api/locations/area')
             .success(function(data) {
@@ -37,12 +38,16 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     }
     getData();
 
-    
-$scope.removeSearchString = function(d){
-    console.log(d);
-    //var d = $scope.searchString;
-    //$scope.searchString = d.slice(d.length);
-}
+    $scope.clearInput = function() {
+        $scope.searchString = "";
+    };
+
+
+    $scope.removeSearchString = function(d) {
+        console.log(d);
+        //var d = $scope.searchString;
+        //$scope.searchString = d.slice(d.length);
+    }
 
     $rootScope.$watch('client.selectedCityModel', function(newVal, oldVal) {
         if (oldVal == newVal) return;
@@ -77,7 +82,7 @@ $scope.removeSearchString = function(d){
                 console.log('Error: ' + data);
             });
     }
-   // $rootScope.Area = $rootScope.Area;
+    // $rootScope.Area = $rootScope.Area;
     $scope.$watch('MainAreas.selectedAreaModel', function(newVal, oldVal) {
         //alert(JSON.stringify($rootScope.client));
 
@@ -89,12 +94,12 @@ $scope.removeSearchString = function(d){
                 .success(function(data) {
                     $scope.clients = data;
                     $rootScope.Area = newVal;
-                   // alert(JSON.stringify($rootScope.Area));
-                   // alert(JSON.stringify($routeParams.category));
-                    if ($rootScope.Area !=0 && $routeParams.category != undefined){
-                       // alert(11);
-                       $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-                         $location.path('/' + $scope.client.selectedCityModel+'/' + $routeParams.category + '/'+ $scope.MainAreas.selectedAreaModel.Area);
+                    // alert(JSON.stringify($rootScope.Area));
+                    // alert(JSON.stringify($routeParams.category));
+                    if ($rootScope.Area != 0 && $routeParams.category != undefined) {
+                        // alert(11);
+                        $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
+                        $location.path('/' + $scope.client.selectedCityModel + '/' + $routeParams.category + '/' + $scope.MainAreas.selectedAreaModel.Area);
                     }
 
                     console.log(data);
@@ -140,16 +145,16 @@ $scope.removeSearchString = function(d){
                         metaKeys = el.subCategoryDescription;
                         var sss = el.category.map(function(s) {
                             $scope.Categories.push(s.name);
-                            
+
                             angular.forEach(s.subcategories, function(value, key) {
-                                               $scope.SubCategories.push(value.subCategoryName);
-                                                
-                           });
-                           // var subCats = s.subcategories.map(function(subs) {
-                               // $scope.SubCategories.push(subs);
-                                // alert(subs);
-                             //   return subs;
-                           // });
+                                $scope.SubCategories.push(value.subCategoryName);
+
+                            });
+                            // var subCats = s.subcategories.map(function(subs) {
+                            // $scope.SubCategories.push(subs);
+                            // alert(subs);
+                            //   return subs;
+                            // });
 
                             return s.name;
                         });
@@ -158,7 +163,7 @@ $scope.removeSearchString = function(d){
                         //return el.category.name; 
                     });
 
-                   
+
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -190,17 +195,17 @@ $scope.removeSearchString = function(d){
         if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
             alert('Please enter City to begin search !');
 
-             if ($scope.MainAreas.selectedAreaModel.Area == null){
-                 $window.document.getElementById("mymodal1").className = "alert alert-danger";
-                 $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
-                 alert('Please Select Area to begin search !');
-             }else{
-        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category){
-                    category = category.replace(/ /g, '-');
-                    $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-                    $location.path('/' + $scope.client.selectedCityModel+'/' + category + '/'+ $scope.MainAreas.selectedAreaModel.Area);
-                }
-             }
+        if ($scope.MainAreas.selectedAreaModel.Area == null) {
+            $window.document.getElementById("mymodal1").className = "alert alert-danger";
+            $window.document.getElementById('mymodal1').innerHTML = 'Please Select Area to begin search !';
+            alert('Please Select Area to begin search !');
+        } else {
+            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category) {
+                category = category.replace(/ /g, '-');
+                $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
+                $location.path('/' + $scope.client.selectedCityModel + '/' + category + '/' + $scope.MainAreas.selectedAreaModel.Area);
+            }
+        }
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
@@ -213,28 +218,28 @@ $scope.removeSearchString = function(d){
         if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
             alert('Please enter City to begin search !');
 
-             if ($scope.MainAreas.selectedAreaModel.Area == null){
+        if ($scope.MainAreas.selectedAreaModel.Area == null) {
             alert('Please Select Area to begin search !');
             $window.document.getElementById("mymodal1").className = "alert alert-danger";
-             $window.document.getElementById('mymodal1').innerHTML ='Please Select Area to begin search !';
-             }else{
+            $window.document.getElementById('mymodal1').innerHTML = 'Please Select Area to begin search !';
+        } else {
 
-        if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory){
-            subCategory = subCategory.replace(/ /g, '-');
-            $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-            $location.path('/' + $rootScope.client.selectedCityModel + '/'+subCategory+'/' + $scope.MainAreas.selectedAreaModel.Area );
+            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory) {
+                subCategory = subCategory.replace(/ /g, '-');
+                $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
+                $location.path('/' + $rootScope.client.selectedCityModel + '/' + subCategory + '/' + $scope.MainAreas.selectedAreaModel.Area);
+            }
         }
-             }
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
         //     $location.path('/showResults/'+ $scope.client.selectedCityModel);
     }
 
-$scope.selectedCategory = $routeParams.category;
-$scope.selectedArea = $routeParams.area;
-//alert($scope.selectedCategory);
-//document.getElementById('exampleInputPassword2').value = selectedCategory;
+    $scope.selectedCategory = $routeParams.category;
+    $scope.selectedArea = $routeParams.area;
+    //alert($scope.selectedCategory);
+    //document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
         //        alert(1313);
