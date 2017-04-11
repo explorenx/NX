@@ -411,13 +411,38 @@
                             <div class="col-md-12">
                                 <label class="col-lg-4">Social Links:</label>
                                 <div class="col-lg-8">
-                                    <input type="text" ng-model="formData.Socical.facebook" name="" class="form-control text-center" placeholder="Enter Facebook link">
-                                    <input type="text" ng-model="formData.Socical.twitter" name="" class="form-control text-center" placeholder="Enter Twitter link">
-                                    <input type="text" ng-model="formData.Socical.google" name="" class="form-control text-center" placeholder="Enter Google link">
                                     <input type="text" ng-model="formData.Socical.Youtube" name="" class="form-control text-center" placeholder="Enter Youtube link">
                                     <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="Enter Instagram link">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Enter Meta Title :</label>
+                        </div>
+                        <div class="col-lg-8">
+                         <textarea ng-model="formData.Socical.facebook" class="form-control text-center" placeholder="Enter Meta Title"></textarea>
+                         <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.facebook.length}}</span></p>
+                        </div>
+                    </div>
+
+                      <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Enter Meta Description :</label>
+                        </div>
+                        <div class="col-lg-8">
+                         <textarea ng-model="formData.Socical.twitter" class="form-control text-center" placeholder="Enter Meta Description :"></textarea>
+                         <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.twitter.length}}</span></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Enter Meta Keywords :</label>
+                        </div>
+                        <div class="col-lg-8">
+                         <textarea ng-model="formData.Socical.google" class="form-control text-center" placeholder="Enter Meta Keywords :"></textarea>
+                         <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.google.length}}</span></p>
                         </div>
                     </div>
                 </div>
