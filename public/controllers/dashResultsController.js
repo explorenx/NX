@@ -443,14 +443,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                alert(JSON.stringify($scope.formData));
+               // alert(JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                alert(data.Socical.facebook);
+               // alert(data.Socical.facebook);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
