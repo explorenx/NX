@@ -1,34 +1,73 @@
-<div  class="row" ng-controller="citiesController" ng-init="initUpdateCity()">
+<div class="container-fluid" style="background-color: #f1efef;">
+    <div class="col-md-3">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+                <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> AddCategories</a></li>
+                <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
+                <li><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
+                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+                <li ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
+                <span class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-9">
+        <div><br/></div>
+        <div class="" ng-controller="citiesController" ng-init="initUpdateCity()">
 
-            <div class="col-sm-8 col-sm-offset-2 text-center" >
-				<form name="citiesform">
-					<div class="form-group">
-						<label for="Category" >City</label>
-						<input type="hidden" ng-model="formData._id" >
-						<input type="text" ng-model="formData.city" name="city1" class="form-control text-center" placeholder="Enter City" ng-required="true">
-						<div ng-show="citiesform.city1.$touched && citiesform.city1.$invalid">
-							<small style="color: red; display: block; text-align: center">Please Enter City</small>
-						</div>
-						<div ng-repeat="cat in tempCategories">
-							<label for="Category" >Area</label>
-							<input type="text" ng-model="cat.id" name="area" class="form-control text-center" placeholder="Enter a area" ng-required="true">
-							<div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
-								<small style="color: red; display: block; text-align: center">Please Enter Area</small>
-							</div>
-							<hr />
-							<label for="choice" >Sub-Area</label>
-							<div class="form-group" ng-repeat="choice in cat.subs">
-								<input type="text" ng-model="choice.name" name="subarea"  class="form-control text-center" placeholder="Enter a sub area">
-							</div>
-							<button class="btn btn-outline-info"  ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
-							<hr />
-							<button class="btn btn-default"  ng-click="addNewCategory()" >Add Area</button>
-								<button class="btn btn-info"  ng-click="clearForm()" >Clear Form</button>
-						</div>
-					</div>
+            <div class="col-sm-8 col-sm-offset-2">
+                <form name="citiesform">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <label for="Category">City:</label>
+                                <input type="hidden" ng-model="formData._id">
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" ng-model="formData.city" name="city1" class="form-control" placeholder="Enter City" ng-required="true">
+                                <div ng-show="citiesform.city1.$touched && citiesform.city1.$invalid">
+                                    <small style="color: red; display: block; text-align: center">Please Enter City</small>
+                                </div>
+                            </div>
+                        </div>
 
-					<br />
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
-				</form>
-			</div>
+                        <div ng-repeat="cat in tempCategories">
+
+                            <label for="Category">Area</label>
+                            <input type="text" ng-model="cat.id" name="area" class="form-control " placeholder="Enter a area" ng-required="true">
+                            <div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
+                                <small style="color: red; display: block; text-align: center">Please Enter Area</small>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="text-center" for="choice">Sub-Area</label>
+                            </div>
+
+                            <div class="col-md-4 form-group" ng-repeat="choice in cat.subs">
+                                <input type="text" ng-model="choice.name" name="subarea" class="form-control" placeholder="Enter a sub area">
+                            </div>
+                            <div class="clear-fix"></div>
+
+                            <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
+                            <hr/>
+                            <button class="btn btn-default" ng-click="addNewCategory()">Add Area</button>
+                            <button class="btn btn-info" ng-click="clearForm()">Clear Form</button>
+                            <div class="col-md-12" style="border-top: double  #79a4ca">
+                                <br/>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
