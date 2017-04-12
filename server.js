@@ -253,5 +253,5 @@ app.get('*', function(req, res) {
 });
 
 // listen (start app with node server.js) ======================================
-app.listen('172.31.28.234', port);
+app.listen(port);
 console.log("App listening on port " + port);
