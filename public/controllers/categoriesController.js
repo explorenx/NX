@@ -31,12 +31,16 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
     $scope.tempCategories = [{
         id: 'cat1',
         categoryDescription: '',
+        categoryTitle: '',
+        categoryExtra: '',
         categoryDescriptionLong : '',
         categoryKeywords : '',
         subs: [
                 {
                     id: 'choice1',
                     subCategoryName : '',
+                    subCategoryTitle: '',
+                    subCategoryExtra: '',
                     subCategoryDescriptionShort: '',
                     subCategoryDescriptionLong: '',
                     subCategoryKeywords: '',
@@ -44,6 +48,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                 {
                     id: 'choice2',
                     subCategoryName : '',
+                    subCategoryTitle: '',
+                    subCategoryExtra: '',
                     subCategoryDescriptionShort: '',
                     subCategoryDescriptionLong: '',
                     subCategoryKeywords: '',
@@ -51,6 +57,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                 {
                     id: 'choice3',
                     subCategoryName : '',
+                    subCategoryTitle: '',
+                    subCategoryExtra: '',
                     subCategoryDescriptionShort: '',
                     subCategoryDescriptionLong: '',
                     subCategoryKeywords: '',
@@ -68,6 +76,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                     {
                         id: 'choice' + newItemNo ,
                         subCategoryName : '',
+                        subCategoryTitle: '',
+                        subCategoryExtra: '',
                         subCategoryDescriptionShort: '',
                         subCategoryDescriptionLong: '',
                         subCategoryKeywords: '',
@@ -82,12 +92,16 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                 {
                     id: 'cat' + newCategoryNo,
                     categoryDescription: '',
+                    categoryTitle: '',
+                    categoryExtra: '',
                     categoryDescriptionLong : '',
                     categoryKeywords : '',
                     subs: [
                             {
                                 id: 'choice1',
                                 subCategoryName : '',
+                                subCategoryTitle: '',
+                                subCategoryExtra: '',
                                 subCategoryDescriptionShort: '',
                                 subCategoryDescriptionLong: '',
                                 subCategoryKeywords: '',
@@ -95,6 +109,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                             {
                                 id: 'choice2',
                                 subCategoryName : '',
+                                subCategoryTitle: '',
+                                subCategoryExtra: '',
                                 subCategoryDescriptionShort: '',
                                 subCategoryDescriptionLong: '',
                                 subCategoryKeywords: '',
@@ -102,6 +118,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                             {
                                 id: 'choice3',
                                 subCategoryName : '',
+                                subCategoryTitle: '',
+                                subCategoryExtra: '',
                                 subCategoryDescriptionShort: '',
                                 subCategoryDescriptionLong: '',
                                 subCategoryKeywords: '',
@@ -143,7 +161,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                         { 
                             name: value.id, 
                             categoryDescription: value.categoryDescription, 
-
+                            categoryTitle: value.categoryTitle,
+                            categoryExtra: value.categoryExtra,
                             categoryDescriptionLong: value.categoryDescriptionLong, 
                             categoryKeywords: value.categoryKeywords, 
 
@@ -233,6 +252,8 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                             $scope.tempCategories.push(
                                 { 
                                     'id': value.name, 
+                                    categoryTitle: value.categoryTitle,
+                                    categoryExtra: value.categoryExtra,
                                     categoryDescription: value.categoryDescription, 
                                     categoryDescriptionLong : value.categoryDescriptionLong,
                                     categoryKeywords : value.categoryKeywords,
