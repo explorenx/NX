@@ -109,7 +109,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $window.document.getElementById('category').innerHTML = category;
             $window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
-            $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
+          //  $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
             $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
@@ -133,7 +133,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $window.document.getElementById('area').innerHTML = '';
             $window.document.title = category + ' in ' + city + ' | NXsearch';
             $window.document.getElementById('city').innerHTML = city;
-            $window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
+            //$window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
             // $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
             // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
 
@@ -189,7 +189,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             }
                             $scope.allClients = resdata;
                             $scope.aaa = $scope.allClients.length;
-                            // alert($scope.aaa);
+                            //alert($scope.aaa);
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -311,10 +311,19 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
+                                 if(typeof(cat.categoryTitle) !== 'undefined')
+                                {
+                                    metaTitle = $routeParams.category + " in "+ $routeParams.area + ", " +  $routeParams.city + ', ' + cat.categoryTitle;
+                                }
                             } else {
                                 metaDesc = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
+
+                                if(typeof(cat.categoryTitle) !== 'undefined')
+                                {
+                                    metaTitle = $routeParams.category + $routeParams.city + ', ' + cat.categoryTitle;
+                                }
                             }
                             //$scope.catname = cat.name;
                             //$window.document.getElementById('categoryname').innerHTML = catname;
@@ -334,18 +343,29 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             //alert(value.subCategoryName);
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
-
+                                 if ($routeParams.area != undefined) {
                                 metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + value.subCategoryKeywords + '| Nx-search';
                                 longDesc = value.subCategoryDescriptionLong;
-                                $scope.SubCategoriesLinks = [];
+                                 if(typeof(value.subCategoryTitle) !== 'undefined')
+                                {
+                                    metaTitle = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + ', ' + value.subCategoryTitle;
+                                }
+                                 }else{
+                                         metaDesc = $routeParams.category + " in " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                metaKeys = $routeParams.category + " in " + $routeParams.city + " | " + value.subCategoryKeywords + '| Nx-search';
+                                longDesc = value.subCategoryDescriptionLong;
+                                 if(typeof(value.subCategoryTitle) !== 'undefined')
+                                {
+                                    metaTitle = $routeParams.category + " in " + $routeParams.city + "," + value.subCategoryTitle;
+                                }
+                                 }
+                                  $scope.SubCategoriesLinks = [];
                                 $scope.areaonlink = 'in ' + $routeParams.area.replace(/-/g, ' ');
                                 angular.forEach(cat.subcategories, function(value, key) {
                                     $scope.SubCategoriesLinks.push(value.subCategoryName);
                                     //alert(JSON.stringify($scope.sublinks));
                                 });
-
-
                                 // $scope.catname1 = value.subCategoryName;
                                 //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
                             }
@@ -354,7 +374,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     });
                 });
-                //alert(metaDesc);
+                //alert(metaTitle);
 
                 $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
@@ -367,7 +387,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('longdescription').innerHTML = longDesc;
                 $window.document.querySelector('[property="og:description"]').content = metaDesc;
                 $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
-
+                 $window.document.title =  metaTitle ;
+                 $window.document.getElementsByName('title')[0].content = metaTitle;
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
