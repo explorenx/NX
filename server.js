@@ -10,7 +10,7 @@ var slug = require('mongoose-slug-generator'); // create our app w/ express
 var mongoose = require('mongoose'); // mongoose for mongodb
 mongoose.plugin(slug);
 var passport = require('passport');
-var port = process.env.PORT || 8080; // set the port
+var port = process.env.PORT || 80; // set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
 var sgTransport = require('nodemailer-sendgrid-transport');
@@ -33,11 +33,11 @@ var cliniccontactData = require('./app/controllers/dashboard/clinicContactContro
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
-    host: '174.141.224.162',
+    host: '115.124.121.211',
     port: 25,
     secure: false, // use SSL
     auth: {
-        user: 'enquiry@nxsearch.com',
+        user: 'info@agogstudios.com',
         pass: 'pune123##'
     }
 };
@@ -143,12 +143,12 @@ app.post('/uploadClientImage', function(req, res) {
 
 app.post('/sendmail', function(req, res) {
     var options = {
-        host: '174.141.224.162',
+        host: '115.124.121.211',
         port: 587,
         secure: false,
         auth: {
             // api_key: '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'
-            user: 'enquiry@nxsearch.com',
+            user: 'info@agogstudios.com',
             pass: 'pune123##'
         }
     }
@@ -166,12 +166,12 @@ app.post('/sendmail', function(req, res) {
 
 app.post('/sendmail12', function(req, res) {
     var options = {
-        host: '174.141.224.162',
+        host: '115.124.121.211',
         port: 587,
         secure: false,
         auth: {
             // api_key: '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'
-            user: 'enquiry@nxsearch.com',
+            user: 'info@agogstudios.com',
             pass: 'pune123##'
         }
     }
