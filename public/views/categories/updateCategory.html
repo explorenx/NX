@@ -50,6 +50,17 @@
                                 <div class="col-md-9">
                                     <input type="text" ng-model="cat.id" name="area" class="form-control" placeholder="Enter a Category" ng-required="true">
                                 </div>
+
+
+                                <div class="col-md-3">
+                                    <label for="Category">Page Title</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <textarea type="text" ng-model="cat.categoryTitle" name="" class="form-control" maxlength="5000" placeholder="Enter Category Title"></textarea>
+                                    <p> Length of Meta Title = <span style="color: #14a516; font-weight: bold;">{{cat.categoryTitle.length}}</span></p>
+                                </div>
+                               
+
                                 <div class="col-md-3">
                                     <label for="Category">Category Meta Keywords</label>
                                 </div>
@@ -57,6 +68,7 @@
                                     <textarea type="text" ng-model="cat.categoryKeywords" name="" class="form-control" maxlength="5000" placeholder="Enter Category Keywords"></textarea>
                                     <p> Length of Meta Keywords = <span style="color: #14a516; font-weight: bold;">{{cat.categoryKeywords.length}}</span></p>
                                 </div>
+
                                 <div class="col-md-3">
                                     <label for="Category">Category Meta Description</label>
                                 </div>
@@ -70,6 +82,13 @@
                                 </div>
                                 <div class="col-md-9">
                                     <textarea type="text" ng-model="cat.categoryDescriptionLong" name="" class="form-control" placeholder="Enter Category Description Long"></textarea>
+                                </div>
+                                 <div class="col-md-3">
+                                    <label for="Category">Category Extra</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <textarea type="text" ng-model="cat.categoryExtra" name="" class="form-control" maxlength="5000" placeholder="Enter Category Extra"></textarea>
+                                    <p> Length of Meta Extra = <span style="color: #14a516; font-weight: bold;">{{cat.categoryExtra.length}}</span></p>
                                 </div>
 
 
@@ -95,6 +114,16 @@
                                     <div class="col-md-9">
                                         <input ng-model="choice.subCategoryName" name="" class="form-control " placeholder="Enter Sub-Category Name">
                                     </div>
+
+
+                                    <div class="col-md-3">
+                                        <label for="choice"><b>SubCategory Page  Title </b></label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea ng-model="choice.subCategoryTitle" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
+                                        <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryTitle.length}}</span></p>
+                                    </div>
+                                    
                                     <div class="col-md-3">
                                         <label for="choice"><b>Meta Description </b></label>
                                     </div>
@@ -114,8 +143,15 @@
                                     </div>
                                     <div class="col-md-9">
                                         <textarea ng-model="choice.subCategoryDescriptionLong" name="" class="form-control" placeholder="Enter Sub-Category Description Long"></textarea>
-                                        <span>
+                                        
                             </div>
+                            <div class="col-md-3">
+                                        <label for="choice"><b>Meta SubCategoryExtra </b></label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea ng-model="choice.subCategoryExtra" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
+                                        <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryExtra.length}}</span></p>
+                                    </div>
 
                             <div class="col-md-12" style="border-top: double  #79a4ca">
                                 <br/>
