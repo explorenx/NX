@@ -10,7 +10,7 @@ var slug = require('mongoose-slug-generator'); // create our app w/ express
 var mongoose = require('mongoose'); // mongoose for mongodb
 mongoose.plugin(slug);
 var passport = require('passport');
-var port = process.env.PORT || 80; // set the port
+var port = process.env.PORT || 8080; // set the port
 var path = require('path');
 var SitemapGenerator = require('sitemap-generator');
 var sgTransport = require('nodemailer-sendgrid-transport');
