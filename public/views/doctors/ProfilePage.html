@@ -55,6 +55,7 @@
 
             </div>
         </div>-->
+        <page-loader latency="2000"></page-loader>
 <!--  new code  -->
 <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
 
@@ -64,41 +65,21 @@
             <div class="col-md-12 col-xs-12" style="padding-left: 28px">
                 <form>
                     <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style="padding-top: 20px">
-
-                        <!--<label for="exampleInputEmail1"></label>-->
-                        <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
-
+                        
                         <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
 												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
 											</select>
-                        <!--{{client.selectedCityModel}}-->
-
-
+                        
                     </div>
 
                     <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style=" padding-top: 20px">
                         <div>
-                            <!--<label for="exampleInputPassword1"></label>
-                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
                             <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
 												<option value="">Select Area</option>
 											</select>
                             <!--{{MainAreas.selectedAreaModel}}-->
                         </div>
-                        <!--<div class="bar" ng-init="EnableData = false">
-												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
-												<ul ng-show="EnableData" >
-													<li ng-repeat="i in items | searchFor:searchString" >
-														<a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
-														<p>{{i.title}}</p>
-													</li>
-
-													{{EnableData}}
-												 </ul>
-											</div>-->
-
-
-
+                        
                     </div>
 
 
@@ -113,14 +94,14 @@
                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
                                     <a href="" ng-click="gotoResultsPageByCategory(i)">
                                         <div class="list_dropdown">
-                                            {{::i}}
+                                            {{i}}
                                         </div>
                                     </a>
                                 </div>
                                 <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
                                     <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                         <div class="list_dropdown">
-                                            {{::i}}
+                                            {{i}}
                                         </div>
                                     </a>
 
@@ -128,18 +109,18 @@
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug}}/{{::i._id}}">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                         <div class="list_dropdown">
-                                            <b> {{::i.ClinicName}}</b>
+                                            <b> {{i.ClinicName}}</b>
                                             <br/>
                                         </div>
                                     </a>
                                 </div>
 
                                 <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{::i.City | slugify}}/{{::i.Categories | slugifynolower}}/{{::i.Area | slugify}}/{{::i.ClinicName | slugify | slug}}/{{::i._id}}">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                         <div class="list_dropdown">
-                                            <span class="text-center;">{{::i.DoctorName}}</span>
+                                            <span class="text-center;">{{i.DoctorName}}</span>
                                             <br/>
                                         </div>
                                     </a>
@@ -189,9 +170,9 @@
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city1"></span></h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{::client.Categories | slugifynolower}}/{{::client.Area | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{::client.Categories | slugifynolower}}/{{::client.Area | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
 
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="demo1"></span>&nbsp</h5>
@@ -207,7 +188,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 well_new">
                         <div class="col-md-2 col-sm-3 col-xs-5 ">
                             <div ng-if="client.imageUrl != ''">
-                                <img itemprop="photo" src="{{::client.imageUrl }}" class="img-responsive" alt="{{::client.ClinicName }}-{{::client.Area }}-{{::client.City }}-NXsearch" width="130" height="130" class="listing_image">
+                                <img itemprop="photo" src="{{::client.imageUrl }}" title="{{::client.ClinicName }}, {{::client.Categories }}, {{::client.Area }}, {{::client.City }}" class="img-responsive" alt="{{::client.ClinicName }}-{{::client.Area }}-{{::client.City }}-NXsearch" width="130" height="130" class="listing_image">
                             </div>
 
                         </div>
@@ -250,7 +231,7 @@
                                 <span itemprop="streetAddress"> {{::client.address2}}</span>
                             </div>
                             <div class="col-md-12 col-xs-12 col-md-offset-3 text-center topmargin">
-                                <!--<button type="button" class="btn btn-info">Book Appiontment Online</button>-->
+                                
                                 <button type="button" class="btn1 btn1-info" data-toggle="modal" data-target="#myModal">Enquire Now</button>
                                 <div class="modal fade" id="myModal" role="dialog">
                                     <div class="modal-dialog">
@@ -259,7 +240,7 @@
                                         <div class="modal-content" style="max-width: 340px; margin:auto;">
 
                                             <div class="modal-body well_new">
-                                                <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
+                                                
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <form name="enquiryForm" class="form-horizontal" role="form">
                                                     <!-- Form Name -->
@@ -294,32 +275,12 @@
                                                         </div>
                                                     </div>
 
-                                                    <!--   <div class="col-xs-12">
-                                                        <div class="col-xs-4">
-                                                            <b>Pick Date :</b>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="date" id="date" name="date" ng-model="client.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-xs-12">
-                                                        <div class="col-xs-4">
-                                                            <b>Pick Time :</b>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="time" id="datetimepicker3" name="time" ng-model="client.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
-                                                        </div>
-                                                    </div>-->
-                                                    <div class="col-xs-12">
+                                                   <div class="col-xs-12">
                                                         <input type="email" name="useremail" ng-model="client.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP1(client)" ng-required="true">
                                                     </div>
 
 
-                                                    <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
-                                                    <div class="col-xs-12">
+                                                   <div class="col-xs-12">
                                                         <div class="col-xs-4">
                                                             <b>Enter OTP :</b>
                                                         </div>
@@ -348,17 +309,6 @@
 
                         <nav class="navbar  navbar-default">
 
-                            <!-- <div class="container">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-
-                                </button>
-
-                            </div>-->
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -367,14 +317,7 @@
 
                                 </button>
                             <div id="navbar-collapse" class="collapse navbar-collapse">
-                                <!--<ul class="nav navbar-nav">-->
-                                <!--<li class="active"><a data-toggle="tab" href="#"> Home</a></li>-->
-                                <!--<li><a data-toggle="tab" href="#">Services</a></li>-->
-                                <!--<li><a data-toggle="tab" href="#">Feedback</a></li>-->
-                                <!--<li><a data-toggle="tab" href="#">Gallery</a></li>-->
-                                <!--<li><a data-toggle="tab" href="#">Contact Us</a></li>-->
-                                <!--</ul>-->
-
+                          
                                 <ul class="nav1 navbar-nav" ng-repeat="tab in tabs">
                                     <li ng-class="activeClass" ng-click="onClickTab(tab)">{{tab.title}}</li>
                                 </ul>
@@ -595,9 +538,9 @@
                 <div class="col-md-12">
                     <h3 class="text-center">Other Services</h3>
                     <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
-                        <a itemprop="url" onclick="$(window).scrollTop(10);" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}">
                             <ul>
-                                <li> {{::s}}{{::areaofcats}}</li>
+                                <li> {{::s}} {{::areaofcats}}</li>
                             </ul>
                         </a>
                     </div>
@@ -616,9 +559,6 @@
                             <li class="Searches">
                                 <h5> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
                             </li>
-                            <!-- <li>
-                        <a href="#"> Optalmology Clinics in Pune</a>
-                    </li>-->
                             <li class="Searches">
                                 <h5> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                             </li>
@@ -668,9 +608,7 @@
 
 
                     </div>
-                    <!-- <div class="fb-share-button" data-href="https://nxsearch.com/{{fpath}}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>-->
-
-
+                   
                 </div>
             </div>
         </div>
