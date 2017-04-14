@@ -189,7 +189,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             }
                             $scope.allClients = resdata;
                             $scope.aaa = $scope.allClients.length;
-                            alert($scope.aaa);
+                            //alert($scope.aaa);
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
