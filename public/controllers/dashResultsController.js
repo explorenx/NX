@@ -189,7 +189,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             }
                             $scope.allClients = resdata;
                             $scope.aaa = $scope.allClients.length;
-                            //alert($scope.aaa);
+                            alert($scope.aaa);
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -304,9 +304,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 angular.forEach(data, function(value, key1) {
 
                     angular.forEach(value.category, function(cat, key2) {
-                        //  alert(JSON.stringify(cat.name));
+                        // alert(JSON.stringify(cat.name));
                         if (cat.name == $routeParams.category) {
-
+                            //alert(JSON.stringify(cat.name));
                             if ($routeParams.area != undefined) {
                                 metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + cat.categoryKeywords + '| Nx-search';
@@ -374,7 +374,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     });
                 });
-                //alert(metaTitle);
+               // alert(metaTitle);
 
                 $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
@@ -487,7 +487,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('city1').innerHTML = data.City;
                 $window.document.getElementById('area1').innerHTML = data.Area;
                 $window.document.getElementById('bbb').innerHTML = data.Categories;
-                $window.document.title = data.Social.facebook + '| NXsearch';
+                $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 $window.document.getElementsByName('title')[0].content = data.Social.facebook + '| NXsearch';
                 $window.document.getElementsByName('description')[0].content = data.Social.twitter + ' ' + data.Tag + ' | NXsearch';
                 $window.document.getElementsByName('keywords')[0].content = data.Social.twitter + ' ' + data.Tags + ' | ' + 'NXsearch';
