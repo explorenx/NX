@@ -1,4 +1,4 @@
-var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','ng.deviceDetector']);
+var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','ng.deviceDetector','angular-page-loader']);
 
 
 app.filter('searchFor', function(){
