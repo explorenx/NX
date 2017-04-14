@@ -55,26 +55,20 @@
                 <form formAutofillFix>
                     <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
 
-                        <!--<label for="exampleInputEmail1"></label>-->
-                        <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
-
+                       
                         <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
 												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> </option>
 											</select>
-                        <!--{{client.selectedCityModel}}-->
-
-
+                      
                     </div>
 
                     <div class="col-md-3 col-xs-11 pull-left" style=" padding-top: 20px">
                         <div>
-                            <!--<label for="exampleInputPassword1"></label>
-                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
+                           
                             <select id="area" onchange="document.getElementsByName('categoryselect')[0].focus()" class="form-control" select2="" name="area" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' "
                                 ng-disabled="disabled" required>
 												<option ng-selected="selectedArea" value="">Select Area</option>
 											</select>
-                            <!--{{MainAreas.selectedAreaModel}}-->
                         </div>
                     </div>
 
@@ -107,7 +101,7 @@
                                 <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                         <div class="list_dropdown">
-                                            <!-- <img ng-src="{{i.imageUrl}}" class="img-circle" style="max-width:15%; height: auto;" />--><b> {{i.ClinicName}}</b>
+                                           <b> {{i.ClinicName}}</b>
                                             <br/>
                                         </div>
                                     </a>
@@ -596,12 +590,12 @@
 
                 <div class="col-sm-2 col-md-2 col-xs-6">
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/accuntant.jpg" width="50px" height="50px" alt="Finance and Taxation Service nx-search"></a>
+                        <a href="/Pune/Finance-and-Taxation-Service"><img src="assets/img/accuntant.jpg" width="50px" height="50px" alt="Finance and Taxation Service nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
-                        <a href="#">
-                            <h4>Finance and Taxation Service</h4>
+                        <a href="/Pune/Finance-and-Taxation-Service">
+                            <h4>Finance & Taxation Service</h4>
                         </a>
                     </div>
                 </div>
