@@ -144,12 +144,12 @@
                         <div class="col-lg-10 well">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12 subs" style="border: solid 1px;">
-                                     
+                                     <input type="button" value="checkall" ng-click="checkAll()">
                                     <label class="col-md-4" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
                                        
                                         <div class="col-md-12 col-xs-12 pull-left">
                                             <input type="checkbox" class="pull-left" checklist-model="SubCatetories.subs" checklist-value="sub">
-                                            <span class="pull-left">{{sub}}</span>
+                                            <span>{{sub}}</span>
                                         </div>
 
                                     </label>
