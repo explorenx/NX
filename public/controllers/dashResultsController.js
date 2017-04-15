@@ -415,6 +415,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         //$scope.selectedvalues= 'Name: ' + $scope.selitem.mainCategoryName + ' Id: ' + $scope.selitem._id;
     }
 
+    
+
     $scope.getCatsselectval = function() {
         //$scope.subCategories = $scope.selitemCats.subcategories;
 
@@ -424,11 +426,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $scope.subCategories.push(rec.subCategoryName);
             //alert(JSON.stringify(value));
         });
+        //$scope.checkAll = true;
 
         $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
         console.log($scope.selitemCats.name);
     }
-
+         $scope.checkAll = function() {
+    $scope.SubCatetories.subs = angular.copy($scope.subCategories);
+  };
     //$scope.getCatsselectval = function() {
     // $scope.subCategories = $scope.selitemCats.subcategories;
 
