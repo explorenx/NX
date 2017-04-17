@@ -38,7 +38,7 @@ var smtpConfig = {
     secure: false, // use SSL
     auth: {
         user: 'info@agogstudios.com',
-        pass: 'pune123##'
+        pass: 'Pune123##'
     }
 };
 var transporter = nodemailer.createTransport(smtpConfig);
@@ -149,7 +149,7 @@ app.post('/sendmail', function(req, res) {
         auth: {
             // api_key: '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'
             user: 'info@agogstudios.com',
-            pass: 'pune123##'
+            pass: 'Pune123##'
         }
     }
     var mailer = nodemailer.createTransport(options);
@@ -172,7 +172,7 @@ app.post('/sendmail12', function(req, res) {
         auth: {
             // api_key: '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'
             user: 'info@agogstudios.com',
-            pass: 'pune123##'
+            pass: 'Pune123##'
         }
     }
     var mailer = nodemailer.createTransport(options);
