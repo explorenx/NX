@@ -308,25 +308,25 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                         if (cat.name == $routeParams.category) {
                             //alert(JSON.stringify(cat.name));
                             if ($routeParams.area != '') {
-                                metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
-                                metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + cat.categoryKeywords + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
                                  if(typeof(cat.categoryTitle) !== 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + " in "+ $routeParams.area + ", " +  $routeParams.city + ', ' + cat.categoryTitle;
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.area.replace(/-/g, ' ') + ", " +  $routeParams.city + ', ' + cat.categoryTitle + '| Nx-search';
                                 }
                                  if(typeof(cat.categoryTitle) == 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + " in "+ $routeParams.area + ", " +  $routeParams.city + ', NXsearch';
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.area.replace(/-/g, ' ') + ", " +  $routeParams.city + ', NXsearch';
                                 }
                             } else {
-                                metaDesc = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
-                                metaKeys = $routeParams.category + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
 
                                 if(typeof(cat.categoryTitle) !== 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + $routeParams.city + ', ' + cat.categoryTitle;
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + $routeParams.city + ', ' + cat.categoryTitle;
                                 }
                             }
                             //$scope.catname = cat.name;
@@ -348,26 +348,26 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
                                  if ($routeParams.area != undefined) {
-                                metaDesc = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
-                                metaKeys = $routeParams.category + " in " + $routeParams.area + " | " + value.subCategoryKeywords + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
                                 longDesc = value.subCategoryDescriptionLong;
                                  if(typeof(value.subCategoryTitle) !== 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + ', ' + value.subCategoryTitle;
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + '| Nx-search';
                                 }
 
                                  if(typeof(value.subCategoryTitle) == 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + " in " + $routeParams.area + ", " + $routeParams.city + ', NXsearch ' ;
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch ' ;
                                 }
 
                                  }else{
-                                         metaDesc = $routeParams.category + " in " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
-                                metaKeys = $routeParams.category + " in " + $routeParams.city + " | " + value.subCategoryKeywords + '| Nx-search';
+                                         metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + value.subCategoryKeywords + '| Nx-search';
                                 longDesc = value.subCategoryDescriptionLong;
                                  if(typeof(value.subCategoryTitle) !== 'undefined')
                                 {
-                                    metaTitle = $routeParams.category + " in " + $routeParams.city + "," + value.subCategoryTitle;
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryTitle;
                                 }
                                  }
                                   $scope.SubCategoriesLinks = [];
