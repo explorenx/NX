@@ -99,7 +99,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }
 
         if (area != undefined) {
-            var myurl = '/' + city + '/' + category;
+            var myurl = '/' + city + '/' + category.replace(/ /g, '-');
             $window.document.getElementById('categry').href = myurl;
 
             //  var cityurl = '/showResults';
@@ -122,7 +122,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }
 
         if (area == undefined) {
-            var myurl = '/' + city + '/' + category;
+            var myurl = '/' + city + '/' + category.replace(/ /g, '-');
             $window.document.getElementById('categry').href = myurl;
 
             // var cityurl = '/showResults';
