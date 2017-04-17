@@ -122,7 +122,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }
 
         if (area == undefined) {
-            var myurl = '/' + city + '/' + category.replace(/ /g, '-');
+            var myurl = '/' + city + '/' + category;
             $window.document.getElementById('categry').href = myurl;
 
             // var cityurl = '/showResults';
