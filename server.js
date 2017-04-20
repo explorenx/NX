@@ -29,7 +29,7 @@ var clinicServiceData = require('./app/controllers/dashboard/clinicServicesContr
 var clinicGallaryData = require('./app/controllers/dashboard/clinicGallaryController');
 var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackController');
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
-//var sitemap = require('./app/controllers/home/sitemap');  
+var enquiryData = require('./app/controllers/dashboard/equiryController'); 
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
@@ -91,6 +91,7 @@ app.use('/api/service', clinicServiceData);
 app.use('/api/gallary', clinicGallaryData);
 app.use('/api/feedback', clinicfeedbackData);
 app.use('/api/contact', cliniccontactData);
+app.use('/api/enquiry', enquiryData);
 //app.use('/api/sitemap', sitemap);
 
 
