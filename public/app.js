@@ -468,11 +468,29 @@ app.config(function($routeProvider, $locationProvider) {
             .when('/updateCategory/:id', {
                 templateUrl : 'views/categories/updateCategory.html',
             })
+            .when('/enquiryDetails', {
+                templateUrl : 'views/dashboardResults/enquiryDetails.html',
+                      resolve: {
+                    auth: ["$q", "authenticationSvc", function($q, authenticationSvc) {
+                        var userInfo = authenticationSvc.getUserInfo();
 
+                        if (userInfo) {
+                            return $q.when(userInfo);
+                        } else {
+                            return $q.reject({ authenticated: false });
+                       }
+                    }]
+               }
+            })
+
+            .when('/demoadd', {
+                templateUrl : 'views/dashboardResults/clientAddDemo.html',
+            })
 
         .when('/editHomeServicesRecord/:id', {
                 templateUrl : 'views/dashboardResults/editHomeServicesRecord.html',
             })
+
          .when('/editService/:id', {
                 templateUrl : 'views/dashboardResults/editService.html',
                
