@@ -17,34 +17,55 @@
 
 
 <page-loader latency="2000"></page-loader>
+
+<!-- Header -->
+<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
+        <nav class="navbar">
+            <div class="container">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
+                    <div class="col-md-10 col-xs-6">
+                        <div class="col-md-2 col-xs-12 text-center">
+                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
+                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+<!-- Header End -->
+<!-- Page Container -->
 <div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
-<div class="col-md-9" style="padding-right:10px;">
-    <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
-        <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-            <form>
-                <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style="padding-top: 20px">
+    <div class="col-md-9" style="padding-right:10px;">
+        <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
+            <div class="col-md-12 col-xs-12" style="padding-left: 28px">
+                <form>
+                    <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style="padding-top: 20px">
 
-                    <!--<label for="exampleInputEmail1"></label>-->
-                    <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
+                        <!--<label for="exampleInputEmail1"></label>-->
+                        <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
 
-                    <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
 												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
 											</select>
-                    <!--{{client.selectedCityModel}}-->
+                        <!--{{client.selectedCityModel}}-->
 
 
-                </div>
+                    </div>
 
-                <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style=" padding-top: 20px">
-                    <div>
-                        <!--<label for="exampleInputPassword1"></label>
+                    <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style=" padding-top: 20px">
+                        <div>
+                            <!--<label for="exampleInputPassword1"></label>
                                               <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                        <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
 												<option value="">Select Area</option>
 											</select>
-                        <!--{{MainAreas.selectedAreaModel}}-->
-                    </div>
-                    <!--<div class="bar" ng-init="EnableData = false">
+                            <!--{{MainAreas.selectedAreaModel}}-->
+                        </div>
+                        <!--<div class="bar" ng-init="EnableData = false">
 												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
 												<ul ng-show="EnableData" >
 													<li ng-repeat="i in items | searchFor:searchString" >
@@ -58,65 +79,65 @@
 
 
 
-                </div>
-
-
-                <div class="col-md-5 col-xs-8 pull-left nopadforsearch">
-
-                    <div class="form-group" ng-blur="EnableData = false">
-                        <label for="exampleInputPassword1"></label>
-                        <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
-                        />
-
-                        <div ng-show="EnableTextInputResult == false || EnableData" name="categoryselect" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                            <div ng-repeat="i in Categories |  filter : searchString track by $index">
-                                <a href="" ng-click="gotoResultsPageByCategory(i)">
-                                    <div class="list_dropdown">
-                                        {{i}}
-                                    </div>
-                                </a>
-                            </div>
-                            <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
-                                <a href="" ng-click="gotoResultsPageBySubCategory(i)">
-                                    <div class="list_dropdown">
-                                        {{i}}
-                                    </div>
-                                </a>
-
-
-                            </div>
-
-                            <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                    <div class="list_dropdown">
-                                        <b> {{i.ClinicName}}</b>
-                                        <br/>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                    <div class="list_dropdown">
-                                        <span class="text-center;">{{i.DoctorName}}</span>
-                                        <br/>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
 
-                <div class="col-md-1 col-xs-2 pull-left nopadforsearch">
-                    <span class="clearInput" ng-click="clearInput()" onclick="EnableData= true">X</span>
-                    <button type="submit" class="btn btn-default topmargin btnsrch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-                </div>
-            </form>
+
+                    <div class="col-md-5 col-xs-8 pull-left nopadforsearch">
+
+                        <div class="form-group" ng-blur="EnableData = false">
+                            <label for="exampleInputPassword1"></label>
+                            <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                            />
+
+                            <div ng-show="EnableTextInputResult == false || EnableData" name="categoryselect" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
+                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
+                                        <div class="list_dropdown">
+                                            {{i}}
+                                        </div>
+                                    </a>
+                                </div>
+                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                        <div class="list_dropdown">
+                                            {{i}}
+                                        </div>
+                                    </a>
+
+
+                                </div>
+
+                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                        <div class="list_dropdown">
+                                            <b> {{i.ClinicName}}</b>
+                                            <br/>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                        <div class="list_dropdown">
+                                            <span class="text-center;">{{i.DoctorName}}</span>
+                                            <br/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 col-xs-2 pull-left nopadforsearch">
+                        <span class="clearInput" ng-click="clearInput()" onclick="EnableData= true">X</span>
+                        <button type="submit" class="btn btn-default topmargin btnsrch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
     <div ng-controller="dashResultsController">
         <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
@@ -156,9 +177,38 @@
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
 
         <div class="col-md-9 col-xs-12">
+            <div class="col-md-12 col-xs-12 ng-hide" style=" padding-right: 10px; margin-top: 10px;">
+                <div class="col-md-12  col-xs-12  list_borderd">
+                    <div class="col-md-3 col-xs-6">
+                        <img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{::FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com">
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                        <h5 class="clinic-name">{{::FirstSponsoredClient.ClinicName}}</h5>
+                        <h6 class="dr-name">{{::FirstSponsoredClient.DoctorName}}</h6>
+                        <h6 class="dr-degree">{{::FirstSponsoredClient.Profession}}</h6>
+                        <h6 class="dr-degree">{{::FirstSponsoredClient.speciality}}</h6>
+
+                        <div class="col-md-12 col-xs-12 div-service" style="padding-left:00px">
+                            <h5 class="service">Services</h5>
+                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Orthodontic Treatment<br>Dental Braces<br>Full Dentures</div>
+                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Ceramic Braces<br>Partial Dentures<br>Invisible Braces</div>
+                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Ceramic Braces<br>Partial Dentures<br>Invisible Braces</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="sideinfo"><i class="fa fa-star-o"></i>&nbsp; <b style="color:#00adff">Experience : </b>{{::FirstSponsoredClient.Experience}} Years</div>
+                        <div class="sideinfo"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> {{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</div>
+                        <div class="sideinfo"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b> {{::FirstSponsoredClient.Area}}</div>
+                        <div class="enqire"><button type="button" class="btn btn-block"><b>ENQUIRY</b></button></div>
+
+                    </div>
+                </div>
+            </div>
 
 
-            <div class="col-md-6 col-xs-12" dir-paginate="item in results | itemsPerPage:10 | filter : userSearch track by $index">
+            <div class="col-md-6 col-xs-12" ng-repeat="item in results | limitTo:limit2 | filter : userSearch track by $index" >
 
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
                     <div class="col-md-12 col-xs-12 list_borderd">
@@ -172,7 +222,16 @@
                         <!--listing description box-->
                         <div class="col-md-9 col-xs-8 list_specialty" style="padding-left: 10%;">
 
-                            <h5 class="Profile_title"><a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"><b> {{::item.ClinicName}}</b></a></h5>
+                            <h5 class="Profile_title" ng-if="item.isPaidClient===true">
+                                <a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}">
+                                    <b> {{::item.ClinicName}}</b>
+                                </a>
+                            </h5>
+                            <h5 class="Profile_title" ng-if="item.isPaidClient!==true" style="color: #337ab7">
+
+                                <b> {{::item.ClinicName}}</b>
+
+                            </h5>
 
                             <span itemprop="person"> {{::item.DoctorName}}</span><br/>
                             <h6>{{::item.Profession}} | {{::item.speciality}}</h6>
@@ -213,18 +272,25 @@
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <form name="enquiryForm" class="form-horizontal" role="form">
                                                         <!-- Form Name -->
-
+                                                        <input type="hidden" ng-model="item._id" name="id">
+                                                       
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-4">
+                                                            <div class="col-xs-12">
                                                                 <b>Your Enquiry For :</b>
                                                             </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="form-control" ng-value="item.ClinicName" readonly>
+                                                            <div class="col-xs-12">
+                                                                <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <b>Area :</b>
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" id="ClinicArea" ng-model="item.Area" name="ClinicName" class="formControlModal" ng-value="item.Area" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12">
-                                                            <input type="text" name="username" id="username" ng-model="item.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
+                                                            <input type="text" name="username" id="username" ng-model="item.username" placeholder="Name" class="formControlModal" ng-required="true">
                                                             <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                 <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                             </div>
@@ -233,15 +299,16 @@
 
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-2">
+                                                            <div class="col-xs-3">
                                                                 <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
                                                             </div>
-                                                            <div class="col-xs-10">
+                                                            <div class="col-xs-9">
                                                                 <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                 </div>
                                                             </div>
+
                                                         </div>
 
                                                         <!-- <div class="col-xs-12">
@@ -264,9 +331,12 @@
                                                             </div>
                                                         </div>-->
                                                         <div class="col-xs-12">
-                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-focus="sendOTP(item)" ng-required="true">
+                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
                                                         </div>
-
+                                                        <div class="col-xs-12">
+                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendOTP(item)" value="Send OTP" id="send_otp" />
+                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                        </div>
 
                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
                                                         <div class="col-xs-12">
@@ -274,13 +344,13 @@
                                                                 <b>Enter OTP :</b>
                                                             </div>
                                                             <div class="col-xs-8">
-                                                                <input type="text" ng-model="item.OTP" class="form-control" ng-required="true" ng-focus="sendmsg()">
+                                                                <input type="text" ng-model="item.OTP" class="form-control" ng-focus="sendmsg()">
                                                             </div>
                                                         </div>
                                                         <br />
 
                                                         <br />
-
+                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
                                                         <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
                                                     </form>
                                                 </div>
@@ -295,13 +365,15 @@
                             </div>
                         </div>
                     </div>
-
+                         
 
                 </div>
 
             </div>
-            <dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>
-
+            <div class="col-md-12">
+                     <!--<dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>-->
+                  <button class="pull-right btn btn-info" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
+            </div>
         </div>
 
         <div class="col-md-12 col-xs-12">
@@ -418,6 +490,76 @@
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
         </div>
     </div>
+</div>  
+<!-- End Of Page Container -->
+<!-- Footer -->
+<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="container">
+                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
+                        <h3>About </h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
+                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>NX-search</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
+                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
+                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
+                        <h3> Follow Us </h3>
+                        <ul>
+                            <li>
+                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
+                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                
+                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                        <h3> SubScribe </h3>
+                        <ul>
+                            <li>
+                                <div class="input-append newsletter-box text-center">
+                                    <input type="text" class="full text-center" placeholder="Email ">
+                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
+            </div>
+        </div>
+       
+
+</footer>
+<!-- Footer End -->  
     <script>
         var $div = $('.scrollable-menu');
         $(document.body).click(function() {
@@ -433,4 +575,3 @@
 
         });
     </script>
-	
