@@ -1,4 +1,44 @@
-<div  class="row" ng-controller="updateHomeServicesGalleryAllController as up" ng-init="initServiceUpdate()">
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+          <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/enquiryDetails"><i class="fa fa-book"></i> Enquiry Details</a></li>
+                <li><a href="/addCities"><i class="fa fa fa-map-marker"></i> Add Cities</a></li>
+                <li><a href="/categories"><i class="fa fa-bars"></i> Categories</a></li>
+                <li><a href="/addClient"> <i class="fa fa-user"><i class="fa fa-plus fa-xs"></i></i> Add Clients</a></li>                
+                <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+               
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
+<div ng-controller="updateHomeServicesGalleryAllController as up" ng-init="initServiceUpdate()">
 
     <div class="col-sm-8 col-sm-offset-2 text-center" >
         <label>Update Service Info</label>
@@ -31,4 +71,5 @@
                 <button type="submit" class="btn btn-primary btn-lg" ng-click="EditService()" >Update Service</button>
     </div>
             
+</div>
 </div>
