@@ -208,32 +208,12 @@
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE ng-hide="currentPath == 'http://localhost:5000/'" FUNCTION -->
 
 <body ng-cloak>
-    
-    <page-loader latency="2000">
+
+    <page-loader latency="1000">
         <div class="loader"></div>
     </page-loader>
-
-    <div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
-        <nav class="navbar">
-            <div class="container">
-                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
-                    <div class="col-md-10 col-xs-6">
-                        <div class="col-md-2 col-xs-12 text-center">
-                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
-                        </div>
-
-                    </div>
-                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
-                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-
-
-    <!--[if gte IE 8]>
+    
+     <!--[if gte IE 8]>
 <script>
   
 </script>
@@ -242,6 +222,12 @@
 </div>
 <![endif]-->
 
+    
+
+
+
+   
+
     <div ng-view>
 
     </div>
@@ -249,70 +235,7 @@
 
 
 
-    <footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
-        <div class="footer" id="footer">
-            <div class="container">
-                <div class="container">
-                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
-                        <h3>About </h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
-                            <li> <a itemprop="url" href="/career"> Career </a> </li>
-
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>NX-search</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
-                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>Contact Us</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
-                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
-                        <h3> Follow Us </h3>
-                        <ul>
-                            <li>
-                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
-                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
-                                
-                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
-                            </li>
-                        </ul>
-                    </div>
-                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                        <h3> SubScribe </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>-->
-                </div>
-            </div>
-        </div>
-
-
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
-            </div>
-        </div>
-        <!-- SPELLS  -->
+ <!-- SPELLS  -->
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -348,10 +271,8 @@
         <script src="https://rawgit.com/srfrnk/re-tree/master/re-tree.js" type="text/javascript"></script>
         <script src="https://rawgit.com/srfrnk/ng-device-detector/master/ng-device-detector.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.css">    
 <script type="text/javascript" src="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.min.js"></script>
-    </footer>
-
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQhbsIozl3rAQIDhwlsuQ_ZB5P-cZHMxs"></script>
 
