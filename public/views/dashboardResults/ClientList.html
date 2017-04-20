@@ -1,21 +1,42 @@
-<div class="container-fluid" style="background-color: #f1efef;">
-    <div class="col-md-3">
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 dash_sidebar">
         <nav class="navbar navbar-inverse">
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
                 <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
-                <li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>
-                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
-                <li><a href="/addClient"><i class="fa fa-shield"></i> AddClients</a></li>
-                <li><a href="/showResults"><i class="fa fa-shield"></i> showResults</a></li>
-                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-book"></i> Enquiry Details</a></li>
+                <li><a href="/addCities"><i class="fa fa fa-map-marker"></i> Add Cities</a></li>
+                <li><a href="/categories"><i class="fa fa-bars"></i> Categories</a></li>
+                <li><a href="/addClient"> <i class="fa fa-user"><i class="fa fa-plus fa-xs"></i></i> Add Clients</a></li>                
+                <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
                 <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
-                <li ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
-                <span class="fa fa-user pull-right"> <b></b>Hello<b> Admin</b></span>
             </ul>
         </nav>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
         <div class="col-md-12" ng-controller="dashResultsController">
             <div class="ng-hide">
                 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
@@ -34,7 +55,7 @@
                 </li>
             </div>
 
-            <div class="col-md-12 col-xs-12 bg-default">
+            <div class="col-md-12 col-xs-12 bg-default" style="top: 10px">
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group"><a type="button" class="btn btn-success" value="Edit" href="/addClient">Add New Client</a></div>
                 </div>
@@ -42,15 +63,16 @@
                     <div class="form-group"> <input ng-model="txtSearch" class="form-control text-center" placeholder="Search"></div>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-hover table-bordered">
                 <thead class="thead-default">
                     <tr>
+                        <th class="text-center"> Sr. No.</th>
                         <th class="text-center"> Edit</th>
                         <th class="text-center"> Client Name</th>
                         <th class="text-center"> Category</th>
                         <th class="text-center"> Location</th>
                         <th class="text-center">Release Date</th>
-                        <th class="text-center">Extension No.</th>
+                        <th class="text-center">Mobile No.</th>
                         <th class="text-center">Profile Data</th>
                         <th class="text-center"> Delete</th>
 
@@ -58,14 +80,14 @@
                 </thead>
                 <tbody ng-repeat="item in results | filter:txtSearch track by $index">
                     <tr>
+                        <td class="text-center">{{$index+1}}</td>
                         <td class="text-center"><a href="/addClient/{{item._id}}" type="button" class="btn btn-info" value="Edit" ng-click="editClient(item._id)">Edit</a></td>
                         <td class="text-center"><a href="/homepage/{{item._id}}">{{item.ClinicName}}</a></td>
-                        <td class="text-center"><b>{{item.MainCategory}}&nbsp;/&nbsp;{{item.Categories}}:</b>
-                            <span ng-repeat="category in item.SubCategories | limitTo: limit "> {{ category }} ,</span>
-                            <a href ng-click="incrementLimit()">more</a>
-                            <a href ng-click="decrementLimit()">less</a>
+                        <td class="text-center"><b>{{item.MainCategory}}&nbsp;:&nbsp;{{item.Categories}}</b>
+                            
+                           
                         </td>
-                        <td class="text-center"><b>{{item.City}}&nbsp;/&nbsp;{{ item.Area  }}:</b><span ng-repeat="area in item.SubArea"> {{ area  }} ,</span> </td>
+                        <td class="text-center"><b>{{item.City}}&nbsp;:&nbsp;{{ item.Area  }}:</b><span ng-repeat="area in item.SubArea"> {{ area  }} ,</span> </td>
                         <td class="text-center">{{item.registerDate}}</td>
                         <td class="text-center">
                             <b>{{item.extensionNo}}</b>
