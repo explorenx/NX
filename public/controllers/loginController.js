@@ -29,7 +29,7 @@ $scope.login = function () {
             console.log('lodin done');
             console.log(result);
             //$rootScope.UserName = $window.sessionStorage["userInfo"].UserName;
-               $location.path("/clientlist");
+               $location.path("/enquiryDetails");
         }, function (error) {
             $window.alert("Invalid credentials");
             console.log(error);
