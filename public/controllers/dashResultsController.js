@@ -7,12 +7,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     };
 
     var notSupportedBrowsers = [{ 'os': 'Any', 'browser': 'MSIE', 'version': 9 }, { 'os': 'Any', 'browser': 'Firefox', 'version': 1 }];
-
+                
     //console.log = function() {};
     var limitStep = 2;
     $scope.limit = limitStep;
-
-
+   
+               $scope.filterFn = function(item) {
+          return item.isSponsoredClient !== "true"; 
+        } 
     $scope.area11 = $routeParams.area;
 
     $scope.incrementLimit = function() {
@@ -109,7 +111,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $window.document.getElementById('category').innerHTML = category;
             $window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
-          //  $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
+            //  $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
             $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
@@ -154,20 +156,26 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         $http.get(url)
             .success(function(data) {
-
+                
                 $scope.resultsofclient = data;
                 $scope.results = shuffle(data, 'isPaidClient');
-                if ($scope.results > 0) {
+                //alert($scope.results.length);
+                if ($scope.resultsofclient.length > 0) {
                     var sponsoredClients = shuffle(data, 'isSponsoredClient'); // after getting the records here, display only two of them by position, e.g. - sponsoredClients[0] & sponsoredClients[1] as a sponsered client
-
+                   // alert(sponsoredClients.length);
                     if (sponsoredClients.length > 0) {
                         $scope.FirstSponsoredClient = sponsoredClients[0];
                         $scope.SecondSponsoredClient = sponsoredClients[1];
-
+                        
                     }
                 }
                 $scope.aaa = $scope.resultsofclient.length;
+                 $scope.limit2= 10;
 
+                // loadMore function
+                $scope.loadMore = function() {
+                $scope.limit2 = $scope.resultsofclient.length;
+                }
                 //alert($scope.aaa);
                 console.log(JSON.stringify(data));
                 //alert(JSON.stringify(url));
@@ -190,6 +198,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             $scope.allClients = resdata;
                             $scope.aaa = $scope.allClients.length;
                             //alert($scope.aaa);
+                             $scope.limit2= 10;
+
+                                // loadMore function
+                                $scope.loadMore = function() {
+                                $scope.limit2 = $scope.allClients.length;
+                                }
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -199,6 +213,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                         $scope.aaa = $scope.resultsclient.length;
 
                                         //alert($scope.aaa);
+                                         $scope.limit2= 10;
+
+                                            // loadMore function
+                                            $scope.loadMore = function() {
+                                            $scope.limit2 = $scope.allClients.length;
+                                            }
                                         console.log(resClinicsdata);
                                         //if(resClinicsdata.length == 0){
                                         var tempresClinicsdata = resClinicsdata;
@@ -311,21 +331,18 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
-                                 if(typeof(cat.categoryTitle) !== 'undefined')
-                                {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.area.replace(/-/g, ' ') + ", " +  $routeParams.city + ', ' + cat.categoryTitle + '| Nx-search';
+                                if (typeof(cat.categoryTitle) !== 'undefined') {
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + cat.categoryTitle + '| Nx-search';
                                 }
-                                 if(typeof(cat.categoryTitle) == 'undefined')
-                                {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.area.replace(/-/g, ' ') + ", " +  $routeParams.city + ', NXsearch';
+                                if (typeof(cat.categoryTitle) == 'undefined') {
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch';
                                 }
                             } else {
                                 metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
 
-                                if(typeof(cat.categoryTitle) !== 'undefined')
-                                {
+                                if (typeof(cat.categoryTitle) !== 'undefined') {
                                     metaTitle = $routeParams.category.replace(/-/g, ' ') + $routeParams.city + ', ' + cat.categoryTitle;
                                 }
                             }
@@ -347,30 +364,27 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             //alert(value.subCategoryName);
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
-                                 if ($routeParams.area != undefined) {
-                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
-                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
-                                longDesc = value.subCategoryDescriptionLong;
-                                 if(typeof(value.subCategoryTitle) !== 'undefined')
-                                {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + '| Nx-search';
-                                }
+                                if ($routeParams.area != undefined) {
+                                    metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                    metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
+                                    longDesc = value.subCategoryDescriptionLong;
+                                    if (typeof(value.subCategoryTitle) !== 'undefined') {
+                                        metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + '| Nx-search';
+                                    }
 
-                                 if(typeof(value.subCategoryTitle) == 'undefined')
-                                {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch ' ;
-                                }
+                                    if (typeof(value.subCategoryTitle) == 'undefined') {
+                                        metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch ';
+                                    }
 
-                                 }else{
-                                         metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
-                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + value.subCategoryKeywords + '| Nx-search';
-                                longDesc = value.subCategoryDescriptionLong;
-                                 if(typeof(value.subCategoryTitle) !== 'undefined')
-                                {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryTitle;
+                                } else {
+                                    metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryDescriptionShort + '| Nx-search';
+                                    metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + value.subCategoryKeywords + '| Nx-search';
+                                    longDesc = value.subCategoryDescriptionLong;
+                                    if (typeof(value.subCategoryTitle) !== 'undefined') {
+                                        metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + "," + value.subCategoryTitle;
+                                    }
                                 }
-                                 }
-                                  $scope.SubCategoriesLinks = [];
+                                $scope.SubCategoriesLinks = [];
                                 $scope.areaonlink = 'in ' + $routeParams.area.replace(/-/g, ' ');
                                 angular.forEach(cat.subcategories, function(value, key) {
                                     $scope.SubCategoriesLinks.push(value.subCategoryName);
@@ -384,7 +398,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     });
                 });
-              //  alert($routeParams.area);
+                //  alert($routeParams.area);
 
                 $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
@@ -397,8 +411,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('longdescription').innerHTML = longDesc;
                 $window.document.querySelector('[property="og:description"]').content = metaDesc;
                 $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
-                 $window.document.title =  metaTitle ;
-                 $window.document.getElementsByName('title')[0].content = metaTitle;
+                $window.document.title = metaTitle;
+                $window.document.getElementsByName('title')[0].content = metaTitle;
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
@@ -414,8 +428,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         //$scope.selectedvalues= 'Name: ' + $scope.selitem.mainCategoryName + ' Id: ' + $scope.selitem._id;
     }
-
-    
+    $scope.formData.isPaidClient = false;
+    $scope.formData.isSponsoredClient = false;
 
     $scope.getCatsselectval = function() {
         //$scope.subCategories = $scope.selitemCats.subcategories;
@@ -431,9 +445,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $scope.selectedvalues = 'subs: ' + $scope.selitemCats.subcategories;
         console.log($scope.selitemCats.name);
     }
-         $scope.checkAll = function() {
-    $scope.SubCatetories.subs = angular.copy($scope.subCategories);
-  };
+    $scope.checkAll = function() {
+        $scope.SubCatetories.subs = angular.copy($scope.subCategories);
+    };
     //$scope.getCatsselectval = function() {
     // $scope.subCategories = $scope.selitemCats.subcategories;
 
@@ -479,14 +493,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-               // alert(JSON.stringify($scope.formData));
+                // alert(JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-               // alert(data.Socical.facebook);
+                // alert(data.Socical.facebook);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
@@ -584,7 +598,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         //     });
         // }
         // else{
-
+            
         $scope.formData.City = $scope.selitemLocations.city;
         $scope.formData.Area = $scope.selitemSubLocations.Area;
         $scope.formData.SubArea = $scope.SubLocationCatetories.subs;
@@ -643,7 +657,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
                     console.log(data);
-                    $location.path("/showResults");
+                    $location.path("/clientlist");
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -1308,6 +1322,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     //  }
     // });
     //}
+     $http.get('/api/enquiry/addenquiry')
+            .success(function(data) {
+                $scope.enquiries = data;
+                $scope.total = data.length;
+               // alert($scope.total);
+                console.log(data);
+            }) .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    
     $scope.loading = false;
     $scope.sendOTP = function(item) {
 
@@ -1323,6 +1347,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 }
             }).
             success(function(status) {
+                $scope.otpmsg = "OTP Sent successfully, Check Mobile Inbox.";
+                $window.document.getElementById('send_otp').value = "Resend OTP";
                 //your code when success
                 console.log(status);
                 if (status != indefined && status.status == 'success') {
@@ -1349,7 +1375,25 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         }).
         success(function(status) {
             //your code when success
-            console.log(status);
+             console.log(status); 
+            $scope.item = {
+                username : item.username,
+                ClinicName : item.ClinicName,
+                Area : item.Area,
+                usermobile : item.usermobile,
+                useremail : item.useremail,
+                clinicId : item._id,
+                category : $routeParams.category.replace(/-/g, ' ')
+            }
+                    
+                  $http.post('/api/enquiry/addenquiry', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
 
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
@@ -1360,7 +1404,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
                     subject: 'NXsearch Enquiry for ' + item.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
-                    html: "Enquiry for :" + "<b>" + item.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
+                    html: "Enquiry for :" + "<b>" + item.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + item.Area + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + item.useremail + "</b>"
                 }).then(res => {
@@ -1421,7 +1465,24 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         success(function(status) {
             //your code when success
             console.log(status);
-
+             $scope.item = {
+                username : client.username,
+                ClinicName : client.ClinicName,
+                Area : client.Area,
+                usermobile : client.usermobile,
+                useremail : client.useremail,
+                clinicId : client._id,
+                category : $routeParams.category.replace(/-/g, ' ')
+            }
+                    
+                  $http.post('/api/enquiry/addenquiry', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
                 $scope.serverMessage = 'Email sent successfully';
@@ -1431,7 +1492,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
                     subject: 'NXsearch Enquiry for ' + client.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
-                    html: "Enquiry for :" + "<b>" + client.ClinicName + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
+                    html: "Enquiry for :" + "<b>" + client.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + client.Area + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + client.useremail + "</b>"
                 }).then(res => {
