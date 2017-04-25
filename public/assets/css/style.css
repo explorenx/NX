@@ -654,6 +654,34 @@ footer a {
     width: 100%;
 }
 
+.btn3 {
+    display: inline-block;
+    padding: 6px 35px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+}
+
+.btn3-info {
+    color: #fff;
+    background-color: #5c67c3;   
+    width: 50%;
+}
+
 .Profile_title {
     white-space: nowrap;
     width: 98%;
@@ -916,12 +944,19 @@ h6 {
 }
 .Add_Client_form .TitleBoxAC{
     
-    margin: 1px;
+    margin-bottom: 21px;
     color: #FFFFFF !important;
     background: #1ca7d0;
     background-size: cover;
     background-repeat: repeat;
     background-position: 50% 50%;
+    
+}
+
+.Add_Client_form .inputMargin{
+    
+    padding-left:15px;
+    padding-right: 15px; 
     
 }
 .dash_head{
@@ -945,3 +980,4 @@ h6 {
     position: fixed;
     top: 86px;
 }
+
