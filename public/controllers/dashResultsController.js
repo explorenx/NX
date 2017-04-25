@@ -24,7 +24,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         $scope.limit -= limitStep;
     };
     $scope.currentPath = $location.path();
-    console.log($location.path())
+    console.log($location.path());
+    //alert($location.path());
     console.log('LS.getCookieData');
     console.log(LS.getCookieData());
     if (LS.getCookieData()) {
@@ -656,6 +657,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $http.put('/api/dashbord/results/' + $scope.formData._id, $scope.formData)
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
+                    $scope.successMsg="Client Added Succesfully";
                     console.log(data);
                     $location.path("/clientlist");
                 })
@@ -667,6 +669,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             $http.post('/api/account/signup', registerUser)
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
+                     $scope.successMsg="Client Added Succesfully";
                     console.log(data);
 
                     $scope.formData.userId = data.userId;
@@ -1137,6 +1140,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 console.log('Error: ' + data);
                             });
 
+                             $http.put('/api/contact/cliniccontact'+ $scope.formData._id, value)
+                            .success(function(data) {
+                                //$scope.formData = {}; // clear the form so our user is ready to enter another
+                                alert(JSON.stringify(data));
+                            })
+                            .error(function(data) {
+                                console.log('Error: ' + data);
+                            });
+
                         console.log("Latitude: " + value.lat + "\nLongitude: " + value.long);
                     } else {
                         alert("Request failed.")
@@ -1305,7 +1317,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             });
     }
     getData1();
-    //$scope.sendmsg = function(){
+    $scope.sendmsg = function(){
+        //Authentication Key  
+
     //    $http({
     //        method: 'POST',
     //      url: 'https://control.msg91.com/api/sendhttp.php?authkey=138679A23pr5hn5889ca25&mobiles=9527154472&message=test & new&mobile&sender=NXSEAR&route=4',
@@ -1321,7 +1335,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     //show popup message that OTP has sent to your mobile number
     //  }
     // });
-    //}
+    }
      $http.get('/api/enquiry/addenquiry')
             .success(function(data) {
                 $scope.enquiries = data;
