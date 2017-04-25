@@ -514,27 +514,38 @@
                         </div>
                     </script>
 
-                    <script type="text/ng-template" id="four.tpl.html">
-                        <div id="Gallary">
-                            <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
-                                <div id="pageone" class="col-sm-6 col-xs-6 col-md-2 col-lg-2" ng-repeat="data in GallaryeData | filter : data.ClinicId = clientId">
+                   <script type="text/ng-template" id="four.tpl.html">
+    <div id="Gallary">
+   
+        <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
 
-                                    <img src="{{::data.gallaryImage }}" alt="{{::data.gallaryImage }}" class="listing_image" width="130px" height="130px" style="margin-left:5px;margin-top:5px;" data-toggle="modal" data-target="#my-modal{{$index}}">
-                                    <div id="my-modal{{$index}}" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog" data-dismiss="modal">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <img src="{{::data.gallaryImage }}" alt="{{::data.gallaryImage }}" class="img-responsive" style="width: 100%;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div id="pageone" class='col-sm-4 col-xs-6 col-md-2 col-lg-2' ng-repeat="data in GallaryeData | filter : data.ClinicId = clientId">
 
+                <div ng-if="data.gallaryImage != ''">
+                    <img src="{{data.gallaryImage }}" class="img-rounded" style="position:relative; width: 130px; height: 130px;margin-left:10px;margin-top:10px;" data-toggle="modal" data-target="#my-modal{{$index}}">
+                    <div id="my-modal{{$index}}" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" data-dismiss="modal">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <img src="{{data.gallaryImage }}" alt="{{data.gallaryImage }}" class="img-responsive" style="width: 100%;">
                                 </div>
                             </div>
                         </div>
-                    </script>
+                    </div>
+
+
+                </div>
+                <div ng-if="data.gallaryImage == ''">
+                    <img src="http://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png" alt="{{data.gallaryImage }}" class="img-rounded" style="position:relative; width: 130px; height: 130px;margin-left:10px;margin-top:10px;">
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</script>
 
                     <script type="text/ng-template" id="five.tpl.html">
                         <div id="Contact">
