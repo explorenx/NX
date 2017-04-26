@@ -1,4 +1,4 @@
-app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq, deviceDetector) {
+app.controller('dashResultsController', function($scope, $rootScope, $http, $routeParams, $location, authenticationSvc, savedMetaData, LS, $window, Upload, $linq) {
     $scope.formData = {};
     $scope.location = {};
 
@@ -1582,7 +1582,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         }, function(response) {})
     }
-
+    
 
 
 });
