@@ -1,4 +1,4 @@
-var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','ng.deviceDetector','angular-page-loader']);
+var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','angular-page-loader']);
 
 
 app.filter('searchFor', function(){
@@ -49,9 +49,9 @@ app.directive('formAutofillFix', function() {
   };
 });
 
-app.config(['deviceDetectorProvider', function(deviceDetectorProvider) {
-  deviceDetectorProvider.addCustom("My_Custom_Detector",{or:["\\bChrome\\b","\\bFirefox\\b","\\bSafari\\b"]});
-}]);
+//app.config(['deviceDetectorProvider', function(deviceDetectorProvider) {
+ // deviceDetectorProvider.addCustom("My_Custom_Detector",{or:["\\bChrome\\b","\\bFirefox\\b","\\bSafari\\b"]});
+//}]);
  app.filter('slugify', function() {
         return function(input) {
             input = input || '';
