@@ -140,6 +140,7 @@
     </div>
 
     <div ng-controller="dashResultsController">
+        
         <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>Success!</strong> {{::serverMessage}}.
@@ -370,9 +371,9 @@
                 </div>
 
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 topmargin text-center" style="padding-right:10px;">
                      <!--<dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>-->
-                  <button class="pull-right btn btn-info" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
+                  <button class="btn3 btn3-info" ng-hide="aaa<=10" ng-click='loadMore()'>LOAD MORE</button>
             </div>
         </div>
 
