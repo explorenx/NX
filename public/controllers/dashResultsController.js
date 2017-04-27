@@ -705,7 +705,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                     alert("Request failed.")
                                 }
                             });
-
+                             $location.path("/clientlist");
                         })
                         .error(function(data) {
                             console.log('Error: ' + data);
