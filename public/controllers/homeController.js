@@ -17,6 +17,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     $rootScope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
         // TODO What you want on the event.
         $rootScope.currentPath = newUrl;
+         //$scope.MainAreas.selectedAreaModel.Area = $routeParams.area;
         //alert(newUrl);
     });
 
@@ -40,6 +41,8 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
     $scope.clearInput = function() {
         $scope.searchString = "";
+			document.getElementByName("categoryselect")[0].focus();
+		
     };
 
 
@@ -94,12 +97,12 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                 .success(function(data) {
                     $scope.clients = data;
                     $rootScope.Area = newVal;
-                    // alert(JSON.stringify($rootScope.Area));
+                  //  alert(JSON.stringify($scope.clients));
                     // alert(JSON.stringify($routeParams.category));
                     if ($rootScope.Area != 0 && $routeParams.category != undefined) {
                         // alert(11);
                         $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-                        $location.path('/' + $scope.client.selectedCityModel + '/' + $routeParams.category + '/' + $scope.MainAreas.selectedAreaModel.Area);
+                        $location.path('/' + $scope.client.selectedCityModel + '/' + $routeParams.category + '/' + $scope.MainAreas.selectedAreaModel.Area + '/' + $routeParams.category + '-in-' +$scope.MainAreas.selectedAreaModel.Area + '-'+ $scope.client.selectedCityModel);
                     }
 
                     console.log(data);
@@ -203,7 +206,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category) {
                 category = category.replace(/ /g, '-');
                 $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-                $location.path('/' + $scope.client.selectedCityModel + '/' + category + '/' + $scope.MainAreas.selectedAreaModel.Area);
+                $location.path('/' + $scope.client.selectedCityModel + '/' + category + '/' + $scope.MainAreas.selectedAreaModel.Area  + '/' + category+ '-in-' +$scope.MainAreas.selectedAreaModel.Area + '-'+ $scope.client.selectedCityModel);
             }
         }
         // if(category)
@@ -227,7 +230,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory) {
                 subCategory = subCategory.replace(/ /g, '-');
                 $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
-                $location.path('/' + $rootScope.client.selectedCityModel + '/' + subCategory + '/' + $scope.MainAreas.selectedAreaModel.Area);
+                $location.path('/' + $rootScope.client.selectedCityModel + '/' + subCategory + '/' + $scope.MainAreas.selectedAreaModel.Area + '/' + subCategory+ '-in-' +$scope.MainAreas.selectedAreaModel.Area + '-'+ $scope.client.selectedCityModel);
             }
         }
         // if(category)
@@ -237,8 +240,8 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     }
 
     $scope.selectedCategory = $routeParams.category;
-    $scope.selectedArea = $routeParams.area;
-    //alert($scope.selectedCategory);
+   
+    //alert($scope.selectedArea);
     //document.getElementById('exampleInputPassword2').value = selectedCategory;
 
     $scope.doSomething = function($event, test) {
