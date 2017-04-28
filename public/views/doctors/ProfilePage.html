@@ -574,7 +574,7 @@
                 <div class="col-md-12">
                     <h3 class="text-center">Other Services</h3>
                     <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
-                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}">
                             <ul>
                                 <li> {{::s}} {{::areaofcats}}</li>
                             </ul>
