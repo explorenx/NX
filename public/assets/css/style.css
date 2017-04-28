@@ -802,8 +802,21 @@ h6 {
 .bredcrumb h1 {
     font-size: 12px;
     display: inline;
-    padding-left: 10px;
     line-height: 28px;
+}
+.similarsearches h1{
+    font-size: 11px;
+    display: inline;
+    padding-left: 10px;
+    line-height: 15px;
+    color : #337ab7;
+}
+
+.bredcrumb1 h1 {
+    font-size: 21px;
+    display: inline;
+    padding-left: 10px;
+    line-height: 60px;
 }
 
 .formControlModal {
@@ -981,3 +994,7 @@ h6 {
     top: 86px;
 }
 
+.bgr{
+    background-image: url("/assets/img/2.jpg"); 
+    background-color: #cccccc;
+}
