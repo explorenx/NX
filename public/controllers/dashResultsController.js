@@ -16,6 +16,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
           return item.isSponsoredClient !== "true"; 
         } 
     $scope.area11 = $routeParams.area;
+    $scope.category11 = $routeParams.category;
 
     $scope.incrementLimit = function() {
         $scope.limit += limitStep;
@@ -91,15 +92,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             category = category.replace(/-/g, ' ');
             area = area.replace(/-/g, ' ');
             url = url + '&Categories=' + category + '&Area=' + area;
+            //alert(url);
         }
 
         if (category && city && area) {
             url = url + '&City=' + city;
             // alert(url);
         }
-        if (!category && city && area) {
-            url = url + '&City=' + city + '&Area=' + area;
-        }
+        //if (!category && city && area) {
+       //     url = url + '&City=' + city + '&Area=' + area;
+      //  }
 
         if (area != undefined) {
             var myurl = '/' + city + '/' + category.replace(/ /g, '-');
@@ -107,7 +109,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
             //  var cityurl = '/showResults';
             // document.getElementById('citylink').href=cityurl;
-
+           //  $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
             $window.document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;
             $window.document.getElementById('category').innerHTML = category;
             $window.document.getElementById('area').innerHTML = area;
@@ -130,7 +132,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
             // var cityurl = '/showResults';
             // document.getElementById('citylink').href=cityurl;
-
+            // $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
             $window.document.getElementById('keyword').innerHTML = category + ' in ' + city;
             $window.document.getElementById('category').innerHTML = category;
             $window.document.getElementById('area').innerHTML = '';
@@ -399,13 +401,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
                     });
                 });
-                //  alert($routeParams.area);
+                 
 
                 $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
                 $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
                 //alert($location.absUrl());
+               // alert( $scope.catname);
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
