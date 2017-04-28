@@ -645,7 +645,7 @@ app.config(function($routeProvider, $locationProvider) {
                 controller : 'dashResultsController',
                
             })
-            .when('/:city/:category/:area?', {
+            .when('/:city/:category/:area/:categoryarea?', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
                
