@@ -1,0 +1,83 @@
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
+        <div id="myForm" class="col-md-12" ng-controller="categoriesController">
+            <a class="btn1 btn1-info" href="/addCategories"><i class="fa fa-shield"></i> Add New Category</a>     
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="NoWrap"> Main Category</th>
+                        <th> Category</th>
+                        <th> Edit</th>
+                        <th>Delete</th>
+                        <!--<th> Sub Category</th>-->
+                    </tr>
+                </thead>
+                <tbody ng-repeat="item in categories | filter:txtSearch track by $index ">
+                    <tr>
+                        <td class="NoWrap"><label>{{item.mainCategoryName}}</label>
+                        </td>
+                        <td> <label ng-repeat="rec in item.category">{{rec.name}}<span ng-if="rec.name.length">, </span></label> </td>
+                        <td ng-repeat="res in rec.subcategories track by $index">{{res}}</td>
+                        <td><a href="/updateCategory/{{item._id}}"><button class="btn1 btn1-info"> Edit </button></a>
+                        </td>
+                        <td><a class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal{{$index}}">Delete </a>
+                            <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h3 class="modal-title pull-left">Are You Want To Delete <b>{{item.mainCategoryName}}</b></h3>
+                                        </div>
+                                        <div class="modal-body pull-left">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button ng-click="deleteRec(item._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

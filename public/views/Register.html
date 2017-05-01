@@ -1,0 +1,230 @@
+ <script>
+                                                            $(document).ready(function(){
+                                                                var from,to,subject,text,date,time;
+                                                                $("#send_email").click(function(){      
+                                                                    bname=$("#bname").val();
+                                                                    oname=$("#oname").val();
+                                                                    text=$("#phone").val();
+                                                                    from=$("#email").val();
+                                                                    address=$("#address").val();
+                                                                    business=$("#business").val();
+                                                                    quali=$("#quali").val();
+                                                                    speciality=$("#speciality").val();
+                                                                    experience=$("#experience").val();
+                                                                     message=$("#message").val();
+                                                                     $("#message1").text("Sending E-mail...Please wait");
+                                                                    $.get("http://nxsearch.com/registerfree",{bname:bname,oname:oname,text:text,from:from,address:address,business:business,quali:quali,speciality:speciality,experience:experience,message:message},function(data){
+                                                                    if(data=="sent")
+                                                                    {
+                                                                        $("#message1").empty().html("Enquiry send successfully");
+                                                                    }
+
+                                                            });
+                                                                });
+                                                            });
+</script>
+ <script src='https://www.google.com/recaptcha/api.js'></script>
+ <!-- Header -->
+<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
+        <nav class="navbar">
+            <div class="container">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
+                    <div class="col-md-10 col-xs-6">
+                        <div class="col-md-2 col-xs-12 text-center">
+                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
+                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+<!-- Header End -->
+      <section>
+           <div class="container bgr" style="">
+               <div class="col-md-6 col-md-offset-3" >
+                    <span id="message1"></span>
+                    <form class="form-horizontal" name="registerForm" method="post" style="padding-top: 20px; ">
+                        
+                            <h2 class="text-center header text1">Register Your Business</h2>
+                            <input type="hidden"  ng-model="formData._id">
+                            <div class="form-group">
+                               <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Name :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="bname" name="Businessname" type="text" placeholder="Enter Business Name Here" ng-model="formData.clientName" class="form-control" ng-required="true">
+                                     <div ng-show="registerForm.Businessname.$touched && registerForm.Businessname.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Business Name</small>
+                                     </div>
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                               <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Owner Name :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="oname" name="name" type="text" placeholder="Enter Owner Name Here" ng-model="formData.Name" class="form-control" ng-required="true">
+                                    <div ng-show="registerForm.name.$touched && registerForm.name.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Owner Name</small>
+                                     </div>
+                                </div>
+                            </div>
+                          
+                     <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-4 col-xs-12"> <label class="text1" style="padding-top: 5px;">Email Id :</label></div>
+                                <div class="col-md-8 col-xs-12">
+                                    <input id="email" name="email" type="email" placeholder="Email Address" ng-model="formData.email" class="form-control" ng-required="true">
+                                     <div ng-show="registerForm.email.$touched && registerForm.email.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Valid email</small>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-5 col-xs-12"> <label class="text1 pull-right" style="padding-top: 5px;">Mobile No. :</label></div>
+                                <div class="col-md-7 col-xs-12">
+                                    <input id="phone" name="phone" type="text" placeholder="Mobile" ng-model="formData.phone" class="form-control" ng-required="true">
+                                     <div ng-show="registerForm.phone.$touched && registerForm.phone.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile No.</small>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="form-group">
+                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Address :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <textarea class="form-control" id="address" name="message" ng-model="formData.address" placeholder="Enter your Address for us here." rows="3" ng-required="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Type :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="business" name="business" type="text" placeholder="Clinic, Preschool, Salone, Spa, Private Tuition" ng-model="formData.business" class="form-control" ng-required="true">
+                                    <div ng-show="registerForm.business.$touched && registerForm.business.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Business</small>
+                                     </div>
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Qualification :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="quali" name="Qualification" type="text" placeholder="Enter your Qualification here" ng-model="formData.qualification" class="form-control" ng-required="true">
+                                    <div ng-show="registerForm.Qualification.$touched && registerForm.Qualification.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Qualification</small>
+                                     </div>
+                                </div>
+                            </div>
+                            
+                             <div class="form-group">
+                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Specialization:</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="speciality" name="speciality" type="text" placeholder="Enter your specialization here" ng-model="formData.specialization" class="form-control" ng-required="true">
+                                     <div ng-show="registerForm.speciality.$touched && registerForm.speciality.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Specialization</small>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Experience :</label></div>
+                                <div class="col-md-10 col-xs-12">
+                                    <input id="experience" name="Experience" type="text" placeholder="Enter your Experience in Year(s) here" ng-model="formData.Experience" class="form-control" ng-required="true">
+                                    <div ng-show="registerForm.Experience.$touched && registerForm.Experience.$invalid">
+                                         <small style="color: red; display: block; text-align: center">Please Enter Experience</small>
+                                     </div>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Massage :</label></div>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" id="message" name="message" ng-model="formData.Massage" placeholder="Enter your massage for us here. We will get back to you." rows="3" ng-required="true"></textarea>
+                                </div>
+                            </div>
+                             <div  id="recaptcha" ng-required="true">
+                                <div class="g-recaptcha center-block" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj" style="text-align: center" ></div>
+                             </div><br/>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button id="send_email" type="submit" class="btn btn-primary btn-lg" ng-disabled="registerForm.$invalid">Register</button>
+                                </div>
+                            </div>
+                        
+                    </form>
+               </div>
+        </div>
+</section>
+<!--  End of Page Container  -->
+<!-- Footer -->
+<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="container">
+                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
+                        <h3>About </h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
+                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>NX-search</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
+                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
+                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
+                        <h3> Follow Us </h3>
+                        <ul>
+                            <li>
+                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
+                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                
+                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                        <h3> SubScribe </h3>
+                        <ul>
+                            <li>
+                                <div class="input-append newsletter-box text-center">
+                                    <input type="text" class="full text-center" placeholder="Email ">
+                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
+            </div>
+        </div>
+       
+
+</footer>
+<!-- Footer End -->

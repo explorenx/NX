@@ -1,0 +1,94 @@
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
+        <div><br/></div>
+        <div class="" ng-controller="citiesController" ng-init="initUpdateCity()">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <form name="citiesform">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <label for="Category">City:</label>
+                                <input type="hidden" ng-model="formData._id">
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" ng-model="formData.city" name="city1" class="form-control" placeholder="Enter City" ng-required="true">
+                                <div ng-show="citiesform.city1.$touched && citiesform.city1.$invalid">
+                                    <small style="color: red; display: block; text-align: center">Please Enter City</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-repeat="cat in tempCategories">
+
+                            <label for="Category">Area</label>
+                            <input type="text" ng-model="cat.id" name="area" class="form-control " placeholder="Enter a area" ng-required="true">
+                            <div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
+                                <small style="color: red; display: block; text-align: center">Please Enter Area</small>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="text-center" for="choice">Sub-Area</label>
+                            </div>
+
+                            <div class="col-md-4 form-group" ng-repeat="choice in cat.subs">
+                                <input type="text" ng-model="choice.name" name="subarea" class="form-control" placeholder="Enter a sub area">
+                            </div>
+                            <div class="clear-fix"></div>
+
+                            <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
+                            <hr/>
+                            <button class="btn btn-default" ng-click="addNewCategory()">Add Area</button>
+                            <button class="btn btn-info" ng-click="clearForm()">Clear Form</button>
+                            <div class="col-md-12" style="border-top: double  #79a4ca">
+                                <br/>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

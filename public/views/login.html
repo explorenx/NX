@@ -1,0 +1,39 @@
+<div class="container" xmlns:color="http://www.w3.org/1999/xhtml">
+    <div class="row" style="margin-top:50px;">
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <div class="form-box">
+                <div class="form-top">
+                    <div class="wrap">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="description">
+                                <img src="assets\img\nxsearch-logo1.png" style="width :200px;">
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-top-right">
+                            <i class="fa fa-lock"> </i>
+                        </div>
+                    </div>
+                    <div class="form-top-left" style="color:#fff;">
+                        <p>Enter Username and Password</p>
+                    </div>
+                </div>
+                <div class="form-bottom">
+                    <div class="form-body">
+                        <!--<li><a data-toggle="tab" href="#sectionB">Join us!</a></li>-->
+
+                        <div class="tab-content">
+                            <div id="sectionA" class="tab-pane fade in active">
+                                <div class="innter-form" ng-controller="loginController">
+                                    <form class="sa-innate-form">
+                                        <input type="text" ng-model="formData.Email" placeholder="Username" name="Email" autofocus>
+
+                                        <input type="password" name="Password" placeholder="Password" ng-model="formData.Password">
+                                        <button ng-click="login()">Sign In</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

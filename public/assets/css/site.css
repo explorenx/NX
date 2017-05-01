@@ -1,0 +1,70 @@
+html {
+    overflow-y: scroll;
+}
+
+.nav1 {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav1>li {
+    position: relative;
+    display: block;
+}
+
+.nav1>li {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav1>li:hover,
+.nav1>li:focus,
+.nav1>li:active,
+.nav1>li:visited {
+    text-decoration: none;
+    background-color: #37A0CE;
+    cursor: pointer;
+}
+
+.nav1>li.disabled {
+    color: #37A0CE;
+}
+
+.nav1>li.disabled:hover,
+.nav1>li.disabled:focus {
+    color: #37A0CE;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.nav1 .open>li:active,
+.nav1 .open>li:hover,
+.nav1 .open>li:focus {
+    background-color: #37A0CE;
+    border-color: #337ab7;
+}
+
+.subox {
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+}
+
+.profileheight {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+input[type=file] {
+    width: 300px;
+}
+
+.login a p {
+    display: none;
+}
+
+.login a:hover p {
+    display: block;
+}
