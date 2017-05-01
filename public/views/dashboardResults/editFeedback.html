@@ -1,0 +1,76 @@
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+</div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 col-sm-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
+
+<div ng-controller="updateHomeServicesGalleryAllController" ng-init="initFeedbackUpdate()">
+
+    <div class="col-sm-8 col-sm-offset-2 text-center" >
+        <label>Update Feedback</label>
+        <input type="hidden" ng-model="formData._id" >
+        <input type="hidden" ng-model="formData.ClinicId" >
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <label>Update Name</label>
+                    <input type="text" ng-model="formData.userName"  class="form-control text-center" placeholder="Enter Username" ng-required="true">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label>Likes</label>
+                        <input type="text" ng-model="formData.likes"  class="form-control text-center" placeholder="Enter Likes" ng-required="true">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Dislikes</label>
+                        <input type="text" ng-model="formData.dislikes"  class="form-control text-center" placeholder="Enter Dislikes" ng-required="true">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">    
+                <label>Edit Feedback</label>
+                <input type="text" ng-model="formData.feedback"  class="form-control text-center" placeholder="Enter Feedback" ng-required="true">
+            </div>
+                <div><br></div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="EditFeedback()" >Update Feedback</button>
+
+            </div>
+            <div><br><hr/></div>
+</div>
+</div>

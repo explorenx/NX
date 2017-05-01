@@ -1,0 +1,552 @@
+<script>
+    $(function() {
+        $('.nav-tabsH a').on('click', function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+
+    $(function() {
+        $('.navbar-toggle1 collapsed').on('click', function(e) {
+            $(this).tab('show');
+        });
+    });
+
+    $(function() {
+        $('.navbar-nav .open .dropdown-menu').on('click', function(e) {
+            $(this).tab('hide');
+        });
+    });
+</script>
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                        <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+</div>
+<!-- Header End -->
+
+
+    <div class="col-md-2 col-sm-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
+
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center" ng-controller="dashResultsController as up">
+
+            <div class="col-md-12">
+                <h3 class="text-center">Add Client</h3>
+            </div>
+            <div  class="alert" style="color:#3c763d">
+                 <strong> {{successMsg}}</strong>
+            </div>
+            <div class="ng-hide">
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp;
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp;
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+                &nbsp;<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp;
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a id="categry" href=""> <span id="category"></span></a>
+                </h5>&nbsp;
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp;
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp;</h5>
+                &nbsp;
+                <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                <li class="login">
+                    <i id="shareBtn" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 15px;"></i>
+                </li>
+            </div>
+<!--Form toggle--><form name="ClientForm">
+                <div class="col-md-12 col-xs-12 col-sm-12">
+
+                    <!--<button type="button" class="navbar-toggle1 collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>-->
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav nav-tabsH nav-justified">
+                            <li class="active"><a href="#Basic" data-toggle="tab">Basic Info</a></li>
+                            <li><a href="#Category" data-toggle="tab" aria-expanded="false">Category Info</a></li>
+                            <li><a href="#Area" data-toggle="tab" aria-expanded="false">Area Info</a></li>
+                            <li><a href="#Address" data-toggle="tab" aria-expanded="false">Address and time</a></li>
+                            <li><a href="#other" data-toggle="tab" aria-expanded="false">For Official Use only</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    
+                        <!--Hidden div-->
+                        <div class="col-lg-12">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 ng-hide">Email:</label>
+                                    <div class="col-lg-8">
+                                        <input type="hidden" ng-model="formData.email" name="email" class="form-control text-center" placeholder="Enter Email" />
+                                        <div ng-show="ClientForm.email.$touched && ClientForm.email.$invalid">
+                                            <small style="color: red; display: block; text-align: center">Please Enter Valid Email</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="col-lg-12">
+
+                                    <div class="form-group">
+                                        <label class="col-lg-4 ng-hide">Password:</label>
+                                        <div class="col-lg-8">
+                                            <input type="hidden" ng-model="formData.password" name="password" class="form-control text-center" placeholder="Enter Password" />
+                                            <div ng-show="ClientForm.password.$touched && ClientForm.password.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Enter Correct Password</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Hidden div End-->
+                        <div id="Basic" class="col-md-12 col-sm-12 tab-pane active">
+                                <div class="col-sm-12 col-md-12 TitleBoxAC">
+                                    <h5>Basic Information</h5>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                        <input type="hidden" ng-model="formData._id">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 col-md-4 col-sm-4">Title*:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.ClinicName" name="title" class="form-control text-center" placeholder="Enter Title" ng-required="true" />
+                                                <div ng-show="ClientForm.title.$touched && ClientForm.title.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Title</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-4">Name*:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                            <input type="text" ng-model="formData.DoctorName" name="clientname" class="form-control text-center" placeholder="Enter Client Name" ng-required="true" />
+                                            <div ng-show="ClientForm.clientname.$touched && ClientForm.clientname.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Enter Client Name</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12"> <span><br></span></div>
+                                <div class="col-md-12">
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 col-md-4 col-sm-4">Profession*:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.Profession" name="profession" class="form-control text-center" placeholder="Enter Profession" ng-required="true" />
+                                                <div ng-show="ClientForm.profession.$touched && ClientForm.profession.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Client Profession</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 col-md-4 col-sm-4">Speciality*:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.speciality" name="speciality" class="form-control text-center" placeholder="Enter Speciality" ng-required="true" />
+                                                <div ng-show="ClientForm.speciality.$touched && ClientForm.speciality.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Client Speciality</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12"> <span><br></span></div>
+                                <!--experience-->
+                                <div class="col-lg-12 col-md-12 col-sm-12"> 
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 col-md-4 col-sm-4">Experience*:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.Experience" name="experience" class="form-control text-center" placeholder="Enter only Number" ng-required="true" />
+                                                <div ng-show="ClientForm.experience.$touched && ClientForm.experience.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Client Experience</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                          <div class="form-group">
+                                        <label class="col-lg-2 col-md-4 col-sm-4">Profile Image:</label>
+                                        <div class="col-lg-10 col-md-8 col-sm-12">
+                                            <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
+                                            
+                                            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                            <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                                {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <img style="width:10%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
+                                </div>
+                        </div>
+
+                        <!--this is select category part-->
+                        <div id="Category" class="col-md-12 tab-pane fade">
+                            <div class="col-sm-12 col-md-12 TitleBoxAC">
+                                <h5>Category Information</h5>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-6">Main Categories*:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                            <select name="category" ng-options="s.mainCategoryName for s in sample" ng-model="selitemMain" ng-change="getMainselectval()">
+                                        <option value="">--Select Category--</option>
+                                    </select>
+                                            <div ng-show="ClientForm.category.$touched && ClientForm.category.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Select Category</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-4">Categories*:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+
+                                            <select name="subcategory" ng-options="s.name for s in SubSample " ng-model="selitemCats" ng-change="getCatsselectval()">
+                                        <option value="">--Select SubCategory--</option>
+                                    </select>
+                                            <div ng-show="ClientForm.subcategory.$touched && ClientForm.subcategory.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Select SubCategory</small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-lg-12"> <span><br></span></div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 col-md-4 col-sm-4">Sub-Categories:</label>
+                                    <div class="col-lg-10 well">
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12 subs" style="border: solid 1px;">
+                                                <input type="button" class="btn1 btn1-info" value="Check All" ng-click="checkAll()">
+                                                <label class="col-md-4 col-sm-4" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
+                                                
+                                                    <div class="col-md-12 col-xs-12 pull-left">
+                                                        <input type="checkbox" class="pull-left" checklist-model="SubCatetories.subs" checklist-value="sub">
+                                                        <span>{{sub}}</span>
+                                                    </div>
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-tabsH">
+                               <!-- <a href="#Area" data-toggle="tab" aria-expanded="true"><button> Next</button></a>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--end of category part-->
+
+                        <!--this is select Location part-->
+                        <div id="Area" class="col-md-12 col-sm-12 tab-pane fade">
+                            <div class="col-sm-12 col-md-12 TitleBoxAC">
+                                <h5>Area Information</h5>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-4">Main City*:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                            <select name="maincity" ng-options="s.city for s in locations" ng-model="selitemLocations" ng-change="getLocationselectval()">
+                                        <option value="">--Select Location--</option>
+                                    </select>
+                                            <div ng-show="ClientForm.maincity.$touched && ClientForm.maincity.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Select Main City</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="col-lg-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-4">Area*:</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
+                                            <select name="area" ng-options="s.Area for s in SubLocationsSample " ng-model="selitemSubLocations" ng-change="getSubLocationselectval()">
+                                        <option value="">--Select Area--</option>
+                                    </select>
+                                            <div ng-show="ClientForm.area.$touched && ClientForm.area.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Select Area</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-md-12"> <span><br></span></div>
+                                <div class="col-lg-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-md-2 col-sm-4">Sub-Areas:</label>
+                                        <div class="col-lg-10 col-md-10 col-sm-12 subox pre-scrollable">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group">
+
+                                                        <label class="col-md-4 col-sm-4" ng-repeat="sub in subLocationCategories track by $index" style="padding: 5px;">
+                                                    <input type="checkbox" checklist-model="SubLocationCatetories.subs" checklist-value="sub"> {{sub}}
+                                                </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    
+
+                        <!--end of Location part-->
+                        <div id="Address" class="col-md-12 tab-pane fade">
+                            <!--Time Start here -->
+                            <div class="col-sm-12 col-md-12 TitleBoxAC">
+                                <h5>Time, Address and Contact Info</h5>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-md-12">
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <label class="col-lg-12 col-md-12 col-sm-4">Timings</label>
+                                    <div class="form-group">                                     
+                                            <label class="col-lg-2 col-md-2 col-sm-6">1st Half*:</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 inputMargin">
+                                            <input type="text" ng-model="formData.FirstHalfTime" name="firsthalf" class="form-control text-center" placeholder="Enter First Half Time" ng-required="true" />
+                                            <div ng-show="ClientForm.firsthalf.$touched && ClientForm.firsthalf.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Enter First Half Time</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                            <label class="col-lg-2 col-md-2 col-sm-4">2nd Half:</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.SecondHalfTime" name="secondform" class="form-control text-center" placeholder="Enter Second Half Time" />
+                                                <div ng-show="ClientForm.secondform.$touched && ClientForm.secondform.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Second Half Time</small>
+                                                </div>
+                                            </div>                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                        
+                                            <div class="form-group">
+                                                <label class="col-lg-3 col-md-2 col-sm-6">Mobile Number*:</label>
+                                                <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                                    <input type="text" ng-model="formData.extensionNo" name="" class="form-control text-center" placeholder="Enter Mobile no" >
+                                                </div>
+                                            </div>
+                                       
+
+                                        
+                                            <div class="col-lg-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 col-md-2 col-sm-6">Date Of Registration*:</label>
+                                                    <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                                        <input type="text" ng-model="formData.registerDate" name="" class="form-control text-center" placeholder="MM/DD/YYY or write nil" ng-required="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <!--Time Ends Here-->
+
+
+                            <div class="col-lg-12 col-sm-12 col-md-12"> <span><br></span></div>
+                            <!--other data
+                            <div class="col-lg-12">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="col-lg-4">Registration No:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" ng-model="formData.RegistrationNo" name="registration" class="form-control text-center" placeholder="Enter RegistrationNo" />
+                                            <div ng-show="ClientForm.registration.$touched && ClientForm.registration.$invalid">
+                                                <small style="color: red; display: block; text-align: center">Please Enter Registration Number</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="col-lg-12">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-4">Order:</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" ng-model="formData.Order" name="order" class="form-control text-center" placeholder="Enter Order"  />
+                                                <div ng-show="ClientForm.order.$touched && ClientForm.order.$invalid">
+                                                    <small style="color: red; display: block; text-align: center">Please Enter Order</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            
+
+                            <!--<input type="text" ng-model="formData.ContactNumber2" name="" class="form-control text-center" placeholder="Enter contact no" ng-required="true">-->
+
+                            <div class="col-lg-12 col-sm-12 col-md-12"> <span><br></span></div>
+
+                            <div class="col-lg-12 col-sm-12 col-md-12">
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12">
+                                            <label class="col-lg-4 col-md-2 col-sm-4">Address*:</label>
+                                            <div class="col-lg-8 col-md-10 col-sm-8">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 inputMargin" style="bottom-margin:10px;">
+                                                    <input type="text" ng-model="formData.address1" name="" class="form-control text-center" placeholder="Address Line 1" ng-required="true">
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 inputMargin">
+                                                    <input type="text" ng-model="formData.address2" name="" class="form-control text-center" placeholder="Address Line2 mention area and city" ng-required="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-lg-4 col-md-2 col-sm-4">Social Links:</label>
+                                            <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                                <input type="text" ng-model="formData.Socical.Youtube" name="" class="form-control text-center" placeholder="Enter Youtube link">
+                                                <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="Enter Instagram link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                            <!--end of Address time part-->
+                        <div id="other" class="col-md-12 col-sm-12 tab-pane fade">
+                            <!--Official Start here -->
+                            <div class="col-sm-12 col-md-12 TitleBoxAC">
+                                <h5>Official Info</h5>
+                            </div>
+
+                            <!--<div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-2 col-sm-4">Tags:</label>
+                                    <div class="col-lg-8 col-md-10 col-sm-12">
+                                        <input type="text" ng-model="formData.Tags" name="tags" class="form-control text-center" placeholder="Enter Tags" />
+                                        <div ng-show="ClientForm.tags.$touched && ClientForm.tags.$invalid">
+                                            <small style="color: red; display: block; text-align: center">Please Enter Tags</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>-->
+                                <div class="col-lg-12 col-sm-12 col-md-12">
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                        <label class="col-lg-4 col-md-2 col-sm-4">Is Paid Client</label>
+                                        <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                            <input type="checkbox" ng-model="formData.isPaidClient" name="" class="form-control text-center" placeholder="Enter Extension no">
+                                        </div>
+                                    </div>    
+                                    <div class="col-lg-6 col-sm-6 col-md-6">
+                                        <label class="col-lg-4 col-md-2 col-sm-6">Is Sponsored Client</label>
+                                        <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                        <input type="checkbox" ng-model="formData.isSponsoredClient" name="" class="form-control text-center" placeholder="Enter Extension no">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <label>Enter Meta Title :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <textarea ng-model="formData.Socical.facebook" class="form-control text-center" placeholder="Enter Meta Title"></textarea>
+                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.facebook.length}}</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <label>Enter Meta Description :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <textarea ng-model="formData.Socical.twitter" class="form-control text-center" placeholder="Enter Meta Description :"></textarea>
+                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.twitter.length}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <label>Enter Meta Keywords :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <textarea ng-model="formData.Socical.google" class="form-control text-center" placeholder="Enter Meta Keywords :"></textarea>
+                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.google.length}}</span></p>
+                                    </div>
+                                </div>
+                            
+
+
+
+
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="ClientForm.$invalid">{{btnValue}}</button>
+                        </div>   
+                    
+                </div>
+                </form>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
