@@ -12,11 +12,13 @@
                                                                     speciality=$("#speciality").val();
                                                                     experience=$("#experience").val();
                                                                      message=$("#message").val();
-                                                                     $("#message1").text("Sending E-mail...Please wait");
+                                                                     $("#message1").text("Requesting...Please wait");
                                                                     $.get("http://nxsearch.com/registerfree",{bname:bname,oname:oname,text:text,from:from,address:address,business:business,quali:quali,speciality:speciality,experience:experience,message:message},function(data){
                                                                     if(data=="sent")
                                                                     {
-                                                                        $("#message1").empty().html("Enquiry send successfully");
+                                                                        alert("Your Registration Request has been sent successfully!");
+                                                                        window.location.href="/";
+                                                                        
                                                                     }
 
                                                             });
@@ -46,7 +48,7 @@
       <section>
            <div class="container bgr" style="">
                <div class="col-md-6 col-md-offset-3" >
-                    <span id="message1"></span>
+                    
                     <form class="form-horizontal" name="registerForm" method="post" style="padding-top: 20px; ">
                         
                             <h2 class="text-center header text1">Register Your Business</h2>
@@ -105,9 +107,9 @@
                             <div class="form-group">
                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Type :</label></div>
                                 <div class="col-md-10 col-xs-12">
-                                    <input id="business" name="business" type="text" placeholder="Clinic, Preschool, Salone, Spa, Private Tuition" ng-model="formData.business" class="form-control" ng-required="true">
+                                    <input id="business" name="business" type="text" placeholder="Clinic, Preschool, Salon, Spa, Private Tuition" ng-model="formData.business" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.business.$touched && registerForm.business.$invalid">
-                                         <small style="color: red; display: block; text-align: center">Please Enter Business</small>
+                                         <small style="color: red; display: block; text-align: center">Please Enter Business Type</small>
                                      </div>
                                 </div>
                             </div>
@@ -136,7 +138,7 @@
                                 <div class="col-md-10 col-xs-12">
                                     <input id="experience" name="Experience" type="text" placeholder="Enter your Experience in Year(s) here" ng-model="formData.Experience" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.Experience.$touched && registerForm.Experience.$invalid">
-                                         <small style="color: red; display: block; text-align: center">Please Enter Experience</small>
+                                         <small style="color: red; display: block; text-align: center">Please Enter Experience in Years</small>
                                      </div>
                                 </div>
                             </div>
@@ -153,6 +155,9 @@
                                 <div class="col-md-12 text-center">
                                     <button id="send_email" type="submit" class="btn btn-primary btn-lg" ng-disabled="registerForm.$invalid">Register</button>
                                 </div>
+                            </div>
+                            <div style="color:#fff">
+                                <span style="padding:10px;" id="message1"></span>
                             </div>
                         
                     </form>
