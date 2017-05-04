@@ -86,7 +86,7 @@
 
                         <div class="form-group" ng-blur="EnableData = false">
                             <label for="exampleInputPassword1"></label>
-                            <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                            <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false"
                             />
 
                             <div ng-show="EnableTextInputResult == false || EnableData" name="categoryselect" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
@@ -107,19 +107,10 @@
 
                                 </div>
 
-                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                         <div class="list_dropdown">
                                             <b> {{i.ClinicName}}</b>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                            <span class="text-center;">{{i.DoctorName}}</span>
                                             <br/>
                                         </div>
                                     </a>
@@ -379,8 +370,16 @@
 
         <div class="col-md-12 col-xs-12 ">
            <div class="col-md-12 col-xs-12 bredcrumb1"> <h1>Find Similar Searches : </h1> <h1>{{catname}} in {{::area2}}</h1></div><br>
+           <div class="col-md-3 col-xs-6">
+                <a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
+                    <ul>
+                        <li class="Searches similarsearches "><h1> {{maincat}} {{::areaonlink}}</h1></li>
+                    </ul>
+                </a>
+                <!--<span>{{ss}}</span>-->
+            </div>
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
-                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}">
+                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
                     <ul>
                         <li class="Searches similarsearches "><h1> {{::ss}} {{::areaonlink}}</h1></li>
                     </ul>
@@ -392,7 +391,7 @@
         <div class="col-md-12 col-xs-12" style="display: none;">
             <h3>Find Similar Searches : </h3> <h1>{{catname}} in {{::area2}}</h1>
             <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks">
-                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}">
+                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
                     <ul>
                         <li title="{{::ss}} {{::areaonlink}}" class="Searches"> {{::ss}} {{::areaonlink}}</li>
                     </ul>
