@@ -55,6 +55,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     $rootScope.$watch('client.selectedCityModel', function(newVal, oldVal) {
         if (oldVal == newVal) return;
         //alert(newVal);
+        $scope.loadClients= function(){
         $http.get('/api/dashbord/results/?City=' + newVal)
             .success(function(data) {
                 $scope.clients = data;
@@ -63,6 +64,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             .error(function(data) {
                 console.log('Error: ' + data);
             });
+            }
         angular.forEach($rootScope.client.cities, function(value, key) {
             if (value.city == newVal) {
                 //alert(JSON.stringify(value));
@@ -73,6 +75,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
             }
         });
     }, true);
+
 
 
     function GetClientsData(searchStr) {
