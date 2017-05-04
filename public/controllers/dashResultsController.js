@@ -333,7 +333,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     angular.forEach(value.category, function(cat, key2) {
                         // alert(JSON.stringify(cat.name));
                         if (cat.name == $routeParams.category) {
-                            //alert(JSON.stringify(cat.name));
+                            $scope.maincat = cat.name;
+                           // alert(JSON.stringify($scope.maincat));
                             if ($routeParams.area != '') {
                                 metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
@@ -372,6 +373,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
                                 if ($routeParams.area != undefined) {
+                                    $scope.maincat = cat.name;
+                                   // alert(JSON.stringify($scope.maincat));
                                     metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + " in " + $routeParams.area.replace(/-/g, ' ')  + '| Nxsearch';
                                     metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
                                     longDesc = value.subCategoryDescriptionLong;
@@ -412,7 +415,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
                 //alert($location.absUrl());
-               // alert( $scope.catname);
+              //alert( $scope.area2);
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
@@ -508,13 +511,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                // alert(data.Socical.facebook);
+                 //alert(data.Socical.twitter);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
                 //alert($scope.services);
                 $scope.slength = $scope.services.length;
                 //alert($scope.slength);
+                // alert(JSON.stringify(data));
                 for (var i = 0; i < $scope.slength; i++) {
                     $scope.serviceurl = '/' + data.City + '/' + data.Area + '/' + $scope.services[i];
                 }
@@ -524,15 +528,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 $window.document.getElementById('city1').innerHTML = data.City;
                 $window.document.getElementById('area1').innerHTML = data.Area;
                 $window.document.getElementById('bbb').innerHTML = data.Categories;
-                $window.document.title = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                $window.document.getElementsByName('title')[0].content = data.Social.facebook + '| NXsearch';
-                $window.document.getElementsByName('description')[0].content = data.Social.twitter + ' ' + data.Tag + ' | NXsearch';
-                $window.document.getElementsByName('keywords')[0].content = data.Social.twitter + ' ' + data.Tags + ' | ' + 'NXsearch';
+                $window.document.title = data.ClinicName + ' in ' + data.Area + '-' + data.City +  ' ' + data.Socical.facebook + '| NXsearch';
+                $window.document.getElementsByName('title')[0].content = data.Socical.facebook + '| NXsearch';
+               $window.document.getElementsByName('description')[0].content = data.Socical.twitter + ' | NXsearch';
+                $window.document.getElementsByName('keywords')[0].content = data.Socical.google + ' ' + 'NXsearch';
 
                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                document.querySelector('[property="og:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                document.querySelector('[property="og:description"]').content = data.Socical.twitter + ' | NXsearch';
                 document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                document.querySelector('[name="twitter:description"]').content = data.ClinicName + ' in ' + data.Area + ' ' + ',' + data.City + ' | ' + data.Tags + ' | NXsearch';
+                document.querySelector('[name="twitter:description"]').content = data.Socical.google + ' | NXsearch';
                 document.querySelector('[name="twitter:image"]').content = 'www.nxsearch.com/' + data.imageUrl;
 
             })
