@@ -31,7 +31,7 @@ var vm = this;
 
                     vm.file = Upload.rename(vm.file, ImageName);
                     Upload.upload({
-                        url: 'http://localhost:5000/uploadClientImage', //webAPI exposed to upload the file
+                        url: 'http://nxsearch.com/uploadClientImage', //webAPI exposed to upload the file
                         data:{file:vm.file } //pass file as data, should be user ng-model
                     }).then(function (resp) { //upload function returns a promise
                         if(resp.data.error_code === 0){ //validate success
@@ -85,7 +85,7 @@ var vm = this;
 
                     vm.file = Upload.rename(vm.file, ImageName);
                     Upload.upload({
-                        url: 'http://localhost:5000/uploadClientImage', //webAPI exposed to upload the file
+                        url: 'http://nxsearch.com/uploadClientImage', //webAPI exposed to upload the file
                         data:{file:vm.file } //pass file as data, should be user ng-model
                     }).then(function (resp) { //upload function returns a promise
                         if(resp.data.error_code === 0){ //validate success
@@ -133,14 +133,14 @@ var vm = this;
                 var datetimestamp = Date.now();
                 var ImageName = 'Home_Gallary_' + $routeParams.id + '_' +  datetimestamp + '.jpg';
                    $scope.formData.gallaryImage = 'uploads/clientRelatedImages/' + ImageName;
-                //    alert(vm.file.name);
+                //   alert(vm.file.name);
                 
                 //$scope.formData.imageUrl = 'uploads/clientProfilePictures/' + fileName;
                 //alert(JSON.stringify($scope.formData));
 
                     vm.file = Upload.rename(vm.file, ImageName);
                     Upload.upload({
-                        url: 'http://localhost:5000/uploadClientImage', //webAPI exposed to upload the file
+                        url: 'http://nxsearch.com/uploadClientImage', //webAPI exposed to upload the file
                         data:{file:vm.file } //pass file as data, should be user ng-model
                     }).then(function (resp) { //upload function returns a promise
                         if(resp.data.error_code === 0){ //validate success
