@@ -109,7 +109,7 @@
 
                         <div class="form-group" ng-blur="EnableData = false">
                             <label for="exampleInputPassword1"></label>
-                            <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
+                            <input type="text" ng-value="selectedCategory | slug1" ng-keyup="loadClients()" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false"
                             />
 
                             <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
@@ -130,7 +130,7 @@
 
                                 </div>
 
-                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                         <div class="list_dropdown">
                                             <b> {{i.ClinicName}}</b>
@@ -139,14 +139,14 @@
                                     </a>
                                 </div>
 
-                                <div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                <!--<div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
                                         <div class="list_dropdown">
                                             <span class="text-center;">{{i.DoctorName}}</span>
                                             <br/>
                                         </div>
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -192,9 +192,9 @@
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city1"></span></h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}"><span id="bbb"></span> </a>&nbsp</h5>
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
+            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/{{::client.City}}/{{client.Categories | slugifynolower}}/{{client.Area | slugifynolower}}/{{client.Categories | slugifynolower}}-in-{{client.Area | slugifynolower}}-{{client.City | slugifynolower}}"><span id="area1"> </span></a>&nbsp</h5>
 
             <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="demo1"></span>&nbsp</h5>
@@ -573,8 +573,15 @@
             <div class="col-md-12 col-xs-12 well_new">
                 <div class="col-md-12">
                     <h3 class="text-center">Other Services</h3>
+                      <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{client.Categories}} in {{client.Area}}-{{::client.City}}" href="/{{::formData.City}}/{{client.Categories | slugifynolower}}/{{formData.Area | slugifynolower}}/{{client.Categories | slugifynolower}}-in-{{formData.Area | slugifynolower}}-{{::formData.City}}">
+                            <ul>
+                                <li> {{client.Categories}} {{::areaofcats}}</li>
+                            </ul>
+                        </a>
+                    </div>
                     <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
-                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}-{{::formData.City}}">
                             <ul>
                                 <li> {{::s}} {{::areaofcats}}</li>
                             </ul>
