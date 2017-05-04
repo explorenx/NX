@@ -581,10 +581,7 @@ app.config(function($routeProvider, $locationProvider) {
                }
             })
 
-             .when('/profile/:city/:category/:area/:clinicname/:id?', {
-                templateUrl : 'views/doctors/ProfilePage.html',
-                //controller : 'homeController'
-            })
+        
             .when('/addClient/:id?', {
                 templateUrl : 'views/dashboardResults/addClient.html',
                 controller : 'dashResultsController',
@@ -651,7 +648,10 @@ app.config(function($routeProvider, $locationProvider) {
                
             })
 
-           
+                .when('/profile/:city/:category/:area/:clinicname/:id?', {
+                templateUrl : 'views/doctors/ProfilePage.html',
+                //controller : 'homeController'
+            })
             .when('/showResults', {
                 templateUrl : 'views/dashboardResults/showResults.html',
                 controller : 'dashResultsController',
