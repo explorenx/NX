@@ -98,7 +98,7 @@
                         <div class="form-group" ng-blur="EnableData = false">
                             <label for="exampleInputPassword1"></label>
                             <input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()"
-                                ng-click="EnableData=true" ng-keypress="EnableData=true" click-anywhere-but-here="EnableData=false" />
+                                ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" />
 
                             <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
@@ -118,23 +118,14 @@
 
                                 </div>
 
-                                <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
+                                <div ng-repeat="i in clients |filter : {isPaidClient:true} | filter : searchString track by $index" ng-click="doSomething($event, 1)">
                                     <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
                                         <div class="list_dropdown">
                                            <b> {{i.ClinicName}}</b>
                                             <br/>
                                         </div>
                                     </a>
-                                </div>
-
-                                <div ng-repeat="i in clients |  filter : searchString track by $index | limitTo:5  " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                            <span class="text-center;">{{i.DoctorName}}</span>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>                  
+                                </div>                 
                             </div>
                         </div>
                     </div>
@@ -329,11 +320,11 @@
                 <div class="col-sm-2 col-md-2 col-xs-6">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Preschool>
-                        <a itemprop="url" href="/Pune/Preschool"><img src="assets/img/Preschool.png" width="50px" height="50px" alt="Preschools nx-search"></a>
+                        <a itemprop="url" href="/Pune/Preschools"><img src="assets/img/Preschool.png" width="50px" height="50px" alt="Preschools nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Preschool>
-                        <a itemprop="url" href="/Pune/Preschool">
+                        <a itemprop="url" href="/Pune/Preschools">
                             <h4>Preschools</h4>
                         </a>
                     </div>
