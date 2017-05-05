@@ -175,7 +175,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 }
                 $scope.aaa = $scope.resultsofclient.length;
                  $scope.limit2= 10;
-
+                 if (window.onCaptureReady) {
+                    window.onCaptureReady();
+                 }
                 // loadMore function
                 $scope.loadMore = function() {
                 $scope.limit2 = $scope.resultsofclient.length;
@@ -208,7 +210,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 // loadMore function
                                 $scope.loadMore = function() {
                                 $scope.limit2 = $scope.allClients.length;
-                                }
+                            }
+                            if (window.onCaptureReady) {
+                                window.onCaptureReady();
+                                    }
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -223,7 +228,10 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                             // loadMore function
                                             $scope.loadMore = function() {
                                             $scope.limit2 = $scope.allClients.length;
-                                            }
+                                        }
+                                        if (window.onCaptureReady) {
+                                          window.onCaptureReady();
+                                        }
                                         console.log(resClinicsdata);
                                         //if(resClinicsdata.length == 0){
                                         var tempresClinicsdata = resClinicsdata;
