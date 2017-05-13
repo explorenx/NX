@@ -239,6 +239,11 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE ng-hide="currentPath == 'http://localhost:5000/'" FUNCTION -->
 
 <body ng-cloak">
+        <script type="text/javascript">
+    mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
+        "referrer": document.referrer
+    });
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THFH9NL"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
