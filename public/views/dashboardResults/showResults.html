@@ -251,7 +251,7 @@
                     </div>-->
 
                                 <div class="col-xs-12" style="margin-top:5px;">
-                                    <button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</button>
+                                    <button type="button" class="btn2 btn2-info" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</button>
                                     <div class="modal fade" id="myModal{{$index}}" role="dialog">
                                         <div class="modal-dialog">
 
@@ -262,7 +262,7 @@
                                                 <div class="modal-body well_new">
                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <form name="enquiryForm" class="form-horizontal" role="form">
+                                                    <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
                                                         <!-- Form Name -->
                                                         <input type="hidden" ng-model="item._id" name="id">
                                                        <input type="hidden" ng-model="item.extensionNo" name="clientMobile">
@@ -576,3 +576,9 @@
 
         });
     </script>
+
+    <script type="text/javascript">
+    mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
+        "referrer": document.referrer
+    });
+</script>
