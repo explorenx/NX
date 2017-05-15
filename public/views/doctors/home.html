@@ -626,6 +626,57 @@
 
 </div>
 <!--  End of Page Container  -->
+
+    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:1427px; z-index: 1;" ng-controller="dashResultsController">
+                <div class="ng-hide">
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a id="categry" href=""> <span id="category"></span></a>
+                </h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+                &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                 <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+            </div>
+
+        <div class="col-xs-12 col-md-12">
+        	<div class="panel panel-default">
+                <div class="panel-heading top-bar">
+                    <div class="col-md-8 col-xs-8">
+                        <h3 class="panel-title"><span class="fa fa-envelope"></span>&nbsp;&nbsp;&nbsp;How can I help you ?</h3>
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="text-align: right;">
+                        <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
+                       
+                    </div>
+                </div>
+                <div class="panel-body msg_container_base">
+                    <div class="row msg_container base_sent">
+                        <div class="col-md-10 col-xs-10">
+                           <form name="popupform">
+                       <input id="btn-input" name="uname" ng-model="popupForm.name" type="text" class="form-control input-sm chat_input" placeholder="Name.." ng-required="true"><br>
+                      
+                        <input id="btn-input" ng-model="popupForm.phone" type="text" class="form-control input-sm chat_input" ng-minlength="10" ng-maxlength="10" placeholder="Mobile.." ng-required="true" /><br>
+                        
+                         <input id="btn-input" ng-model="popupForm.message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." ng-required="true" /><br>
+                        
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" id="btn-chat" ng-click="sendPopup(popupForm)" ng-disabled="popupform.$invalid">Send</button>
+                         </span>
+                           </form>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+    		</div>
+        </div>
+    </div>
+
 <!-- Footer -->
 <footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
         <div class="footer" id="footer">
@@ -710,4 +761,38 @@
 
 
     });
+</script>
+<script>
+$(document).on('click', '.panel-heading span.icon_minim', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('focus', '.panel-footer input.chat_input', function (e) {
+    var $this = $(this);
+    if ($('#minim_chat_window').hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $('#minim_chat_window').removeClass('panel-collapsed');
+        $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '#new_chat', function (e) {
+    var size = $( ".chat-window:last-child" ).css("margin-left");
+     size_total = parseInt(size) + 400;
+    alert(size_total);
+    var clone = $( "#chat_window_1" ).clone().appendTo( ".container" );
+    clone.css("margin-left", size_total);
+});
+$(document).on('click', '.icon_close', function (e) {
+    //$(this).parent().parent().parent().parent().remove();
+    $( "#chat_window_1" ).remove();
+});
+
 </script>
