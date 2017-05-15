@@ -31,6 +31,7 @@ var clinicGallaryData = require('./app/controllers/dashboard/clinicGallaryContro
 var clinicfeedbackData = require('./app/controllers/dashboard/clinicFeedbackController');
 var cliniccontactData = require('./app/controllers/dashboard/clinicContactController');
 var enquiryData = require('./app/controllers/dashboard/equiryController'); 
+var popupForm = require('./app/controllers/dashboard/popupForm');
 
 nodemailer.createTransport('smtp://nxsearch.com:pass@smtp.mail.nxsearch.com');
 var smtpConfig = {
@@ -93,6 +94,7 @@ app.use('/api/gallary', clinicGallaryData);
 app.use('/api/feedback', clinicfeedbackData);
 app.use('/api/contact', cliniccontactData);
 app.use('/api/enquiry', enquiryData);
+app.use('/api/formenquiry', popupForm);
 //app.use('/api/sitemap', sitemap);
 
 
@@ -161,18 +163,27 @@ app.post('/sendmail', function(req, res) {
             res.status('401').json({ err: info });
         } else {
             res.status('200').json({ success: true });
-           // console.log(info);
-            var authkey='138679A23pr5hn5889ca25';
- 
+           console.log(info);
+
+
+        }
+        mailer.close();
+    });
+});
+
+           
+ app.post('/sendMsg', function(req,res){
+    console.log(res);
+          var authkey='138679A23pr5hn5889ca25';
 //for multiple numbers 
-var numbers=[];
-numbers.push('');
+//var numbers=[];
+//numbers.push(req.body.clientMobile);
  
 //for single number 
-var number='9527154472';
+var number=req.body.clientMobile;
  
 //message 
-var message=item.username;
+var message= "Enquiry on nxsearch.com for: "+req.body.ClinicName +" Name: "+req.body.username + " Enquirer Contact No. : " +req.body.usermobile + " Area: "+ req.body.Area + "Thank You...!";
  
 //Sender ID 
 var senderid='NXSRCH';
@@ -191,10 +202,8 @@ msg91.sendOne(authkey,number,message,senderid,route,dialcode,function(response){
 //Returns Message ID, If Sent Successfully or the appropriate Error Message 
 console.log(response);
 });
-        }
-        mailer.close();
-    });
-});
+    
+ });
 
 app.post('/sendmail12', function(req, res) {
     var options = {
