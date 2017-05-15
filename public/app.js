@@ -484,7 +484,7 @@ app.config(function($routeProvider, $locationProvider) {
             })
 
             .when('/demoadd', {
-                templateUrl : 'views/dashboardResults/clientAddDemo.html',
+                templateUrl : 'views/Candidate_form.html',
             })
 
         .when('/editHomeServicesRecord/:id', {
