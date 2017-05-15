@@ -175,9 +175,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 }
                 $scope.aaa = $scope.resultsofclient.length;
                  $scope.limit2= 10;
-                 if (window.onCaptureReady) {
-                    window.onCaptureReady();
-                 }
+            
                 // loadMore function
                 $scope.loadMore = function() {
                 $scope.limit2 = $scope.resultsofclient.length;
@@ -211,9 +209,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                 $scope.loadMore = function() {
                                 $scope.limit2 = $scope.allClients.length;
                             }
-                            if (window.onCaptureReady) {
-                                window.onCaptureReady();
-                                    }
+                            
                             console.log(data);
                             if (resdata.length == 0) {
                                 //alert('inside by clinc ');
@@ -229,9 +225,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                                             $scope.loadMore = function() {
                                             $scope.limit2 = $scope.allClients.length;
                                         }
-                                        if (window.onCaptureReady) {
-                                          window.onCaptureReady();
-                                        }
+                                     
                                         console.log(resClinicsdata);
                                         //if(resClinicsdata.length == 0){
                                         var tempresClinicsdata = resClinicsdata;
@@ -1443,7 +1437,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 usermobile : item.usermobile,
                 useremail : item.useremail,
                 clinicId : item._id,
-                category : $routeParams.category.replace(/-/g, ' ')
+                category : $routeParams.category.replace(/-/g, ' '),
+                clientMobile : item.extensionNo
             }
                     
                   $http.post('/api/enquiry/addenquiry', $scope.item)
@@ -1454,6 +1449,16 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
+
+                     $http.post('/sendMsg', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+        
 
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
@@ -1469,7 +1474,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                         "Email Id :" + "<b>" + item.useremail + "</b>"
                 }).then(res => {
                     $scope.loading = false;
-                    $scope.serverMessage = 'Email sent successfully';
+                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
 
                 });
             }
@@ -1532,10 +1537,19 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                 usermobile : client.usermobile,
                 useremail : client.useremail,
                 clinicId : client._id,
-                category : $routeParams.category.replace(/-/g, ' ')
+                category : $routeParams.category.replace(/-/g, ' '),
+                clientMobile : client.extensionNo
             }
                     
                   $http.post('/api/enquiry/addenquiry', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+                     $http.post('/sendMsg', $scope.item)
                     .success(function(data) {
                         //$scope.formData = {}; // clear the form so our user is ready to enter another
                         console.log(data);
@@ -1557,7 +1571,7 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
                         "Email Id :" + "<b>" + client.useremail + "</b>"
                 }).then(res => {
                     $scope.loading = false;
-                    $scope.serverMessage = 'Email sent successfully';
+                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
                 });
             }
         }).
@@ -1628,9 +1642,48 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
         }, function(response) {})
     }
-    
+//Popup Form Code
+$scope.baseurl = $location.path()
+  $scope.sendPopup = function(popupForm){  
+      $scope.item = {
+        popupName : popupForm.name,
+        popupPhone : popupForm.phone,
+        popupMsg : popupForm.message,
+        formPath : $scope.baseurl
+      }
+ $http.post('/api/formenquiry/popupForm', $scope.item)
+                    .success(function(data) {
+                        $scope.popupForm = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                               $http.post('/sendmail12', {
+                    from: 'NXsearch PopUp Form <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch Enquiry ',
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry from :" + "<b>" + popupForm.name + "</b> " + "<br>" + "Mobile :" + "<b>" + popupForm.phone + " </b>" + "<br>" + "Message : " + "<b>" + popupForm.message + " </b>" + "<br>"
+                          + "Url :"+"<b>"+ $scope.baseurl + "</b>"+"<br>"
+                }).then(res => {
+                    $scope.loading = false;
+                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                });
 
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+  }
 
+    $http.get('/api/formenquiry/popupForm')
+            .success(function(data) {
+                $scope.popupEnquiry = data;
+                $scope.totalpopupEnquiry = data.length;
+               // alert($scope.total);
+                console.log(data);
+            }) .error(function(data) {
+                console.log('Error: ' + data);
+            });
+
+  //Popup FOrm Code End
 });
 
 
