@@ -627,7 +627,7 @@
 </div>
 <!--  End of Page Container  -->
 
-    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:1427px; z-index: 1;" ng-controller="dashResultsController">
+    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="z-index: 1;" ng-controller="dashResultsController">
                 <div class="ng-hide">
                 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
                 <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
@@ -666,7 +666,7 @@
                         
                         <span class="input-group-btn">
                         <button class="btn btn-primary btn-sm" id="btn-chat" ng-click="sendPopup(popupForm)" ng-disabled="popupform.$invalid">Send</button>
-                         </span>
+                         </span><span style="color : green;">{{serverMessage}}</span>
                            </form>
                         </div>
                        
