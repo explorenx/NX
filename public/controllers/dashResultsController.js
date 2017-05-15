@@ -149,7 +149,12 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
             /// $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
 
-
+if (area == undefined && category ==undefined) {
+    $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+$window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+             $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+            $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+}
 
 
 
