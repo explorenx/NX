@@ -493,8 +493,23 @@
 </div>  
 <!-- End Of Page Container -->
 
-    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="z-index: 1;" ng-controller="dashResultsController">
-        <div class="col-xs-12 col-md-12">
+   <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="z-index: 1;" ng-controller="dashResultsController">
+                <div class="ng-hide">
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a id="categry" href=""> <span id="category"></span></a>
+                </h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+                &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                 <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+            </div>
+
+        <div class="col-xs-12 col-md-12 window-width" >
         	<div class="panel panel-default">
                 <div class="panel-heading top-bar">
                     <div class="col-md-8 col-xs-8">
@@ -507,14 +522,14 @@
                 </div>
                 <div class="panel-body msg_container_base">
                     <div class="row msg_container base_sent">
-                        <div class="col-md-10 col-xs-10">
+                        <div class="col-md-12 col-xs-12">
                            <form name="popupform">
                        <input id="btn-input" name="uname" ng-model="popupForm.name" type="text" class="form-control input-sm chat_input" placeholder="Name.." ng-required="true"><br>
                       
                         <input id="btn-input" ng-model="popupForm.phone" type="text" class="form-control input-sm chat_input" ng-minlength="10" ng-maxlength="10" placeholder="Mobile.." ng-required="true" /><br>
-                       
+                        
                          <input id="btn-input" ng-model="popupForm.message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." ng-required="true" /><br>
-                       
+                        
                         <span class="input-group-btn">
                         <button class="btn btn-primary btn-sm" id="btn-chat" ng-click="sendPopup(popupForm)" ng-disabled="popupform.$invalid">Send</button>
                          </span><span style="color : green;">{{serverMessage}}</span>
@@ -637,6 +652,7 @@ $(document).on('focus', '.panel-footer input.chat_input', function (e) {
         $this.parents('.panel').find('.panel-body').slideDown();
         $('#minim_chat_window').removeClass('panel-collapsed');
         $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        e.stopPropagation();
     }
 });
 $(document).on('click', '#new_chat', function (e) {
