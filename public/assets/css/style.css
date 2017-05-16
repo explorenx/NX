@@ -1017,7 +1017,7 @@ body{
     bottom:0;
     position:fixed;
     float:right;
-    margin-left:1427px;
+    margin-left:1537px;
 }
 }
 @media (max-width: 1369px) {
@@ -1029,7 +1029,71 @@ body{
         margin-left:1012px;
     }
 }
+@media (device-width: 1024px) {
+.chat-window{
+    bottom:0;
+        position:fixed;
+        float:right;
+        margin-left:724px;
+}
+}
+@media (device-width: 768px) {
+.chat-window{
+    bottom:0;
+        position:fixed;
+        float:right;
+        margin-left:470px;
+}
+}
 
+@media (device-width: 360px) {
+.chat-window{
+    bottom:0;
+        position:fixed;
+        float:right;
+        margin-left:12px;
+}
+}
+
+@media (device-width: 412px) {
+.chat-window{
+    bottom:0;
+        position:fixed;
+        float:right;
+        margin-left:36px;
+}
+}
+
+@media (max-width: 414px) {
+.chat-window{
+    bottom:0;
+        position:fixed;
+        float:right;
+        margin-left:0px;
+}
+}
+
+@media (min-width: 1369px) {
+.window-width{
+    width: 366px !important;
+}
+}
+@media (max-width: 1369px) {
+ .window-width{
+    width: 337px;
+}
+}
+
+@media (device-width: 768px) {
+ .window-width{
+    width: 292px;
+}
+}
+@media (device-width: 1024px) {
+ .window-width{
+    width: 300px;
+}
+}
 .chat-window > div > .panel{
     border-radius: 5px 5px 0 0;
 }
@@ -1049,6 +1113,7 @@ body{
   padding: 10px;
   position: relative;
   overflow: hidden;
+  background-color: #7e88d8 !important;
 }
 .msg_receive{
     padding-left:0;
