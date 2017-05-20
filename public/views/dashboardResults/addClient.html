@@ -464,7 +464,14 @@
                                         <div class="col-md-12">
                                             <label class="col-lg-4 col-md-2 col-sm-4">Social Links:</label>
                                             <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                                <input type="text" ng-model="formData.Socical.Youtube" name="" class="form-control text-center" placeholder="Enter Youtube link">
+                                                  <div class="col-lg-10 col-md-8 col-sm-12">
+                                            <input type="file" ngf-select ng-model="up.file1" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
+                                            
+                                            <i ng-show="up.upload_form.file1.$error.required">*required</i><br>
+                                            <i ng-show="up.upload_form.file1.$error.maxSize">File too large 
+                                                {{up.file1.size / 1000000|number:1}}MB: max 20M</i>
+                                                         <img style="width:10%;" ngf-thumbnail="up.file1 || '/thumb.jpg'" />
+                                        </div>
                                                 <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="Enter Instagram link">
                                             </div>
                                         </div>
