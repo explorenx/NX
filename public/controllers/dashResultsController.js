@@ -339,7 +339,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
 
                     angular.forEach(value.category, function(cat, key2) {
                         // alert(JSON.stringify(cat.name));
-                        if (cat.name == $routeParams.category) {
+                        if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                             $scope.maincat = cat.name;
                            // alert(JSON.stringify($scope.maincat));
                             if ($routeParams.area != '') {
@@ -421,8 +421,8 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                 $scope.city2 = $routeParams.city;
                 $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
-                //alert($location.absUrl());
-              //alert( $scope.area2);
+              //  alert( $scope.SubCategoriesLinks);
+              //alert( longDesc);
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
@@ -503,6 +503,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
 
     var vm = this;
 
+// This Code is For Profile Page
 
     //alert($routeParams._id);
     if ($routeParams.id) {
@@ -518,7 +519,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                 //alert(data.Socical.twitter);
+                // alert(data.Socical.Youtube);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
@@ -552,7 +553,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
             });
         //};
     }
-
+//End Of Profile Page Code
     $scope.tempCategories = [{
         id: 'cat1',
         subs: [{ id: 'choice1' }, { id: 'choice2' }, { id: 'choice3' }]
@@ -634,7 +635,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
             Email: $scope.formData.email,
             Password: $scope.formData.password
         };
-
+// Profile Image upload Code
 
         if (vm.file) {
             alert(vm.file.name);
@@ -664,10 +665,39 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         }
+//Profile image code End
 
+//Banner image code
+ if (vm.file1) {
+            alert(vm.file1.name);
+            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + 'banner-nxsearch.jpg';
+            $scope.formData.Socical.Youtube = 'uploads/clientProfilePictures/' + fileName;
+            vm.file1.name = fileName;
+            //       alert('new file name -' + vm.file.name);//
+            //        alert(JSON.stringify($scope.formData));//
 
+            vm.file1 = Upload.rename(vm.file1, fileName);
+            Upload.upload({
+                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
+                data: { file: vm.file1 } //pass file as data, should be user ng-model
+            }).then(function(resp) { //upload function returns a promise
+                if (resp.data.error_code === 0) { //validate success
+                    $window.alert('Success ' + resp.config.data.file1.name + 'uploaded. Response: ');
+                } else {
+                    $window.alert('an error occured');
+                }
+            }, function(resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                $window.alert('Error status: ' + resp.status);
+            }, function(evt) {
+                console.log(evt);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file1.name);
+                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+            });
+        }
 
-
+//Banner image code End
 
 
         if ($scope.formData._id) {
@@ -1390,7 +1420,8 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
             }) .error(function(data) {
                 console.log('Error: ' + data);
             });
-    
+           
+            
     $scope.loading = false;
     $scope.sendOTP = function(item) {
 
@@ -1574,6 +1605,100 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                     html: "Enquiry for :" + "<b>" + client.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + client.Area + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + client.useremail + "</b>"
+                }).then(res => {
+                    $scope.loading = false;
+                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                });
+            }
+        }).
+        error(function(status) {
+            //your code when fails
+        });
+
+    }
+
+    $scope.sendOTPsponsor = function(FirstSponsoredClient) {
+
+        if (FirstSponsoredClient.usermobile != undefined && FirstSponsoredClient.usermobile.length == 10) {
+            $http.defaults.headers.post['Content-Type'] = 'application/json';
+            $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+            $http({
+                method: 'POST',
+                url: 'https://sendotp.msg91.com/api/generateOTP',
+                data: {
+                    countryCode: "91",
+                    mobileNumber: FirstSponsoredClient.usermobile
+                }
+            }).
+            success(function(status) {
+                //your code when success
+                console.log(status);
+                if (status != undefined && status.status == 'success') {
+                    //show popup message that OTP has sent to your mobile number
+                    
+                }
+            });
+        }
+    }
+
+
+    $scope.sendsponsor = function(FirstSponsoredClient) {
+        $scope.loading = true;
+
+        //validate OTP post Request
+        $http.defaults.headers.post['Content-Type'] = 'application/json';
+        $http.defaults.headers.post['application-Key'] = 'gJzjVN9NAWY4Tryprooyu3SMTilT8HpfrND8URQ0NDwOO9aDlUlSeR4i7W5o1zjZo0GMhA6np5JNaka4jVYip0aPf6Ke76a5bCuiCIDYOy4LVin-Ju1BCi_mmI7-cPvqn2rv0Mg_qas0UP5M0bNe7w==';
+        $http({
+            method: 'POST',
+            url: 'https://sendotp.msg91.com/api/verifyOTP',
+            data: {
+                countryCode: "91",
+                mobileNumber: FirstSponsoredClient.usermobile,
+                oneTimePassword: FirstSponsoredClient.OTP
+            }
+        }).
+        success(function(status) {
+            //your code when success
+            console.log(status);
+             $scope.item = {
+                username : FirstSponsoredClient.username,
+                ClinicName : FirstSponsoredClient.ClinicName,
+                Area : FirstSponsoredClient.Area,
+                usermobile : FirstSponsoredClient.usermobile,
+                useremail : FirstSponsoredClient.useremail,
+                clinicId : FirstSponsoredClient._id,
+                category : $routeParams.category.replace(/-/g, ' '),
+                clientMobile : FirstSponsoredClient.extensionNo
+            }
+                    
+                  $http.post('/api/enquiry/addenquiry', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+                     $http.post('/sendMsg', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+            if (status != undefined && status.status == 'success') {
+                $scope.loading = false;
+                $scope.serverMessage = 'Email sent successfully';
+
+                $http.post('/sendmail12', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch Enquiry for ' + FirstSponsoredClient.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + FirstSponsoredClient.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + FirstSponsoredClient.Area + " </b>" + "<br>" + "Name : " + "<b>" + FirstSponsoredClient.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + FirstSponsoredClient.usermobile + "</b>" + "<br>" // html body
+                        +
+                        "Email Id :" + "<b>" + FirstSponsoredClient.useremail + "</b>"
                 }).then(res => {
                     $scope.loading = false;
                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
