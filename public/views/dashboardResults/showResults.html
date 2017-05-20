@@ -169,38 +169,143 @@
         <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
 
         <div class="col-md-9 col-xs-12">
-            <div class="col-md-12 col-xs-12 ng-hide" style=" padding-right: 10px; margin-top: 10px;">
+            <div class="col-md-12 col-xs-12" ng-show="FirstSponsoredClient !=null" style=" padding-right: 10px; margin-top: 10px;">
                 <div class="col-md-12  col-xs-12  list_borderd">
                     <div class="col-md-3 col-xs-6">
-                        <img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{::FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com">
+                        <img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com">
                     </div>
 
                     <div class="col-md-6 col-xs-6">
-                        <h5 class="clinic-name">{{::FirstSponsoredClient.ClinicName}}</h5>
-                        <h6 class="dr-name">{{::FirstSponsoredClient.DoctorName}}</h6>
-                        <h6 class="dr-degree">{{::FirstSponsoredClient.Profession}}</h6>
-                        <h6 class="dr-degree">{{::FirstSponsoredClient.speciality}}</h6>
+                        <h4 class="clinic-name"> <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}"> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{::FirstSponsoredClient.ClinicName}} </a></h4>
+                        <h6 class="dr-name">&nbsp;&nbsp;&nbsp;&nbsp;{{::FirstSponsoredClient.DoctorName}}</h6>
+                        <h6 class="dr-degree">&nbsp;&nbsp;&nbsp;&nbsp;{{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}}</h6>
+                        
 
                         <div class="col-md-12 col-xs-12 div-service" style="padding-left:00px">
-                            <h5 class="service">Services</h5>
-                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Orthodontic Treatment<br>Dental Braces<br>Full Dentures</div>
-                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Ceramic Braces<br>Partial Dentures<br>Invisible Braces</div>
-                            <div class="col-md-4 col-xs-4 " style="padding-left:00px;font-size:14px;">Ceramic Braces<br>Partial Dentures<br>Invisible Braces</div>
+                            <h5 class="service"> &nbsp;&nbsp;&nbsp;&nbsp;Services</h5>
+                            <div class="col-md-4 col-xs-4 " ng-repeat="ss in SubCategoriesLinks | limitTo:6" style="padding-left:00px;font-size:14px;">
+                                <a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
+                                {{ss | limitTo: 15}} {{ss.length > 15 ? '...' : ''}}<br>
+                                </a>
+                                </div>
+                           
+                           
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-12">
                         <div class="sideinfo"><i class="fa fa-star-o"></i>&nbsp; <b style="color:#00adff">Experience : </b>{{::FirstSponsoredClient.Experience}} Years</div>
-                        <div class="sideinfo"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> {{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</div>
-                        <div class="sideinfo"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b> {{::FirstSponsoredClient.Area}}</div>
-                        <div class="enqire"><button type="button" class="btn btn-block"><b>ENQUIRY</b></button></div>
+                        <div class="sideinfo"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> {{::FirstSponsoredClient.FirstHalfTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| {{::FirstSponsoredClient.SecondHalfTime}}</div>
+                        <div class="sideinfo"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b> {{::FirstSponsoredClient.Area}}</div><br><br><br>
+                        <div class="enqire"><button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}"><b>ENQUIRY</b></button></div>
+                             <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                        <div class="modal-dialog">
 
+                                            <!-- Modal content-->
+                                            <div class="modal-content" style="max-width: 340px; margin:auto;">
+
+
+                                                <div class="modal-body well_new">
+                                                    <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
+                                                        <!-- Form Name -->
+                                                        <input type="hidden" ng-model="FirstSponsoredClient._id" name="id">
+                                                       <input type="hidden" ng-model="FirstSponsoredClient.extensionNo" name="clientMobile">
+                                                        <!-- Text input-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-12">
+                                                                <b>Your Enquiry For :</b>
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <input type="text" id="ClinicName" ng-model="FirstSponsoredClient.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
+                                                            </div>
+                                                            <div class="col-xs-2">
+                                                                <b>Area :</b>
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" id="ClinicArea" ng-model="FirstSponsoredClient.Area" name="ClinicName" class="formControlModal" ng-value="FirstSponsoredClient.Area" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <input type="text" name="username" id="username" ng-model="FirstSponsoredClient.username" placeholder="Name" class="formControlModal" ng-required="true">
+                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!-- Text input-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-3">
+                                                                <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
+                                                            </div>
+                                                            <div class="col-xs-9">
+                                                                <input type="text" name="usermobile" id="usermobile" ng-model="FirstSponsoredClient.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
+                                                                <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                    <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Pick Date :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Pick Time :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
+                                                            </div>
+                                                        </div>-->
+                                                        <div class="col-xs-12">
+                                                            <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Send OTP" id="send_otp" />
+                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                        </div>
+
+                                                        <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Enter OTP :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" ng-model="FirstSponsoredClient.OTP" class="form-control" ng-focus="sendmsg()">
+                                                            </div>
+                                                        </div>
+                                                        <br />
+
+                                                        <br />
+                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendsponsor(FirstSponsoredClient)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
+                                                    </form>
+                                                </div>
+
+
+
+                                            </div>
+                                            <!-- Modal end here -->
+                                        </div>
+                                    </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="col-md-6 col-xs-12" ng-repeat="item in results | limitTo:limit2 | filter : userSearch track by $index" >
+            <div class="col-md-6 col-xs-12" ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index" >
 
                 <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
                     <div class="col-md-12 col-xs-12 list_borderd">
@@ -490,8 +595,23 @@
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
         </div>
     </div>
+
+    <!-- Side Banner code -->
+    <div ng-controller="dashResultsController">
+        <div ng-repeat="item in results | filter: {Socical: {instagram: 'added'}} | filter : userSearch track by $index" style="padding-top:117px;">
+            <div ng-if="item.Socical.Youtube != ''">
+                 <a href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"> 
+                     <img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.Socical.Youtube}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="280" height="200">
+                 </a>
+            </div>   
+        </div>
+        </div>
 </div>  
+<!-- Side Banner code Ends Here -->
+
 <!-- End Of Page Container -->
+
+
 
    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="z-index: 1;" ng-controller="dashResultsController">
                 <div class="ng-hide">
