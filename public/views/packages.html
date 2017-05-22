@@ -1,91 +1,99 @@
-<div id="todo-form1" class="container" ng-controller="sitemapsController">
-    <div class="col-xs-12">
-        <h5>sitemap page</h5>
-         
-
-        <div class ="col-sm-6 panel" ng-repeat="city in cities">
-				<span class="strong days-timing">{{city.loc}}</span>
-					<span class="fa fa-trash-o  pull-right" aria-hidden="true"  ng-click="deletecity(city._id)"></span>
-                    <span><a href="/updateSitemap/{{city._id}}"> Edit</a></span>
-		</div>
-        <!--<table class="table">
-            <thead class="thead-default">
-                <tr>
-                    <th> City</th>
-                    <th> Area</th>
-                    <th> Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="city in cities">
-                    <td>{{city.city}} <a href="/updateCity/{{city._id}}"> (Edit) </a> </td>
-                    <td> <label ng-repeat="rec in city.areas"> {{rec.Area}}<span ng-if="rec.Area.length">, </span>  </label> </td>
-                    <td><input type="button" value="Delete" class="btn btn-danger pull-right" aria-hidden="true" data-toggle="modal" data-target="#myModal{{$index}}">
-                        <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                               <!-- <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h3 class="modal-title pull-left">Are You Want To Delete <b>{{city.city}}</b></h3>
-                                    </div>
-                                    <div class="modal-body pull-left">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button ng-click="deletecity(city._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-
-                            </div>
+<!-- Header -->
+<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
+        <nav class="navbar">
+            <div class="container">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
+                    <div class="col-md-10 col-xs-6">
+                        <div class="col-md-2 col-xs-12 text-center">
+                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>-->
-    </div>
 
-    <div class="col-sm-8 col-sm-offset-2 text-center">
-        <!--<form>
-					<div class="form-group">
-						<input type="hidden" ng-model="addr._id">
-                        <input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="addr.City">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Area" ng-model="addr.Area">
-                        <input type="text" class="form-control input-lg text-center" placeholder="SubArea" ng-model="addr.SubArea">
-						<br />
-					</div>
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createaddr()">{{btnValue}}</button>
-				</form>-->
-        <form name="citiesform">
-            <div class="form-group">
-                <label for="Category">Link</label>
-                <input type="hidden" ng-model="formData._id">
-                <input type="text" ng-model="formData.loc" name="url" class="form-control text-center" placeholder="Enter url" ng-required="true">
-                <div ng-show="citiesform.url.$touched && citiesform.url.$invalid">
-                    <small style="color: red; display: block; text-align: center">Please Enter url</small>
+                    </div>
+                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
+                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
+                    </div>
                 </div>
-               <!-- <div ng-repeat="cat in tempCategories">
-                    <label for="Category">Area</label>
-                    <input type="text" ng-model="cat.id" name="area" class="form-control text-center" placeholder="Enter a area" ng-required="true">
-                    <div ng-show="citiesform.area.$touched && citiesform.area.$invalid">
-                        <small style="color: red; display: block; text-align: center">Please Enter Area</small>
-                    </div>
-                    <hr />
-                    <label for="choice">Sub-Area</label>
-                    <div class="form-group" ng-repeat="choice in cat.subs">
-                        <input type="text" ng-model="choice.name" name="subarea" class="form-control text-center" placeholder="Enter a sub area">
-                    </div>
-                    <button class="btn btn-outline-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Location</button>
-                    <hr />
-                    <button class="btn btn-default" ng-click="addNewCategory()">Add Area</button>
-                    <button class="btn btn-info" ng-click="clearForm()">Clear Form</button>
-                </div>-->
             </div>
+        </nav>
+    </div>
+<!-- Header End -->
+<div class="container" style="text-align: justify; background-color:#fff;padding:50px">
+    <div class="col-md-12"><h3 class="text-center">Disclaimer</h3>
 
-            <br />
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="citiesform.$invalid">{{btnValue}}</button>
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="clearForm()" ng-disabled="citiesform.$invalid">clearForm</button>
-        </form>
+    <p>nxsearch.com provides the http://nxsearch.com web site as service to the public and web site owners.<br/></p>
+
+<p>nxsearch.com is not responsible for, and expressly disclaims all liability for, damages of any kind arising out of use, reference to, or reliance on any information contained within the site. While the information contained withinthe site. While the information contained within the site is periodically updated, no guarantee is given that the information provided in this web site is correct, complete, and up to date.<br/></p>
+
+<p>Although the nxsearch.com web site may include links providing direct access to other internet resources, including web sites, nxsearch.com is not responsible for the accuracy or content of information conained in this site.<br/></p>
     </div>
 </div>
+<!-- Footer -->
+<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="container">
+                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
+                        <h3>About </h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
+                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>NX-search</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
+                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
+                            <li> <a itemprop="url" href="/disclaimer">Disclaimer</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
+                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
+                        <h3> Follow Us </h3>
+                        <ul>
+                            <li>
+                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
+                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <a href="https://www.instagram.com/nxsearch_com/" target="blank" itemprop="url"><img src="assets/img/instagram-nxsearch-logo.png" class="img-circle" alt="instagaram_nxsearch" width="35" height="35"></a>
+                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                
+                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                        <h3> SubScribe </h3>
+                        <ul>
+                            <li>
+                                <div class="input-append newsletter-box text-center">
+                                    <input type="text" class="full text-center" placeholder="Email ">
+                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
+            </div>
+        </div>
+       
+
+</footer>
+<!-- Footer End -->  
