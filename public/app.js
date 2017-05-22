@@ -545,9 +545,9 @@ app.config(function($routeProvider, $locationProvider) {
                 templateUrl : 'views/login.html',
                 //controller : 'homeController'
             })
-            .when('/packages', {
+            .when('/disclaimer', {
                 templateUrl : 'views/packages.html',
-                controller : 'sitemapsController'
+               // controller : 'sitemapsController'
             })
 
             .when('/categories', {
