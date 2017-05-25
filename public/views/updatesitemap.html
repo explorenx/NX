@@ -1,0 +1,32 @@
+<div class="container" style="margin-left:30px; background-color:#e6e6e6; margin-left: 0px; height: 300px;" ng-controller="dashResultsController">
+        <div class="ng-hide">
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a id="categry" href=""> <span id="category"></span></a>
+                </h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+                &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                  <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer;"></i>
+            </div>
+            <div class="col-md-12">
+    <form name="popupform">
+        <br>
+        <div class="col-xs-12">
+        <input type="text" ng-model="popupForm.name" class="formControlModal" placeholder="Name">
+        </div>
+        <div class="col-xs-12">
+        <input type="tel" ng-model="popupForm.phone" class="formControlModal" placeholder="Mobile">
+        </div>
+        <div class="col-xs-12">
+        <textarea name="textarea1" ng-model="popupForm.message" class="formControl" rows="2" cols="5" placeholder="Enter your message.."></textarea>
+        </div>
+        <button type="btn" class="btn btn-primary btn-sm center-block" ng-click="sendPopup(popupForm)" ng-disabled="popupform.$invalid">send</button><br>
+        </span><span style="color : green;">{{serverMessage}}</span>
+    </form>
+    </div>
+</div>
