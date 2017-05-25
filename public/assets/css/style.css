@@ -1020,6 +1020,21 @@ body{
     margin-left:1537px;
 }
 }
+
+@media (min-width: 1365px) {
+.max-device{
+    padding-left: 20px;
+}
+}
+
+@media (max-width:415px) {
+    .sponsor {
+    right: -11px !important; 
+    color: gray ;
+    bottom: 38px !important;
+    }
+}
+    
 @media (max-width: 1369px) {
     .chat-window {
         
@@ -1204,3 +1219,117 @@ body{
     left:0px;
     bottom:0;
 }
+
+.newlayout{
+    padding: 25px 0px;
+    background: url(/assets/img/headerbg.jpg) center top no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.newlayout .btn1-info {
+    color: #fff;
+    background-color: #041f29;
+    border-color: #ffffff;
+}
+
+.sponsor{
+    margin-top: -10px;
+    position: absolute;
+    right: 0;
+    color: gray;
+    bottom: 0;
+}
+@media (max-width:415px) {
+    .mobile-view {
+        margin-top: 200px
+    }
+}
+
+@media (max-width:415px) {
+    .div-service {
+        display: none;
+    }
+}
+
+@media (max-width:415px) {
+    .sponsorimg {
+        width: 100px;
+        height: 100px;
+    }
+}
+.fb{
+    color: #5c83d6; 
+}
+.fb:hover{
+    color:#3b5998 ;
+}
+.twit{
+    color:  #00aced;
+    margin-left: 10px;
+}
+.twit:hover{
+    color: #5c83d6;
+}
+.insta{
+    color:  #cd486b;
+    margin-left: 10px;
+}
+.insta:hover{
+    color: #5c83d6;
+}
+/*chat window :start*/
+#chat,#chat:after,.chatbox{transition:all .4s ease-in-out}
+
+#chat,#close-chat,.minim-button,.maxi-button,.chat-text{font-weight:700;cursor:pointer;font-family:Arial,sans-serif;text-align:center;height:20px;line-height:20px}
+
+#chat,#close-chat,.chatbox{border:1px solid #A8A8A8}
+
+#chat:after,#chat:before{position:absolute;border-style:solid;content:""}
+
+.chatbox{position:fixed;bottom:0;right:50px;margin:0 0 0px;background:#fff;border-bottom:none;padding:28px 10px 10px;z-index:100000}
+
+#close-chat{position:absolute;top:2px;right:2px;font-size:24px;border:1px solid #dedede;width:20px;background:#fefefe;z-index:2}
+
+#minim-chat,#maxi-chat{position:absolute;top:0;left:0;width:100%;height:20px;line-height:20px;cursor:pointer;z-index:1}
+
+.minim-button{position:absolute;top:2px;right:26px;font-size:24px;border:1px solid #dedede;width:20px;background:#fefefe}
+
+.maxi-button{position:absolute;top:2px;right:26px;font-size:24px;border:1px solid #dedede;width:20px;background:#fefefe;}
+
+.chat-text{position:absolute;top:5px;left:10px;font-size:16px;}
+
+#chat{width:40px;border-radius:3px;padding:2px 8px;font-size:12px;background:#fff;-webkit-transform:translateZ(0);transform:translateZ(0)}
+
+#chat:before{border-width:10px 11px 0 0;border-color:#A8A8A8 transparent transparent;left:7px;bottom:-10px}
+
+#chat:after{border-width:9px 8px 0 0;border-color:#fff transparent transparent;left:8px;bottom:-8px}
+
+#chat:hover{background:#ddd;-webkit-animation-name:hvr-pulse-grow;animation-name:hvr-pulse-grow;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:linear;animation-timing-function:linear;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;animation-direction:alternate}
+
+#chat:hover:after{border-color:#ddd transparent transparent!important}
+
+.animated-chat{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}
+
+@-webkit-keyframes tada{0%{-webkit-transform:scale(1)}
+
+
+10%,20%{-webkit-transform:scale(.9)rotate(-3deg)}
+
+30%,50%,70%,90%{-webkit-transform:scale(1.1)rotate(3deg)}
+40%,60%,80%{-webkit-transform:scale(1.1)rotate(-3deg)}
+100%{-webkit-transform:scale(1)rotate(0)}
+}
+@keyframes tada{0%{transform:scale(1)}
+10%,20%{transform:scale(.9)rotate(-3deg)}
+30%,50%,70%,90%{transform:scale(1.1)rotate(3deg)}
+40%,60%,80%{transform:scale(1.1)rotate(-3deg)}
+100%{transform:scale(1)rotate(0)}
+}
+.tada{-webkit-animation-name:tada;animation-name:tada}
+@-webkit-keyframes hvr-pulse-grow{to{-webkit-transform:scale(1.1);transform:scale(1.1)}
+}
+@keyframes hvr-pulse-grow{to{-webkit-transform:scale(1.1);transform:scale(1.1)}
+}
+
+/*chat window :end*/
