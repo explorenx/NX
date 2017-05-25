@@ -7,8 +7,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     };
 
     var notSupportedBrowsers = [{ 'os': 'Any', 'browser': 'MSIE', 'version': 9 }, { 'os': 'Any', 'browser': 'Firefox', 'version': 1 }];
-                
-    //console.log = function() {};
+$window.onload = function(){
+    if($location.path() == '/form')
+    {
+        document.getElementById('chatbox').style.display = "none";
+    }
+}
+
+    console.log = function() {};
     var limitStep = 2;
     $scope.limit = limitStep;
    
@@ -1814,6 +1820,32 @@ $scope.baseurl = $location.path()
             });
 
   //Popup FOrm Code End
+
+  // Contact Us Mail Configuration
+//$scope.showModal = true;
+    $scope.contactSend = function(contact){  
+ 
+
+ $http.post('/sendmail12', {
+                    from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch Enquiry ',
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry from :" + "<b>" + contact.fname + "</b> " + "<br>" + "Last Name :" + "<b>" + contact.lname + "</b> " + "<br>" + "Email :" + "<b>" + contact.email + "</b> " + "<br>" + "Mobile :" + "<b>" + contact.phone + " </b>" + "<br>" + "Message : " + "<b>" + contact.message + " </b>" + "<br>"
+                         
+                }).then(res => {
+                    $scope.loading = false;
+                   // $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                    alert("Message Sent Succesfully...!");
+
+                });
+
+                   
+                   
+  }
+
+
+  //Contact Us Mail Configuration End
 });
 
 
