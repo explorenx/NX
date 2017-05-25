@@ -549,6 +549,11 @@ app.config(function($routeProvider, $locationProvider) {
                 templateUrl : 'views/packages.html',
                // controller : 'sitemapsController'
             })
+              .when('/form', {
+                templateUrl : 'views/updatesitemap.html',
+               // controller : 'sitemapsController'
+            })
+
 
             .when('/categories', {
                 templateUrl : 'views/categories/categories.html',
