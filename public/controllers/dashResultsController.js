@@ -1800,7 +1800,7 @@ $scope.baseurl = $location.path()
                           + "Url :"+"<b>"+ $scope.baseurl + "</b>"+"<br>"
                 }).then(res => {
                     $scope.loading = false;
-                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                    $scope.serverMessage = 'Message sent successfully...!';
                 });
 
                     })
