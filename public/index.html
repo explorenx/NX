@@ -239,7 +239,7 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE ng-hide="currentPath == 'http://localhost:5000/'" FUNCTION -->
 
-<body ng-cloak">
+<body ng-cloak="" onload="loadChatbox()">
         <script type="text/javascript">
     mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
         "referrer": document.referrer
@@ -268,9 +268,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	} // ]]>
 </script>-->
 
+    <div class="chatbox" id="chatbox">
+<span class="chat-text">Need Help ?</span>
+<script>
+//<![CDATA[
+document.write('<div id="smartchatbox_img901621879" style="width: 280px; height: 250px; overflow: hidden; margin: auto; padding: 0;">');
+document.write('<div id="smartchatbox901621879" style="width: 280px; height: 250px; overflow: hidden; margin: auto; padding: 0; border:0; ">');
+document.write('<iframe src="/form" scrolling="no" frameborder="0" width="280px" height="450px" style="border:0; margin:0; padding: 0;">');
+document.write('</iframe></div></div>');
+//]]>
+</script>
+<div id="close-chat" onclick="closeChatbox()">&times;</div>
+<div id="minim-chat" onclick="minimChatbox()"><span class="minim-button">&minus;</span></div>
+<div id="maxi-chat" onclick="loadChatbox()"><span class="maxi-button">&plus;</span></div>
+</div>
 
-
-   
+<script>
+//<![CDATA[
+function loadChatbox(){var e=document.getElementById("minim-chat");e.style.display="block";var e=document.getElementById("maxi-chat");e.style.display="none";var e=document.getElementById("chatbox");e.style.margin="0";}
+function closeChatbox(){var e=document.getElementById("chatbox");e.style.margin="0 0 -1500px 0";}
+function minimChatbox(){var e=document.getElementById("minim-chat");e.style.display="none";var e=document.getElementById("maxi-chat");e.style.display="block";var e=document.getElementById("chatbox");e.style.margin="0 0 -260px 0";}
+//]]>
+</script>  
 
     <div ng-view>
 
