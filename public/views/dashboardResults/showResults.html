@@ -147,6 +147,24 @@ var google_remarketing_only = false;
 
     </div>
 
+    <div class="col-md-3 col-xs-12">
+         <!--contact banner code-->
+            <div class="col-md-12 contact-banner" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
+                <div class="col-md-4 col-xs-3"><img src="assets/img/phone-nxsearch.png" class="img-responsive" style="margin-top:15px; margin-left:15px;width:40px;height:40px"></div>
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                         Need Asistance ?
+                    </div>
+                      <div class="col-md-12"><p style="color:white;font-size:20px;margin-top:2px;margin-bottom:00px">(+91) 8381 05 7555</p>
+                      </div>
+                      <div class="col-md-12"><p style="margin-bottom:00px; font-size:12px;color:greenyellow;height:22px;">Available between 10AM to 7PM</p>
+                      </div>
+                </div>
+            </div>
+            
+
+            <!--contact banner code-->
+    </div>
     <div ng-controller="dashResultsController">
         
         <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
@@ -188,20 +206,20 @@ var google_remarketing_only = false;
         <div class="col-md-9 col-xs-12">
             <div class="col-md-12 col-xs-12" ng-show="FirstSponsoredClient !=null" style=" padding-right: 10px; margin-top: 10px;">
                 <div class="col-md-12  col-xs-12  list_borderd">
-                    <div class="col-md-2 col-xs-6">
-                        <img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="150" height="150">
+                    <div class="col-md-2 col-xs-5 ">
+                        <img class="sponsorimg" style="border: 1px solid #33b3e2;" title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="150" height="150">
                     </div>
 
-                    <div class="col-md-6 col-xs-6" style="padding-left: 20px;">
-                        <h4 class="clinic-name"> <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}"> 
-                        {{::FirstSponsoredClient.ClinicName}} </a></h4>
-                        <h6 class="dr-name" style="margin-top: 5px;">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</h6>
+                    <div class="col-md-6 col-xs-6 list_specialty max-device" style="">
+                        <h4 class="clinic-name Profile_time"> <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}"> 
+                      <b>  {{::FirstSponsoredClient.ClinicName}} </b></a></h4>
+                        <h6 class="dr-name " style="margin-top: 5px; font-size: 12px;">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</h6>
                         
                         
 
                         <div class="col-md-12 col-xs-12 div-service topmargin" style="padding-left:00px;">
                             <h5 class="service"> Services</h5>
-                            <div class="col-md-6 col-xs-4 " ng-repeat="ss in SubCategoriesLinks | limitTo:6" style="padding-left:00px;font-size:14px;">
+                            <div class="col-md-6 col-xs-12 " ng-repeat="ss in SubCategoriesLinks | limitTo:6" style="padding-left:00px;font-size:14px;">
                                 <a itemprop="url" title="{{ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
                                 {{ss | limitTo: 25}} {{ss.length > 25 ? '...' : ''}}<br>
                                 </a>
@@ -211,11 +229,13 @@ var google_remarketing_only = false;
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xs-12">
-                        <div class="sideinfo"><i class="fa fa-star-o"></i>&nbsp; <b style="color:#00adff">Experience : </b>{{::FirstSponsoredClient.Experience}} Years</div>
-                        <div class="sideinfo"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> {{::FirstSponsoredClient.FirstHalfTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| {{::FirstSponsoredClient.SecondHalfTime}}</div>
-                        <div class="sideinfo"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b> {{::FirstSponsoredClient.Area}}</div><br><br>
-                        <div class="enqire"><button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}"><b>ENQUIRY</b></button></div>
+                    <div class="col-md-3 col-xs-6 max-device" style="">
+                        <div class="sideinfo Profile_time list_specialty"><i class="fa fa-star-o"></i>&nbsp; <b style="color:#00adff;   ">Experience : </b><span style="font-size:12px;">{{::FirstSponsoredClient.Experience}} Years</span></div>
+                        <div class="sideinfo Profile_time list_specialty"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> <span style="font-size:12px;">{{::FirstSponsoredClient.FirstHalfTime}} | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{::FirstSponsoredClient.SecondHalfTime}}</span></div>
+                        <div class="sideinfo Profile_time list_specialty"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b><span style="font-size:12px;"> {{::FirstSponsoredClient.Area}} </span></div><br>
+                        
+                    </div>
+                    <div class="col-md-3 col-xs-12 enqire"><button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}"><b>ENQUIRY</b></button></div>
                              <div class="modal fade" id="myModal{{$index}}" role="dialog">
                                         <div class="modal-dialog">
 
@@ -317,7 +337,7 @@ var google_remarketing_only = false;
                                             <!-- Modal end here -->
                                         </div>
                                     </div>
-                    </div>
+                    <div class="col-md-1 col-xs-12 sponsor" style="font-size: 12px;">Sponsored</div>
                 </div>
             </div>
 
@@ -490,8 +510,26 @@ var google_remarketing_only = false;
             </div>
         </div>
 
+        <div class="col-md-3">
+            
+           
+            <!-- Side Banner code -->
+            <div ng-controller="dashResultsController" class="col-md-12 col-xs-12">
+                <div ng-repeat="item in results | filter: {Socical: {instagram: 'added'}} | filter : userSearch track by $index" >
+                    <div ng-if="item.Socical.Youtube != ''">
+                        <a href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"> 
+                            <img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.Socical.Youtube}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="280" height="200">
+                        </a>
+                    </div>   
+                </div>
+                </div>
+        </div>  
+        <!-- Side Banner code Ends Here -->
+
+        </div>
+
         <div class="col-md-12 col-xs-12 ">
-           <div class="col-md-12 col-xs-12 bredcrumb1"> <h1>Find Similar Searches : </h1> <h1>{{catname}} in {{::area2}}</h1></div><br>
+           <div class="col-md-12 col-xs-12 bredcrumb1 mobile-view"> <h1>Find Similar Searches : </h1> <h1>{{catname}} in {{::area2}}</h1></div><br>
            <div class="col-md-3 col-xs-6">
                 <a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
                     <ul>
@@ -531,7 +569,7 @@ var google_remarketing_only = false;
 
         </div>
 
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-12 col-xs-12" >
             <h4> Popular Searches on <a href="/"> NX-search.com</a></h4>
         </div>
         <div class="col-md-12 col-xs-12 sidebarList">
@@ -612,73 +650,15 @@ var google_remarketing_only = false;
             <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
         </div>
     </div>
-
-    <!-- Side Banner code -->
-    <div ng-controller="dashResultsController">
-        <div ng-repeat="item in results | filter: {Socical: {instagram: 'added'}} | filter : userSearch track by $index" style="padding-top:117px;">
-            <div ng-if="item.Socical.Youtube != ''">
-                 <a href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"> 
-                     <img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.Socical.Youtube}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="280" height="200">
-                 </a>
-            </div>   
-        </div>
-        </div>
-</div>  
-<!-- Side Banner code Ends Here -->
+    
 
 <!-- End Of Page Container -->
 
 
 
-   <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="z-index: 1;" ng-controller="dashResultsController">
-                <div class="ng-hide">
-                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
-                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
-                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
-                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <a id="categry" href=""> <span id="category"></span></a>
-                </h5>&nbsp
-                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
-                &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
-                <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
-                 <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
-            </div>
+ 
 
-        <div class="col-xs-12 col-md-12 window-width" >
-        	<div class="panel panel-default">
-                <div class="panel-heading top-bar">
-                    <div class="col-md-8 col-xs-8">
-                        <h3 class="panel-title"><span class="fa fa-envelope"></span>&nbsp;&nbsp;&nbsp;How can I help you ?</h3>
-                    </div>
-                    <div class="col-md-4 col-xs-4" style="text-align: right;">
-                        <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
-                       
-                    </div>
-                </div>
-                <div class="panel-body msg_container_base">
-                    <div class="row msg_container base_sent">
-                        <div class="col-md-12 col-xs-12">
-                           <form name="popupform">
-                       <input id="btn-input" name="uname" ng-model="popupForm.name" type="text" class="form-control input-sm chat_input" placeholder="Name.." ng-required="true"><br>
-                      
-                        <input id="btn-input" ng-model="popupForm.phone" type="text" class="form-control input-sm chat_input" ng-minlength="10" ng-maxlength="10" placeholder="Mobile.." ng-required="true" /><br>
-                        
-                         <input id="btn-input" ng-model="popupForm.message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." ng-required="true" /><br>
-                        
-                        <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="btn-chat" ng-click="sendPopup(popupForm)" ng-disabled="popupform.$invalid">Send</button>
-                         </span><span style="color : green;">{{serverMessage}}</span>
-                           </form>
-                        </div>
-                       
-                    </div>
-                </div>
-                
-    		</div>
-        </div>
-    </div>
+  
 
 <!-- Footer -->
 <footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
@@ -715,13 +695,13 @@ var google_remarketing_only = false;
                         <ul>
                             <li>
                                 <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
-                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                <a href="https://www.instagram.com/nxsearch_com/" target="blank" itemprop="url"><img src="assets/img/instagram-nxsearch-logo.png" class="img-circle" alt="instagaram_nxsearch" width="35" height="35"></a>
-                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
+                                <a href="https://www.facebook.com/nxsearch" target="_blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle " alt="facebook_nxsearch" width="35" height="35"></a>
+                                <a href="https://twitter.com/nxsearch" target="_blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
+                                <a href="https://www.instagram.com/nxsearch_com/" target="_blank" itemprop="url"><img src="assets/img/instagram-nxsearch-logo.png" class="img-circle" alt="instagaram_nxsearch" width="35" height="35"></a>
+                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>    -->
                                 
-                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
-                            </li>
+                                
+                            </li> 
                         </ul>
                     </div>
                     <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
@@ -770,39 +750,4 @@ var google_remarketing_only = false;
     mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
         "referrer": document.referrer
     });
-</script>
-<script>
-$(document).on('click', '.panel-heading span.icon_minim', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.removeClass('glyphicon-plus').addClass('glyphicon-minus');
-    }
-});
-$(document).on('focus', '.panel-footer input.chat_input', function (e) {
-    var $this = $(this);
-    if ($('#minim_chat_window').hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $('#minim_chat_window').removeClass('panel-collapsed');
-        $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-        e.stopPropagation();
-    }
-});
-$(document).on('click', '#new_chat', function (e) {
-    var size = $( ".chat-window:last-child" ).css("margin-left");
-     size_total = parseInt(size) + 400;
-    alert(size_total);
-    var clone = $( "#chat_window_1" ).clone().appendTo( ".container" );
-    clone.css("margin-left", size_total);
-});
-$(document).on('click', '.icon_close', function (e) {
-    //$(this).parent().parent().parent().parent().remove();
-    $( "#chat_window_1" ).remove();
-});
-
 </script>
