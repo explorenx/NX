@@ -90,10 +90,10 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 
 
 
-    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/site.css">
-    <!-- load bootstrap -->
+    <!-- load bootstrap 
     <link rel="stylesheet" href="assets/css/frontstyle.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -101,14 +101,39 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+<link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/addon.css">
     <link rel="stylesheet" href="assets/css/validation.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/packages.css">
+    <link rel="stylesheet" href="assets/css/packages.css">-->
+<!-- css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+      <link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css">
+      <link rel="stylesheet" href="assets/css/color.css">
+      <link rel="stylesheet" href="assets/css/customScrollbar.css">
+      <link rel="stylesheet" href="assets/css/fullcalendar.min.css">
+      <link rel="stylesheet" href="assets/css/css/jquery.countdown.css">
+      <link rel="stylesheet" href="assets/css/css/jquery-ui.css">
+      <link rel="stylesheet" href="assets/css/main.css">
+      <link rel="stylesheet" href="assets/css/css/normalize.css">
+      <link rel="stylesheet" href="assets/css/css/owl.carousel.css">
+      <link rel="stylesheet" href="assets/css/css/owl.theme.css">
+      <link rel="stylesheet" href="assets/css/responsive.css">
+      <link rel="stylesheet" href="assets/css/css/transitions.css">
+      
 
-
+<!-- css -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- New CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Heebo:400,500,300,700,800,900' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="assets/css/new-css/animate.css">
+        
+      <link rel="stylesheet" href="assets/plugins/arcticmodal/jquery.arcticmodal-0.3.css">
+      <link rel="stylesheet" href="assets/plugins/owl-carousel/assets/owl.carousel.min.css">
+       <link rel="stylesheet" href="assets/css/style.css">
+    <!-- New CSS End -->
+<link rel="stylesheet" href="assets/css/select2.min.css">
 
     <link rel="icon" href="assets/img/favicon.ico">
     <!--<script>
@@ -135,7 +160,14 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
+
+
     <style>
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+        
         #gmaps {
             /*width: 821px;*/
             height: 250px;
@@ -239,7 +271,7 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE ng-hide="currentPath == 'http://localhost:5000/'" FUNCTION -->
 
-<body ng-cloak="" onload="loadChatbox()">
+<body ng-cloak="">
         <script type="text/javascript">
     mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
         "referrer": document.referrer
@@ -266,10 +298,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	if ( (navigator.userAgent.indexOf('Android') != -1) ) {
 		document.location = "/register";
 	} // ]]>
-</script>-->
+</script>
 
-    <div class="chatbox" id="chatbox">
-<span class="chat-text">Need Help ?</span>
+    <div class="chatbox" id="chatbox" ng-hide="$location.path() == '/form'" class="ng-cloak">
+<span class="chat-text">How Can I Help You ?</span>
 <script>
 //<![CDATA[
 document.write('<div id="smartchatbox_img901621879" style="width: 280px; height: 250px; overflow: hidden; margin: auto; padding: 0;">');
@@ -278,7 +310,7 @@ document.write('<iframe src="/form" scrolling="no" frameborder="0" width="280px"
 document.write('</iframe></div></div>');
 //]]>
 </script>
-<div id="close-chat" onclick="closeChatbox()">&times;</div>
+<!--<div id="close-chat" onclick="closeChatbox()">&times;</div>
 <div id="minim-chat" onclick="minimChatbox()"><span class="minim-button">&minus;</span></div>
 <div id="maxi-chat" onclick="loadChatbox()"><span class="maxi-button">&plus;</span></div>
 </div>
@@ -289,19 +321,33 @@ function loadChatbox(){var e=document.getElementById("minim-chat");e.style.displ
 function closeChatbox(){var e=document.getElementById("chatbox");e.style.margin="0 0 -1500px 0";}
 function minimChatbox(){var e=document.getElementById("minim-chat");e.style.display="none";var e=document.getElementById("maxi-chat");e.style.display="block";var e=document.getElementById("chatbox");e.style.margin="0 0 -260px 0";}
 //]]>
-</script>  
+</script>  -->
 
-    <div ng-view>
+    <div class="kw-wide-layout-type" ng-view>
 
     </div>
 
 
 
 
- <!-- SPELLS  -->
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+ <!-- SPELLS  
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+      <!--  JS -->
+
+<script src="assets/js/jquery-3.1.0.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="assets/js/nxsearch.core.js"></script> 
+
+      <!--  JS -->
+
+           
+
+
+
+            <!--  JS -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload-shim.min.js"></script>
@@ -309,6 +355,10 @@ function minimChatbox(){var e=document.getElementById("minim-chat");e.style.disp
 
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"></script>
+        <script src="assets/js/uibootstrap.js"></script>
+       
+        <script src="assets/js/angular-animate.min.js"></script>
+        <script src="assets/js/angular-touch.min.js"></script>
         <script src="assets/js/angular-cookies.min.js"></script>
         <script src="assets/js/checklist-model.js"></script>
         <script src="assets/js/angular-linq.min.js"></script>
@@ -319,9 +369,9 @@ function minimChatbox(){var e=document.getElementById("minim-chat");e.style.disp
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-sanitize.min.js"></script>
 
-        <!-- <script src="assets/css/jquery-1.10.2.min.js"></script>-->
+        <!-- <script src="assets/css/jquery-1.10.2.min.js"></script>
 
-        <script src="assets/js/login.js"></script>
+        <script src="assets/js/login.js"></script>-->
         <script src="controllers/homeController.js"></script>
         <script src="controllers/dashResultsController.js"></script>
         <script src="controllers/citiesController.js"></script>
@@ -336,6 +386,28 @@ function minimChatbox(){var e=document.getElementById("minim-chat");e.style.disp
         <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
         <link rel="stylesheet" href="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.css">    
 <script type="text/javascript" src="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.min.js"></script>
+    <script>
+  
+      /*  setTimeout(function(){
+   $('#chatbox').show();// or fade, css display however you'd like.
+}, 5000);*/
+//$('#chatbox').delay(5000).fadeIn(5000);
+/*$(function(){
+    setTimeout(function(){
+    $("#chatbox").show();
+    });
+    $("#showchat").on("click", function(){
+        $("#showchat").hide();
+    $("#chatbox").show();
+    });
+});
+  $(document).ready(function () {
+          // Hide the div
+          $("#chatbox").hide();
+          // Show the div after 5s
+          $("#chatbox").delay(5000).fadeIn(100);  
+      }); */
+    </script>
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQhbsIozl3rAQIDhwlsuQ_ZB5P-cZHMxs"></script>
 
