@@ -1,4 +1,4 @@
-var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','angular-page-loader']);
+var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','angular-page-loader', 'ui.bootstrap']);
 
 
 app.filter('searchFor', function(){
@@ -30,6 +30,37 @@ app.filter('searchFor', function(){
 	};
 
 });
+
+  app.factory('modalFactory', function($uibModal) {
+    return {
+      open: function(size, template, params) {
+        return $uibModal.open({
+          animation: true,
+          templateUrl: template || 'myModalContent.html',
+          controller: 'ModalResultInstanceCtrl',
+          size: size,
+          resolve: {
+            params: function() {
+              return params;
+            }
+          }
+        });
+      }
+    };
+  })
+
+app.directive('notify', function () {        
+    return {
+    restrict : 'C',
+        link: function(scope, element) {
+            element.bind("click" , function(e){
+                 $("a").removeClass("tg-active"); // Here we need jQuery
+                 element.addClass("tg-active");
+            });     
+        }
+    }
+});
+
 
 app.directive('formAutofillFix', function() {
   return function(scope, elem, attrs) {
