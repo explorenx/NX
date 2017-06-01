@@ -36,211 +36,239 @@ var google_remarketing_only = false;
 <page-loader latency="2000"></page-loader>
 
 <!-- Header -->
-<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
-        <nav class="navbar">
-            <div class="container">
-                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
-                    <div class="col-md-10 col-xs-6">
-                        <div class="col-md-2 col-xs-12 text-center">
-                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
-                        </div>
+				<header id="header" class="kw-header kw-dark">
 
-                    </div>
-                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
-                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				
+
+				<!-- - - - - - - - - - - - - - End of Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				<!-- - - - - - - - - - - - - - Header Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-hsection kw-sticky">
+
+					<div class="kw-sm-table-row row">
+
+						<div class="col-sm-2 col-md-2">
+
+							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+
+							<a href="/">
+
+								<img src="assets/img/nxsearch-logo1.png" alt="">
+
+							</a>
+
+							<!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
+
+						</div>
+                        <!-- - - - - - - - - - - - - - sEARCH FORM- - - - - - - - - - - - - - - - -->
+                        <div class="col-md-7 col-xs-12 formbackground2" style="padding-top:10px;" ng-controller="InstantSearchController">
+                            <div class="col-md-12 col-xs-12">
+                                <form>
+                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+
+                                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                                                                <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+                                                            </select>
+
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                        <div>
+                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                                                                <option value="">Select Area</option>
+                                                            </select>
+                                            <!--{{MainAreas.selectedAreaModel}}-->
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-4 col-xs-12 nopadforsearch">
+                                        <div class="form-group" ng-blur="EnableData = false">
+                                            <input type="text" ng-value="selectedCategory | slug1" ng-keyup="loadClients()" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
+
+                                            <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+
+
+                                                </div>
+
+                                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <b> {{i.ClinicName}}</b>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <!--<div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <span class="text-center;">{{i.DoctorName}}</span>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div> -->
+                                            </div>
+
+                                        </div>
+                                        <span class="clearInput" ng-click="clearInput()">X</span>
+                                    </div>
+
+                                    <div class="col-md-2 col-xs-12 text-center nopadforsearch">
+                                        
+                                        
+
+										<button class="kw-btn-big kw-yellow" style="width:100%" type="submit">Search</button>
+
+									
+                                    </div>
+                                </form>
+                            </div>
+                        </div> 
+
+
+                        <!-- - - - - - - - - - - - - - End of SEARCH FORM - - - - - - - - - - - - - - - - -->
+
+						<div class="col-sm-10 col-xs-12 col-md-3">
+
+							<div class="kw-hcontent ">
+                                    <ul class="kw-navigation">
+										<li class="">
+											<a href="/">Home</a>
+										</li>
+                                    </ul>
+
+								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
+
+								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
+
+								<a href="/register" class="kw-btn-medium kw-white-type-2">Add Listing</a>
+
+								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-hcontent -->
+
+						</div>
+
+					</div><!--/ .kw-sm-table-row.row -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Header Section - - - - - - - - - - - - - - - - -->
+
+		</header>
 <!-- Header End -->
 <!-- Page Container -->
-<div class="container" style="background-color:#fff; padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
-    <div class="col-md-9" style="padding-right:10px;">
-        <div class="col-md-12 col-xs-12 formbackground2" ng-controller="InstantSearchController">
-            <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-                <form>
-                    <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style="padding-top: 20px">
-
-                        <!--<label for="exampleInputEmail1"></label>-->
-                        <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter City">-->
-
-                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
-												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
-											</select>
-                        <!--{{client.selectedCityModel}}-->
-
-
-                    </div>
-
-                    <div class="col-md-3 col-xs-11 pull-left nopadforsearch" style=" padding-top: 20px">
-                        <div>
-                            <!--<label for="exampleInputPassword1"></label>
-                                              <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Start Typing">-->
-                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
-												<option value="">Select Area</option>
-											</select>
-                            <!--{{MainAreas.selectedAreaModel}}-->
-                        </div>
-                        <!--<div class="bar" ng-init="EnableData = false">
-												<input type="text" ng-model="searchString" placeholder="Enter your search terms" ng-change="callScriptThenServer()" ng-focus="EnableData= true" ng-blur="EnableData = false"/>
-												<ul ng-show="EnableData" >
-													<li ng-repeat="i in items | searchFor:searchString" >
-														<a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
-														<p>{{i.title}}</p>
-													</li>
-
-													{{EnableData}}
-												 </ul>
-											</div>-->
-
-
-
-                    </div>
-
-
-                    <div class="col-md-5 col-xs-8 pull-left nopadforsearch">
-
-                        <div class="form-group" ng-blur="EnableData = false">
-                            <label for="exampleInputPassword1"></label>
-                            <input type="text" ng-value="selectedCategory | slug1" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false"
-                            />
-
-                            <div ng-show="EnableTextInputResult == false || EnableData" name="categoryselect" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
-                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
-                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
-                                        <div class="list_dropdown">
-                                            {{i}}
-                                        </div>
-                                    </a>
-                                </div>
-                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
-                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
-                                        <div class="list_dropdown">
-                                            {{i}}
-                                        </div>
-                                    </a>
-
-
-                                </div>
-
-                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                            <b> {{i.ClinicName}}</b>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-1 col-xs-2 pull-left nopadforsearch">
-                        <span class="clearInput" ng-click="clearInput()" onclick="EnableData= true">X</span>
-                        <button type="submit" class="btn btn-default topmargin btnsrch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-md-3 col-xs-12">
-         <!--contact banner code-->
-            <div class="col-md-12 contact-banner" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
-                <div class="col-md-4 col-xs-3"><img src="assets/img/Phone-nxsearch.png" class="img-responsive" style="margin-top:15px; margin-left:15px;width:40px;height:40px"></div>
-                <div class="col-md-8">
-                    <div class="col-md-12">
-                         Need Asistance ?
-                    </div>
-                      <div class="col-md-12"><p style="color:white;font-size:20px;margin-top:2px;margin-bottom:00px">(+91) 8381 05 7555</p>
-                      </div>
-                      <div class="col-md-12"><p style="margin-bottom:00px; font-size:12px;color:greenyellow;height:22px;">Available between 10AM to 7PM</p>
-                      </div>
-                </div>
-            </div>
-            
-
-            <!--contact banner code-->
-    </div>
-    <div ng-controller="dashResultsController">
-        
-        <div ng-hide="serverMessage==null" class="col-md-9 col-xs-12 alert alert-success">
+<!--************************************
+						Main Start				
+		*************************************-->
+		<main id="tg-main" class="tg-main tg-haslayout" ng-controller="dashResultsController" style="margin-top:80px;">
+            	  <div class="ng-hide">
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                		<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               				 &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    		<a id="categry" href=""> <span id="category"></span></a>
+                		</h5>&nbsp
+                			<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+               				 &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+               			
+				  			<i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+            		</div>
+            <div ng-hide="serverMessage==null" class="col-md-8 col-xs-12 alert alert-success">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>Success!</strong> {{::serverMessage}}.
         </div>
-        <div class="col-md-9 col-xs-12">
-            <div class="col-md-10 col-xs-12 bredcrumb">
-                <h1> {{aaa}} matches </h1> <h1>found for: <b id="keyword"></b></h1>
-            </div>
-            <div class="col-md-2 col-xs-4 col-offset-xs-8 text-center">
-                <div class="col-xs-4">
-                    <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer;"></i>
-                </div>
-                <div class="col-xs-4">
-                    <a href=" http://twitter.com/share?text=text goes here&url={{fpath}}" title="Share on Twitter" target="_blank" style="padding-top: 5px; padding-bottom: 5px;">
-                        <i class="fa fa-twitter-square fa-2x" style="color: #1DA1F2; cursor: pointer;"></i>
-                    </a>
+			<div class="container">
+				<div class="row">
+					<div id="tg-twocolumns" class="tg-twocolumns">
+						<div class="col-sm-12 col-xs-12">
+							<div class="tg-pagehead">
+								<p>{{aaa}} matches found for:  <span id="keyword"></span></p>
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div id="tg-content" class="tg-content">
+								<div class="tg-searchresult">
+									<div class="tg-directposts ">
+                                        <!-- Sponsor Code-->
+                                        						<div class="tg-directpost well_new" ng-show="FirstSponsoredClient !=null">
+											<figure class="tg-directpostimg">
+												<a href="#"><img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
+												<figcaption ng-show="FirstSponsoredClient.isPaidClient===true">
+													<a class="tg-usericon tg-iconvarified">
+														<em class="tg-usericonholder">
+															<i class="fa fa-shield"></i>
+															<span>varified</span>
+														</em>
+													</a>
+												</figcaption>
+                                                <figcaption ng-show="FirstSponsoredClient.isSponsoredClient===true">
+                                                <a class="tg-usericon tg-iconfeatured" href="#">
+												<em class="tg-usericonholder">
+													<i class="fa fa-bolt"></i>
+													<span>featured</span>
+												</em>
+											</a>
+                                                </figcaption>
+											</figure>
+											<div class="tg-directinfo">
+												<div class="tg-leftarea">
+													<div class="tg-directposthead">
 
-                </div>
+                                                         <h3 >
+                                                                <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}">
+                                                                    {{::FirstSponsoredClient.ClinicName}}
+                                                                </a>
+                                                            </h3>
+                                                       
 
-                <div class="col-xs-4">
-                    <a href="https://plus.google.com/share?url={{fpath}}" title="Share on Google+" target="_blank" style="padding-top: 5px; padding-bottom: 5px;">
-                        <i class="fa fa-google-plus-square fa-2x" style="color: #dd4b39; cursor: pointer;"></i>
-                    </a>
-                </div>
-
-            </div>
-
-
-        </div>
-
-        <!--<div class="col-xs-12 text-center">
-			<label>Search: <input ng-model="userSearch" class="form-control input-lg text-center"></label>
-    </div>-->
-
-        <!--<li><a href="/addCities"><i class="fa fa-shield"></i> AddCities</a></li>-->
-
-        <div class="col-md-9 col-xs-12">
-            <div class="col-md-12 col-xs-12" ng-show="FirstSponsoredClient !=null" style=" padding-right: 10px; margin-top: 10px;">
-                <div class="col-md-12  col-xs-12  list_borderd">
-                    <div class="col-md-2 col-xs-5 ">
-                        <img class="sponsorimg" style="border: 1px solid #33b3e2;" title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="150" height="150">
-                    </div>
-
-                    <div class="col-md-6 col-xs-6 list_specialty max-device" style="">
-                        <h4 class="clinic-name Profile_time"> <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}"> 
-                      <b>  {{::FirstSponsoredClient.ClinicName}} </b></a></h4>
-                        <h6 class="dr-name " style="margin-top: 5px; font-size: 12px;">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</h6>
-                        
-                        
-
-                        <div class="col-md-12 col-xs-12 div-service topmargin" style="padding-left:00px;">
-                            <h5 class="service"> Services</h5>
-                            <div class="col-md-6 col-xs-12 " ng-repeat="ss in SubCategoriesLinks | limitTo:6" style="padding-left:00px;font-size:14px;">
-                                <a itemprop="url" title="{{ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
-                                {{ss | limitTo: 25}} {{ss.length > 25 ? '...' : ''}}<br>
-                                </a>
-                                </div>
-                           
-                           
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-xs-6 max-device" style="">
-                        <div class="sideinfo Profile_time list_specialty"><i class="fa fa-star-o"></i>&nbsp; <b style="color:#00adff;   ">Experience : </b><span style="font-size:12px;">{{::FirstSponsoredClient.Experience}} Years</span></div>
-                        <div class="sideinfo Profile_time list_specialty"> <i class="fa fa-clock-o"></i>&nbsp; <b style="color:#00adff">Time :</b> <span style="font-size:12px;">{{::FirstSponsoredClient.FirstHalfTime}} | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{::FirstSponsoredClient.SecondHalfTime}}</span></div>
-                        <div class="sideinfo Profile_time list_specialty"><i class="fa fa-map-marker"></i>&nbsp; <b style="color:#00adff">&nbsp;Area :</b><span style="font-size:12px;"> {{::FirstSponsoredClient.Area}} </span></div><br>
-                        
-                    </div>
-                    <div class="col-md-3 col-xs-12 enqire"><button type="button" class="btn2 btn2-info" data-toggle="modal" data-target="#myModal{{$index}}"><b>ENQUIRY</b></button></div>
-                             <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                                        <div class="modal-dialog">
+													<div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</div>
+													</div>
+													<ul class="tg-contactinfo">
+                                                        <li><a href="#"><i class="fa fa-clock-o"></i><span>{{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</span></a></li>
+														<li><a href="#"><i class="fa fa-location-arrow"></i><address>{{::FirstSponsoredClient.Area}}</address></a></li>														
+													</ul>
+												</div>
+												<!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
+													<div class="tg-bookappoinment">
+														<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
+														<span></span>
+														<button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
+														<!--<ul class="tg-metadata">
+															<li><span class="tg-stars"><span></span></span></li>
+															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+														</ul>
+													</div>
+												</div>-->
+													<div class="tg-rightarea">
+													<div class="tg-bookappoinment">
+														<!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
+														<button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
+                                                          <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                        <div class="modal-dialog" style="top: 20%;">
 
                                             <!-- Modal content-->
-                                            <div class="modal-content" style="max-width: 340px; margin:auto;">
+                                            <div class="modal-content">
 
 
                                                 <div class="modal-body well_new">
@@ -252,33 +280,38 @@ var google_remarketing_only = false;
                                                        <input type="hidden" ng-model="FirstSponsoredClient.extensionNo" name="clientMobile">
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-12">
+                                                            <div class="col-xs-4">
                                                                 <b>Your Enquiry For :</b>
                                                             </div>
-                                                            <div class="col-xs-12">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" id="ClinicName" ng-model="FirstSponsoredClient.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
                                                             </div>
-                                                            <div class="col-xs-2">
+                                                            <div class="col-xs-4">
                                                                 <b>Area :</b>
                                                             </div>
-                                                            <div class="col-xs-10">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" id="ClinicArea" ng-model="FirstSponsoredClient.Area" name="ClinicName" class="formControlModal" ng-value="FirstSponsoredClient.Area" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-12">
+                                                            <div class="col-xs-4">
+                                                                <b>Your Name :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
                                                             <input type="text" name="username" id="username" ng-model="FirstSponsoredClient.username" placeholder="Name" class="formControlModal" ng-required="true">
                                                             <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                                 <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                            </div>
                                                             </div>
                                                         </div>
 
 
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-3">
+                                                            <div class="col-xs-4">
                                                                 <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
                                                             </div>
-                                                            <div class="col-xs-9">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" name="usermobile" id="usermobile" ng-model="FirstSponsoredClient.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
@@ -307,10 +340,15 @@ var google_remarketing_only = false;
                                                             </div>
                                                         </div>-->
                                                         <div class="col-xs-12">
+                                                             <div class="col-xs-4">
+                                                                <b>Your Name :</b>
+                                                            </div>
+                                                            <div class="col-xs-8">
                                                             <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
+                                                            </div>
                                                         </div>
                                                         <div class="col-xs-12">
-                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Send OTP" id="send_otp" />
+                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Send OTP" id="send_otp" />
                                                             <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
                                                         </div>
 
@@ -326,8 +364,10 @@ var google_remarketing_only = false;
                                                         <br />
 
                                                         <br />
+                                                        <div class="col-xs-12">
                                                         <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendsponsor(FirstSponsoredClient)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
+                                                        </div>
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendsponsor(FirstSponsoredClient)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
                                                     </form>
                                                 </div>
 
@@ -337,68 +377,68 @@ var google_remarketing_only = false;
                                             <!-- Modal end here -->
                                         </div>
                                     </div>
-                    <div class="col-md-1 col-xs-12 sponsor" style="font-size: 12px;">Sponsored</div>
-                </div>
-            </div>
+                                                            <span style="color: green; display:block;margin-top: 60px;">Sponsored</span>
+														<!--<ul class="tg-metadata">
+															<li><span class="tg-stars"><span></span></span></li>
+															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+														</ul>-->
+													</div>
+												</div>
+											</div>
+										</div>
+                                        <!-- Sponsor Code End-->
+										<div class="tg-directpost well_new"  ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index">
+											<figure class="tg-directpostimg">
+												<a href="#"><img title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.imageUrl}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="98" height="98"></a>
+												<figcaption ng-show="item.isPaidClient===true">
+													<a class="tg-usericon tg-iconvarified">
+														<em class="tg-usericonholder">
+															<i class="fa fa-shield"></i>
+															<span>varified</span>
+														</em>
+													</a>
+												</figcaption>
+											</figure>
+											<div class="tg-directinfo">
+												<div class="tg-leftarea">
+													<div class="tg-directposthead">
 
+                                                         <h3 ng-if="item.isPaidClient===true">
+                                                                <a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}">
+                                                                    {{::item.ClinicName}}
+                                                                </a>
+                                                            </h3>
+                                                        <h3 ng-if="item.isPaidClient!==true" style="color: #337ab7">
+                                                                 {{::item.ClinicName}}
+                                                        </h3>
 
-            <div class="col-md-6 col-xs-12" ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index" >
-
-                <div class="col-md-12" style="padding-right: 10px; margin-top: 10px;" itemscope itemtype=https://schema.org/{{item.Categories}}>
-                    <div class="col-md-12 col-xs-12 list_borderd">
-                        <!--image box-->
-                        <div class="col-md-3 col-xs-4">
-                            <div ng-if="item.imageUrl != ''">
-                                <img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.imageUrl}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="98" height="98">
-                            </div>
-
-                        </div>
-                        <!--listing description box-->
-                        <div class="col-md-9 col-xs-8 list_specialty" style="padding-left: 10%;">
-
-                            <h5 class="Profile_title" ng-if="item.isPaidClient===true">
-                                <a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}">
-                                    <b> {{::item.ClinicName}}</b>
-                                </a>
-                            </h5>
-                            <h5 class="Profile_title" ng-if="item.isPaidClient!==true" style="color: #337ab7">
-
-                                <b> {{::item.ClinicName}}</b>
-
-                            </h5>
-
-                            <span itemprop="person"> {{::item.DoctorName}}</span><br/>
-                            <h6>{{::item.Profession}} | {{::item.speciality}}</h6>
-
-                            <span style="color:#1e97cc;"><b><i class="fa fa-star-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Experience : </b></span><span style="font-size:12px;">{{::item.Experience}} Years </span><br/>
-                            <div class="col-xs-12 Profile_time" itemprop="openingHoursSpecification" itemtype="http://schema.org/OpeningHoursSpecification">
-
-                                <span style="color:#1e97cc;"><b><i class="fa fa-clock-o" style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Time :  </b></span>
-                                <span class="" itemprop="opens">{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span>
-
-                            </div>
-                            <div class="col-xs-12" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-
-                                <span style="color:#1e97cc;"><b><i class="fa fa-map-marker"  style="color:#1e97cc; font-size:16px;" aria-hidden="true"></i> Area : </b></span>
-                                <span itemprop="addressLocality" style="font-size:13px;">{{::item.Area}}</span>
-                            </div>
-
-                        </div>
-                        <!-- Enquire now button box-->
-                        <div class="col-md-12 col-xs-12">
-                            <div class="col-md-12 col-xs-12">
-                                <!--<div class="col-lg-6 text-center">
-                        <button type="button" class="btn btn-info">Book Appointment</label></button>
-                        <a  href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Additional Profile Data </a></br>
-                    </div>-->
-
-                                <div class="col-xs-12" style="margin-top:5px;">
-                                    <button type="button" class="btn2 btn2-info" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Enquire Now</button>
-                                    <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                                        <div class="modal-dialog">
+													<div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} | {{::item.speciality}})</div>
+													</div>
+													<ul class="tg-contactinfo">
+                                                        <li><a href="#"><i class="fa fa-clock-o"></i><span>{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span></a></li>
+														<li><a href="#"><i class="fa fa-location-arrow"></i><address>{{::item.Area}}</address></a></li>														
+													</ul>
+												</div>
+												<!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
+													<div class="tg-bookappoinment">
+														<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
+														<span></span>
+														<button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
+														<!--<ul class="tg-metadata">
+															<li><span class="tg-stars"><span></span></span></li>
+															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+														</ul>
+													</div>
+												</div>-->
+													<div class="tg-rightarea">
+													<div class="tg-bookappoinment">
+														<!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
+														<button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
+															    <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                        <div class="modal-dialog" style="top: 20%;">
 
                                             <!-- Modal content-->
-                                            <div class="modal-content" style="max-width: 340px; margin:auto;">
+                                            <div class="modal-content">
 
 
                                                 <div class="modal-body well_new">
@@ -410,33 +450,37 @@ var google_remarketing_only = false;
                                                        <input type="hidden" ng-model="item.extensionNo" name="clientMobile">
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-12">
-                                                                <b>Your Enquiry For :</b>
+                                                            <div class="col-xs-4">
+                                                                <b style="text-align: left;">Your Enquiry For :</b>
                                                             </div>
-                                                            <div class="col-xs-12">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
                                                             </div>
-                                                            <div class="col-xs-2">
+                                                            <div class="col-xs-4">
                                                                 <b>Area :</b>
                                                             </div>
-                                                            <div class="col-xs-10">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" id="ClinicArea" ng-model="item.Area" name="ClinicName" class="formControlModal" ng-value="item.Area" readonly>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xs-12">
-                                                            <input type="text" name="username" id="username" ng-model="item.username" placeholder="Name" class="formControlModal" ng-required="true">
-                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+														 <div class="col-xs-12">
+															  <div class="col-xs-4">
+                                                                <b>Your Name :</b>
                                                             </div>
-                                                        </div>
-
+															<div class="col-xs-8">
+																<input type="text" name="username" id="username" ng-model="item.username" placeholder="Your Name" class="formControlModal" ng-required="true">
+																<div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+																	<small style="color: red; display: block; text-align: center">Please Enter Name</small>
+																</div>
+															</div>
+														 </div>
 
                                                         <!-- Text input-->
                                                         <div class="col-xs-12">
-                                                            <div class="col-xs-3">
-                                                                <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
+                                                            <div class="col-xs-4">
+                                                                <input type="text" name="countryCode" class="form-control pull-right" value="IND +91" readonly>
                                                             </div>
-                                                            <div class="col-xs-9">
+                                                            <div class="col-xs-8">
                                                                 <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                     <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
@@ -464,11 +508,16 @@ var google_remarketing_only = false;
                                                                 <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
                                                             </div>
                                                         </div>-->
+														 <div class="col-xs-12">
+															  <div class="col-xs-4">
+                                                                <b>Your Email :</b>
+                                                            </div>
+															<div class="col-xs-8">
+																<input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Your Email " class="formControlModal" ng-required="true">
+															</div>
+														 </div>
                                                         <div class="col-xs-12">
-                                                            <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
-                                                        </div>
-                                                        <div class="col-xs-12">
-                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="sendOTP(item)" value="Send OTP" id="send_otp" />
+                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="tg-btn" ng-click="sendOTP(item)" value="Generate OTP" id="send_otp" />
                                                             <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
                                                         </div>
 
@@ -484,8 +533,11 @@ var google_remarketing_only = false;
                                                         <br />
 
                                                         <br />
-                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn2 btn2-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
+														 <div class="col-xs-12">
+                                                                <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
+                                                            </div>
+                                                        
+                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="tg-btn" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Send Enquiry" data-dismiss="modal" id="send_email" />
                                                     </form>
                                                 </div>
 
@@ -495,241 +547,371 @@ var google_remarketing_only = false;
                                             <!-- Modal end here -->
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                         
+														<!--<ul class="tg-metadata">
+															<li><span class="tg-stars"><span></span></span></li>
+															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+														</ul>-->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                             <div class="align-center">
 
-                </div>
+							<button class="kw-btn-medium kw-theme-color kw-listings-load-more" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
 
-            </div>
-            <div class="col-md-12 col-xs-12 topmargin text-center" style="padding-right:10px;">
-                     <!--<dir-pagination-controls max-size="5" direction-links="true" class="pull-right"></dir-pagination-controls>-->
-                  <button class="btn3 btn3-info" ng-hide="aaa<=10" ng-click='loadMore()'>LOAD MORE</button>
-            </div>
-        </div>
+						</div>
+						</div>
 
-        <div class="col-md-3">
+                       
+
+                            	<div class="col-sm-4">
+							<aside id="tg-sidebar" class="tg-sidebar">
+
+										<div class="col-sm-12 contact-banner" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
+											<div class="col-sm-3 col-xs-3"><img src="assets/img/Phone-nxsearch.png" class="img-responsive" style="margin-top:15px; margin-left:15px;width:40px;height:40px"></div>
+											<div class="col-sm-9">
+												<div class="col-md-sm">
+													Need Asistance ?
+												</div>
+												<div class="col-sm-12"><p style="color:white;font-size:20px;margin-top:2px;margin-bottom:00px">(+91) 8381 05 7555</p>
+												</div>
+												<div class="col-sm-12"><p style="margin-bottom:00px; font-size:12px;color:greenyellow;height:22px;">Available between 10AM to 7PM</p>
+												</div>
+											</div>
+										</div>
+
+										
+											<!-- Side Banner code -->
+											<div class="col-sm-12 col-xs-12" ng-controller="dashResultsController">
+												<div class="col-sm-12 col-xs-12" ng-repeat="item in results | filter: {Socical: {instagram: 'added'}} | filter : userSearch track by $index" >
+													<div class="col-sm-12 col-xs-12" ng-if="item.Socical.Youtube != ''">
+														<a href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"> 
+															<img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.Socical.Youtube}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="280" height="200">
+														</a>
+													</div>   
+												</div>
+											</div>
+											<div class="col-sm-12 col-xs-12 text-center" style="margin-top:10px;">
+												<img class="img-responsive" src="assets/img/advertise3.jpg"  >
+											</div>
+										</div>  
+										<!-- Side Banner code Ends Here -->
+
+								
+							</aside>
+						</div>
+                            
+
+					</div>
+						
+						      <div class="col-md-12 col-xs-12 well_new" style="top: 10px;">
+									<div class="col-md-12 col-xs-12 bredcrumb1 mobile-view"> <h2 class="text-center">Find Similar Searches </h2></div><br>
+									<div class="col-md-4 col-xs-6">
+											<a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
+												<ul>
+													<li class="Searches similarsearches " style="line-height: 27px;"><h1> {{maincat}} {{::areaonlink}}</h1></li>
+												</ul>
+											</a>
+											<!--<span>{{ss}}</span>-->
+										</div>
+										<div class="col-md-4 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:41">
+											<a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
+												<ul>
+													<li class="Searches similarsearches " style="line-height: 27px;"><h1> {{::ss}} {{::areaonlink}}</h1></li>
+												</ul>
+											</a>
+											<!--<span>{{ss}}</span>-->
+										</div>
+        						</div>
+
+
+								<div class="col-md-12 col-xs-12 well_new" style="top: 10px;">
+									<h4>About {{::catname}} </h4>
+									<p class="text-justify" id="longdescription"></p>
+
+								</div>
+
+				</div>
+			</div>
+		</main>
+		<!--************************************
+						Main End				
+		*************************************-->
+
+
+<!--old container-->
+<div class="container" style="padding-bottom:50px;" itemscope itemtype="http://schema.org/LocalBusiness">
+
+    <div id="mymodal1" style="color: red;"></div>
+    <div class="row">
+        
+        <div class="col-md-12" ng-controller="dashResultsController">
+            
+
             
            
-            <!-- Side Banner code -->
-            <div ng-controller="dashResultsController" class="col-md-12 col-xs-12">
-                <div ng-repeat="item in results | filter: {Socical: {instagram: 'added'}} | filter : userSearch track by $index" >
-                    <div ng-if="item.Socical.Youtube != ''">
-                        <a href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}"> 
-                            <img class="listing_image" title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.Socical.Youtube}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="280" height="200">
+            <div class="col-md-12 col-xs-12 well_new">
+                <div class="row">
+                      <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
+                        <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}-{{::formData.City}}">
+                            <ul>
+                                <li> {{::s}} {{::areaofcats}}</li>
+                            </ul>
                         </a>
-                    </div>   
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="col-md-12 col-xs-12">
+                    <h3> Popular Searches on <a href="/"> NX-search.com</a></h3>
                 </div>
-        </div>  
-        <!-- Side Banner code Ends Here -->
+                <div class="row sidebarList">
+                    <div class="col-md-12 col-xs-12">
+                        <h5><b> Popular Searches in Health and Medicine</b></h5>
+                    </div>
+                    <div class="col-md-12 col-xs-12 bottomlinks">
+                        <ul>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
+                            </li>
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <hr class="hrline">
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <h5><b> Popular Searches in School and Institutes</b></h5>
+                    </div>
+                    <div class="col-md-12 col-xs-12 bottomlinks">
+                        <ul>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Preschool" class="Searches"> Preschools in Pune</a></h5>
+                            </li>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
+                            </li>
 
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <hr class="hrline">
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <h5><b> Popular Searches in Beauty Care</b></h5>
+                    </div>
+                    <div class="col-md-12 bottomlinks">
+                        <ul>
+                            <li class="Searches">
+                                <h5> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
+                            </li>
+
+
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-12 col-xs-12 ">
-           <div class="col-md-12 col-xs-12 bredcrumb1 mobile-view"> <h1>Find Similar Searches : </h1> <h1>{{catname}} in {{::area2}}</h1></div><br>
-           <div class="col-md-3 col-xs-6">
-                <a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
-                    <ul>
-                        <li class="Searches similarsearches "><h1> {{maincat}} {{::areaonlink}}</h1></li>
-                    </ul>
-                </a>
-                <!--<span>{{ss}}</span>-->
-            </div>
-            <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:40">
-                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
-                    <ul>
-                        <li class="Searches similarsearches "><h1> {{::ss}} {{::areaonlink}}</h1></li>
-                    </ul>
-                </a>
-                <!--<span>{{ss}}</span>-->
-            </div>
-        </div>
-
-        <div class="col-md-12 col-xs-12" style="display: none;">
-            <h3>Find Similar Searches : </h3> <h1>{{catname}} in {{::area2}}</h1>
-            <div class="col-md-3 col-xs-6" ng-repeat="ss in SubCategoriesLinks">
-                <a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
-                    <ul>
-                        <li title="{{::ss}} {{::areaonlink}}" class="Searches"> {{::ss}} {{::areaonlink}}</li>
-                    </ul>
-                </a>
-                <!--<span>{{ss}}</span>-->
-            </div>
-        </div>
-
-        <div class="col-md-12 col-xs-12">
-            <hr/>
-        </div>
-        <div class="col-md-12 col-xs-12">
-            <h4>About {{::catname}} </h4>
-            <p class="text-justify" id="longdescription"></p>
-
-        </div>
-
-        <div class="col-md-12 col-xs-12" >
-            <h4> Popular Searches on <a href="/"> NX-search.com</a></h4>
-        </div>
-        <div class="col-md-12 col-xs-12 sidebarList">
-            <div class="col-md-12 col-xs-12">
-                <h5><b> Popular Searches in Health and Medicine</b></h5>
-            </div>
-            <div class="col-md-12 col-xs-12 bottomlinks">
-                <ul>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Dentists in Pune" href="/Pune/Dentist" onclick="$(window).scrollTop(10);" class="Searches"> Dentists in Pune</a></h5>
-                    </li>
-                    <!-- <li>
-                    <a href="#"> Optalmology Clinics in Pune</a>
-                </li>-->
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Homeopathy Clinics in Pune" href="/Pune/Homeopathy" onclick="$(window).scrollTop(10);" class="Searches"> Homeopathy Clinics in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Ayurvedic Clinics in Pune" href="/Pune/Ayurveda" onclick="$(window).scrollTop(10);" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Gynecology Clinics in Pune" href="/Pune/Gynecologist" onclick="$(window).scrollTop(10);" class="Searches"> Gynecology Clinics in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Dermatology Clinics in Pune" href="/Pune/Dermatologist" onclick="$(window).scrollTop(10);" class="Searches"> Dermatology Clinics in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5><a itemprop="url" title="Ear-Nose-Throat-(ENT) Clinics in Pune" href="/Pune/Ear-Nose-Throat-(ENT)" onclick="$(window).scrollTop(10);" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5><a itemprop="url" title="Diagnostic-Labs in Pune" href="/Pune/Diagnostic-Lab" onclick="$(window).scrollTop(10);" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
-                    </li>
-            </div>
-            <div class="col-md-12 col-xs-12">
-                <hr class="hrline">
-            </div>
-            <div class="col-md-12 col-xs-12">
-                <h5><b> Popular Searches in School and Institutes</b></h5>
-            </div>
-            <div class="col-md-12 col-xs-12 bottomlinks">
-                <ul>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Preschools in Pune" href="/Pune/Preschool" onclick="$(window).scrollTop(10);" class="Searches"> Preschools in Pune</a></h5>
-                    </li>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Private-Tuitions in Pune" href="/Pune/Private-Tuitions" onclick="$(window).scrollTop(10);" class="Searches"> Private-Tuitions in Pune</a></h5>
-                    </li>
-
-            </div>
-            <div class="col-md-12 col-xs-12">
-                <hr class="hrline">
-            </div>
-            <div class="col-md-12 col-xs-12">
-                <h5><b> Popular Searches in Beauty Care</b></h5>
-            </div>
-            <div class="col-md-12 bottomlinks">
-                <ul>
-                    <li class="Searches">
-                        <h5> <a itemprop="url" title="Salon-and-Spa in Pune" href="/Pune/Salon-and-Spa" onclick="$(window).scrollTop(10);" class="Searches"> Salon-and-Spa in Pune</a></h5>
-                    </li>
-
-
-            </div>
-
-        </div>
-        <div class="col-md-12 col-xs-12">
-            <hr class="hrline">
-        </div>
-        <div class="col-md-12 col-xs-12" style="background-color:  #e6e6e6">
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
-            <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
-            &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                <a id="categry" href=""> <span id="category"></span></a>
-            </h5>&nbsp
-            <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
-            <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
-        </div>
     </div>
-    
 
-<!-- End Of Page Container -->
+</div>
+<!--  End of Page Container  -->
 
 
-
- 
-
-  
 
 <!-- Footer -->
-<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
-        <div class="footer" id="footer">
-            <div class="container">
-                <div class="container">
-                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
-                        <h3>About </h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
-                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+	<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
+			<footer id="footer" class="kw-footer" data-bg="images/section_bg_01.png">
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>NX-search</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
-                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
-                            <li> <a itemprop="url" href="/disclaimer">Disclaimer</a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>Contact Us</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
-                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
-                        </ul>
-                    </div>
+				<!-- - - - - - - - - - - - - - Newsletter Section - - - - - - - - - - - - - - - - -->
 
-                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
-                        <h3> Follow Us </h3>
-                        <ul>
-                            <li>
-                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
-                                <a href="https://www.facebook.com/nxsearch" target="_blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle " alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="_blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                <a href="https://www.instagram.com/nxsearch_com/" target="_blank" itemprop="url"><img src="assets/img/instagram-nxsearch-logo.png" class="img-circle" alt="instagaram_nxsearch" width="35" height="35"></a>
-                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>    -->
-                                
-                                
-                            </li> 
-                        </ul>
-                    </div>
-                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                        <h3> SubScribe </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
-                                </div>
-                            </li>
-                        </ul>
+				<div class="kw-newsletter-section">
 
-                    </div>-->
-                </div>
-            </div>
-        </div>
+					<!-- - - - - - - - - - - - - - Background Icon - - - - - - - - - - - - - - - - -->
 
+					<i class="lnr icon-envelope kw-section-icon"></i>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
-            </div>
-        </div>
-       
+					<!-- - - - - - - - - - - - - - End of Background Icon - - - - - - - - - - - - - - - - -->
 
-</footer>
-<!-- Footer End -->  
+					<div class="container">
+
+						<div class="kw-newsletter">
+
+							<h3 class="kw-title">Sign Up to Newsletter</h3>
+
+							<p class="kw-description">and get the latest <b>deals, reviews &amp; articles</b></p>
+
+							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
+
+							<form class="kw-newsletter-form kw-inline-form" method="POST">
+
+								<div class="kw-input-wrapper">
+
+									<input type="text" name="email" autocomplete="off" placeholder="Enter your email address...">
+
+								</div><!--/ .kw-input-wrapper -->
+
+								<button type="submit" class="kw-btn-big kw-yellow" name="newsletter_submit">Sign Up</button>
+
+							</form>
+
+							<!-- - - - - - - - - - - - - - End of Newsletter Form - - - - - - - - - - - - - - - - -->
+
+						</div><!--/ .kw-newsletter -->
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="container">
+
+					<!-- - - - - - - - - - - - - - Footer Section - - - - - - - - - - - - - - - - -->
+
+					<div class="kw-fsection">
+
+						<div class="kw-footer-widget-area kw-cols-4">
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-widget">
+
+									<a href="#" class="kw-footer-logo"><img src="assets/img/nxsearch-logo.png" alt="nxsearxh.com"></a>
+
+									
+
+									<ul class="kw-social-links">
+
+										<li><a href="https://www.facebook.com/nxsearch" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href=""><i class="fa fa-google-plus" target="_blank"></i></a></li>
+										<li><a href="https://twitter.com/nxsearch" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="https://www.instagram.com/nxsearch_com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+										<!--<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>-->
+
+									</ul>
+
+								</div>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Company</h4>
+
+									<ul>
+
+										<li><a href="/aboutus">About Us</a></li>										
+										<li><a href="/career">Careers</a></li>
+										<li><a href="contactusbb">Contact Us</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+                            <!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Quick Links</h4>
+
+									<ul>
+
+										<li><a href="#">How It Works</a></li>
+										<li><a href="#">Add Listing</a></li>
+                                        <li><a href="#">Blog</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Terms</h4>
+
+									<ul>										
+										<li><a href="/termsandconditions">Terms & Conditions</a></li>
+										<li><a href="/privacypolicy">Privacy Policy</a></li>
+										<li><a href="/disclaimer">Disclaimer</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+						</div><!--/ .kw-footer-widget-area -->
+
+					</div>
+
+					<!-- - - - - - - - - - - - - - End of Footer Section - - - - - - - - - - - - - - - - -->
+
+				</div><!--/ .container -->
+
+				<!-- - - - - - - - - - - - - - Copyright Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-copyright">
+
+					<div class="container">
+
+						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Copyright Section - - - - - - - - - - - - - - - - -->
+
+			</footer>
+
+			<!-- - - - - - - - - - - - - - End of Footer - - - - - - - - - - - - - - - - -->
+<!-- Footer End --> 
     <script>
         var $div = $('.scrollable-menu');
         $(document.body).click(function() {
