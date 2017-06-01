@@ -10,7 +10,15 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 $window.onload = function(){
     if($location.path() == '/form')
     {
-        document.getElementById('chatbox').style.display = "none";
+
+          $(document).ready(function () {
+          // Hide the div
+          $("#chatbox").hide();
+          // Show the div after 5s
+          $("#chatbox").delay(1).fadeOut(1);  
+      }); 
+
+       // document.getElementById('chatbox').style.display = "none";
     }
 }
 
@@ -121,7 +129,7 @@ $window.onload = function(){
             $window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
             //  $window.document.title = category + ' in ' + area + ', ' + city + ' | NXsearch';
-            $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
+           // $window.document.getElementsByName('title')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('description')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
             //  $window.document.getElementsByName('keywords')[0].content = category + ' in ' + area + ', ' + city + ' | NXsearch';
 
@@ -133,31 +141,23 @@ $window.onload = function(){
         }
 
         if (area == undefined) {
-            var myurl = '/' + city + '/' + category;
-            $window.document.getElementById('categry').href = myurl;
-
-            // var cityurl = '/showResults';
-            // document.getElementById('citylink').href=cityurl;
-            // $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
             $window.document.getElementById('keyword').innerHTML = category + ' in ' + city;
-            $window.document.getElementById('category').innerHTML = category;
-            $window.document.getElementById('area').innerHTML = '';
-            $window.document.title = category + ' in ' + city + ' | NXsearch';
+             $window.document.getElementById('category').innerHTML = category;
+            $window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
-            //$window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
-            // $window.document.getElementsByName('description')[0].content = category + ' in '  + city + ' | NXsearch';
-            // $window.document.getElementsByName('keywords')[0].content = category + ' in '   + city + ' | NXsearch';
-
+              $window.document.title = category + ' in '+ city + ' | NXsearch';
+            $window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
+              $window.document.getElementsByName('description')[0].content = category + ' in ' + city + ' | NXsearch';
+              $window.document.getElementsByName('keywords')[0].content = category + ' in ' + city + ' | NXsearch';
             $window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
-            // $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
+            $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
             $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
-
-            /// $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
+            $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
 
 if (area == undefined && category ==undefined) {
-    $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-$window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+              $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+               $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
              $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
             $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
 }
@@ -189,7 +189,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
             
                 // loadMore function
                 $scope.loadMore = function() {
-                $scope.limit2 = $scope.resultsofclient.length;
+                $scope.limit2 = $scope.limit2+10;
                 }
                 //alert($scope.aaa);
                 console.log(JSON.stringify(data));
@@ -344,21 +344,24 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                 angular.forEach(data, function(value, key1) {
 
                     angular.forEach(value.category, function(cat, key2) {
-                        // alert(JSON.stringify(cat.name));
+                        //alert(JSON.stringify(cat.name.length));
+                        $scope.catcount = cat.name.length;
                         if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                             $scope.maincat = cat.name;
-                           // alert(JSON.stringify($scope.maincat));
-                            if ($routeParams.area != '') {
+                           //alert(JSON.stringify($scope.maincat));
+                            if ($routeParams.area != 'undefined') {
                                 metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
-                                longDesc = cat.categoryDescriptionLong;
+                               longDesc = cat.categoryDescriptionLong;
                                 if (typeof(cat.categoryTitle) !== 'undefined') {
                                     metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + cat.categoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 }
                                 if (typeof(cat.categoryTitle) == 'undefined') {
                                     metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch';
                                 }
-                            } else {
+                            } 
+                            if ($routeParams.area == 'undefined') {
+                                // alert(123);
                                 metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryDescription + '| Nx-search';
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + " | " + cat.categoryKeywords + '| Nx-search';
                                 longDesc = cat.categoryDescriptionLong;
@@ -390,7 +393,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                                    // alert(JSON.stringify($scope.maincat));
                                     metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + "," + value.subCategoryDescriptionShort + " in " + $routeParams.area.replace(/-/g, ' ')  + '| Nxsearch';
                                     metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
-                                    longDesc = value.subCategoryDescriptionLong;
+                                   longDesc = value.subCategoryDescriptionLong;
                                     if (typeof(value.subCategoryTitle) !== 'undefined') {
                                         metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nxsearch';
                                     }
@@ -422,8 +425,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                     });
                 });
                  
-
-                $scope.catname = $routeParams.category;
+               $scope.catname = $routeParams.category;
                 $scope.city2 = $routeParams.city;
                 $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
@@ -432,7 +434,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
-                $window.document.getElementById('longdescription').innerHTML = longDesc;
+               $window.document.getElementById('longdescription').innerHTML = longDesc;
                 $window.document.querySelector('[property="og:description"]').content = metaDesc;
                 $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                 $window.document.title = metaTitle;
@@ -525,7 +527,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                // alert(data.Socical.Youtube);
+                 //alert(data.Socical.facebook);
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
@@ -1051,6 +1053,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
             ClinicId: ''
         });
     };
+    $scope.myInterval = 5000;
 
     $scope.onSelectUploadImage = function(i) {
         //alert(JSON.stringify(i));
@@ -1544,6 +1547,7 @@ $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, 
                 }
             }).
             success(function(status) {
+                $scope.otpmsg = "OTP Sent successfully, Check Mobile Inbox.";
                 //your code when success
                 console.log(status);
                 if (status != indefined && status.status == 'success') {
