@@ -14004,7 +14004,7 @@
 }
 
 .paralaxbag{
-  background-image:url("../../../images/newimg/stat-Background.jpg");
+  background-image:url("/assets/img/stat-Background.jpg");
    background-attachment: fixed;
     background-position: center;
     background-repeat: repeat;
