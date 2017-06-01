@@ -1,181 +1,443 @@
-<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-64739177-2', 'auto');
-    ga('send', 'pageview');
-</script>
-<script>
-    $(function() {
-        $('.nav-tabsH a').on('click', function(e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-    });
-
-    $(function() {
-        $('.navbar-toggle1 collapsed').on('click', function(e) {
-            $(this).tab('show');
-        });
-    });
-
-    $(function() {
-        $('.navbar-nav .open .dropdown-menu').on('click', function(e) {
-            $(this).tab('hide');
-        });
-    });
-</script>
-<script>
-    window.onload = function() {
-        document.getElementById("#area").onchange = function() {
-            document.getElementByName("categoryselect")[0].focus();
-        }
-    }
-</script>
-<!-- Google Code for NX Search Conversion Page -->
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 1030044439;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "IOxDCLDxo3EQl_aU6wM";
-var google_remarketing_only = false;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1030044439/?label=IOxDCLDxo3EQl_aU6wM&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
-
-<!-- Header -->
-<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
-        <nav class="navbar">
-            <div class="container">
-                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
-                    <div class="col-md-10 col-xs-6">
-                        <div class="col-md-2 col-xs-12 text-center">
-                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
-                        </div>
-
-                    </div>
-                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
-                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-<!-- Header End --> 
-<!-- Page Container  -->   
-<div class="container" style="background-color:#fff; padding-bottom:50px;" ng-controller="InstantSearchController" itemscope itemtype="http://schema.org/LocalBusiness">
-
-    <div class="col-lg-12">
-        <div class="tabtitle">
-            <h3>Search Your Requirement</h3>
-            <div id="mymodal1" style="color: red;"></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="col-md-10 col-xs-10 formbackground2 col-md-offset-1 col-xs-offset-1 col-xs-offset-1" >
-            <div class="col-md-12 col-xs-12" style="padding-left: 28px">
-                <form formAutofillFix>
-                    <div class="col-md-3 col-xs-11 pull-left" style="padding-top: 20px">
-
-                       
-                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
-												<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> </option>
-											</select>
-                      
-                    </div>
-
-                    <div class="col-md-3 col-xs-11 pull-left" style=" padding-top: 20px">
-                        <div>
-                           
-                            <select id="area" onchange="document.getElementsByName('categoryselect')[0].focus()" class="form-control" select2="" name="area" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' "
-                                ng-disabled="disabled" required>
-												<option ng-selected="selectedArea" value="">Select Area</option>
-											</select>
-                        </div>
-                    </div>
 
 
-                    <div class="col-md-5 col-xs-8 pull-left">
+			<!-- - - - - - - - - - - - - - How it Works (hidden) - - - - - - - - - - - - - - - - -->
 
-                        <div class="form-group" ng-blur="EnableData = false">
-                            <label for="exampleInputPassword1"></label>
-                            <input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()"
-                                ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" />
+			<div class="kw-hidden-element kw-hidden-how-it-works ng-hide"  data-lock-body="true" data-animate-in="slideInDown" data-animate-out="slideOutUp" id="how-it-works">
 
-                            <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:1500px;">
-                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
-                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
-                                        <div class="list_dropdown">
-                                            <img ng-src="" />{{i}}
-                                        </div>
-                                    </a>
-                                </div>
-                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
-                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
-                                        <div class="list_dropdown">
-                                            {{i}}
-                                        </div>
-                                    </a>
+				<span class="lnr icon-cross kw-hidden-element-close" data-hidden-container="#how-it-works"></span>
+
+				<div class="container">
+
+					<section class="kw-section kw-large">
+
+						<h2 class="kw-section-title">How It Works</h2>
+						<h5 class="kw-section-subtitle">It is easier than you think</h5>
+
+						<div class="row">
+									
+							<div class="col-sm-4">
+
+								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-icon-boxes kw-type-1">
+
+									<div class="kw-icon-wrap">
+
+										<img src="images/icon_boxes_01.png" alt="">
+
+									</div>
+
+									<div class="kw-icon-text-wrap">
+
+										<h3>1. Decide What to Do</h3>
+
+										<p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum dolor sit amet.</p>
+
+									</div>
+
+								</div>	
+
+								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+							
+							</div>
+
+							<div class="col-sm-4">
+
+								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-icon-boxes kw-type-1">
+
+									<div class="kw-icon-wrap">
+
+										<img src="images/icon_boxes_02.png" alt="">
+
+									</div>
+
+									<div class="kw-icon-text-wrap">
+
+										<h3>2. Find The Location</h3>
+
+										<p>Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante.</p>
+
+									</div>
+
+								</div>	
+
+								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+							
+							</div>
+
+							<div class="col-sm-4">
+
+								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-icon-boxes kw-type-1">
+
+									<div class="kw-icon-wrap">
+
+										<img src="images/icon_boxes_03.png" alt="">
+
+									</div>
+
+									<div class="kw-icon-text-wrap">
+
+										<h3>3. Explore &amp; Have Fun</h3>
+
+										<p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam.</p>
+
+									</div>
+
+								</div>	
+
+								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
+							
+							</div>
+
+						</div><!--/ .row -->
+
+					</section><!--/ .kw-section -->
+
+				</div><!--/ .container -->
+				
+			</div>
+
+			<!-- - - - - - - - - - - - - - End of How it Works (hidden) - - - - - - - - - - - - - - - - -->
+
+			<!-- - - - - - - - - - - - - - Search Box (hidden) - - - - - - - - - - - - - - - - -->
+
+			<div class="kw-hidden-search-box" data-animate-in="slideInDown" data-animate-out="slideOutUp" id="search-box">
+
+				<div class="container">
+
+					<!-- - - - - - - - - - - - - - Search Form - - - - - - - - - - - - - - - - -->
+
+					<form action="#" class="searchform" id="searchform" method="get" role="search">
+
+						<div>
+
+							<input type="text" id="s" name="s" value="" placeholder="Looking for...">
+							<button type="submit" id="searchsubmit"><span class="lnr icon-magnifier"></span></button>
+
+						</div>
+
+					</form>
+
+					<!-- - - - - - - - - - - - - - End of Search Form - - - - - - - - - - - - - - - - -->
+
+				</div><!--/ .container -->
+				
+			</div>
+
+			<!-- - - - - - - - - - - - - - End of Search Box (hidden) - - - - - - - - - - - - - - - - -->
+
+			<!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
+
+			<header id="header" class="kw-header kw-dark kw-transparent">
+
+				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-top-bar">
+
+					<ul class="kw-hr-list">
+
+						<li>
+							
+							<div class="kw-current-location">
+
+								<span class="lnr icon-map-marker"></span> location: <b>India</b>
+
+							</div><!--/ .kw-current-location -->
+
+						</li>
+
+						<li>
+
+							<ul class="kw-social-links">
+
+								<li><a href="https://www.facebook.com/nxsearch" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus" target="_blank"></i></a></li>
+								<li><a href="https://twitter.com/nxsearch" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.instagram.com/nxsearch_com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+								<!--<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>-->
+
+							</ul>
+
+						</li>
+
+					</ul><!--/ .kw-hr-list -->
+
+					<!--<ul class="kw-hr-list">
+
+						<li><a href="#" class="kw-login" data-modal="modals/login.html"><span class="lnr icon-lock"></span> Login</a></li>
+
+						<li>
+							
+							<div class="kw-dropdown kw-language-options">
+
+								<span class="kw-dropdown-invoker"><img src="images/flag_en.jpg" alt=""> English</span>
+
+							</div>
+
+						</li>
+
+					</ul> .kw-hr-list -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				<!-- - - - - - - - - - - - - - Header Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-hsection kw-sticky">
+
+					<div class="kw-sm-table-row row">
+
+						<div class="col-sm-2 col-md-3">
+
+							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+
+							<a href="/">
+
+								<img src="assets/img/nxsearch-logo1.png" alt="nxsearch.com">
+
+							</a>
+
+							<!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
+
+						</div>
+
+						<div class="col-sm-10 col-md-9">
+
+							<div class="kw-hcontent">
+
+								<!-- - - - - - - - - - - - - - Navigation - - - - - - - - - - - - - - - - -->
+
+								<nav class="kw-nav-wrap">
+
+									<ul class="kw-navigation">
+
+										<li class="kw-current">
+
+											<a href="/">Home</a>
+
+										</li>
+
+										<li class="">
+
+											<a href="#">About</a>
+										</li>
+
+											<!-- - - - - - - - - - - - - - End of Submenu (level 2) - - - - - - - - - - - - - - - - -->
+
+									</ul>
+
+								</nav>
+
+								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
+
+								<!-- - - - - - - - - - - - - - Search Form - - - - - - - - - - - - - - - - -->
+
+							
+
+								<!-- - - - - - - - - - - - - - End of Search Form - - - - - - - - - - - - - - - - -->
+
+								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
+
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a>
+
+								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-hcontent -->
+
+						</div>
+
+					</div><!--/ .kw-sm-table-row.row -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Header Section - - - - - - - - - - - - - - - - -->
+
+			</header>
+
+			<!-- - - - - - - - - - - - - - End of Header - - - - - - - - - - - - - - - - -->
+
+			<!-- - - - - - - - - - - - - - Page Header - - - - - - - - - - - - - - - - -->
+
+			<div class="kw-page-header kw-dark kw-transparent kw-type-7">
+
+				<div class="kw-page-header-content">
+
+					<div class="container">
+
+						<h1 class="kw-page-title align-center">Find Your Requirement...!</h2>
+						
+							
+
+						
+							
+						
+						<!-- - - - - - - - - - - - - - Oneline Form - - - - - - - - - - - - - - - - -->
+
+											<form class="kw-oneline-form" ng-controller="InstantSearchController">
+
+												<ul>
+
+													<li class="kw-oneline-row-action">
+
+														<fieldset class="kw-oneline-fields">
+															
+															<div class="row">
+
+																
+
+																<div class="col-sm-4">
+
+																	<div class="kw-custom-select">
+
+																		<select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="true">
+																				<option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+																		</select>
+
+																	</div><!--/ .kw-custom-select -->
+
+																</div>
+
+																<div class="col-sm-4">
+
+																	<div class="kw-custom-select">
+
+																		<select id="area" onchange="document.getElementsByName('categoryselect')[0].focus()" class="form-control" select2="" name="area" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' "
+													ng-disabled="disabled" required>
+																	<option ng-selected="selectedArea" value="">Select Area</option>
+																</select>
+
+																	</div><!--/ .kw-custom-select -->
+
+																</div>
+
+																<div class="col-sm-4">
+
+																	<input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()"
+													ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" />
+
+												<div ng-show="EnableTextInputResult == false || EnableData" name="categoryselect" class="scrollable-menu" style="color:black !important; background-color: #fff; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 96%;height:400px;">
+													<div ng-repeat="i in Categories |  filter : searchString track by $index">
+														<a href="" ng-click="gotoResultsPageByCategory(i)">
+															<div class="list_dropdown">
+																{{i}}
+															</div>
+														</a>
+													</div>
+													<div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+														<a href="" ng-click="gotoResultsPageBySubCategory(i)">
+															<div class="list_dropdown" >
+																{{i}}
+															</div>
+														</a>
 
 
-                                </div>
+													</div>
 
-                                <div ng-repeat="i in clients |filter : {isPaidClient:true} | filter : searchString track by $index" ng-click="doSomething($event, 1)">
-                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug |slugifyapostropy}}/{{i._id}}">
-                                        <div class="list_dropdown">
-                                           <b> {{i.ClinicName}}</b>
-                                            <br/>
-                                        </div>
-                                    </a>
-                                </div>                 
-                            </div>
-                        </div>
-                    </div>
+													<div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
+														<a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+															<div class="list_dropdown">
+																<b> {{i.ClinicName}}</b>
+																<br/>
+															</div>
+														</a>
+													</div>
+												</div>
 
-                    <div class="col-md-1 col-xs-2 pull-left topmargin">
-                        <button type="submit" class="btn btn-defaultsearch"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div><br/></div>
 
-    <div class="container">
+											</div>
+
+										</div>
+
+									</fieldset>
+
+									<div class="kw-oneline-action">
+
+										<button class="kw-btn-big kw-yellow" type="submit">Search</button>
+
+									</div>
+
+								</li>
+
+							</ul>
+
+						</form>
+
+						<!-- - - - - - - - - - - - - - End of Oneline Form - - - - - - - - - - - - - - - - -->
+
+					</div><!--/ .container -->
+
+				</div><!--/ .kw-page-header-content -->
+
+				<div class="kw-page-header-media headbg1" ></div><!--/ .kw-page-header-media -->
+
+			</div>
+
+			<!-- - - - - - - - - - - - - - End of Page Header - - - - - - - - - - - - - - - - -->
+				
+	<div class="container" style="padding-top: 50px; background-color:white;">
+		<div class="col-md-12 col-xs-12" style="padding-bottom: 25px;">
+				<h3 class="align-center">Popular Categories</h3>
+		</div>
 
         <button type="button" class="navbar-toggle1 collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        	<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
 
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav nav-tabsH nav-justified">
-                <li class="active"><a href="#health" data-toggle="tab">Health & Medicine</a></li>
-                <li><a href="#school" data-toggle="tab" aria-expanded="false">Schools & Institutes</a></li>
-                <li><a href="#beauty" data-toggle="tab" aria-expanded="false">Beauty Care</a></li>
-                <li><a href="#sports" data-toggle="tab" aria-expanded="false">Gym & Academies</a></li>
-                <li><a href="#travel" data-toggle="tab" aria-expanded="false">Travel & Transport</a></li>
-                <li><a href="#build" data-toggle="tab" aria-expanded="false">Professionals</a></li>
+            <ul class="nav nav-tabsH nav-justified" id="myTab">
+                <li class="active"><a href="#health" data-toggle="tab">
+				<div class="col-xs-12 text-center"> 
+					<img src="/assets/img/icon-04.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Health & Medicine
+				</span>
+				</a></li>
+                <li><a href="#school" data-toggle="tab" aria-expanded="false">
+				<div class="col-xs-12 text-center"> 
+					<img src="/assets/img/icon-05.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Schools & Institutes
+				</span>
+				</a></li>
+                <li><a href="#beauty" data-toggle="tab" aria-expanded="false">
+				<div class="col-xs-12 text-center"> 
+					<img src="/assets/img/icon-27.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Beauty Care
+				</span>
+				</a></li>
+                <li><a href="#sports" data-toggle="tab" aria-expanded="false">
+				<div class="col-xs-12 text-center"> 
+					<img src="/assets/img/gym.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Gym & Academies
+				</span>
+				</a></li>
+                <li><a href="#travel" data-toggle="tab" aria-expanded="false">
+				<div class="col-xs-12 text-center">
+					<img src="/assets/img/icon-02.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Travel & Transport
+				</span>
+				</a></li>
+                <li><a href="#build" data-toggle="tab" aria-expanded="false">
+				<div class="col-xs-12 text-center"> 
+					<img src="/assets/img/icon-06.png" style="width:40px;height:40px;">
+				</div>
+				<span style="vertical-align: -webkit-baseline-middle;">
+					Professionals
+				</span>
+				</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -184,16 +446,22 @@ var google_remarketing_only = false;
 
     </div>
 
-    <div class="tab-content">
+
+
+    <div class="container tab-content" style="background-color:white;">
         <div id="health" class="tab-pane active">
             <br />
 
             <div class="row row_top">
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
-                    <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Dentist>
-                        <a itemprop="url" href="/Pune/Dentist"> <img src="/assets/img/Dentist.png" width="50px" height="50px" alt="Dentist nx-search"></a>
+                    <div class="text-center" itemscope itemtype=https://schema.org/Dentist>
+                        <a itemprop="url" href="/Pune/Dentist"> 
+							<span >
+								<img src="/assets/img/Dentist.png" width="50px" height="50px" class="subcat" alt="Dentist nx-search">
+							</span>
+						</a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -203,10 +471,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div itemscope itemtype=https://schema.org/Homeopathic class="thumbnail_home center-block">
-                        <a itemprop="url" href="/Pune/Homeopathy"><img src="assets/img/Homeopathy.png" width="50px" height="50px" alt="homeopathy nx-search"></a>
+                        <a itemprop="url" href="/Pune/Homeopathy"><img src="assets/img/Homeopathy.png" width="50px" height="50px" class="subcat" alt="homeopathy nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Homeopathic>
@@ -216,10 +484,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/Ayurvedic>
-                        <a href="/Pune/Ayurveda"><img class="img" src="assets/img/Ayurveda.png" width="50px" height="50px" alt="Ayurveda nx-search"></a>
+                        <a href="/Pune/Ayurveda"><img src="assets/img/Ayurveda.png" width="50px" height="50px" class="subcat" alt="Ayurveda nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -229,10 +497,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Physician>
-                        <a href="/Pune/Gynecologist"><img src="assets/img/Gynecologist.png" width="50px" height="50px" alt="Gynecologist nx-search"></a>
+                        <a href="/Pune/Gynecologist"><img src="assets/img/Gynecologist.png" width="50px" height="50px" class="subcat" alt="Gynecologist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
@@ -242,10 +510,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6" itemscope itemtype=https://schema.org/Dermatology>
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center" itemscope itemtype=https://schema.org/Dermatology>
 
                     <div class="thumbnail_home center-block">
-                        <a href="/Pune/Dermatologist"><img src="assets/img/Dermatologist.png" width="50px" height="50px" alt="Dermatologist nx-search"></a>
+                        <a href="/Pune/Dermatologist"><img src="assets/img/Dermatologist.png" width="50px" height="50px" class="subcat" alt="Dermatologist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Dermatology>
@@ -255,9 +523,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home img center-block" itemscope itemtype=https://health-lifesci.schema.org/Physiotherapist>
-                        <a href="/Pune/Physiotherapist"><img src="assets/img/physiotherpist.png" width="50px" height="50px" alt="Physiotherapist Pune nx-search"></a>
+                        <a href="/Pune/Physiotherapist"><img src="assets/img/physiotherpist.png" width="50px" height="50px" class="subcat" alt="Physiotherapist Pune nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/Physiotherapist>
@@ -273,9 +541,9 @@ var google_remarketing_only = false;
                     <br />
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Physician>
-                        <a href="/Pune/Ear-Nose-Throat-(ENT)"><img src="assets/img/ENT.png" width="50px" height="50px" alt="E-N-T specialist nx-search"></a>
+                        <a href="/Pune/Ear-Nose-Throat-(ENT)"><img src="assets/img/ENT.png" width="50px" height="50px" class="subcat" alt="E-N-T specialist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
@@ -285,9 +553,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6" itemscope itemtype=https://schema.org/Physician>
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center" itemscope itemtype=https://schema.org/Physician>
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Urologist.png" width="50px" height="50px" alt="Urologist nx-search"></a>
+                        <a href="#"><img src="assets/img/Urologist.png" width="50px" height="50px" class="subcat" alt="Urologist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
@@ -296,10 +564,10 @@ var google_remarketing_only = false;
                         </a>
                     </div>
                 </div>
-
-                <div class="col-sm-2 col-md-2 col-xs-6">
+ 
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Physician>
-                        <a href="#"><img src="assets/img/Opthalmologist.png" width="50px" height="50px" alt="Opthalmologist nx-search"></a>
+                        <a href="#"><img src="assets/img/Opthalmologist.png" width="50px" height="50px" class="subcat" alt="Opthalmologist nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Physician>
@@ -309,9 +577,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home img center-block" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
-                        <a href="/Pune/Diagnostic-Lab"><img src="assets/img/laboratory.png" width="50px" height="50px" alt="Diagnostic labs nx-search"></a>
+                        <a href="/Pune/Diagnostic-Lab"><img src="assets/img/laboratory.png" width="50px" height="50px" class="subcat" alt="Diagnostic labs nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
@@ -336,10 +604,10 @@ var google_remarketing_only = false;
             <div class="row ">
                 <div class="col-sm-1"></div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/Preschool>
-                        <a itemprop="url" href="/Pune/Preschools"><img src="assets/img/Preschool.png" width="50px" height="50px" alt="Preschools nx-search"></a>
+                        <a itemprop="url" href="/Pune/Preschools"><img src="assets/img/Preschool.png" width="50px" height="50px" class="subcat" alt="Preschools nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/Preschool>
@@ -349,10 +617,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/EducationalOrganization>
-                        <a href="#"><img src="assets/img/Institute.png" width="50px" height="50px" alt="Insitutes nx-search"></a>
+                        <a href="#"><img src="assets/img/Institute.png" width="50px" height="50px" class="subcat" alt="Insitutes nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/EducationalOrganization>
@@ -362,10 +630,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/School>
-                        <a href="/Pune/Private-Tuitions"> <img src="assets/img/Interior.png" width="50px" height="50px" alt="Private Turions nx-search"></a>
+                        <a href="/Pune/Private-Tuitions"> <img src="assets/img/Interior.png" width="50px" height="50px" class="subcat" alt="Private Turions nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/School>
@@ -375,9 +643,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/School>
-                        <a href="/Pune/Home-Tutors"> <img src="assets/img/home-tutor.png" width="50px" height="50px" alt="Home Tutors in Pune nx-search"></a>
+                        <a href="/Pune/Home-Tutors"> <img src="assets/img/home-tutor.png" width="50px" height="50px" class="subcat" alt="Home Tutors in Pune nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/School>
@@ -388,7 +656,7 @@ var google_remarketing_only = false;
 
                 </div>
 
-                <div class="col-sm-2 col-md-2">
+                <div class="col-sm-2 col-md-2 text-center">
 
                 </div>
 
@@ -404,10 +672,10 @@ var google_remarketing_only = false;
             <div class="row row_top">
                 <div class="col-sm-1"></div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/DaySpa>
-                        <a href="/Pune/Salon-and-Spa"><img src="assets/img/Salon-Spa.png" width="50px" height="50px" alt="Salon & Spa nx-search"></a>
+                        <a href="/Pune/Salon-and-Spa"><img src="assets/img/Salon-Spa.png" width="50px" height="50px" class="subcat" alt="Salon & Spa nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/DaySpa>
@@ -417,9 +685,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://schema.org/UnisexSalon>
-                        <a href="/Pune/unisex-salons"><img src="assets/img/unisex-saloons.png" width="50px" height="50px" alt="Unisex solon in Pune nx-search"></a>
+                        <a href="/Pune/unisex-salons"><img src="assets/img/unisex-saloons.png" width="50px" height="50px" class="subcat" alt="Unisex solon in Pune nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle" itemscope itemtype=https://schema.org/DaySpa>
@@ -429,15 +697,15 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
@@ -450,9 +718,9 @@ var google_remarketing_only = false;
             <br />
 
             <div class="row row_top">
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Sports.png" width="50px" height="50px" alt="Sports nx-search"></a>
+                        <a href="#"><img src="assets/img/Sports.png" width="50px" height="50px" class="subcat" alt="Sports nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -462,10 +730,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Dance-Academy.png" width="50px" height="50px" alt="Dance academy nx-search"></a>
+                        <a href="#"><img src="assets/img/Dance-Academy.png" width="50px" height="50px" class="subcat" alt="Dance academy nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -475,9 +743,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Musical-Academy.png" width="50px" height="50px" alt="Music academy nx-search"></a>
+                        <a href="#"><img src="assets/img/Musical-Academy.png" width="50px" height="50px" class="subcat" alt="Music academy nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -487,9 +755,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/Gym-and-fitness>
-                        <a href="#"><img src="assets/img/Gym-Fitness.png" width="50px" height="50px" alt="Gym-and-fitness nx-search"></a>
+                        <a href="#"><img src="assets/img/Gym-Fitness.png" width="50px" height="50px" class="subcat" alt="Gym-and-fitness nx-search"></a>
                     </div>
                     <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/DiagnosticLab>
                         <a href="#">
@@ -498,9 +766,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
-                        <a href="#"><img src="assets/img/yoga.png" width="50px" height="50px" alt="Yoga-academy nx-search"></a>
+                        <a href="#"><img src="assets/img/yoga.png" width="50px" height="50px" class="subcat" alt="Yoga-academy nx-search"></a>
                     </div>
                     <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
                         <a href="#">
@@ -510,9 +778,9 @@ var google_remarketing_only = false;
 
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block" itemscope itemtype=https://health-lifesci.schema.org/zumba-classes>
-                        <a href="#"><img src="assets/img/zumba-classes.png" width="50px" height="50px" alt="Zumba classes Pune nx-search"></a>
+                        <a href="#"><img src="assets/img/zumba-classes.png" width="50px" height="50px" class="subcat" alt="Zumba classes Pune nx-search"></a>
                     </div>
                     <div class="caption tabtitle" itemscope itemtype=https://health-lifesci.schema.org/yoga-academy>
                         <a href="#">
@@ -534,7 +802,7 @@ var google_remarketing_only = false;
                 <div class="col-sm-2 col-md-2 col-xs-6">
 
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Travel-Agent.png" width="50px" height="50px" alt="Travel Agents nx-search"></a>
+                        <a href="#"><img src="assets/img/Travel-Agent.png" width="50px" height="50px" class="subcat" alt="Travel Agents nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -544,10 +812,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Movers-Packers.png" width="50px" height="50px" alt="Packers and Movers nx-search"></a>
+                        <a href="#"><img src="assets/img/Movers-Packers.png" width="50px" height="50px" class="subcat" alt="Packers and Movers nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -557,15 +825,15 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
@@ -580,10 +848,10 @@ var google_remarketing_only = false;
             <div class="row row_top">
                 <div class="col-sm-1"></div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Architect.png" width="50px" height="50px" alt="Architects nx-search"></a>
+                        <a href="#"><img src="assets/img/Architect.png" width="50px" height="50px" class="subcat" alt="Architects nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -593,10 +861,10 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Landscape-Designier.png" width="50px" height="50px" alt="Landscape Designers nx-search"></a>
+                        <a href="#"><img src="assets/img/Landscape-Designier.png" width="50px" height="50px" class="subcat" alt="Landscape Designers nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -606,9 +874,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block">
-                        <a href="#"><img src="assets/img/Interior.png" width="50px" height="50px" alt="Interior Designers nx-search"></a>
+                        <a href="#"><img src="assets/img/Interior.png" width="50px" height="50px" class="subcat" alt="Interior Designers nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -618,9 +886,9 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
                     <div class="thumbnail_home center-block">
-                        <a href="/Pune/Finance-and-Taxation-Service"><img src="assets/img/accuntant.jpg" width="50px" height="50px" alt="Finance and Taxation Service nx-search"></a>
+                        <a href="/Pune/Finance-and-Taxation-Service"><img src="assets/img/accuntant.jpg" width="50px" height="50px" class="subcat" alt="Finance and Taxation Service nx-search"></a>
                     </div>
 
                     <div class="caption tabtitle">
@@ -630,7 +898,7 @@ var google_remarketing_only = false;
                     </div>
                 </div>
 
-                <div class="col-sm-2 col-md-2 col-xs-6">
+                <div class="col-sm-2 col-md-2 col-xs-6 text-center">
 
                 </div>
 
@@ -641,81 +909,360 @@ var google_remarketing_only = false;
 
 
     </div>
+			<!-- - - - - - - - - - - - - - Page Content - - - - - - - - - - - - - - - - -->
 
+			<div class="kw-page-content">
 
-</div>
-<!--  End of Page Container  -->
+				<div class="container" style="background-color:white;">
+
+					<!-- - - - - - - - - - - - - - Popular Categories - - - - - - - - - - - - - - - - -->
+								
+					
+					
+					<!-- - - - - - - - - - - - - - End of Popular Categories - - - - - - - - - - - - - - - - -->
+					
+					<!-- - - - - - - - - - - - - - Content Section - - - - - - - - - - - - - - - - -->
+						
+					<div class="kw-section kw-large kw-fw" ng-controller="dashResultsController" >
+					  <div class="ng-hide">
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                		<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               				 &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    		<a id="categry" href=""> <span id="category"></span></a>
+                		</h5>&nbsp
+                			<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+               				 &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+               			 <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
+				  			<i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+            		</div>
+						<div class="row">
+
+							<div class="col-sm-12" >
+
+								<h3 class="kw-section-title">Sponsored Listings</h3>
+													
+								<!--<h5 class="kw-section-subtitle">List of latest added places</h5>-->
+
+								<!-- - - - - - - - - - - - - - Listings Container - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-listings kw-type-1 col-sm-12" >
+
+									<!-- - - - - - - - - - - - - - Listing Item - - - - - - - - - - - - - - - - -->
+
+									<div class="kw-listing-item-wrap hovereffect col-sm-3" ng-repeat="item in results | limitTo:4 | filter: {isPaidClient : true} | filter : userSearch track by $index">
+
+										<article class="kw-listing-item" data-latitude="40.711437" data-longitude="-74.001378" data-marker="images/marker_1.png">
+
+											<!-- - - - - - - - - - - - - - Media - - - - - - - - - - - - - - - - -->
+
+											<div class="kw-listing-item-media">
+
+												<a href="#" class="kw-listing-item-thumbnail">
+													<img src="{{::item.imageUrl}}" alt="">
+												</a>
+													
+											<div class="overlay">
+														<div class="text">
+
+															   <a href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}" class="kw-btn-big1 kw-yellow"> View More... </a>                                 
+
+														</div>
+													</div>
+											</div>
+
+											<!-- - - - - - - - - - - - - - End of Media - - - - - - - - - - - - - - - - -->
+
+											<!-- - - - - - - - - - - - - - Description - - - - - - - - - - - - - - - - -->
+
+											<div class="kw-listing-item-info">
+
+												<header class="kw-listing-item-header">
+
+													<h4 class="kw-listing-item-title"><a href="#">{{item.ClinicName | limitTo: 20}} {{item.ClinicName.length > 20 ? '...' : ''}}</a></h4>
+
+													<div class="kw-xs-table-row kw-xs-small-offset">
+
+														<div class="col-xs-6">
+
+															<div class="kw-listing-item-rating" > {{item.Categories}} </div>
+
+														</div>
+
+													</div>
+
+												</header>
+
+												<ul class="kw-listing-item-data kw-icons-list kw-oneline-form1">
+
+													<li class="kw-listing-item-location"><span class="lnr icon-map-marker"></span>{{::item.address1 | limitTo: 30}}{{item.address1.length > 30 ? '...' : ''}}, {{::item.address2 | limitTo: 30}}{{item.address2.length > 30 ? '...' : ''}}</li>
+													<li class="kw-listing-item-phone"><span class="lnr icon-telephone"></span></li>
+
+												</ul>
+
+												
+
+											</div>
+
+											<!-- - - - - - - - - - - - - - End of Description - - - - - - - - - - - - - - - - -->
+
+										</article>
+
+									</div>
+
+									<!-- - - - - - - - - - - - - - End of Listing Item - - - - - - - - - - - - - - - - -->
+
+								
+
+									<!-- - - - - - - - - - - - - - End of Listing Item - - - - - - - - - - - - - - - - -->
+
+								</div>
+
+								<!-- - - - - - - - - - - - - - End of Listings Container - - - - - - - - - - - - - - - - -->
+
+							</div>
+
+						</div><!--/ .row -->
+					
+					</div>
+</div>					
+					<!-- - - - - - - - - - - - - - End of Content Section - - - - - - - - - - - - - - - - -->
+					
+					<!-- - - - - - - - - - - - - - Content Section - - - - - - - - - - - - - - - - -->
+									
+					<!-- - - - - - - - - - - - - - End of Content Section - - - - - - - - - - - - - - - - -->
+					
+					<!-- - - - - - - - - - - - - - Content Section - - - - - - - - - - - - - - - - -->
+
+			<section class="tg-main-section2  paralaxbag" ng-controller="dashResultsController">
+				  <div class="ng-hide">
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                		<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               				 &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    		<a id="categry" href=""> <span id="category"></span></a>
+                		</h5>&nbsp
+                			<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+               			 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+               				 &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+               			 <h1 style="font-size: 14px; display: inline; "> <b>{{::aaa}}</b> matches found for: <b id="keyword"></b></h1>
+				  			<i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+            		</div>
+				<div class="whitegb">
+					<div class="container" >
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<div class="tg-statisticscounters">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											
+											<h1>36012</h1>
+											<h3>Happy Customers</h3>
+										</div>
+										<div class="col-xs-4 text-center">
+											
+											<h1>{{aaa}}</h1>
+											<h3>Total Listings </h3>
+										</div>
+										<div class="col-xs-4 text-center">
+											
+											<h1>{{catcount}}</h1>
+											<h3>No of Categories</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</section>
+					
+					<!-- - - - - - - - - - - - - - End of Content Section - - - - - - - - - - - - - - - - -->
+					
+					<!-- - - - - - - - - - - - - - Content Section - - - - - - - - - - - - - - - - -->
+					
+					<!--
+						Removed Containt like reviews bologs and Testimonals -->
+
+			<!-- - - - - - - - - - - - - - End of Page Content - - - - - - - - - - - - - - - - -->
 
 
 <!-- Footer -->
-<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
-        <div class="footer" id="footer">
-            <div class="container">
-                <div class="container">
-                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
-                        <h3>About </h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
-                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+	<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
+			<footer id="footer" class="kw-footer" data-bg="images/section_bg_01.png">
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>NX-search</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
-                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
-                            <li> <a itemprop="url" href="/disclaimer">Disclaimer</a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>Contact Us</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
-                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
-                        </ul>
-                    </div>
+				<!-- - - - - - - - - - - - - - Newsletter Section - - - - - - - - - - - - - - - - -->
 
-                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
-                        <h3> Follow Us </h3>
-                        <ul>
-                            <li>
-                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
-                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                <a href="https://www.instagram.com/nxsearch_com/" target="blank" itemprop="url"><img src="assets/img/instagram-nxsearch-logo.png" class="img-circle" alt="instagaram_nxsearch" width="35" height="35"></a>
-                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
-                                
-                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
-                            </li>
-                        </ul>
-                    </div>
-                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                        <h3> SubScribe </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
-                                </div>
-                            </li>
-                        </ul>
+				<div class="kw-newsletter-section">
 
-                    </div>-->
-                </div>
-            </div>
-        </div>
+					<!-- - - - - - - - - - - - - - Background Icon - - - - - - - - - - - - - - - - -->
 
+					<i class="lnr icon-envelope kw-section-icon"></i>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
-            </div>
-        </div>
-       
+					<!-- - - - - - - - - - - - - - End of Background Icon - - - - - - - - - - - - - - - - -->
 
-</footer>
+					<div class="container">
+
+						<div class="kw-newsletter">
+
+							<h3 class="kw-title">Sign Up to Newsletter</h3>
+
+							<p class="kw-description">and get the latest <b>deals, reviews &amp; articles</b></p>
+
+							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
+
+							<form class="kw-newsletter-form kw-inline-form" method="POST">
+
+								<div class="kw-input-wrapper">
+
+									<input type="text" name="email" autocomplete="off" placeholder="Enter your email address...">
+
+								</div><!--/ .kw-input-wrapper -->
+
+								<button type="submit" class="kw-btn-big kw-yellow" name="newsletter_submit">Sign Up</button>
+
+							</form>
+
+							<!-- - - - - - - - - - - - - - End of Newsletter Form - - - - - - - - - - - - - - - - -->
+
+						</div><!--/ .kw-newsletter -->
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="container">
+
+					<!-- - - - - - - - - - - - - - Footer Section - - - - - - - - - - - - - - - - -->
+
+					<div class="kw-fsection">
+
+						<div class="kw-footer-widget-area kw-cols-4">
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-widget">
+
+									<a href="#" class="kw-footer-logo"><img src="assets/img/nxsearch-logo.png" alt="nxsearxh.com"></a>
+
+									
+
+									<ul class="kw-social-links">
+
+										<li><a href="https://www.facebook.com/nxsearch" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href=""><i class="fa fa-google-plus" target="_blank"></i></a></li>
+										<li><a href="https://twitter.com/nxsearch" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="https://www.instagram.com/nxsearch_com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+										<!--<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>-->
+
+									</ul>
+
+								</div>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Company</h4>
+
+									<ul>
+
+										<li><a href="/aboutus">About Us</a></li>										
+										<li><a href="/career">Careers</a></li>
+										<li><a href="contactusbb">Contact Us</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+                            <!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Quick Links</h4>
+
+									<ul>
+
+										<li><a href="#">How It Works</a></li>
+										<li><a href="#">Add Listing</a></li>
+                                        <li><a href="#">Blog</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="kw-widget-col">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Terms</h4>
+
+									<ul>										
+										<li><a href="/termsandconditions">Terms & Conditions</a></li>
+										<li><a href="/privacypolicy">Privacy Policy</a></li>
+										<li><a href="/disclaimer">Disclaimer</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+						</div><!--/ .kw-footer-widget-area -->
+
+					</div>
+
+					<!-- - - - - - - - - - - - - - End of Footer Section - - - - - - - - - - - - - - - - -->
+
+				</div><!--/ .container -->
+
+				<!-- - - - - - - - - - - - - - Copyright Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-copyright">
+
+					<div class="container">
+
+						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Copyright Section - - - - - - - - - - - - - - - - -->
+
+			</footer>
+
+			<!-- - - - - - - - - - - - - - End of Footer - - - - - - - - - - - - - - - - -->
 <!-- Footer End -->
 
 <script>
@@ -732,4 +1279,38 @@ var google_remarketing_only = false;
 
 
     });
+</script>
+			<script>
+				$(function() {
+					$('.nav-tabsH a').on('click', function(e) {
+						e.preventDefault();
+						$(this).tab('show');
+					});
+				});
+
+				$(function() {
+					$('.navbar-toggle1 collapsed').on('click', function(e) {
+						$(this).tab('show');
+					});
+				});
+
+				$(function() {
+					$('.navbar-nav .open .dropdown-menu').on('click', function(e) {
+						$(this).tab('hide');
+					});
+				});
+			</script>
+			
+		<script type="text/javascript">
+    $(document).ready(function () {
+
+            $('#myTab a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                e.relatedTarget // previous tab
+            });
+        });
 </script>
