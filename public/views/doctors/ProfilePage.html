@@ -189,17 +189,11 @@ var google_remarketing_only = false;
 						<div class="col-sm-10 col-xs-12 col-md-3">
 
 							<div class="kw-hcontent ">
-                                    <ul class="kw-navigation">
-										<li class="">
-											<a href="/">Home</a>
-										</li>
-                                    </ul>
-
 								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
 
 								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
 
-								<a href="/register" class="kw-btn-medium kw-white-type-2">Add Listing</a>
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a>
 
 								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
 
@@ -228,7 +222,7 @@ var google_remarketing_only = false;
 		<main id="tg-main" class="tg-main tg-haslayout" ng-controller="dashResultsController">
             <!-- Breadcrumbs data -->
             <div class="ng-hide">
-				 <i id="shareBtn" title="Share on Facebook" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 10px;"></i>
+				
                 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
                 <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
                 <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
@@ -276,12 +270,6 @@ var google_remarketing_only = false;
 									<figure class="tg-directpostimg col-md-2">
 										<a href="#"><img  src="{{::client.imageUrl }}" title="{{::client.ClinicName }}, {{::client.Categories }}, {{::client.Area }}, {{::client.City }}"  alt="{{::client.ClinicName }}-{{::client.Area }}-{{::client.City }}-NXsearch"></a>
 										<figcaption>
-											<a class="tg-usericon tg-iconfeatured" href="#">
-												<em class="tg-usericonholder">
-													<i class="fa fa-bolt"></i>
-													<span>featured</span>
-												</em>
-											</a>
 											<a class="tg-usericon tg-iconvarified" href="#">
 												<em class="tg-usericonholder">
 													<i class="fa fa-shield"></i>
@@ -289,6 +277,14 @@ var google_remarketing_only = false;
 												</em>
 											</a>
 										</figcaption>
+                                        <figcaption ng-show="client.isSponsoredClient===true">
+                                        	<a class="tg-usericon tg-iconfeatured" href="#">
+												<em class="tg-usericonholder">
+													<i class="fa fa-bolt"></i>
+													<span>featured</span>
+												</em>
+											</a>
+                                            </figcaption>
 									</figure>
 									<div class="tg-directinfo ">
 										<div class="tg-directposthead ">
@@ -309,38 +305,38 @@ var google_remarketing_only = false;
                                                 <span>share:</span>
                                                 <ul class="tg-socialsharewithtext">
                                                     <li class="tg-facebook">
-                                                        <a class="tg-roundicontext" href="#">
+                                                        <a class="tg-roundicontext">
                                                             <em class="tg-usericonholder">
-                                                                <i class="fa fa-facebook-f"></i>
-                                                                <span>share on facebook</span>
+                                                                <i class="fa fa-facebook"></i>
+                                                                <span style="cursor: pointer;" id="shareBtn" title="Share on Facebook">share on facebook</span>
                                                             </em>
                                                         </a>
                                                     </li>
                                                     <li class="tg-twitter">
-                                                        <a class="tg-roundicontext" href="#">
+                                                        <a class="tg-roundicontext" href="http://twitter.com/share?text=text goes here&url=http://{{fpath}}" title="Share on Twitter" target="_blank">
                                                             <em class="tg-usericonholder">
                                                                 <i class="fa fa-twitter"></i>
                                                                 <span>share on twitter</span>
                                                             </em>
                                                         </a>
                                                     </li>
-                                                    <li class="tg-linkedin">
+                                                    <!---<li class="tg-linkedin">
                                                         <a class="tg-roundicontext" href="#">
                                                             <em class="tg-usericonholder">
                                                                 <i class="fa fa-linkedin"></i>
                                                                 <span>share on linkdin</span>
                                                             </em>
                                                         </a>
-                                                    </li>
+                                                    </li>-->
                                                     <li class="tg-googleplus">
-                                                        <a class="tg-roundicontext" href="#">
+                                                        <a class="tg-roundicontext" href="https://plus.google.com/share?url=http://{{fpath}}" title="Share on Google+" target="_blank">
                                                             <em class="tg-usericonholder">
                                                                 <i class="fa fa-google-plus"></i>
                                                                 <span>share on googl+</span>
                                                             </em>
                                                         </a>
                                                     </li>
-                                                    <li class="tg-rss">
+                                                   <!-- <li class="tg-rss">
                                                         <a class="tg-roundicontext" href="#">
                                                             <em class="tg-usericonholder">
                                                                 <i class="fa fa-rss"></i>
@@ -355,7 +351,7 @@ var google_remarketing_only = false;
                                                                 <span>share on YouTube</span>
                                                             </em>
                                                         </a>
-                                                    </li>
+                                                    </li>-->
                                                 </ul>
                                             </div>
                                             <button type="button" class="tg-btn" style="margin-top:5px;" data-toggle="modal" data-target="#myModal">Send An Enquiry</button>
@@ -376,62 +372,63 @@ var google_remarketing_only = false;
                                                     <!-- Text input  -->
                                                     <div class="col-xs-12">
                                                         <div class="col-xs-12">
-                                                            <b>Your Enquiry For :</b>
+                                                            <b>Your Enquiry For : {{client.ClinicName}}</b>
                                                         </div>
-                                                        <div class="col-xs-12">
+                                                        <div class="col-xs-12 ng-hide">
                                                             <input type="text" id="ClinicName" ng-model="client.ClinicName" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
                                                         </div>
-                                                        <div class="col-xs-2">
-                                                            <b>Area :</b>
-                                                        </div>
-                                                        <div class="col-xs-10">
+                                                        
+                                                        <div class="col-xs-10 ng-hide">
                                                             <input type="text" id="ClinicArea" ng-model="client.Area" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
                                                         </div>
                                                     </div>
+                                                    <div class="col-xs-12">
                                                     <div class="col-xs-12">
                                                         <input type="text" name="username" id="username" ng-model="client.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
                                                         <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
                                                             <small style="color: red; display: block; text-align: center">Please Enter Name</small>
                                                         </div>
                                                     </div>
+                                                    </div>
 
 
                                                     <!-- Text input-->
                                                     <div class="col-xs-12">
-                                                        <div class="col-xs-2">
-                                                            <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
-                                                        </div>
-                                                        <div class="col-xs-10">
+                                                        
+                                                        <div class="col-xs-12">
                                                             <input type="text" name="usermobile" id="usermobile" ng-model="client.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                             <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                 <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-xs-12">
                                                     <div class="col-xs-12">
                                                         <input type="email" name="useremail" ng-model="client.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
                                                     </div>
+                                                    </div>
                                                         <div class="col-xs-12">
-                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTP1(client)" value="Generate OTP" id="send_otp" />
+                                                        <div class="col-xs-12">
+                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info text-center" ng-click="sendOTP1(client)" value="Generate OTP" id="send_otp" />
                                                             <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                        </div>
                                                         </div>
 
                                                     <div class="col-xs-12">
-                                                        <div class="col-xs-4">
-                                                            <b>Enter OTP :</b>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="text" ng-model="client.OTP" class="form-control" ng-required="true">
+                                                        
+                                                        <div class="col-xs-12">
+                                                            <input type="text" ng-model="client.OTP" class="form-control" placeholder="Enter OTP Here..." ng-required="true">
                                                         </div>
                                                     </div>
                                                     <br />
 
                                                     <br />
+                                                    <div class="col-xs-12">
                                                     <div class="col-xs-12">
                                                         <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
                                                     </div>
-                                                    <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-primary" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
+                                                    </div>
+                                                    <input name="btnSubmit" type="button" style="margin-left: 32px" class="btn btn-primary" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
                                                 </form>
                                             </div>
                                         </div>
@@ -446,7 +443,7 @@ var google_remarketing_only = false;
 										<tab class="tg-navuitab" heading="Home">
 											
 												<div class="tg-boxProfile">
-													<div class="row" ng-repeat="data in HomeData | filter : data.ClinicId = clientId">
+													<div class="row well_new" ng-repeat="data in HomeData | filter : data.ClinicId = clientId">
 														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 															<div class="doc-photo-container">
 																<div ng-if="data.Image != ''">
@@ -458,8 +455,8 @@ var google_remarketing_only = false;
 															<div class="col-lg-12 col-xs-12">
 																<h4 class="pull-left">{{::data.DoctorName}}</h4>
 															</div>
-															<div class="col-xs-12 text-justify list_specialty">
-																{{::data.Description}}
+															<div class="col-xs-12 text-justify list_specialty" hm-read-more hm-text="{{::data.Description}}" hm-limit="{{limitText}}" hm-more-text="{{moreText}}" hm-less-text="{{lessText}}">
+																
 
 															</div>
 
@@ -481,9 +478,10 @@ var google_remarketing_only = false;
 															<img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" width="100" height="100" class="listing_image img-responsive">
 														</div>
 													</div>
-													<div class="col-md-10 col-xs-8 text-justify list_specialty">
-														<h4>{{::data.ServiceName}}</h4>
-														{{::data.ServiceInfo}}
+                                                    <h4>{{::data.ServiceName}}</h4>
+													<div class="col-md-10 col-xs-12 text-justify list_specialty"  hm-read-more hm-text="{{::data.ServiceInfo}}" hm-limit="{{limitText}}" hm-more-text="{{moreText}}" hm-less-text="{{lessText}}">
+														
+														
 													</div>
 
 												</div>
@@ -618,7 +616,7 @@ var google_remarketing_only = false;
                     <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
                         <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}-{{::formData.City}}">
                             <ul>
-                                <li> {{::s}} {{::areaofcats}}</li>
+                                <li> {{::s | limitTo:20}} {{s.length > 20 ? '...' : ''}} {{::areaofcats}}</li>
                             </ul>
                         </a>
                     </div>
@@ -635,25 +633,25 @@ var google_remarketing_only = false;
                     <div class="col-md-12 col-xs-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
+                                <h5 class="popular"><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
+                                <h5 class="popular"><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
                             </li>
                     </div>
                     <div class="col-md-12 col-xs-12">
@@ -665,10 +663,10 @@ var google_remarketing_only = false;
                     <div class="col-md-12 col-xs-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Preschool" class="Searches"> Preschools in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Preschool" class="Searches"> Preschools in Pune</a></h5>
                             </li>
-                            <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
+                            <li class="popular">
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
                             </li>
 
                     </div>
@@ -681,7 +679,7 @@ var google_remarketing_only = false;
                     <div class="col-md-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
                             </li>
 
 
@@ -753,7 +751,7 @@ var google_remarketing_only = false;
 
 						<div class="kw-footer-widget-area kw-cols-4">
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -779,7 +777,7 @@ var google_remarketing_only = false;
 
 							</div><!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -803,7 +801,7 @@ var google_remarketing_only = false;
 
                             <!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -825,7 +823,7 @@ var google_remarketing_only = false;
 
 							</div><!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -871,7 +869,7 @@ var google_remarketing_only = false;
 			</footer>
 
 			<!-- - - - - - - - - - - - - - End of Footer - - - - - - - - - - - - - - - - -->
-<!-- Footer End -->
+<!-- Footer End --> 
 <script>
     var $div = $('.scrollable-menu');
     $(document.body).click(function() {
@@ -887,3 +885,4 @@ var google_remarketing_only = false;
 
     });
 </script>
+
