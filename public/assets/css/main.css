@@ -1149,6 +1149,10 @@ body.tg-home .tg-main{padding: 20px 0;}
 	list-style-type: none;
 }
 .tg-contactinfo li:first-child{padding-left: 0;}
+
+@media (max-width:415px){
+	.tg-contactinfo li:first-child{display: none;}
+}
 .tg-contactinfo li:last-child{padding-right: 0;}
 .tg-contactinfo li + li:before{
 	top: 0;
@@ -2019,6 +2023,15 @@ body.tg-home .tg-main{padding: 20px 0;}
 	font-size: 18px;
 	line-height: 21px;
 	text-transform: capitalize;
+	color:#77ab38;
+}
+
+.tg-directposthead h3 a{
+	margin: 0;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: capitalize;
+	color:#77ab38 !important;
 }
 .tg-subjects{
 	width: 100%;
@@ -2738,6 +2751,31 @@ body.tg-home .tg-leftarea {
 	top:0;
 	position:absolute;
 }
+ /* new added*/
+@media (max-width:415px){
+	.tg-rightarea {
+    right: 0;
+    top: 0;
+    position: relative;
+	margin-left: -15px;
+    margin-right: -15px;
+}
+}
+
+.sponsoredText {
+	color: green; 
+	display:block;
+	margin-top: 60px;
+}
+@media (max-width:415px){
+
+	.sponsoredText{
+	position:relative;
+	margin-top:0px;
+	/*display:block;*/
+}
+}
+
 .tg-leftarea .tg-directposthead{
 	width:auto;
 	padding:0 0 8px;
@@ -3111,6 +3149,7 @@ body.tg-home .tg-leftarea {
 	top: 0;
 	right: 0;
 	position: absolute;
+	
 }
 .tg-detailpage .tg-description p:last-child{margin: 0;}
 .tg-detailpage .tg-btntext{
