@@ -774,6 +774,16 @@
     border-style: solid;
   }
 
+  /*new added css */
+
+  @media (max-width:415px){
+    .kw-header .kw-top-bar:not(:first-child),
+  .kw-header .kw-hsection:not(:first-child) {
+    border-top-width: 1px;
+    border-style: none;
+  }
+  }
+
   .kw-header.kw-type-3 .kw-top-bar:not(:first-child),
   .kw-header.kw-type-3 .kw-hsection:not(:first-child) {
     border-top: none;
@@ -5543,9 +5553,9 @@
 
     .kw-dim [class*="kw-btn"].kw-yellow,
     [class*="kw-btn"].kw-yellow-type-2 {
-      color: #009cff !important;
-      border-color: #009cff;
-      background-color: rgba(0, 156, 255, 0.2);
+      color: #000 !important;
+      border-color: #13a759;
+      background-color: rgba(0, 255, 123, 0.59);
     }
 
     .kw-blue-theme [class*="kw-btn"].kw-yellow-type-2 {
@@ -5564,7 +5574,7 @@
     [class*="kw-btn"].kw-yellow-type-2:hover,
     [class*="kw-btn"].kw-yellow-type-2:focus {
       color: #222 !important;
-      background: #009cff;
+      background: #13a759;
     }
 
     .kw-dim [class*="kw-btn"].kw-theme-color {
@@ -6176,7 +6186,7 @@
         border: 2px solid #f0f0f0;
         border-radius: 4px;
         padding: 0 20px;
-        color: #a5a5a5;
+        color: #000;
         line-height: 36px;
         text-align: left;
         -webkit-box-sizing: border-box;
@@ -9786,6 +9796,19 @@
         display:none;
     }
 }
+@media(max-width:415px) {
+.kw-oneline-action {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 100%;
+}
+}
+@media(max-width:415px) {
+   div h3 {
+        font-size: 14px;
+    }
+}
 
 @media(max-width:415px) {
     .kw-navigation > li {
@@ -12713,6 +12736,13 @@
     }
 
   }
+
+ @media only screen and (max-width: 767px) {
+   .menupad{
+     padding-bottom: 8px;
+   }
+ }
+
   @media only screen and (max-width: 767px) {
 
     h1 {
@@ -12742,9 +12772,10 @@
     }
 
     .kw-navigation > li {
-      display: block;
-      margin-left: 0px;
+      //display: block;
+      margin-left: 20px;
       margin-right: 0px;
+      
     }
 
     .kw-navigation > li > a {
@@ -13339,6 +13370,7 @@
     .kw-oneline-action,
     .kw-oneline-row-title {
       position: static;
+     
     }
 
     .kw-page-header.kw-type-7 {
@@ -13841,7 +13873,11 @@
 
 .nav-tabsH.nav-justified {
     width: 100%;
-    border-bottom: 0;
+    
+}
+
+.popular{
+  float:right;
 }
 
 .nav-tabsH.nav-justified>li {
@@ -14143,4 +14179,22 @@ li h1 {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.TitleHome{
+  text-align:center;
+}
+
+@media (max-width:415px){
+  .TitleHome{
+  text-align:left;
+  
+}
+}
+
+@media (max-width:415px){
+  .TitleHome h3{
+  font-size:22px;
+  
+}
 }
