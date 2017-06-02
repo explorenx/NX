@@ -149,17 +149,13 @@ var google_remarketing_only = false;
 						<div class="col-sm-10 col-xs-12 col-md-3">
 
 							<div class="kw-hcontent ">
-                                    <ul class="kw-navigation">
-										<li class="">
-											<a href="/">Home</a>
-										</li>
-                                    </ul>
+                                    
 
 								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
 
 								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
 
-								<a href="/register" class="kw-btn-medium kw-white-type-2">Add Listing</a>
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a> 
 
 								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
 
@@ -179,7 +175,7 @@ var google_remarketing_only = false;
 <!--************************************
 						Main Start				
 		*************************************-->
-		<main id="tg-main" class="tg-main tg-haslayout" ng-controller="dashResultsController" style="margin-top:80px;">
+		<main id="tg-main" class="tg-main tg-haslayout" ng-controller="dashResultsController">
             	  <div class="ng-hide">
                 		<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
                 		<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
@@ -202,372 +198,328 @@ var google_remarketing_only = false;
 				<div class="row">
 					<div id="tg-twocolumns" class="tg-twocolumns">
 						<div class="col-sm-12 col-xs-12">
-							<div class="tg-pagehead">
+							<div>
 								<p>{{aaa}} matches found for:  <span id="keyword"></span></p>
 							</div>
 						</div>
 						<div class="col-sm-8">
 							<div id="tg-content" class="tg-content">
 								<div class="tg-searchresult">
-									<div class="tg-directposts ">
+									<div class="tg-directposts">
                                         <!-- Sponsor Code-->
-                                        						<div class="tg-directpost well_new" ng-show="FirstSponsoredClient !=null">
-											<figure class="tg-directpostimg">
-												<a href="#"><img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
-												<figcaption ng-show="FirstSponsoredClient.isPaidClient===true">
-													<a class="tg-usericon tg-iconvarified">
-														<em class="tg-usericonholder">
-															<i class="fa fa-shield"></i>
-															<span>varified</span>
-														</em>
-													</a>
-												</figcaption>
-                                                <figcaption ng-show="FirstSponsoredClient.isSponsoredClient===true">
-                                                <a class="tg-usericon tg-iconfeatured" href="#">
-												<em class="tg-usericonholder">
-													<i class="fa fa-bolt"></i>
-													<span>featured</span>
-												</em>
-											</a>
-                                                </figcaption>
-											</figure>
-											<div class="tg-directinfo">
-												<div class="tg-leftarea">
-													<div class="tg-directposthead">
-
-                                                         <h3 >
-                                                                <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}">
-                                                                    {{::FirstSponsoredClient.ClinicName}}
-                                                                </a>
-                                                            </h3>
-                                                       
-
-													<div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</div>
-													</div>
-													<ul class="tg-contactinfo">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i><span>{{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</span></a></li>
-														<li><a href="#"><i class="fa fa-location-arrow"></i><address>{{::FirstSponsoredClient.Area}}</address></a></li>														
-													</ul>
-												</div>
-												<!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
-													<div class="tg-bookappoinment">
-														<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
-														<span></span>
-														<button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
-														<!--<ul class="tg-metadata">
-															<li><span class="tg-stars"><span></span></span></li>
-															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
-														</ul>
-													</div>
-												</div>-->
-													<div class="tg-rightarea">
-													<div class="tg-bookappoinment">
-														<!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
-														<button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
-                                                          <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                                        <div class="modal-dialog" style="top: 20%;">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-
-
-                                                <div class="modal-body well_new">
-                                                    <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
-                                                        <!-- Form Name -->
-                                                        <input type="hidden" ng-model="FirstSponsoredClient._id" name="id">
-                                                       <input type="hidden" ng-model="FirstSponsoredClient.extensionNo" name="clientMobile">
-                                                        <!-- Text input-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Your Enquiry For :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" id="ClinicName" ng-model="FirstSponsoredClient.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
-                                                            </div>
-                                                            <div class="col-xs-4">
-                                                                <b>Area :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" id="ClinicArea" ng-model="FirstSponsoredClient.Area" name="ClinicName" class="formControlModal" ng-value="FirstSponsoredClient.Area" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Your Name :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                            <input type="text" name="username" id="username" ng-model="FirstSponsoredClient.username" placeholder="Name" class="formControlModal" ng-required="true">
-                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <!-- Text input-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <input type="text" name="countryCode" class="form-control" value="IND +91" readonly>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" name="usermobile" id="usermobile" ng-model="FirstSponsoredClient.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
-                                                                <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
-                                                                    <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <!-- <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Pick Date :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Pick Time :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
-                                                            </div>
-                                                        </div>-->
-                                                        <div class="col-xs-12">
-                                                             <div class="col-xs-4">
-                                                                <b>Your Name :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                            <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12">
-                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Send OTP" id="send_otp" />
-                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
-                                                        </div>
-
-                                                        <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Enter OTP :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" ng-model="FirstSponsoredClient.OTP" class="form-control" ng-focus="sendmsg()">
-                                                            </div>
-                                                        </div>
-                                                        <br />
-
-                                                        <br />
-                                                        <div class="col-xs-12">
-                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
-                                                        </div>
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendsponsor(FirstSponsoredClient)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
-                                                    </form>
-                                                </div>
-
-
-
+                                        <div class="row well_new" ng-show="FirstSponsoredClient !=null">
+                                            <div class="col-md-2 col-xs-5 col-sm-2">
+                                                <figure class="tg-directpostimg row">
+                                                    <a href="#"><img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
+                                                    <figcaption ng-show="FirstSponsoredClient.isPaidClient===true">
+                                                        <a class="tg-usericon tg-iconvarified">
+                                                            <em class="tg-usericonholder">
+                                                                <i class="fa fa-shield"></i>
+                                                                <span>varified</span>
+                                                            </em>
+                                                        </a>
+                                                    </figcaption>
+                                                    <figcaption ng-show="FirstSponsoredClient.isSponsoredClient===true">
+                                                    <a class="tg-usericon tg-iconfeatured" href="#">
+                                                    <em class="tg-usericonholder">
+                                                        <i class="fa fa-bolt"></i>
+                                                        <span>featured</span>
+                                                    </em>
+                                                    </a>
+                                                    </figcaption>
+                                                </figure>
                                             </div>
-                                            <!-- Modal end here -->
-                                        </div>
-                                    </div>
-                                                            <span style="color: green; display:block;margin-top: 60px;">Sponsored</span>
-														<!--<ul class="tg-metadata">
-															<li><span class="tg-stars"><span></span></span></li>
-															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
-														</ul>-->
-													</div>
-												</div>
-											</div>
+                                            <div class="col-md-8 col-xs-7 col-sm-8">
+                                                <div class="tg-directinfo row">
+                                                    <div class="tg-leftarea">
+                                                        <div class="tg-directposthead">
+
+                                                            <h3 >
+                                                                    <a href="/profile/{{FirstSponsoredClient.City | slugify}}/{{FirstSponsoredClient.Categories | slugifynolower}}/{{FirstSponsoredClient.Area | slugify}}/{{FirstSponsoredClient.ClinicName | slugify | slug}}/{{FirstSponsoredClient._id}}">
+                                                                        {{::FirstSponsoredClient.ClinicName}}
+                                                                    </a>
+                                                                </h3>
+                                                        
+
+                                                        <div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</div>
+                                                        </div>
+                                                        <ul class="tg-contactinfo">
+                                                            <li><i class="fa fa-clock-o"></i><span>{{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</span></li>
+                                                            <li><i class="fa fa-location-arrow"></i><span>{{::FirstSponsoredClient.Area}}</span></li>														
+                                                        </ul>
+                                                    </div>
+                                                    <!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
+                                                        <div class="tg-bookappoinment">
+                                                            <a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
+                                                            <span></span>
+                                                            <button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
+                                                            <!--<ul class="tg-metadata">
+                                                                <li><span class="tg-stars"><span></span></span></li>
+                                                                <li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-xs-12 col-sm-2">
+                                                <div class="tg-rightarea">
+                                                            <div class="tg-bookappoinment" style="width:100%">
+                                                                <!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
+                                                                <button type="button" class="tg-btn " id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
+                                                                <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                                                        <div class="modal-dialog top1">
+
+                                                                            <!-- Modal content-->
+                                                                            <div class="modal-content">
+
+
+                                                                                <div class="modal-body well_new" style="text-align:left;">
+                                                                                    <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
+                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
+                                                                                        <!-- Form Name -->
+                                                                                        <input type="hidden" ng-model="FirstSponsoredClient._id" name="id">
+                                                                                    <input type="hidden" ng-model="FirstSponsoredClient.extensionNo" name="clientMobile">
+                                                                                        <!-- Text input-->
+                                                                                        <div class="col-xs-12">
+                                                                                            <div class="col-xs-12">
+                                                                                                <b>Your Enquiry For : {{FirstSponsoredClient.ClinicName}}</b>
+                                                                                            </div>
+                                                                                            
+                                                                                                <input type="text" id="ClinicName" ng-model="FirstSponsoredClient.ClinicName" name="ClinicName" class="ng-hide" ng-value="FirstSponsoredClient.ClinicName" readonly>
+                                                                                            
+                                                                                                <input type="text" id="ClinicArea" ng-model="FirstSponsoredClient.Area" name="ClinicName" class="ng-hide" ng-value="FirstSponsoredClient.Area" readonly>
+                                                                                            
+                                                                                        </div>
+                                                                                        <div class="col-xs-12">
+                                                                                            <input type="text" name="username" id="username" ng-model="FirstSponsoredClient.username" placeholder="Your Name" class="formControlModal" ng-required="true">
+                                                                                            <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                                                <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <!-- Text input-->
+                                                                                        <div class="col-xs-12">
+                                                                                            
+                                                                                                <input type="text" name="usermobile" id="usermobile" ng-model="FirstSponsoredClient.usermobile" placeholder="Enter Your Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
+                                                                                                <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                                                    <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                                                </div>
+                                                                                            
+
+                                                                                        </div>
+
+                                                                                        <div class="col-xs-12">
+                                                                                            <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Eneter Email " class="formControlModal" ng-required="true">
+                                                                                        </div>
+                                                                                        <div class="col-xs-12">
+                                                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Generate OTP" id="send_otp" />
+                                                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                                                        </div>
+
+                                                                                        <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
+                                                                                        <div class="col-xs-12">
+                                                                                                <input type="text" ng-model="FirstSponsoredClient.OTP" class="form-control" placeholder="Enter OTP here" ng-focus="sendmsg()">
+                                                                                        </div>
+                                                                                        <br />
+
+                                                                                        <br />
+                                                                                        <div class="col-xs-12">
+                                                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
+                                                                                        </div>
+                                                                                        
+                                                                                            <input name="btnSubmit" type="button" style="margin-left: 32px" class="btn btn-info" ng-click="sendsponsor(FirstSponsoredClient)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email"/>
+                                                                                        
+                                                                                    </form>
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                            <!-- Modal end here -->
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                <!--<ul class="tg-metadata">
+                                                                    <li><span class="tg-stars"><span></span></span></li>
+                                                                    <li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+                                                                </ul>-->
+                                                                <span class="sponsoredText">Sponsored</span>
+                                                            </div>
+                                                </div>
+                                            </div>
 										</div>
                                         <!-- Sponsor Code End-->
-										<div class="tg-directpost well_new"  ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index">
-											<figure class="tg-directpostimg">
-												<a href="#"><img title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.imageUrl}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="98" height="98"></a>
-												<figcaption ng-show="item.isPaidClient===true">
-													<a class="tg-usericon tg-iconvarified">
-														<em class="tg-usericonholder">
-															<i class="fa fa-shield"></i>
-															<span>varified</span>
-														</em>
-													</a>
-												</figcaption>
-											</figure>
-											<div class="tg-directinfo">
-												<div class="tg-leftarea">
-													<div class="tg-directposthead">
 
-                                                         <h3 ng-if="item.isPaidClient===true">
-                                                                <a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}">
-                                                                    {{::item.ClinicName}}
-                                                                </a>
-                                                            </h3>
-                                                        <h3 ng-if="item.isPaidClient!==true" style="color: #337ab7">
-                                                                 {{::item.ClinicName}}
-                                                        </h3>
-
-													<div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} | {{::item.speciality}})</div>
-													</div>
-													<ul class="tg-contactinfo">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i><span>{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span></a></li>
-														<li><a href="#"><i class="fa fa-location-arrow"></i><address>{{::item.Area}}</address></a></li>														
-													</ul>
-												</div>
-												<!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
-													<div class="tg-bookappoinment">
-														<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
-														<span></span>
-														<button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
-														<!--<ul class="tg-metadata">
-															<li><span class="tg-stars"><span></span></span></li>
-															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
-														</ul>
-													</div>
-												</div>-->
-													<div class="tg-rightarea">
-													<div class="tg-bookappoinment">
-														<!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
-														<button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
-															    <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                                        <div class="modal-dialog" style="top: 20%;">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-
-
-                                                <div class="modal-body well_new">
-                                                    <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
-                                                        <!-- Form Name -->
-                                                        <input type="hidden" ng-model="item._id" name="id">
-                                                       <input type="hidden" ng-model="item.extensionNo" name="clientMobile">
-                                                        <!-- Text input-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b style="text-align: left;">Your Enquiry For :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="formControlModal" ng-value="item.ClinicName" readonly>
-                                                            </div>
-                                                            <div class="col-xs-4">
-                                                                <b>Area :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" id="ClinicArea" ng-model="item.Area" name="ClinicName" class="formControlModal" ng-value="item.Area" readonly>
-                                                            </div>
-                                                        </div>
-														 <div class="col-xs-12">
-															  <div class="col-xs-4">
-                                                                <b>Your Name :</b>
-                                                            </div>
-															<div class="col-xs-8">
-																<input type="text" name="username" id="username" ng-model="item.username" placeholder="Your Name" class="formControlModal" ng-required="true">
-																<div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-																	<small style="color: red; display: block; text-align: center">Please Enter Name</small>
-																</div>
-															</div>
-														 </div>
-
-                                                        <!-- Text input-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <input type="text" name="countryCode" class="form-control pull-right" value="IND +91" readonly>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
-                                                                <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
-                                                                    <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <!-- <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Pick Date :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Pick Time :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
-                                                            </div>
-                                                        </div>-->
-														 <div class="col-xs-12">
-															  <div class="col-xs-4">
-                                                                <b>Your Email :</b>
-                                                            </div>
-															<div class="col-xs-8">
-																<input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Your Email " class="formControlModal" ng-required="true">
-															</div>
-														 </div>
-                                                        <div class="col-xs-12">
-                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="tg-btn" ng-click="sendOTP(item)" value="Generate OTP" id="send_otp" />
-                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
-                                                        </div>
-
-                                                        <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-4">
-                                                                <b>Enter OTP :</b>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" ng-model="item.OTP" class="form-control" ng-focus="sendmsg()">
-                                                            </div>
-                                                        </div>
-                                                        <br />
-
-                                                        <br />
-														 <div class="col-xs-12">
-                                                                <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
-                                                            </div>
-                                                        
-                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="tg-btn" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Send Enquiry" data-dismiss="modal" id="send_email" />
-                                                    </form>
-                                                </div>
-
-
-
+                                    <!-- Normal Listing Code -->
+										<div class="row well_new"  ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index">
+                                            <div class="col-md-2 col-xs-5 col-sm-2">
+                                                <figure class="tg-directpostimg row">
+                                                    <a href="#"><img title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.imageUrl}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="98" height="98"></a>
+                                                    <figcaption ng-show="item.isPaidClient===true">
+                                                        <a class="tg-usericon tg-iconvarified">
+                                                            <em class="tg-usericonholder">
+                                                                <i class="fa fa-shield"></i>
+                                                                <span>varified</span>
+                                                            </em>
+                                                        </a>
+                                                    </figcaption>
+                                                </figure>
                                             </div>
-                                            <!-- Modal end here -->
-                                        </div>
-                                    </div>
-														<!--<ul class="tg-metadata">
-															<li><span class="tg-stars"><span></span></span></li>
-															<li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
-														</ul>-->
-													</div>
-												</div>
-											</div>
+                                            <div class="col-md-8 col-xs-7 col-sm-8">
+                                                    <div class="tg-directinfo row">
+                                                        <div class="tg-leftarea">
+                                                            <div class="tg-directposthead">
+
+                                                                <h3 ng-if="item.isPaidClient===true">
+                                                                        <a itemprop="url" title="{{::item.ClinicName}}" ng-href="/profile/{{::item.City | slugify}}/{{::item.Categories | slugifynolower}}/{{::item.Area | slugify}}/{{::item.ClinicName | slugify | slug}}/{{::item._id}}">
+                                                                            {{::item.ClinicName}}
+                                                                        </a>
+                                                                    </h3>
+                                                                <h3 ng-if="item.isPaidClient!==true" style="color: #337ab7">
+                                                                        {{::item.ClinicName}}
+                                                                </h3>
+
+                                                            <div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} | {{::item.speciality}})</div>
+                                                            </div>
+                                                            <ul class="tg-contactinfo">
+                                                                <li><i class="fa fa-clock-o"></i><span>{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span></li>
+                                                                <li><i class="fa fa-location-arrow"></i><span>{{::item.Area}}</span></li>														
+                                                            </ul>
+                                                        </div>
+                                                                        <!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
+                                                                            <div class="tg-bookappoinment">
+                                                                                <a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>
+                                                                                <span></span>
+                                                                                <button type="button" class="tg-btn" data-toggle="modal" data-target="#tg-appointmentlightbox">Book Appointment</button>
+                                                                                <!--<ul class="tg-metadata">
+                                                                                    <li><span class="tg-stars"><span></span></span></li>
+                                                                                    <li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>-->
+                                                            
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-2 col-xs-12 col-sm-2">
+                                                    <div class="tg-rightarea">
+                                                            <div class="tg-bookappoinment" style="width:100%">
+                                                                <!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
+                                                                    <button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
+                                                                        <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                                                                    <div class="modal-dialog top1">
+
+                                                                                <!-- Modal content-->
+                                                                                    <div class="modal-content" style="text-align: left;">
+
+
+                                                                                        <div class="modal-body well_new">
+                                                                                            <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
+                                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                            <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
+                                                                                                <!-- Form Name -->
+                                                                                                <input type="hidden" ng-model="item._id" name="id">
+                                                                                            <input type="hidden" ng-model="item.extensionNo" name="clientMobile">
+                                                                                                <!-- Text input-->
+                                                                                                <div class="col-xs-12">
+                                                                                                    
+                                                                                                        <b>Your Enquiry For : {{item.ClinicName}}</b>
+                                                                                                        <input type="text" id="ClinicName" ng-model="item.ClinicName" name="ClinicName" class="ng-hide" ng-value="item.ClinicName" readonly>
+                                                                                                        <input type="text" id="ClinicArea" ng-model="item.Area" name="ClinicName" class="ng-hide" ng-value="item.Area" readonly>
+                                                                                                   
+                                                                                                </div>
+                                                                                                <div class="col-xs-12">
+                                                                                                   
+                                                                                                        <input type="text" name="username" id="username" ng-model="item.username" placeholder="Your Name" class="formControlModal" ng-required="true">
+                                                                                                        <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                                                            <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                                                                        </div>
+                                                                                                    
+                                                                                                </div>
+
+                                                                                                <!-- Text input-->
+                                                                                                <div class="col-xs-12">
+                                                                                                        <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Your Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
+                                                                                                        <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                                                            <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                                <!-- <div class="col-xs-12">
+                                                                                                    <div class="col-xs-4">
+                                                                                                        <b>Pick Date :</b>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <input type="date" id="date" name="date" ng-model="item.date" placeholder="Pick Date" class="formControlModal" ng-required="true">
+                                                                                                    </div>
+                                                                                                </div>
+
+
+
+                                                                                                <div class="col-xs-12">
+                                                                                                    <div class="col-xs-4">
+                                                                                                        <b>Pick Time :</b>
+                                                                                                    </div>
+                                                                                                    <div class="col-xs-8">
+                                                                                                        <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
+                                                                                                    </div>
+                                                                                                </div>-->
+                                                                                                <div class="col-xs-12">
+                                                                                                    
+                                                                                                        <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Your Email " class="formControlModal" ng-required="true">
+                                                                                                  
+                                                                                                </div>
+                                                                                                <div class="col-xs-12">
+                                                                                                    <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTP(item)" value="Generate OTP" id="send_otp" />
+                                                                                                    <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                                                                </div>
+
+                                                                                                <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
+                                                                                                <div class="col-xs-12">
+                                                                                                    
+                                                                                                        <input type="text" ng-model="item.OTP" class="form-control" placeholder="Enter OTP here " ng-focus="sendmsg()">
+                                                                                                    
+                                                                                                </div>
+                                                                                                <br />
+
+                                                                                                <br />
+                                                                                                <div class="col-xs-12">
+                                                                                                        <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions">terms</a> </small>
+                                                                                                    </div>
+                                                                                                
+                                                                                                <input name="btnSubmit" type="button" style="margin-left: 32px" class="btn btn-info" ng-click="send(item)" ng-disabled="enquiryForm.$invalid" value="Submit" data-dismiss="modal" id="send_email" />
+                                                                                            </form>
+                                                                                        </div>
+
+
+
+                                                                                    </div>
+                                                                                <!-- Modal end here -->
+                                                                            </div>
+                                                                        </div>
+                                                                <!--<ul class="tg-metadata">
+                                                                    <li><span class="tg-stars"><span></span></span></li>
+                                                                    <li><a href="#"><i class="fa fa-heart tg-like"></i></a></li>
+                                                                </ul>-->
+                                                            </div>
+                                                    </div>
+                                            </div>    
 										</div>
+                                    <!-- Normal Listing Code End-->    
 									</div>
 								</div>
 							</div>
                              <div class="align-center">
 
-							<button class="kw-btn-medium kw-theme-color kw-listings-load-more" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
+							    <button class="kw-btn-medium kw-theme-color kw-listings-load-more" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
 
-						</div>
+						    </div>
 						</div>
 
                        
 
-                            	<div class="col-sm-4">
+                        <div class="col-sm-4">
 							<aside id="tg-sidebar" class="tg-sidebar">
 
 										<div class="col-sm-12 contact-banner" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
@@ -607,20 +559,20 @@ var google_remarketing_only = false;
 
 					</div>
 						
-						      <div class="col-md-12 col-xs-12 well_new" style="top: 10px;">
-									<div class="col-md-12 col-xs-12 bredcrumb1 mobile-view"> <h2 class="text-center">Find Similar Searches </h2></div><br>
-									<div class="col-md-4 col-xs-6">
-											<a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
+						      <div class="row well_new" style="top: 10px;">
+									<div class="col-md-12 col-xs-12 bredcrumb1 mobile-view"> <h3>Find Similar Searches </h2></div><br>
+									<div class="col-md-4 col-xs-12">
+											<a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{maincat | slugifynolower}}/{{area2 | slugifynolower}}/{{maincat | slugifynolower}}-in-{{area2 | slugifynolower}}-{{city2}}">
 												<ul>
-													<li class="Searches similarsearches " style="line-height: 27px;"><h1> {{maincat}} {{::areaonlink}}</h1></li>
+													<li class="Searches similarsearches " style="line-height: 27px;"><h1 style="color:#70af1a;"> {{maincat}} {{::areaonlink}}</h1></li>
 												</ul>
 											</a>
 											<!--<span>{{ss}}</span>-->
 										</div>
-										<div class="col-md-4 col-xs-6" ng-repeat="ss in SubCategoriesLinks | limitTo:41">
-											<a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
+										<div class="col-md-4 col-xs-12" ng-repeat="ss in SubCategoriesLinks | limitTo:41">
+											<a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::area2 | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::area2 | slugifynolower}}-{{city2}}">
 												<ul>
-													<li class="Searches similarsearches " style="line-height: 27px;"><h1> {{::ss}} {{::areaonlink}}</h1></li>
+													<li class="Searches similarsearches " style="line-height: 27px;"><h1 style="color:#70af1a;"> {{::ss}} {{::areaonlink}}</h1></li>
 												</ul>
 											</a>
 											<!--<span>{{ss}}</span>-->
@@ -628,7 +580,7 @@ var google_remarketing_only = false;
         						</div>
 
 
-								<div class="col-md-12 col-xs-12 well_new" style="top: 10px;">
+								<div class="row well_new" style="top: 10px;">
 									<h4>About {{::catname}} </h4>
 									<p class="text-justify" id="longdescription"></p>
 
@@ -675,25 +627,25 @@ var google_remarketing_only = false;
                     <div class="col-md-12 col-xs-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Dentist" class="Searches"> Dentists in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Dentist"> Dentists in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Homeopathy" class="Searches"> Homeopathy Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Ayurveda" class="Searches"> Ayurvedic Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Gynecologist" class="Searches"> Gynecology Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Dermatologist" class="Searches"> Dermatology Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
+                                <h5 class="popular"><a itemprop="url" href="/Pune/Ear-Nose-Throat-(ENT)" class="Searches"> Ear-Nose-Throat-(ENT) Clinics in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
+                                <h5 class="popular"><a itemprop="url" href="/Pune/Diagnostic-Lab" class="Searches"> Diagnostic-Labs Clinics in Pune</a></h5>
                             </li>
                     </div>
                     <div class="col-md-12 col-xs-12">
@@ -705,10 +657,10 @@ var google_remarketing_only = false;
                     <div class="col-md-12 col-xs-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Preschool" class="Searches"> Preschools in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Preschool" class="Searches"> Preschools in Pune</a></h5>
                             </li>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Private-Tuitions" class="Searches"> Private-Tuitions in Pune</a></h5>
                             </li>
 
                     </div>
@@ -721,7 +673,7 @@ var google_remarketing_only = false;
                     <div class="col-md-12 bottomlinks">
                         <ul>
                             <li class="Searches">
-                                <h5> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
+                                <h5 class="popular"> <a itemprop="url" href="/Pune/Salon-and-Spa" class="Searches"> Salon-and-Spa in Pune</a></h5>
                             </li>
 
 
@@ -793,7 +745,7 @@ var google_remarketing_only = false;
 
 						<div class="kw-footer-widget-area kw-cols-4">
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -819,7 +771,7 @@ var google_remarketing_only = false;
 
 							</div><!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -843,7 +795,7 @@ var google_remarketing_only = false;
 
                             <!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
@@ -865,7 +817,7 @@ var google_remarketing_only = false;
 
 							</div><!--/ .kw-widget-col -->
 
-							<div class="kw-widget-col">
+							<div class="col-md-3 col-xs-6">
 
 								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
 
