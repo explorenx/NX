@@ -5,7 +5,9 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
-
+ $scope.limitText = 150;
+  $scope.lessText = "Show less";
+  $scope.moreText = "Read more";
     var notSupportedBrowsers = [{ 'os': 'Any', 'browser': 'MSIE', 'version': 9 }, { 'os': 'Any', 'browser': 'Firefox', 'version': 1 }];
 $window.onload = function(){
     if($location.path() == '/form')
@@ -116,7 +118,8 @@ $window.onload = function(){
         //if (!category && city && area) {
        //     url = url + '&City=' + city + '&Area=' + area;
       //  }
-
+//alert($routeParams.area);
+$window.document.getElementById('keyword').innerHTML = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
         if (area != undefined) {
             var myurl = '/' + city + '/' + category.replace(/ /g, '-');
             $window.document.getElementById('categry').href = myurl;
@@ -124,7 +127,7 @@ $window.onload = function(){
             //  var cityurl = '/showResults';
             // document.getElementById('citylink').href=cityurl;
            //  $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
-            $window.document.getElementById('keyword').innerHTML = category + ' in ' + area + ', ' + city;
+            
             $window.document.getElementById('category').innerHTML = category;
             $window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
@@ -520,16 +523,16 @@ if (area == undefined && category ==undefined) {
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                // alert(JSON.stringify($scope.formData));
+                 //alert(JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                 //alert(data.Socical.facebook);
+                 //alert(JSON.stringify(data.Socical));
                 savedMetaData.setData(metaInfo);
-                $scope.services = data.SubCategories;
+                $scope.services = data.SubCategories ;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
                 //alert($scope.services);
                 $scope.slength = $scope.services.length;
@@ -544,7 +547,10 @@ if (area == undefined && category ==undefined) {
                 $window.document.getElementById('city1').innerHTML = data.City;
                 $window.document.getElementById('area1').innerHTML = data.Area;
                 $window.document.getElementById('bbb').innerHTML = data.Categories;
+               
+                if(data.Socical !== 'undefined'){
                 $window.document.title = data.ClinicName + ' in ' + data.Area + '-' + data.City +  ' ' + data.Socical.facebook + '| NXsearch';
+                }
                 $window.document.getElementsByName('title')[0].content = data.Socical.facebook + '| NXsearch';
                $window.document.getElementsByName('description')[0].content = data.Socical.twitter + ' | NXsearch';
                 $window.document.getElementsByName('keywords')[0].content = data.Socical.google + ' ' + 'NXsearch';
