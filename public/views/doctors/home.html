@@ -390,7 +390,7 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav nav-tabsH nav-justified" id="myTab">
-                <li class="active"><a href="#health" data-toggle="tab">
+                <li class="active toDiv"><a href="#health" data-toggle="tab">
 				<div class="col-xs-12 text-center"> 
 					<img src="/assets/img/icon-04.png" style="width:40px;height:40px;">
 				</div>
@@ -398,7 +398,7 @@
 					Health & Medicine
 				</span>
 				</a></li>
-                <li><a href="#school" data-toggle="tab" aria-expanded="false">
+                <li class="toDiv"><a href="#school" data-toggle="tab" aria-expanded="false">
 				<div class="col-xs-12 text-center"> 
 					<img src="/assets/img/icon-05.png" style="width:40px;height:40px;">
 				</div>
@@ -406,7 +406,7 @@
 					Schools & Institutes
 				</span>
 				</a></li>
-                <li><a href="#beauty" data-toggle="tab" aria-expanded="false">
+                <li class="toDiv"><a href="#beauty" data-toggle="tab" aria-expanded="false">
 				<div class="col-xs-12 text-center"> 
 					<img src="/assets/img/icon-27.png" style="width:40px;height:40px;">
 				</div>
@@ -414,7 +414,7 @@
 					Beauty Care
 				</span>
 				</a></li>
-                <li><a href="#sports" data-toggle="tab" aria-expanded="false">
+                <li class="toDiv"><a href="#sports" data-toggle="tab" aria-expanded="false">
 				<div class="col-xs-12 text-center"> 
 					<img src="/assets/img/gym.png" style="width:40px;height:40px;">
 				</div>
@@ -422,7 +422,7 @@
 					Gym & Academies
 				</span>
 				</a></li>
-                <li><a href="#travel" data-toggle="tab" aria-expanded="false">
+                <li class="toDiv"><a href="#travel" data-toggle="tab" aria-expanded="false">
 				<div class="col-xs-12 text-center">
 					<img src="/assets/img/icon-02.png" style="width:40px;height:40px;">
 				</div>
@@ -430,7 +430,7 @@
 					Travel & Transport
 				</span>
 				</a></li>
-                <li><a href="#build" data-toggle="tab" aria-expanded="false">
+                <li class="toDiv"><a href="#build" data-toggle="tab" aria-expanded="false">
 				<div class="col-xs-12 text-center"> 
 					<img src="/assets/img/icon-06.png" style="width:40px;height:40px;">
 				</div>
@@ -997,7 +997,7 @@
 
 												<ul class="kw-listing-item-data kw-icons-list kw-oneline-form1">
 
-													<li class="kw-listing-item-location"><span class="lnr icon-map-marker"></span>{{::item.address1 | limitTo: 30}}{{item.address1.length > 30 ? '...' : ''}}, {{::item.address2 | limitTo: 30}}{{item.address2.length > 30 ? '...' : ''}}</li>
+													<li class="kw-listing-item-location"><span class="lnr icon-map-marker"></span>{{::item.address1 | limitTo: 30}}{{item.address1.length > 30 ? '...' : ''}}, {{::item.address2 | limitTo: 20}}{{item.address2.length > 20 ? '...' : ''}}</li>
 													<li class="kw-listing-item-phone"><span class="lnr icon-telephone"></span></li>
 
 												</ul>
@@ -1313,4 +1313,12 @@
                 e.relatedTarget // previous tab
             });
         });
+</script>
+	<script type="text/javascript">
+$(".toDiv").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".tab-content").offset().top - 50},
+        'slow');
+});
+
 </script>
