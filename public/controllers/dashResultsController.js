@@ -5,9 +5,11 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
+    //read more start
  $scope.limitText = 150;
   $scope.lessText = "Show less";
   $scope.moreText = "Read more";
+  //read more end
     var notSupportedBrowsers = [{ 'os': 'Any', 'browser': 'MSIE', 'version': 9 }, { 'os': 'Any', 'browser': 'Firefox', 'version': 1 }];
 $window.onload = function(){
     if($location.path() == '/form')
@@ -1854,7 +1856,22 @@ $scope.baseurl = $location.path()
                    
   }
 
+$scope.MailSub= function(newsletter){
+   // alert('1223');
+             $http.post('/sendmail12', {
+                    from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    subject: 'NXsearch News letter Subscription Request',
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Subscription Request From :" + "<b>" + newsletter.subscribe + "</b> " 
+                         
+                }).then(res => {
+                    $scope.loading = false;
+                   // $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                    alert("Subscribed Succesfully...!");
 
+                });
+};
   //Contact Us Mail Configuration End
 });
 
