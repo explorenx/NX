@@ -2,104 +2,7 @@
 
 			<!-- - - - - - - - - - - - - - How it Works (hidden) - - - - - - - - - - - - - - - - -->
 
-			<div class="kw-hidden-element kw-hidden-how-it-works ng-hide"  data-lock-body="true" data-animate-in="slideInDown" data-animate-out="slideOutUp" id="how-it-works">
-
-				<span class="lnr icon-cross kw-hidden-element-close" data-hidden-container="#how-it-works"></span>
-
-				<div class="container">
-
-					<section class="kw-section kw-large">
-
-						<h2 class="kw-section-title">How It Works</h2>
-						<h5 class="kw-section-subtitle">It is easier than you think</h5>
-
-						<div class="row">
-									
-							<div class="col-sm-4">
-
-								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-
-								<div class="kw-icon-boxes kw-type-1">
-
-									<div class="kw-icon-wrap">
-
-										<img src="images/icon_boxes_01.png" alt="">
-
-									</div>
-
-									<div class="kw-icon-text-wrap">
-
-										<h3>1. Decide What to Do</h3>
-
-										<p>Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Lorem ipsum dolor sit amet.</p>
-
-									</div>
-
-								</div>	
-
-								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-							
-							</div>
-
-							<div class="col-sm-4">
-
-								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-
-								<div class="kw-icon-boxes kw-type-1">
-
-									<div class="kw-icon-wrap">
-
-										<img src="images/icon_boxes_02.png" alt="">
-
-									</div>
-
-									<div class="kw-icon-text-wrap">
-
-										<h3>2. Find The Location</h3>
-
-										<p>Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante.</p>
-
-									</div>
-
-								</div>	
-
-								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-							
-							</div>
-
-							<div class="col-sm-4">
-
-								<!-- - - - - - - - - - - - - - Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-
-								<div class="kw-icon-boxes kw-type-1">
-
-									<div class="kw-icon-wrap">
-
-										<img src="images/icon_boxes_03.png" alt="">
-
-									</div>
-
-									<div class="kw-icon-text-wrap">
-
-										<h3>3. Explore &amp; Have Fun</h3>
-
-										<p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam.</p>
-
-									</div>
-
-								</div>	
-
-								<!-- - - - - - - - - - - - - - End of Icon Boxes Style 1 - - - - - - - - - - - - - - - - -->
-							
-							</div>
-
-						</div><!--/ .row -->
-
-					</section><!--/ .kw-section -->
-
-				</div><!--/ .container -->
-				
-			</div>
+			
 
 			<!-- - - - - - - - - - - - - - End of How it Works (hidden) - - - - - - - - - - - - - - - - -->
 
@@ -224,7 +127,7 @@
 
 										<li class="menupad">
 
-											<a href="#">About</a>
+											<a href="/aboutus">About</a>
 										</li>
 
 											<!-- - - - - - - - - - - - - - End of Submenu (level 2) - - - - - - - - - - - - - - - - -->
@@ -1115,15 +1018,15 @@
 
 							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
 
-							<form class="kw-newsletter-form kw-inline-form" method="POST">
+							<form class="kw-newsletter-form kw-inline-form" ng-controller="dashResultsController">
 
 								<div class="kw-input-wrapper">
 
-									<input type="text" name="email" autocomplete="off" placeholder="Enter your email address...">
+									<input type="email" name="email1" autocomplete="off" ng-model="newsletter.subscribe" placeholder="Enter your email address...">
 
 								</div><!--/ .kw-input-wrapper -->
 
-								<button type="submit" class="kw-btn-big kw-yellow" name="newsletter_submit">Sign Up</button>
+								<button type="submit" class="kw-btn-big kw-yellow" ng-click="MailSub(newsletter)">Sign Up</button>
 
 							</form>
 
