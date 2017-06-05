@@ -1988,7 +1988,7 @@
       background: #cacaca;
       position: fixed;
       right: 7.81%;
-      top: 59.86%;
+      top: 65.86%;
       z-index: 110;
       -webkit-animation-duration: 500ms;
       animation-duration: 500ms;
@@ -2859,13 +2859,8 @@
     }
 
     .kw-hidden-how-it-works {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 200;
-      background-color: #e5eb0b;
+      
+      background-color: rgb(76, 164, 175);
     }
 
     .kw-hidden-item {
@@ -6248,10 +6243,7 @@
       
     ------------------------------------------------------ */
 
-      input[type="checkbox"],
-      input[type="radio"] {
-        display: none;
-      }
+   
 
       input[type="checkbox"] + label,
       input[type="radio"] + label {
