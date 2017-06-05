@@ -223,7 +223,7 @@ if (area == undefined && category ==undefined) {
 
                                 // loadMore function
                                 $scope.loadMore = function() {
-                                $scope.limit2 = $scope.allClients.length;
+                                $scope.limit2 = $scope.limit2+10;
                             }
                             
                             console.log(data);
@@ -239,7 +239,7 @@ if (area == undefined && category ==undefined) {
 
                                             // loadMore function
                                             $scope.loadMore = function() {
-                                            $scope.limit2 = $scope.allClients.length;
+                                            $scope.limit2 = $scope.limit2+10;
                                         }
                                      
                                         console.log(resClinicsdata);
@@ -343,7 +343,7 @@ if (area == undefined && category ==undefined) {
                 $scope.sample = data;
 
                 // alert(JSON.stringify($scope.subCategories1));
-                //alert($routeParams.category);
+               // alert($routeParams.category);
                 var metaKeys = metaDesc = metaTitle = '';
 
                 angular.forEach(data, function(value, key1) {
@@ -351,6 +351,7 @@ if (area == undefined && category ==undefined) {
                     angular.forEach(value.category, function(cat, key2) {
                         //alert(JSON.stringify(cat.name.length));
                         $scope.catcount = cat.name.length;
+                        
                         if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                             $scope.maincat = cat.name;
                            //alert(JSON.stringify($scope.maincat));
@@ -388,7 +389,7 @@ if (area == undefined && category ==undefined) {
                             });
 
                         }
-
+                    
                         angular.forEach(cat.subcategories, function(value, key) {
                             //alert(value.subCategoryName);
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
@@ -1525,11 +1526,15 @@ if (area == undefined && category ==undefined) {
                     html: "Enquiry for :" + "<b>" + item.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + item.Area + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + item.useremail + "</b>"
-                }).then(res => {
-                    $scope.loading = false;
-                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
-
-                });
+                })
+                .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
             }
 
 
@@ -1623,10 +1628,14 @@ if (area == undefined && category ==undefined) {
                     html: "Enquiry for :" + "<b>" + client.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + client.Area + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + client.useremail + "</b>"
-                }).then(res => {
-                    $scope.loading = false;
-                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
-                });
+                }) .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
             }
         }).
         error(function(status) {
@@ -1717,10 +1726,14 @@ if (area == undefined && category ==undefined) {
                     html: "Enquiry for :" + "<b>" + FirstSponsoredClient.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + FirstSponsoredClient.Area + " </b>" + "<br>" + "Name : " + "<b>" + FirstSponsoredClient.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + FirstSponsoredClient.usermobile + "</b>" + "<br>" // html body
                         +
                         "Email Id :" + "<b>" + FirstSponsoredClient.useremail + "</b>"
-                }).then(res => {
-                    $scope.loading = false;
-                    $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
-                });
+                }) .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
             }
         }).
         error(function(status) {
@@ -1810,10 +1823,14 @@ $scope.baseurl = $location.path()
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry from :" + "<b>" + popupForm.name + "</b> " + "<br>" + "Mobile :" + "<b>" + popupForm.phone + " </b>" + "<br>" + "Message : " + "<b>" + popupForm.message + " </b>" + "<br>"
                           + "Url :"+"<b>"+ $scope.baseurl + "</b>"+"<br>"
-                }).then(res => {
-                    $scope.loading = false;
-                    $scope.serverMessage = 'Message sent successfully...!';
-                });
+                }) .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
 
                     })
                     .error(function(data) {
@@ -1845,12 +1862,14 @@ $scope.baseurl = $location.path()
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry from :" + "<b>" + contact.fname + "</b> " + "<br>" + "Last Name :" + "<b>" + contact.lname + "</b> " + "<br>" + "Email :" + "<b>" + contact.email + "</b> " + "<br>" + "Mobile :" + "<b>" + contact.phone + " </b>" + "<br>" + "Message : " + "<b>" + contact.message + " </b>" + "<br>"
                          
-                }).then(res => {
-                    $scope.loading = false;
-                   // $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
-                    alert("Message Sent Succesfully...!");
-
-                });
+                }) .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
 
                    
                    
@@ -1865,12 +1884,14 @@ $scope.MailSub= function(newsletter){
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Subscription Request From :" + "<b>" + newsletter.subscribe + "</b> " 
                          
-                }).then(res => {
-                    $scope.loading = false;
-                   // $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
-                    alert("Subscribed Succesfully...!");
-
-                });
+                }) .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
 };
   //Contact Us Mail Configuration End
 });
