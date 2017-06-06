@@ -89,9 +89,9 @@
 
                     <label>Description</label>
                     <input type="textArea" ng-model="item.Description" name="" class="form-control text-center" placeholder="Enter Description">
-
+                    
                     <hr />
-                    <button clas="btn btn-primary" ng-click="addNewCategory()">Add Another record</button>
+                    <button class="btn btn-success" ng-click="addNewCategory()">Add Another record</button>
                 </div>
             </div>
             <br />
@@ -125,7 +125,7 @@
                     <input type="textArea" ng-model="item.ServiceInfo" name="" class="form-control text-center" placeholder="Enter Description">
 
                     <hr />
-                    <button clas="btn btn-primary" ng-click="addNewCategory1()">Add Another Service</button>
+                    <button class="btn btn-success" ng-click="addNewCategory1()">Add Another Service</button>
                 </div>
             </div>
             <br />
@@ -135,7 +135,7 @@
     </div>
 
     <!-- Home Gallary Form Start Here-->
-    <div class="col-sm-6 col-sm-offset-2 col-xs-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 98%; margin: 1%; padding: 50px;">
+    <div class="col-sm-6 col-xs-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
 
         <form>
             <div class="form-group">
@@ -155,7 +155,7 @@
                     <br/>
                 </div>
                 <div class="clearfix"><br/></div>
-                <button clas="btn btn-primary" ng-click="addNewCategory2()">Add Another Image</button>
+                <button class="btn btn-success" ng-click="addNewCategory2()">Add Another Image</button>
             </div>
             <br />
             <button type="submit" class="btn btn-primary btn-lg" ng-click="addGallaryData()">{{btnValue}}</button>
@@ -164,7 +164,7 @@
 
 
     <!-- Home Feedback Form Start Here-->
-    <div class="col-sm-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
+    <div class="col-sm-6 text-center ng-hide" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
         <form>
             <div class="form-group">
                 <label>Add Feedback</label>
@@ -180,7 +180,7 @@
                     <label>Dislikes</label>
                     <input type="text" ng-model="item.dislikes" name="" class="form-control text-center" placeholder="Enter a Dislikes ">
                     <hr />
-                    <button clas="btn btn-primary" ng-click="addNewCategory3()">Add Another Feedback</button>
+                    <button class="btn btn-success" ng-click="addNewCategory3()">Add Another Feedback</button>
                 </div>
             </div>
             <br />
@@ -201,19 +201,22 @@
                     <input type="hidden" ng-model="formData.lat">
                     <input type="hidden" ng-model="formData.long">
                     <label>Address1</label>
-                    <input type="text" ng-model="item.address1" name="" class="form-control text-center" placeholder="Enter a Address ">
+                    <textarea class="form-control" ng-model="item.address1" placeholder="Enter a Address "></textarea>
+                   
                     <label>Address2</label>
-                    <input type="text" ng-model="item.address2" id="address" name="" class="form-control text-center" placeholder="Enter a Address ">
+                     <textarea class="form-control" ng-model="item.address2" placeholder="Enter a Address "></textarea>
+                    <!--<input type="text" ng-model="item.address2" id="address" name="" class="form-control text-center" placeholder="Enter a Address ">
+                     <input type="text" ng-model="item.address1" name="" class="form-control text-center" placeholder="Enter a Address ">
                     <label>Mobile</label>
-                    <input type="text" ng-model="item.clinicmobile" name="" class="form-control text-center" placeholder="Enter a mobile ">
-                    <label>Address</label>
+                    <input type="text" ng-model="item.clinicmobile" name="" class="form-control text-center" placeholder="Enter a mobile ">-->
+                   
 
 
                 </div>
                 <hr />
                 <!--<button clas="btn btn-primary"  ng-click="addNewCategory3()" >Add Another Feedback</button>-->
             </div>
-    </div>
+    
     <br />
     <button type="submit" class="btn btn-primary btn-lg" ng-click="addcontactData()">{{btnValue}}</button>
     </form>
