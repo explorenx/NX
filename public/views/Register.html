@@ -26,24 +26,141 @@
                                                             });
 </script>
  <script src='https://www.google.com/recaptcha/api.js'></script>
- <!-- Header -->
-<div class="container" style="background-color:#e6e6e6; padding-left:-15px; padding-right:-15px; border-bottom: black 1px solid;">
-        <nav class="navbar">
-            <div class="container">
-                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px">
-                    <div class="col-md-10 col-xs-6">
-                        <div class="col-md-2 col-xs-12 text-center">
-                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
-                        </div>
+<!-- Header -->
+				<header id="header" class="kw-header kw-dark">
 
-                    </div>
-                    <div class="col-md-2 col-xs-6 text-center" style="margin-top: 20px;" itemscope itemtype="https://schema.org/RegisterAction">
-                        <a href="/register"><button type="button" class="btn1 btn1-info"><i class="fa fa-location-arrow" aria-hidden="true"></i><b> Register Free</b></button></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				
+
+				<!-- - - - - - - - - - - - - - End of Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				<!-- - - - - - - - - - - - - - Header Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-hsection kw-sticky">
+
+					<div class="kw-sm-table-row row">
+
+						<div class="col-sm-2 col-md-2">
+
+							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+
+							<a href="/">
+
+								<img src="assets/img/nxsearch-logo1.png" alt="">
+
+							</a>
+
+							<!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
+
+						</div>
+                        <!-- - - - - - - - - - - - - - sEARCH FORM- - - - - - - - - - - - - - - - -->
+                        <div class="col-md-7 col-xs-12 formbackground2" style="padding-top:10px;" ng-controller="InstantSearchController">
+                            <div class="col-md-12 col-xs-12">
+                                <form>
+                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+
+                                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                                                                <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+                                                            </select>
+
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                        <div>
+                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                                                                <option value="">Select Area</option>
+                                                            </select>
+                                            <!--{{MainAreas.selectedAreaModel}}-->
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-4 col-xs-12 nopadforsearch">
+                                        <div class="form-group" ng-blur="EnableData = false">
+                                            <input type="text" name="categoryselect" ng-value="selectedCategory | slug1" ng-keyup="loadClients()" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
+
+                                            <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+
+
+                                                </div>
+
+                                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <b> {{i.ClinicName}}</b>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <!--<div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <span class="text-center;">{{i.DoctorName}}</span>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div> -->
+                                            </div>
+
+                                        </div>
+                                        <span class="clearInput" ng-click="clearInput()">X</span>
+                                    </div>
+
+                                    <div class="col-md-2 col-xs-12 text-center nopadforsearch">
+                                        
+                                        
+
+										<button class="kw-btn-big kw-yellow" style="width:100%" type="submit">Search</button>
+
+									
+                                    </div>
+                                </form>
+                            </div>
+                        </div> 
+
+
+                        <!-- - - - - - - - - - - - - - End of SEARCH FORM - - - - - - - - - - - - - - - - -->
+
+						<div class="col-sm-10 col-xs-12 col-md-3">
+
+							<div class="kw-hcontent ">
+                                    
+
+								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
+
+								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
+
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a> 
+
+								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-hcontent -->
+
+						</div>
+
+					</div><!--/ .kw-sm-table-row.row -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Header Section - - - - - - - - - - - - - - - - -->
+
+		</header>
 <!-- Header End -->
       <section>
            <div class="container bgr" style="">
@@ -54,8 +171,8 @@
                             <h2 class="text-center header text1">Register Your Business</h2>
                             <input type="hidden"  ng-model="formData._id">
                             <div class="form-group">
-                               <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Name :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                               
+                                <div class="col-md-12 col-xs-12">
                                     <input id="bname" name="Businessname" type="text" placeholder="Enter Business Name Here" ng-model="formData.clientName" class="form-control" ng-required="true">
                                      <div ng-show="registerForm.Businessname.$touched && registerForm.Businessname.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Business Name</small>
@@ -64,8 +181,8 @@
                             </div>
 
                              <div class="form-group">
-                               <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Owner Name :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                               
+                                <div class="col-md-12 col-xs-12">
                                     <input id="oname" name="name" type="text" placeholder="Enter Owner Name Here" ng-model="formData.Name" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.name.$touched && registerForm.name.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Owner Name</small>
@@ -76,8 +193,8 @@
                      <div class="col-md-12">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <div class="col-md-4 col-xs-12"> <label class="text1" style="padding-top: 5px;">Email Id :</label></div>
-                                <div class="col-md-8 col-xs-12">
+                                
+                                <div class="col-md-12 col-xs-12">
                                     <input id="email" name="email" type="email" placeholder="Email Address" ng-model="formData.email" class="form-control" ng-required="true">
                                      <div ng-show="registerForm.email.$touched && registerForm.email.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Valid email</small>
@@ -87,8 +204,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <div class="col-md-5 col-xs-12"> <label class="text1 pull-right" style="padding-top: 5px;">Mobile No. :</label></div>
-                                <div class="col-md-7 col-xs-12">
+                               
+                                <div class="col-md-12 col-xs-12">
                                     <input id="phone" name="phone" type="text" placeholder="Mobile" ng-model="formData.phone" class="form-control" ng-required="true">
                                      <div ng-show="registerForm.phone.$touched && registerForm.phone.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile No.</small>
@@ -99,14 +216,14 @@
                     </div>
 
                             <div class="form-group">
-                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Address :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                                 
+                                <div class="col-md-12 col-xs-12">
                                     <textarea class="form-control" id="address" name="message" ng-model="formData.address" placeholder="Enter your Address for us here." rows="3" ng-required="true"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Business Type :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                                 
+                                <div class="col-md-12 col-xs-12">
                                     <input id="business" name="business" type="text" placeholder="Clinic, Preschool, Salon, Spa, Private Tuition" ng-model="formData.business" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.business.$touched && registerForm.business.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Business Type</small>
@@ -115,8 +232,8 @@
                             </div>
 
                              <div class="form-group">
-                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Qualification :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                                 
+                                <div class="col-md-12 col-xs-12">
                                     <input id="quali" name="Qualification" type="text" placeholder="Enter your Qualification here" ng-model="formData.qualification" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.Qualification.$touched && registerForm.Qualification.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Qualification</small>
@@ -125,8 +242,8 @@
                             </div>
                             
                              <div class="form-group">
-                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Specialization:</label></div>
-                                <div class="col-md-10 col-xs-12">
+                                 
+                                <div class="col-md-12 col-xs-12">
                                     <input id="speciality" name="speciality" type="text" placeholder="Enter your specialization here" ng-model="formData.specialization" class="form-control" ng-required="true">
                                      <div ng-show="registerForm.speciality.$touched && registerForm.speciality.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Specialization</small>
@@ -134,8 +251,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                 <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Experience :</label></div>
-                                <div class="col-md-10 col-xs-12">
+                                 
+                                <div class="col-md-12 col-xs-12">
                                     <input id="experience" name="Experience" type="text" placeholder="Enter your Experience in Year(s) here" ng-model="formData.Experience" class="form-control" ng-required="true">
                                     <div ng-show="registerForm.Experience.$touched && registerForm.Experience.$invalid">
                                          <small style="color: red; display: block; text-align: center">Please Enter Experience in Years</small>
@@ -143,8 +260,8 @@
                                 </div>
                             </div>
                              <div class="form-group">
-                                  <div class="col-md-2 col-xs-12"> <label class="text1" style="padding-top: 5px;">Massage :</label></div>
-                                <div class="col-md-10">
+                                  
+                                <div class="col-md-12 col-xs-12">
                                     <textarea class="form-control" id="message" name="message" ng-model="formData.Massage" placeholder="Enter your massage for us here. We will get back to you." rows="3" ng-required="true"></textarea>
                                 </div>
                             </div>
@@ -164,73 +281,200 @@
                </div>
         </div>
 </section>
-<!--  End of Page Container  -->
+
+
 <!-- Footer -->
-<footer class="container" style="background-color:#00334d;padding-left: 0px; padding-right: 0px;">
-        <div class="footer" id="footer">
-            <div class="container">
-                <div class="container">
-                    <div class="col-lg-2  col-md-2 col-sm-6 col-xs-6">
-                        <h3>About </h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/aboutus"> About <b> NX-Search</b> </a> </li>
-                            <li> <a itemprop="url" href="/career"> Career </a> </li>
+	<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+			<footer id="footer" class="kw-footer" data-bg="images/section_bg_01.png">
+
+				<!-- - - - - - - - - - - - - - Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-newsletter-section">
+
+					<!-- - - - - - - - - - - - - - Background Icon - - - - - - - - - - - - - - - - -->
+
+					<i class="lnr icon-envelope kw-section-icon"></i>
+
+					<!-- - - - - - - - - - - - - - End of Background Icon - - - - - - - - - - - - - - - - -->
+
+					<div class="container">
+
+						<div class="kw-newsletter">
+
+							<h3 class="kw-title">Sign Up to Newsletter</h3>
+
+							<p class="kw-description">and get the latest <b>deals, reviews &amp; articles</b></p>
+
+							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
+
+							<form class="kw-newsletter-form kw-inline-form" method="POST">
+
+								<div class="kw-input-wrapper">
+
+									<input type="text" name="email" autocomplete="off" placeholder="Enter your email address...">
+
+								</div><!--/ .kw-input-wrapper -->
+
+								<button type="submit" class="kw-btn-big kw-yellow" name="newsletter_submit">Sign Up</button>
+
+							</form>
+
+							<!-- - - - - - - - - - - - - - End of Newsletter Form - - - - - - - - - - - - - - - - -->
+
+						</div><!--/ .kw-newsletter -->
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="container">
+
+					<!-- - - - - - - - - - - - - - Footer Section - - - - - - - - - - - - - - - - -->
+
+					<div class="kw-fsection">
+
+						<div class="kw-footer-widget-area kw-cols-4">
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-widget">
+
+									<a href="#" class="kw-footer-logo"><img src="assets/img/nxsearch-logo.png" alt="nxsearxh.com"></a>
+
+									
+
+									<ul class="kw-social-links">
+
+										<li><a href="https://www.facebook.com/nxsearch" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href=""><i class="fa fa-google-plus" target="_blank"></i></a></li>
+										<li><a href="https://twitter.com/nxsearch" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="https://www.instagram.com/nxsearch_com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+										<!--<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>-->
+
+									</ul>
+
+								</div>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Company</h4>
+
+									<ul>
+
+										<li><a href="/aboutus">About Us</a></li>										
+										<li><a href="/career">Careers</a></li>
+										<li><a href="contactusbb">Contact Us</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+                            <!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Quick Links</h4>
+
+									<ul>
+
+										<li><a href="#">How It Works</a></li>
+										<li><a href="#">Add Listing</a></li>
+                                        <li><a href="#">Blog</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Terms</h4>
+
+									<ul>										
+										<li><a href="/termsandconditions">Terms & Conditions</a></li>
+										<li><a href="/privacypolicy">Privacy Policy</a></li>
+										<li><a href="/disclaimer">Disclaimer</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+						</div><!--/ .kw-footer-widget-area -->
+
+					</div>
+
+					<!-- - - - - - - - - - - - - - End of Footer Section - - - - - - - - - - - - - - - - -->
+
+				</div><!--/ .container -->
+
+				<!-- - - - - - - - - - - - - - Copyright Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-copyright">
+
+					<div class="container">
+
+						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Copyright Section - - - - - - - - - - - - - - - - -->
+
+			</footer>
+
+			<!-- - - - - - - - - - - - - - End of Footer - - - - - - - - - - - - - - - - -->
+<!-- Footer End --> 
+    <script>
+        var $div = $('.scrollable-menu');
+        $(document.body).click(function() {
+            if (!$div.has(this).length) { // if the click was not within $div
+                $div.hide();
+            }
+
+        });
+        $("#exampleInputPassword2").click(function() {
+            // if the click was not within $div
+            $div.show();
 
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>NX-search</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/privacypolicy"> Privacy Policy </a> </li>
-                            <li> <a itemprop="url" href="/termsandconditions"> Terms and Conditions </a> </li>
-                            <li> <a itemprop="url" href="/disclaimer">Disclaimer</a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
-                        <h3>Contact Us</h3>
-                        <ul>
-                            <li> <a itemprop="url" href="/contactus" itemprop="url"> Contact Us </a> </li>
-                            <li itemprop="telephone"> <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: white"></i> +91 8381 05 7555</li>
-                        </ul>
-                    </div>
+        });
+    </script>
 
-                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6">
-                        <h3> Follow Us </h3>
-                        <ul>
-                            <li>
-                                <!--<a href="#"><img src="assets/img/google-plus-bizzbazar.png" class="img-circle" alt="google-plus_nxsearch" width="35" height="35"></a>-->
-                                <a href="https://www.facebook.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/facebook-nxsearch.png" class="img-circle" alt="facebook_nxsearch" width="35" height="35"></a>
-                                <a href="https://twitter.com/nxsearch" target="blank" itemprop="url"><img src="assets/img/twitter-nxsearch.png" class="img-circle" alt="twitter_nxsearch" width="35" height="35"></a>
-                                <!-- <a href="#"><img src="assets/img/linkedin-bizzbazar.png" class="img-circle" alt="linkedin_nxsearch" width="35" height="35"></a>
-                                
-                                <a href="#"><img src="assets/img/instagram-bizzbazar.png" class="img-circle" alt="instagram_nxsearch" width="35" height="35"></a>-->
-                            </li>
-                        </ul>
-                    </div>
-                    <!--<div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                        <h3> SubScribe </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  btn-info" type="button"> Subscribe <i class="fa fa-long-arrow-right"> </i> </button>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>-->
-                </div>
-            </div>
-        </div>
-
-
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="text-center"> Copyright © <b><a href="/" itemprop="url">NX-Search</a></b> 2017. All right reserved. </p>
-            </div>
-        </div>
-       
-
-</footer>
-<!-- Footer End -->
+    <script type="text/javascript">
+    mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
+        "referrer": document.referrer
+    });
+</script>
