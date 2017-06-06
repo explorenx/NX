@@ -31,37 +31,6 @@ app.filter('searchFor', function(){
 
 });
 
-  app.factory('modalFactory', function($uibModal) {
-    return {
-      open: function(size, template, params) {
-        return $uibModal.open({
-          animation: true,
-          templateUrl: template || 'myModalContent.html',
-          controller: 'ModalResultInstanceCtrl',
-          size: size,
-          resolve: {
-            params: function() {
-              return params;
-            }
-          }
-        });
-      }
-    };
-  })
-
-app.directive('notify', function () {        
-    return {
-    restrict : 'C',
-        link: function(scope, element) {
-            element.bind("click" , function(e){
-                 $("a").removeClass("tg-active"); // Here we need jQuery
-                 element.addClass("tg-active");
-            });     
-        }
-    }
-});
-
-
 app.directive('formAutofillFix', function() {
   return function(scope, elem, attrs) {
     // Fixes Chrome bug: https://groups.google.com/forum/#!topic/angular/6NlucSskQjY
@@ -338,7 +307,7 @@ app.directive('myMap', function() {
     };
     
     return {
-        restrict: 'A',
+        restrict: 'AC',
         template: '<div id="gmaps"></div>',
         replace: true,
         link: link
