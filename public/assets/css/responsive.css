@@ -543,6 +543,18 @@
 		width: 100%;
 	}
 }
+
+/* New added class*/
+
+@media (max-width:768px){
+	.tg-directposthead .tg-btn{
+    position: static;
+    width: 100%;
+	}
+}
+
+
+
 @media (max-width:479px){
 	.tg-directpostimg{margin:0 0 20px 70px;}
 	.tg-directpost .tg-directinfo{
