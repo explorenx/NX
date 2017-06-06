@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="col-md-12 col-xs-12 text-center">
-                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo.png" alt="NX-Search" width="160px" height="65px" /></a>
                         </div>
                     </div>
                      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
@@ -49,11 +49,11 @@
               <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
                 <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
-                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
-                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
+                <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-user"></i> Add Clients</a></li>
                 <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
                 <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
-                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
+                <li><a href="/addCities"><i class="fa fa-map-marker"></i> Add Cities</a></li>
                 <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
             </ul>
         </nav>
@@ -273,12 +273,12 @@
                                     <div class="col-lg-10 well">
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 subs" style="border: solid 1px;">
-                                                <input type="button" class="btn1 btn1-info" value="Check All" ng-click="checkAll()">
+                                                <input type="button" class="btn btn-info" value="Check All" ng-click="checkAll()">
                                                 <label class="col-md-4 col-sm-4" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
                                                 
                                                     <div class="col-md-12 col-xs-12 pull-left">
                                                         <input type="checkbox" class="pull-left" checklist-model="SubCatetories.subs" checklist-value="sub">
-                                                        <span>{{sub}}</span>
+                                                        <span class="pull-left">&nbsp;&nbsp;{{sub}}</span>
                                                     </div>
 
                                                 </label>
@@ -335,7 +335,7 @@
                                         <label class="col-lg-2 col-md-2 col-sm-4">Sub-Areas:</label>
                                         <div class="col-lg-10 col-md-10 col-sm-12 subox pre-scrollable">
                                             <div class="row">
-                                                <div class="col-xs-12">
+                                                <div class="col-xs-12" style="border: solid 1px;">
                                                     <div class="form-group">
 
                                                         <label class="col-md-4 col-sm-4" ng-repeat="sub in subLocationCategories track by $index" style="padding: 5px;">
@@ -463,7 +463,7 @@
                                 <div class="col-lg-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            <label class="col-lg-4 col-md-2 col-sm-4">Social Links:</label>
+                                            <label class="col-lg-4 col-md-2 col-sm-4">Side Banner :</label>
                                             <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
                                                   <div class="col-lg-10 col-md-8 col-sm-12">
                                             <input type="file" ngf-select ng-model="up.file1" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
@@ -473,7 +473,7 @@
                                                 {{up.file1.size / 1000000|number:1}}MB: max 20M</i>
                                                          <img style="width:10%;" ngf-thumbnail="up.file1 || '/thumb.jpg'" />
                                         </div>
-                                                <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="Enter Instagram link">
+                                                <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="enter 'added' if want to show side banner">
                                             </div>
                                         </div>
                                     </div>
