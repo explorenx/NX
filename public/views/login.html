@@ -7,33 +7,29 @@
                     <div class="wrap">
                         <div class="col-sm-6 col-sm-offset-3">
                             <div class="description">
-                                <img src="assets\img\nxsearch-logo1.png" style="width :200px;">
+                                <img src="assets\img\nxsearch-logo.png" style="width :200px;">
                             </div>
                         </div>
-                        <div class="col-md-3 form-top-right">
+                        <div class="col-md-3 form-top-right text-center">
                             <i class="fa fa-lock"> </i>
                         </div>
                     </div>
-                    <div class="form-top-left" style="color:#fff;">
+                    <div class="form-top-left text-center">
                         <p>Enter Username and Password</p>
                     </div>
                 </div>
                 <div class="form-bottom">
-                    <div class="form-body">
-                        <!--<li><a data-toggle="tab" href="#sectionB">Join us!</a></li>-->
-
-                        <div class="tab-content">
-                            <div id="sectionA" class="tab-pane fade in active">
+                    
+                        <!--<li><a data-toggle="tab" href="#sectionB">Join us!</a></li>-->                           
                                 <div class="innter-form" ng-controller="loginController">
-                                    <form class="sa-innate-form">
+                                    <form class="login-form">
+                                        <div class="form-group">
                                         <input type="text" ng-model="formData.Email" placeholder="Username" name="Email" autofocus>
 
                                         <input type="password" name="Password" placeholder="Password" ng-model="formData.Password">
-                                        <button ng-click="login()">Sign In</button>
+                                        <button class="btn btn-success" ng-click="login()">Sign In</button>
+                                        </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </div>                                         
                 </div>
             </div>
