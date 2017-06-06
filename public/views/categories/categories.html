@@ -12,7 +12,7 @@
                         </div>
                     </div>
                      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                         
                         <div ng-show="isAuthenticated" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
                     </div>
                 </div>
@@ -27,6 +27,7 @@
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
               <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
                 <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
                 <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>
                 <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
@@ -55,9 +56,9 @@
                         </td>
                         <td> <label ng-repeat="rec in item.category">{{rec.name}}<span ng-if="rec.name.length">, </span></label> </td>
                         <td ng-repeat="res in rec.subcategories track by $index">{{res}}</td>
-                        <td><a href="/updateCategory/{{item._id}}"><button class="btn1 btn1-info"> Edit </button></a>
+                        <td><a href="/updateCategory/{{item._id}}"><button class="btn btn-info"> Edit </button></a>
                         </td>
-                        <td><a class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal{{$index}}">Delete </a>
+                        <td><a class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$index}}">Delete </a>
                             <div class="modal fade" id="myModal{{$index}}" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
