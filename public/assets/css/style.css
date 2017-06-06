@@ -6866,11 +6866,11 @@
         
         6.4.11. File input
         
-      ------------------------------------------------------ */
+      ------------------------------------------------------ 
 
         input[type="file"] {
           display: none;
-        }
+        }*/
 
         .kw-file-input-field {
           color: #222;
@@ -14189,4 +14189,26 @@ li h1 {
   font-size:22px;
   
 }
+}
+
+.dash_head{
+    background-color:#e6e6e6; 
+    padding-left:-15px; 
+    padding-right:-15px;
+     border-bottom: black 1px solid; 
+     position: fixed;
+}
+
+.dash_sidebar{
+        bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #222222;
+    border-right: 1px solid #eee;
+    height: 100%;
+    position: fixed;
+    top: 86px;
 }
