@@ -411,6 +411,22 @@ function minimChatbox(){var e=document.getElementById("minim-chat");e.style.disp
           $("#chatbox").delay(5000).fadeIn(100);  
       }); */
     </script>
+        <script>
+        var $div = $('.scrollable-menu');
+        $(document.body).click(function() {
+            if (!$div.has(this).length) { // if the click was not within $div
+                $div.hide();
+            }
+
+        });
+        $(".showdiv").click(function() {
+            // if the click was not within $div
+            $div.show();
+
+
+        });
+ 
+    </script>
 </body>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQhbsIozl3rAQIDhwlsuQ_ZB5P-cZHMxs"></script>
 
