@@ -1987,8 +1987,8 @@
       color: #222;
       background: #cacaca;
       position: fixed;
-      right: 7.81%;
-      top: 65.86%;
+      right: 2%;
+      bottom: 2%;
       z-index: 110;
       -webkit-animation-duration: 500ms;
       animation-duration: 500ms;
@@ -13795,13 +13795,6 @@
     background: #cee1ff;
     box-shadow: 0 0 5px #2bace0;
 }
-.scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
-    display: inline-block;
-    -webkit-overflow-scrolling: touch;
-}
 
 .overlay {
   position: absolute;
@@ -14453,3 +14446,6 @@ a {
     width: 304px;
     margin: 0 auto;
 }
+
+
+/* about ng-hide*/
