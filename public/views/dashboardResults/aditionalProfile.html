@@ -42,14 +42,14 @@
     <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
     <div id="todo-form" class="container" ng-controller="dashResultsController as up">
      <div class="ng-hide">
-        <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
+        <h5 id="demo1"  style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp 
-               <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+               <h5 id="city1" style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>
-               &nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
+               &nbsp<h5 id="bbb" style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a id="categry" href=""> <span id="category"></span></a></h5>&nbsp
                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp<h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
               &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp  <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
-              <li class="login">
+              <li id="area1" class="login">
                                    <i id="shareBtn" class="fa fa-facebook-square fa-3x" style="color: #365899; cursor: pointer; padding-top: 15px;"></i>
                                 </li>
         </div>
@@ -61,167 +61,201 @@
 					<span class="fa fa-trash-o  pull-right" aria-hidden="true"  ng-click="deletecity(city._id)"></span>
 			</div>
 		</div>-->
-    <div class="col-sm-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
-        <!--<form>
-					<div class="form-group">
-						<input type="hidden" ng-model="addr._id">
-                        <input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="addr.City">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Area" ng-model="addr.Area">
-                        <input type="text" class="form-control input-lg text-center" placeholder="SubArea" ng-model="addr.SubArea">
-						<br />
-					</div>
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createaddr()">{{btnValue}}</button>
-				</form>-->
-        <form style="border: 1px" ;>
-            <div class="form-group">
-                <label>Add Home Fields</label>
-                <input type="hidden" ng-model="formData._id">
-                <div ng-repeat="item in tempHomeData">
-                    <label>Doc Name</label>
-                    <input type="text" ng-model="item.DoctorName" name="" class="form-control text-center" placeholder="Enter a Doc name">
 
-                    <label>Image Path</label>
-                    <input type="file" ngf-select="onSelectUploadImage2(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
+        <tabset active="active" style="margin-top: 20px;">
+<!-- Home Form Start Here-->										
+				<tab class="tg-navuitab" heading="Home Fields">
+					<div class="col-sm-10 additionalData">
+                        <form style="border: 1px" ;>
+                            <div class="form-group">
+                                <label>Add Home Fields</label>
+                                <input type="hidden" ng-model="formData._id">
+                                <div ng-repeat="item in tempHomeData">
+                                    <label>Doc Name</label>
+                                    <input type="text" ng-model="item.DoctorName" name="" class="form-control text-center" placeholder="Enter a Doc name">
 
-                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-							{{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                                    <label>Image Path</label>
+                                    <input type="file" ngf-select="onSelectUploadImage2(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
 
-                    <label>Description</label>
-                    <input type="textArea" ng-model="item.Description" name="" class="form-control text-center" placeholder="Enter Description">
+                                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
+                                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+
+                                    <label>Description</label>
+                                    <textarea ng-model="item.Description" name="" class="form-control" rows="4" placeholder="Enter Description"></textarea>
+                                    
+                                    <hr />
+                                    <button class="btn btn-success" ng-click="addNewCategory()">Add Another record</button>
+                                </div>
+                            </div>
+                            <br />
+                            <button id="btn" type="submit" class="btn btn-primary btn-lg" ng-click="addHomeData()">{{btnValue}}</button>
+                            <br>
+                        </form>
+                    </div>
+				</tab>
+<!-- Home Service Form Start Here-->
+                <tab class="tg-navuitab" heading="Services Fields" id="serviceTab" name="tab2">
                     
-                    <hr />
-                    <button class="btn btn-success" ng-click="addNewCategory()">Add Another record</button>
-                </div>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="addHomeData()">{{btnValue}}</button>
-            <br>
-        </form>
+                    <div class="col-sm-10 additionalData">
 
+                        <form>
+                            <div class="form-group">
+                                <label>Add Service Fields</label>
+                                <input type="hidden" ng-model="formData._id">
+                                <div ng-repeat="item in tempServiceData">
+                                    <label>Service Name</label>
+                                    <input type="text" ng-model="item.ServiceName" name="" class="form-control text-center" placeholder="Enter a Service name">
 
-    </div>
+                                    <label>Image Path</label>
+                                    <input type="file" ngf-select="onSelectUploadImage1(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
 
-    <!-- Home Service Form Start Here-->
-    <div class="col-sm-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
+                                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
+                                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
 
-        <form>
-            <div class="form-group">
-                <label>Add Service Fields</label>
-                <input type="hidden" ng-model="formData._id">
-                <div ng-repeat="item in tempServiceData">
-                    <label>Service Name</label>
-                    <input type="text" ng-model="item.ServiceName" name="" class="form-control text-center" placeholder="Enter a Service name">
+                                    <label>Service Description</label>
+                                    <textarea ng-model="item.ServiceInfo" name="" class="form-control text-center" rows="4" placeholder="Enter Description"></textarea>
 
-                    <label>Image Path</label>
-                    <input type="file" ngf-select="onSelectUploadImage1(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
+                                    <hr />
+                                    <button class="btn btn-success" ng-click="addNewCategory1()">Add Another Service</button>
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="addServiceData()">{{btnValue}}</button>
+                            <br>
+                        </form>
+                    </div>
+                </tab>
+<!-- Home Gallary Form Start Here-->
+                <tab class="tg-navuitab" heading="Gallery Fields">
+                    
+                    <div class="col-sm-10 additionalData">
 
-                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-							{{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                        <form>
+                            <div class="form-group">
+                                <label><b>Add Images</b></label>
+                                <div class="clearfix"><br/></div>
+                                <input type="hidden" ng-model="formData._id">
 
-                    <label>Service Description</label>
-                    <input type="textArea" ng-model="item.ServiceInfo" name="" class="form-control text-center" placeholder="Enter Description">
+                                <div ng-repeat="item in tempGallaryData" class="jumbotron">
+                                    <label>Gallary Image Path</label>
+                                    <div class="clearfix"><br/></div>
+                                    <input type="file" ngf-select="onSelectUploadImage(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
 
-                    <hr />
-                    <button class="btn btn-success" ng-click="addNewCategory1()">Add Another Service</button>
-                </div>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="addServiceData()">{{btnValue}}</button>
-            <br>
-        </form>
-    </div>
+                                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
+                                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                                    <br/>
+                                </div>
+                                <div class="clearfix"><br/></div>
+                                <button class="btn btn-success" ng-click="addNewCategory2()">Add Another Image</button>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="addGallaryData()">{{btnValue}}</button>
+                        </form>
+                    </div>  
+                </tab>
 
-    <!-- Home Gallary Form Start Here-->
-    <div class="col-sm-6 col-xs-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
-
-        <form>
-            <div class="form-group">
-                <label><b>Add Images</b></label>
-                <div class="clearfix"><br/></div>
-                <input type="hidden" ng-model="formData._id">
-
-                <div ng-repeat="item in tempGallaryData" class="text-center">
-                    <label>Gallary Image Path</label>
-                    <div class="clearfix"><br/></div>
-                    <input <input type="file" ngf-select="onSelectUploadImage(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
-
-                    <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-							{{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                    <br/>
-                </div>
-                <div class="clearfix"><br/></div>
-                <button class="btn btn-success" ng-click="addNewCategory2()">Add Another Image</button>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="addGallaryData()">{{btnValue}}</button>
-        </form>
-    </div>
-
-
-    <!-- Home Feedback Form Start Here-->
-    <div class="col-sm-6 text-center ng-hide" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
-        <form>
-            <div class="form-group">
-                <label>Add Feedback</label>
-                <input type="hidden" ng-model="formData._id">
-
-                <div ng-repeat="item in tempFeedbackData">
-                    <label>Username</label>
-                    <input type="text" ng-model="item.userName" name="" class="form-control text-center" placeholder="Enter a Username ">
-                    <label>Feedback</label>
-                    <input type="text" ng-model="item.feedback" name="" class="form-control text-center" placeholder="Enter a Feedback ">
-                    <label>Likes</label>
-                    <input type="text" ng-model="item.likes" name="" class="form-control text-center" placeholder="Enter a Likes ">
-                    <label>Dislikes</label>
-                    <input type="text" ng-model="item.dislikes" name="" class="form-control text-center" placeholder="Enter a Dislikes ">
-                    <hr />
-                    <button class="btn btn-success" ng-click="addNewCategory3()">Add Another Feedback</button>
-                </div>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="addGFeedbackData()">{{btnValue}}</button>
-        </form>
-    </div>
-
-
-
-    <!-- Home Contact Form Start Here-->
-    <div class="col-sm-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
-        <form>
-            <div class="form-group">
-                <label>Add Contact</label>
-                <input type="hidden" ng-model="formData._id">
-
-                <div ng-repeat="item in tempContactData">
-                    <input type="hidden" ng-model="formData.lat">
-                    <input type="hidden" ng-model="formData.long">
-                    <label>Address1</label>
-                    <textarea class="form-control" ng-model="item.address1" placeholder="Enter a Address "></textarea>
-                   
-                    <label>Address2</label>
-                     <textarea class="form-control" ng-model="item.address2" placeholder="Enter a Address "></textarea>
-                    <!--<input type="text" ng-model="item.address2" id="address" name="" class="form-control text-center" placeholder="Enter a Address ">
-                     <input type="text" ng-model="item.address1" name="" class="form-control text-center" placeholder="Enter a Address ">
-                    <label>Mobile</label>
-                    <input type="text" ng-model="item.clinicmobile" name="" class="form-control text-center" placeholder="Enter a mobile ">-->
-                   
-
-
-                </div>
-                <hr />
-                <!--<button clas="btn btn-primary"  ng-click="addNewCategory3()" >Add Another Feedback</button>-->
-            </div>
     
-    <br />
-    <button type="submit" class="btn btn-primary btn-lg" ng-click="addcontactData()">{{btnValue}}</button>
-    </form>
-</div>
-    </div>
 
+    <!-- Home Gallary Form Start Here
+            <tab class="tg-navuitab" heading="Services Fields">
+            <div class="col-sm-6 col-xs-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
+
+                <form>
+                    <div class="form-group">
+                        <label><b>Add Images</b></label>
+                        <div class="clearfix"><br/></div>
+                        <input type="hidden" ng-model="formData._id">
+
+                        <div ng-repeat="item in tempGallaryData" class="text-center">
+                            <label>Gallary Image Path</label>
+                            <div class="clearfix"><br/></div>
+                            <input <input type="file" ngf-select="onSelectUploadImage(item)" ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="center-block" />
+
+                            <img style="width:3%;" ngf-thumbnail="up.file || '/thumb.jpg'" />
+                            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                            <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                    {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                            <br/>
+                        </div>
+                        <div class="clearfix"><br/></div>
+                        <button class="btn btn-success" ng-click="addNewCategory2()">Add Another Image</button>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="addGallaryData()">{{btnValue}}</button>
+                </form>
+            </div>
+            </tab>-->
+
+
+    <!-- Home Feedback Form Start Here
+            <tab class="tg-navuitab" heading="Feedback Tab Not Required">
+                <div class="col-sm-6 text-center ng-hide" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
+                    <form>
+                        <div class="form-group">
+                            <label>Add Feedback</label>
+                            <input type="hidden" ng-model="formData._id">
+
+                            <div ng-repeat="item in tempFeedbackData">
+                                <label>Username</label>
+                                <input type="text" ng-model="item.userName" name="" class="form-control text-center" placeholder="Enter a Username ">
+                                <label>Feedback</label>
+                                <input type="text" ng-model="item.feedback" name="" class="form-control text-center" placeholder="Enter a Feedback ">
+                                <label>Likes</label>
+                                <input type="text" ng-model="item.likes" name="" class="form-control text-center" placeholder="Enter a Likes ">
+                                <label>Dislikes</label>
+                                <input type="text" ng-model="item.dislikes" name="" class="form-control text-center" placeholder="Enter a Dislikes ">
+                                <hr />
+                                <button class="btn btn-success" ng-click="addNewCategory3()">Add Another Feedback</button>
+                            </div>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="addGFeedbackData()">{{btnValue}}</button>
+                    </form>
+                </div>
+            </tab>-->
+
+
+
+    <!-- Home Contact Form Start Here
+        <tab class="tg-navuitab" heading="Contact info not required">
+            <div class="col-sm-6 text-center" style="outline: solid #108CE4;padding: 1px;width: 48%; float:left; margin: 1%; padding: 15px;">
+                <form>
+                    <div class="form-group">
+                        <label>Add Contact</label>
+                        <input type="hidden" ng-model="formData._id">
+
+                        <div ng-repeat="item in tempContactData">
+                            <input type="hidden" ng-model="formData.lat">
+                            <input type="hidden" ng-model="formData.long">
+                            <label>Address1</label>
+                            <textarea class="form-control" ng-model="item.address1" rows="2" placeholder="Enter a Address "></textarea>
+                        
+                            <label>Address2</label>
+                            <textarea class="form-control" ng-model="item.address2" rows="2" placeholder="Enter a Address "></textarea>
+                            <!--<input type="text" ng-model="item.address2" id="address" name="" class="form-control text-center" placeholder="Enter a Address ">
+                            <input type="text" ng-model="item.address1" name="" class="form-control text-center" placeholder="Enter a Address ">
+                            <label>Mobile</label>
+                            <input type="text" ng-model="item.clinicmobile" name="" class="form-control text-center" placeholder="Enter a mobile ">
+                        
+
+
+                        </div>
+                        <hr />-->
+                        <!--<button clas="btn btn-primary"  ng-click="addNewCategory3()" >Add Another Feedback</button>-->
+                   <!--  </div>
+            
+                <br />
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="addcontactData()">{{btnValue}}</button>
+                </form>
+            </div>
+        </tab>-->
+     </tabset>
+
+  </div>
 </div>
