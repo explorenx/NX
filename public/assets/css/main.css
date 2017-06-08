@@ -82,6 +82,10 @@ img {
 	height: auto;
 	max-width: 100%;
 }
+.menuImage img {
+	height: 96px;
+	max-width: 122px;
+}
 strong { color: #414141; }
 iframe {
 	border: none;
@@ -7656,9 +7660,19 @@ body.tg-comingsoon-page .tg-copyright{
 	padding-bottom: 30px;
 }
 
-.directpost{
+.directpost {
 	width: 100%;
 	float: left;
 	padding: 15px;
 	background-color:#fff;
+}
+/*
+
+Styles for dashboard
+
+*/
+
+.additionalData {
+	padding: 15px; 
+	background-color: white;
 }
