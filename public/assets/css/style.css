@@ -10031,7 +10031,7 @@
       }
 
       .kw-listing-item-info {
-        padding: 17px 20px;
+        padding: 14px 3px;
       }
 
       .kw-listing-item-title a {
@@ -13777,6 +13777,7 @@
     border-top-width: 121px;
      margin-top: -121px; 
      background-image: url("../img/Search-BG.jpg") !important;
+     background-position: center;
   }
 .list_dropdown {
     background: #fff;
