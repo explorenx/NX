@@ -87,10 +87,11 @@ var google_remarketing_only = false;
 
 
                                     <div class="col-md-4 col-xs-12 nopadforsearch">
-                                        <div class="form-group" ng-blur="EnableData = false">
-                                            <input type="text" name="categoryselect" ng-value="selectedCategory | slug1" ng-keyup="loadClients()" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
+                                        <div class="form-group" id="showdiv" ng-blur="EnableData = false">
+                                            
+                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
 
-                                            <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                            <div ng-show="EnableTextInputResult == false || EnableData" id="showId" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
                                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
                                                     <a href="" ng-click="gotoResultsPageByCategory(i)">
                                                         <div class="list_dropdown">
@@ -872,16 +873,18 @@ var google_remarketing_only = false;
             }
 
         });
-        $("#exampleInputPassword2").click(function() {
+        $(".showdiv").click(function() {
             // if the click was not within $div
             $div.show();
 
 
         });
+ 
     </script>
 
     <script type="text/javascript">
     mixpanel.track_links("#enquiryButton button", "click Enquiry Button", {
         "referrer": document.referrer
     });
+
 </script>
