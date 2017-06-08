@@ -1,31 +1,5 @@
 
-<script>
-    $(function() {
-        $('.nav-tabsH a').on('click', function(e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-    });
 
-    $(function() {
-        $('.navbar-toggle1 collapsed').on('click', function(e) {
-            $(this).tab('show');
-        });
-    });
-
-    $(function() {
-        $('.navbar-nav .open .dropdown-menu').on('click', function(e) {
-            $(this).tab('hide');
-        });
-    });
-</script>
-<script>
-    window.onload = function() {
-        document.getElementById("#area").onchange = function() {
-            document.getElementByName("categoryselect")[0].focus();
-        }
-    }
-</script>
 			<!-- - - - - - - - - - - - - - How it Works (hidden) - - - - - - - - - - - - - - - - -->
 
 			
@@ -1208,9 +1182,46 @@
 
 
     });
-
 	
+</script>
+			<script>
+				$(function() {
+					$('.nav-tabsH a').on('click', function(e) {
+						e.preventDefault();
+						$(this).tab('show');
+					});
+				});
 
+				$(function() {
+					$('.navbar-toggle1 collapsed').on('click', function(e) {
+						$(this).tab('show');
+					});
+				});
+
+				$(function() {
+					$('.navbar-nav .open .dropdown-menu').on('click', function(e) {
+						$(this).tab('hide');
+					});
+				});
+			</script>
+			
+		<script type="text/javascript">
+    $(document).ready(function () {
+
+            $('#myTab a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                e.relatedTarget // previous tab
+            });
+        });
+
+
+		
+
+</script>
 	<script type="text/javascript">
 $(".toDiv").click(function() {
     $('html,body').animate({
@@ -1219,4 +1230,3 @@ $(".toDiv").click(function() {
 });
 
 </script>
-
