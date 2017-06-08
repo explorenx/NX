@@ -5,6 +5,8 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     $scope.random = function() {
         return 0.5 - Math.random();
     };
+
+
     //read more start
  $scope.limitText = 150;
   $scope.lessText = "Show less";
@@ -928,7 +930,7 @@ if (area == undefined && category ==undefined) {
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/aditionalProfile/" + $routeParams.id);
+                        document.getElementById("serviceTab").className=" active";
 
             });
 
@@ -1125,7 +1127,7 @@ if (area == undefined && category ==undefined) {
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                $location.path("/aditionalProfile/" + $routeParams.id);
+                $location.path("/homepage/" + $routeParams.id);
 
             });
 
