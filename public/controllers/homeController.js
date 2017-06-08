@@ -8,7 +8,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     // The data model. These items would normally be requested via AJAX,
     // but are hardcoded here for simplicity. See the next example for
     // tips on using AJAX.
-    //console.log = function() {};
+    console.log = function() {};
 
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
@@ -269,7 +269,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     }
     $scope.callScriptThenServer = function(searchStr) {
         //alert(searchStr);
-        $scope.EnableTextInputResult = true;
+        $scope.EnableTextInputResult = false;
         GetClientsData(searchStr);
 
 
