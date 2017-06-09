@@ -703,7 +703,7 @@
 
   .kw-header {
     position: relative;
-    z-index: 3;
+    z-index: 1;
   }
 
   .kw-header .kw-hsection {
@@ -14450,3 +14450,8 @@ a {
 
 
 /* about ng-hide*/
+ body.modal-open {
+    overflow: hidden;
+    position:fixed;
+    width: 100%;
+}
