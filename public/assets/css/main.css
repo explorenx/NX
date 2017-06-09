@@ -2777,6 +2777,17 @@ body.tg-home .tg-leftarea {
 }
 }
 
+ /* new added 9/6/17 */
+@media (max-width:469px){
+	.tg-rightarea {
+    right: 0;
+    top: 0;
+    position: relative;
+	margin-left: -15px;
+    margin-right: -15px;
+}
+}
+
 .sponsoredText {
 	color: green; 
 	display:block;
@@ -2793,6 +2804,15 @@ body.tg-home .tg-leftarea {
 }
 
 @media (max-width:468px){
+
+	.sponsoredText{
+	position:relative;
+	margin-top:0px;
+	/*display:block;*/
+}
+}
+
+@media (max-width:469px){
 
 	.sponsoredText{
 	position:relative;
