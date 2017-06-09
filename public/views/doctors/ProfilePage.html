@@ -76,7 +76,7 @@ var google_remarketing_only = false;
 <page-loader latency="2000"></page-loader>
 
 <!-- Header -->
-        <header id="header" class="kw-header kw-dark">
+				<header id="header" class="kw-header kw-dark">
 
 				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
 
@@ -88,9 +88,9 @@ var google_remarketing_only = false;
 
 				<div class="kw-hsection kw-sticky">
 
-					<div class="kw-sm-table-row row">
+					<div class="row">
 
-						<div class="col-sm-2 col-md-2">
+						<div class="col-sm-12 col-md-2 text-center">
 
 							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
 
@@ -107,7 +107,7 @@ var google_remarketing_only = false;
                         <div class="col-md-7 col-xs-12 formbackground2" style="padding-top:10px;" ng-controller="InstantSearchController">
                             <div class="col-md-12 col-xs-12">
                                 <form>
-                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
 
                                         <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
                                                                 <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
@@ -115,7 +115,7 @@ var google_remarketing_only = false;
 
                                     </div>
 
-                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
                                         <div>
                                             <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
                                                                 <option value="">Select Area</option>
@@ -126,12 +126,12 @@ var google_remarketing_only = false;
                                     </div>
 
 
-                                    <div class="col-md-4 col-xs-12 nopadforsearch">
-                                        <div class="form-group" ng-blur="EnableData = false">
-                                           
-                                            <input type="text" ng-value="selectedCategory | slug1" ng-keyup="loadClients()" class="formInput" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 nopadforsearch">
+                                        <div class="form-group" id="showdiv" ng-blur="EnableData = false">
+                                            
+                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
 
-                                            <div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                            <div ng-show="EnableTextInputResult == false || EnableData" id="showId" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
                                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
                                                     <a href="" ng-click="gotoResultsPageByCategory(i)">
                                                         <div class="list_dropdown">
@@ -172,7 +172,7 @@ var google_remarketing_only = false;
                                         <span class="clearInput" ng-click="clearInput()">X</span>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-12 text-center nopadforsearch">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 text-center nopadforsearch">
                                         
                                         
 
@@ -187,14 +187,16 @@ var google_remarketing_only = false;
 
                         <!-- - - - - - - - - - - - - - End of SEARCH FORM - - - - - - - - - - - - - - - - -->
 
-						<div class="col-sm-10 col-xs-12 col-md-3">
+						<div class="col-sm-12 col-xs-12 col-md-3">
 
-							<div class="kw-hcontent ">
+							<div class="kw-hcontent text-center">
+                                    
+
 								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
 
 								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
 
-								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a>
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a> 
 
 								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
 
@@ -209,8 +211,7 @@ var google_remarketing_only = false;
 				<!-- - - - - - - - - - - - - - End of Header Section - - - - - - - - - - - - - - - - -->
 
 		</header>
-
-			<!-- - - - - - - - - - - - - - End of Header - - - - - - - - - - - - - - - - -->
+<!-- Header End -->
 
 
 
@@ -852,7 +853,7 @@ var google_remarketing_only = false;
 
 					<div class="container">
 
-						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+						<p>Copyright <a href="/">NXsearch</a> &copy; 2017. All Rights Reserved</p>
 
 					</div><!--/ .container -->
 
