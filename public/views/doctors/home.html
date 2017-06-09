@@ -61,7 +61,7 @@
 
 			<!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
 
-			<header id="header" class="kw-header kw-dark kw-transparent">
+			<header id="header" class="kw-header kw-dark kw-transparent" style="z-index:119 !important">
 
 				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
 
@@ -871,7 +871,7 @@
 
 							<div class="col-sm-12" >
 
-								<h3 class="kw-section-title">Sponsored Listings</h3>
+								<h4 class="kw-section-title">Sponsored Listings</h4>
 													
 								<!--<h5 class="kw-section-subtitle">List of latest added places</h5>-->
 
@@ -881,7 +881,7 @@
 
 									<!-- - - - - - - - - - - - - - Listing Item - - - - - - - - - - - - - - - - -->
 
-									<div class="kw-listing-item-wrap hovereffect col-sm-3" ng-repeat="item in results | limitTo:4 | filter: {isPaidClient : true} | filter : userSearch track by $index">
+									<div class="kw-listing-item-wrap hovereffect col-md-2 col-sm-4 col-xs-12" ng-repeat="item in results | limitTo:6 | filter: {isPaidClient : true} | filter : userSearch track by $index">
 
 										<article class="kw-listing-item" data-latitude="40.711437" data-longitude="-74.001378" data-marker="images/marker_1.png">
 
@@ -890,13 +890,13 @@
 											<div class="kw-listing-item-media">
 
 												<a href="#" class="kw-listing-item-thumbnail">
-													<img src="{{::item.imageUrl}}" alt="">
+													<img src="{{::item.imageUrl}}" style="width:155px; height:155px" alt="">
 												</a>
 													
 											<div class="overlay">
 														<div class="text">
 
-															   <a href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}" class="kw-btn-big1 kw-yellow"> View More... </a>                                 
+															   <a href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}" class="kw-btn-big1 kw-yellow"> View More </a>                                 
 
 														</div>
 													</div>
@@ -910,7 +910,7 @@
 
 												<header class="kw-listing-item-header">
 
-													<h4 class="kw-listing-item-title"><a href="#">{{item.ClinicName | limitTo: 20}} {{item.ClinicName.length > 20 ? '...' : ''}}</a></h4>
+													<span class="kw-listing-item-title"><a href="/profile/{{item.City | slugify}}/{{item.Categories | slugifynolower}}/{{item.Area | slugify}}/{{item.ClinicName | slugify | slug}}/{{item._id}}"><b>{{item.ClinicName | limitTo: 20}} {{item.ClinicName.length > 20 ? '...' : ''}}</b></a></span>
 
 													<div class="kw-xs-table-row kw-xs-small-offset">
 
@@ -926,8 +926,8 @@
 
 												<ul class="kw-listing-item-data kw-icons-list kw-oneline-form1">
 
-													<li class="kw-listing-item-location"><span class="lnr icon-map-marker"></span>{{::item.address1 | limitTo: 30}}{{item.address1.length > 30 ? '...' : ''}}, {{::item.address2 | limitTo: 20}}{{item.address2.length > 20 ? '...' : ''}}</li>
-													<li class="kw-listing-item-phone"><span class="lnr icon-telephone"></span></li>
+													<span class="lnr icon-map-marker"></span>{{::item.Area}}, {{::item.City}}
+													
 
 												</ul>
 
@@ -1181,7 +1181,7 @@
 
 					<div class="container">
 
-						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+						<p>Copyright <a href="/">NXsearch</a> &copy; 2017. All Rights Reserved</p>
 
 					</div><!--/ .container -->
 
