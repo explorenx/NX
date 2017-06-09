@@ -546,7 +546,14 @@
 
 /* New added class*/
 
-@media (max-width:768px){
+@media (max-width:800px){
+	.tg-directposthead .tg-btn{
+    position: static;
+    width: 100%;
+	}
+}
+
+@media (max-width:732px){
 	.tg-directposthead .tg-btn{
     position: static;
     width: 100%;
