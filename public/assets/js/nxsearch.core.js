@@ -968,8 +968,8 @@
 			 **/
 			stickySection: {
 
-				STICKYPADDING: 10,
-				MAXSTICKYHEIGHT: 90,
+				STICKYPADDING: 10,// changed
+				MAXSTICKYHEIGHT: 0,// changed
 
 				init: function(){
 
@@ -1018,7 +1018,7 @@
 
 						$(window).trigger('scroll.sticky');
 
-					}, 120);
+					}, 0);//
 
 				},
 
@@ -1032,7 +1032,7 @@
 
 					if($w.width() < 768 && this.hasEvents){
 
-						var spacer = this.sticky.siblings('.kw-sticky-spacer');
+						var spacer = this.sticky.siblings('.kw-sticky-spaer');// changed
 						if(spacer.length) spacer.remove();
 
 						$w.off('scroll.sticky');
@@ -1072,7 +1072,7 @@
 
 					if($w.scrollTop() > self.stickyOffset && !self.sticky.hasClass('kw-sticked')){
 
-						self.sticky.addClass('kw-sticked');
+						self.sticky.addClass('kw-sticked12');//changed class name from kw-sticked 
 
 						if(self.needScale){
 
@@ -1109,7 +1109,7 @@
 
 					var self = this,
 						parent = self.sticky.parent(),
-						spacer = parent.children('.kw-sticky-spacer');
+						spacer = parent.children('.kw-sticky-spacr');// changed
 
 					if(spacer.length){
 						spacer.show().css('height', self.stickyHeight);
@@ -1118,8 +1118,8 @@
 					else{
 
 						spacer = $('<div></div>', {
-							class: 'kw-sticky-spacer',
-							style: 'height:' + self.stickyHeight + 'px'
+							class: 'kw-sticky-spar',//changed
+							style: 'height:' + self.stickyHeight + ''//removed px 9/6/17
 						});
 
 						self.sticky.before(spacer);
@@ -1132,7 +1132,7 @@
 
 					var self = this,
 						parent = self.sticky.parent(),
-						spacer = parent.children('.kw-sticky-spacer');
+						spacer = parent.children('.kw-sticky-spr');// changed
 
 					if(spacer.length) spacer.hide();
 
