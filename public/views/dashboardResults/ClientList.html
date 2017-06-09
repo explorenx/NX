@@ -65,67 +65,69 @@
                         Total Clients :<b> {{aaa}}</b>
                     </div>
                 </div>
-
+                <button class="btn btn-success" ng-click="exportData()" >Export</button>
                 
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group"> <input ng-model="txtSearch" class="form-control text-center" placeholder="Search"></div>
                 </div>
             </div>
-            <table class="table table-hover table-bordered">
-                <thead class="thead-default">
-                    <tr>
-                        <th class="text-center"> Sr. No.</th>
-                        <th class="text-center"> Edit</th>
-                        <th class="text-center"> Client Name</th>
-                        <th class="text-center"> Category</th>
-                        <th class="text-center"> Location</th>
-                        <th class="text-center">Release Date</th>
-                        <th class="text-center">Mobile No.</th>
-                        <th class="text-center">Profile Data</th>
-                        <th class="text-center"> Delete</th>
+            <div id="exportable">
+                    <table class="table table-hover table-bordered" id="">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="text-center"> Sr. No.</th>
+                                <th class="text-center"> Edit</th>
+                                <th class="text-center"> Client Name</th>
+                                <th class="text-center"> Category</th>
+                                <th class="text-center"> Location</th>
+                                <th class="text-center">Release Date</th>
+                                <th class="text-center">Mobile No.</th>
+                                <th class="text-center">Profile Data</th>
+                                <th class="text-center"> Delete</th>
 
-                    </tr>
-                </thead>
-                <tbody ng-repeat="item in resultsofclient | filter:txtSearch track by $index">
-                    <tr>
-                        <td class="text-center">{{$index+1}}</td>
-                        <td class="text-center"><a href="/addClient/{{item._id}}" type="button" class="btn btn-info" value="Edit" ng-click="editClient(item._id)">Edit</a></td>
-                        <td class="text-center"><a href="/homepage/{{item._id}}">{{item.ClinicName}}</a></td>
-                        <td class="text-center"><b>{{item.MainCategory}}&nbsp;:&nbsp;{{item.Categories}}</b>
-                            
-                           
-                        </td>
-                        <td class="text-center"><b>{{item.City}}&nbsp;:&nbsp;{{ item.Area  }}:</b><span ng-repeat="area in item.SubArea"> {{ area  }} ,</span> </td>
-                        <td class="text-center">{{item.registerDate}}</td>
-                        <td class="text-center">
-                            <b>{{item.extensionNo}}</b>
-                        </td>
-                        <td> <a href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Profile Data </a>
-                        </td>
-                        <td><a class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$index}}">Delete</a>
-                            <div class="modal fade" id="myModal{{$index}}" role="dialog">
-                                <div class="modal-dialog">
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="item in resultsofclient | filter:txtSearch track by $index">
+                            <tr>
+                                <td class="text-center">{{$index+1}}</td>
+                                <td class="text-center"><a href="/addClient/{{item._id}}" type="button" class="btn btn-info" value="Edit" ng-click="editClient(item._id)">Edit</a></td>
+                                <td class="text-center"><a href="/homepage/{{item._id}}">{{item.ClinicName}}</a></td>
+                                <td class="text-center"><b>{{item.MainCategory}}&nbsp;:&nbsp;{{item.Categories}}</b>
+                                    
+                                
+                                </td>
+                                <td class="text-center"><b>{{item.City}}&nbsp;:&nbsp;{{ item.Area  }}:</b><span ng-repeat="area in item.SubArea"> {{ area  }} ,</span> </td>
+                                <td class="text-center">{{item.registerDate}}</td>
+                                <td class="text-center">
+                                    <b>{{item.extensionNo}}</b>
+                                </td>
+                                <td> <a href="/aditionalProfile/{{item._id}}" class="btn btn-primary"> Add Profile Data </a>
+                                </td>
+                                <td><a class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$index}}">Delete</a>
+                                    <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                        <div class="modal-dialog">
 
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h3 class="modal-title pull-left">Are You Want To Delete <b>{{item.ClinicName}}</b></h3>
-                                        </div>
-                                        <div class="modal-body pull-left">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button ng-click="deleteRec(item._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title pull-left">Are You Want To Delete <b>{{item.ClinicName}}</b></h3>
+                                                </div>
+                                                <div class="modal-body pull-left">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button ng-click="deleteRec(item._id)" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
         </div>
     </div>
 </div>
