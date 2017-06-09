@@ -48,9 +48,9 @@ var google_remarketing_only = false;
 
 				<div class="kw-hsection kw-sticky">
 
-					<div class="kw-sm-table-row row">
+					<div class="row">
 
-						<div class="col-sm-2 col-md-2">
+						<div class="col-sm-12 col-md-2 text-center">
 
 							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
 
@@ -67,7 +67,7 @@ var google_remarketing_only = false;
                         <div class="col-md-7 col-xs-12 formbackground2" style="padding-top:10px;" ng-controller="InstantSearchController">
                             <div class="col-md-12 col-xs-12">
                                 <form>
-                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
 
                                         <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
                                                                 <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
@@ -75,7 +75,7 @@ var google_remarketing_only = false;
 
                                     </div>
 
-                                    <div class="col-md-3 col-xs-12 nopadforsearch">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
                                         <div>
                                             <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
                                                                 <option value="">Select Area</option>
@@ -86,7 +86,7 @@ var google_remarketing_only = false;
                                     </div>
 
 
-                                    <div class="col-md-4 col-xs-12 nopadforsearch">
+                                    <div class="col-md-4 col-sm-4 col-xs-12 nopadforsearch">
                                         <div class="form-group" id="showdiv" ng-blur="EnableData = false">
                                             
                                             <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
@@ -132,7 +132,7 @@ var google_remarketing_only = false;
                                         <span class="clearInput" ng-click="clearInput()">X</span>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-12 text-center nopadforsearch">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 text-center nopadforsearch">
                                         
                                         
 
@@ -147,9 +147,9 @@ var google_remarketing_only = false;
 
                         <!-- - - - - - - - - - - - - - End of SEARCH FORM - - - - - - - - - - - - - - - - -->
 
-						<div class="col-sm-10 col-xs-12 col-md-3">
+						<div class="col-sm-12 col-xs-12 col-md-3">
 
-							<div class="kw-hcontent ">
+							<div class="kw-hcontent text-center">
                                     
 
 								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
@@ -209,7 +209,7 @@ var google_remarketing_only = false;
 									<div class="tg-directposts">
                                         <!-- Sponsor Code-->
                                         <div class="row well_new" ng-show="FirstSponsoredClient !=null">
-                                            <div class="col-md-2 col-xs-5 col-sm-2">
+                                            <div class="col-md-2 col-xs-5 col-sm-3">
                                                 <figure class="tg-directpostimg row">
                                                     <a href="#"><img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
                                                     <figcaption ng-show="FirstSponsoredClient.isPaidClient===true">
@@ -230,8 +230,8 @@ var google_remarketing_only = false;
                                                     </figcaption>
                                                 </figure>
                                             </div>
-                                            <div class="col-md-8 col-xs-7 col-sm-8">
-                                                <div class="tg-directinfo row">
+                                            <div class="col-md-8 col-xs-7 col-sm-7">
+                                                <div class="tg-directinfo">
                                                     <div class="tg-leftarea">
                                                         <div class="tg-directposthead">
 
@@ -355,7 +355,7 @@ var google_remarketing_only = false;
 
                                     <!-- Normal Listing Code -->
 										<div class="row well_new"  ng-repeat="item in results | limitTo:limit2 | filter: {isSponsoredClient : false} | filter : userSearch track by $index">
-                                            <div class="col-md-2 col-xs-5 col-sm-2">
+                                            <div class="col-md-2 col-xs-5 col-sm-3">
                                                 <figure class="tg-directpostimg row">
                                                     <a href="#"><img title="{{::item.ClinicName }}, {{::item.Categories }}, {{::item.Area }}, {{::item.City }}" itemprop="photo" src="{{::item.imageUrl}}" alt="{{category11 | slug1 }} in {{::area2 }}, {{::item.City }} | NXsearch" width="98" height="98"></a>
                                                     <figcaption ng-show="item.isPaidClient===true">
@@ -368,8 +368,8 @@ var google_remarketing_only = false;
                                                     </figcaption>
                                                 </figure>
                                             </div>
-                                            <div class="col-md-8 col-xs-7 col-sm-8">
-                                                    <div class="tg-directinfo row">
+                                            <div class="col-md-8 col-xs-7 col-sm-7">
+                                                    <div class="tg-directinfo">
                                                         <div class="tg-leftarea">
                                                             <div class="tg-directposthead">
 
@@ -523,15 +523,15 @@ var google_remarketing_only = false;
                         <div class="col-sm-4">
 							<aside id="tg-sidebar" class="tg-sidebar">
 
-										<div class="col-sm-12 contact-banner" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
-											<div class="col-sm-3 col-xs-3"><img src="assets/img/Phone-nxsearch.png" class="img-responsive" style="margin-top:15px; margin-left:15px;width:40px;height:40px"></div>
-											<div class="col-sm-9">
+										<div class="col-sm-12 contact-banner text-center" style="background-color:#35409a;color:white; border:solid 1px; border-color:#46b8da; border-radius:3px; margin-top:5px; ">
+											<div class="col-md-3 col-sm-12 col-xs-12"><img src="assets/img/Phone-nxsearch.png" class="img-responsiv" style="margin-top:15px;width:40px;height:40px"></div>
+											<div class="col-md-9 col-sm-12">
 												<div class="col-md-sm">
 													Need Asistance ?
 												</div>
-												<div class="col-sm-12"><p style="color:white;font-size:20px;margin-top:2px;margin-bottom:00px">(+91) 8381 05 7555</p>
+												<div class="row"><p style="color:white;font-size:20px;margin-top:2px;margin-bottom:00px">(+91) 8381 05 7555</p>
 												</div>
-												<div class="col-sm-12"><p style="margin-bottom:00px; font-size:12px;color:greenyellow;height:22px;">Available between 10AM to 7PM</p>
+												<div class="row"><p style="margin-bottom:00px; font-size:12px;color:greenyellow;height:22px;">Available between 10AM to 7PM</p>
 												</div>
 											</div>
 										</div>
@@ -853,7 +853,7 @@ var google_remarketing_only = false;
 
 					<div class="container">
 
-						<p>Copyright <a href="index.html">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+						<p>Copyright <a href="/">NXsearch</a> &copy; 2017. All Rights Reserved</p>
 
 					</div><!--/ .container -->
 
