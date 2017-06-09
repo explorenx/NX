@@ -884,7 +884,7 @@ a,
 
 /*new added for modal*/
 .top1{
-	top: 30%;
+	top: 20%;
 }
 
 @media (max-width:415px){
@@ -896,7 +896,7 @@ a,
 
 @media (max-width:601px){
 .top1{
-	top: 40%;
+	top: 20%;
 
 }
 }
