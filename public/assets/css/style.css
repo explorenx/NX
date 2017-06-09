@@ -703,7 +703,7 @@
 
   .kw-header {
     position: relative;
-    z-index: 11;
+    z-index: 2;
   }
 
   .kw-header .kw-hsection {
