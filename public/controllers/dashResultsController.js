@@ -1905,6 +1905,28 @@ $scope.baseurl = $location.path()
                    
   }
 
+
+  $scope.registerform = function(formData){
+      $http.post('/sendmail12', {
+                    from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,nxsearch1@gmail.com',
+                    subject: 'NXsearch Registration Request ',
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Registration from Business :" + "<b>" + formData.clientName + "</b> " + "<br>" + "Owner Name :" + "<b>" + formData.Name + "</b> " + "<br>" + "Email :" + "<b>" + formData.email + "</b> " + "<br>" + "Mobile :" + "<b>" + formData.phone + " </b>" + "<br>"
+                    + "Address :" + "<b>" + formData.address + "</b> " + "<br>" + "Business Name :" + "<b>" + formData.business + "</b> " + "<br>" + "Qualification :" + "<b>" + formData.qualification + "</b> " + "<br>" + "Mobile :" + "<b>" + formData.specialization + " </b>" + "<br>" + "Message : " + "<br>" + "Experience :" + "<b>" + formData.Experience + "</b> " + "<br>" + "<br>" + "Massage :" + "<b>" + "<b>" + formData.Massage + " </b>" + "<br>"
+                         
+                }) .then(function successCallback(response) {
+                     alert('Thank You For Registering... You will get contacted soon...!');
+                     $location.path("/");
+    // this callback will be called asynchronously
+    // when the response is available
+  }, function errorCallback(response) {
+      //alert('error');
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  }); 
+  }
+
 $scope.MailSub= function(newsletter){
    // alert('1223');
              $http.post('/sendmail12', {
