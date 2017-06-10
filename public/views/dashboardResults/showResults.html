@@ -32,7 +32,29 @@ var google_remarketing_only = false;
 <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1030044439/?label=IOxDCLDxo3EQl_aU6wM&amp;guid=ON&amp;script=0"/>
 </div>
 </noscript>
+<script>
 
+    document.getElementById('enquiryButton').onclick= function() {
+        var s= document.getElementById('header').style;
+        s.zIndex='1';       
+    };
+
+  //  document.getElementsByClassName('changestyle')[0].onclick= function() {
+ //       var t= document.getElementById('header').style;
+  //      t.zIndex='1';       
+   // };
+
+     document.getElementById('closemodal').onclick= function() {
+        var u= document.getElementById('header').style;
+        u.zIndex='3';       
+    };
+    
+     document.getElementById('header').onclick= function() {
+        var w= document.getElementById('header').style;
+        w.zIndex='3';       
+    };
+
+</script>
 <page-loader latency="2000"></page-loader>
 
 <!-- Header -->
@@ -89,7 +111,7 @@ var google_remarketing_only = false;
                                     <div class="col-md-4 col-sm-4 col-xs-12 nopadforsearch">
                                         <div class="form-group" id="showdiv" ng-blur="EnableData = false">
                                             
-                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;"/>
+                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;" autocomplete="off"/>
 
                                             <div ng-show="EnableTextInputResult == false || EnableData" id="showId" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
                                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
@@ -267,7 +289,7 @@ var google_remarketing_only = false;
                                                             <div class="tg-bookappoinment" style="width:100%">
                                                                 <!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
                                                                 <button type="button" class="tg-btn " id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
-                                                                <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                                                <div class="modal fade" id="myModal{{$index}}" role="dialog" data-backdrop="static" data-keyboard="false">
                                                                         <div class="modal-dialog top1">
 
                                                                             <!-- Modal content-->
@@ -276,7 +298,7 @@ var google_remarketing_only = false;
 
                                                                                 <div class="modal-body well_new" style="text-align:left;">
                                                                                     <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
-                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    <button type="button" id="closemodal" class="close" data-dismiss="modal" style="opacity:0.5 !important;">Close</button>
                                                                                     <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
                                                                                         <!-- Form Name -->
                                                                                         <input type="hidden" ng-model="FirstSponsoredClient._id" name="id">
@@ -407,8 +429,8 @@ var google_remarketing_only = false;
                                                     <div class="tg-rightarea">
                                                             <div class="tg-bookappoinment" style="width:100%">
                                                                 <!--<a href="#"><i class="fa fa-thumbs-o-up"></i>99%<span>(1009 votes)</span></a>-->
-                                                                    <button type="button" class="tg-btn" id="enquiryButton" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
-                                                                        <div class="modal fade" id="myModal{{$index}}" role="dialog">
+                                                                    <button type="button" class="tg-btn changestyle" ng-click="changeStyle()" id="enquiryButton1" data-toggle="modal" data-target="#myModal{{$index}}">Send An Enquiry</button>
+                                                                        <div class="modal fade" id="myModal{{$index}}" role="dialog" data-backdrop="static" data-keyboard="false">
                                                                                     <div class="modal-dialog top1">
 
                                                                                 <!-- Modal content-->
@@ -417,7 +439,7 @@ var google_remarketing_only = false;
 
                                                                                         <div class="modal-body well_new">
                                                                                             <!--   <script src='https://www.google.com/recaptcha/api.js'></script>-->
-                                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                            <button type="button" id="closemodal1" class="close" ng-click="changeStyle1()" data-dismiss="modal" style="opacity:0.5 !important;">Close</button>
                                                                                             <form name="enquiryForm" id="enquiryForm" class="form-horizontal" role="form">
                                                                                                 <!-- Form Name -->
                                                                                                 <input type="hidden" ng-model="item._id" name="id">
