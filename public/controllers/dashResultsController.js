@@ -6,6 +6,34 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
 
+ $scope.exportData = function () {
+        var blob = new Blob([document.getElementById('exportable').innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Report.xls");
+    };
+
+
+  window.onload = function() {
+        document.getElementById("#area").onchange = function() {
+            document.getElementsByName("categoryselect")[0].focus();
+        }
+    }
+
+ $scope.changeStyle= function (){
+    var x = document.getElementById("header");
+
+
+    x.style.zIndex='1';
+
+}
+ $scope.changeStyle1= function (){
+    var x = document.getElementById("header");
+
+
+    x.style.zIndex='3';
+
+}
 
     //read more start
  $scope.limitText = 150;
