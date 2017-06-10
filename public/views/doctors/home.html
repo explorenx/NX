@@ -246,7 +246,7 @@
 
 																<div class="col-sm-4">
 																	
-																	<input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control showdiv" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()" ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" />
+																	<input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control showdiv" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()" ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" autocomplete="off" />
 																	
 
 												<div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="color:black !important; background-color: #fff; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 96%;height:400px;">
@@ -881,7 +881,7 @@
 
 									<!-- - - - - - - - - - - - - - Listing Item - - - - - - - - - - - - - - - - -->
 
-									<div class="kw-listing-item-wrap hovereffect col-md-2 col-sm-4 col-xs-12" ng-repeat="item in results | limitTo:6 | filter: {isPaidClient : true} | filter : userSearch track by $index">
+									<div class="kw-listing-item-wrap hovereffect col-md-2 col-sm-4 col-xs-6" ng-repeat="item in results | limitTo:6 | filter: {isPaidClient : true} | filter : userSearch track by $index">
 
 										<article class="kw-listing-item" data-latitude="40.711437" data-longitude="-74.001378" data-marker="images/marker_1.png">
 
@@ -890,7 +890,7 @@
 											<div class="kw-listing-item-media">
 
 												<a href="#" class="kw-listing-item-thumbnail">
-													<img src="{{::item.imageUrl}}" style="width:155px; height:155px" alt="">
+													<img src="{{::item.imageUrl}}" class="img-responsive" alt="">
 												</a>
 													
 											<div class="overlay">
