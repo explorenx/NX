@@ -2780,8 +2780,6 @@ body.tg-home .tg-leftarea {
  /* new added 9/6/17 */
 @media (max-width:923px){
 	.tg-rightarea {
-    right: 0;
-    top: 0;
     position: relative;
 	margin-left: -15px;
     margin-right: -15px;
@@ -2795,6 +2793,15 @@ body.tg-home .tg-leftarea {
 }
 
 @media (max-width:800px){
+
+	.sponsoredText{
+	color: green; 
+	display:block;
+	margin-top: 26px;
+}
+}
+
+@media (max-width:1024px){
 
 	.sponsoredText{
 	color: green; 
