@@ -2792,14 +2792,7 @@ body.tg-home .tg-leftarea {
 	margin-top: 60px;
 }
 
-@media (max-width:800px){
 
-	.sponsoredText{
-	color: green; 
-	display:block;
-	margin-top: 26px;
-}
-}
 
 @media (max-width:1024px){
 
