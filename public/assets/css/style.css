@@ -703,7 +703,7 @@
 
   .kw-header {
     position: relative;
-    z-index: 1;
+    z-index: 3;
   }
 
   .kw-header .kw-hsection {
@@ -14457,6 +14457,19 @@ a {
 }
 .waiting-box {
     display: block;
+    position: fixed; /* fixed position so it doesn't scroll */
+    z-index: 9999; /* on top of everything else */
+    width: 250px;
+    margin-left: -125px; /* horizontally centered */
+    left: 50%;
+    top: 40%; /* displayed on the top of the page, just like Gmail's yellow info-box */
+    height: 60px;
+    padding: 10px;
+   
+    border-radius: 4px;
+}
+.loader{
+     display: block;
     position: fixed; /* fixed position so it doesn't scroll */
     z-index: 9999; /* on top of everything else */
     width: 250px;
