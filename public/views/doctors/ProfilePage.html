@@ -444,11 +444,13 @@ document.getElementById('stylechange').onclick= function() {
 										
 									</div>
                                     <br>
+                                    <div style="background-color: #DCDCDC;">
                                     <div id="navbar-collapse" class=" menu1">
 
-                                            <ul class="nav nav-pills" ng-repeat="tab in tabs">
+                                            <ul class="nav nav-pills" ng-repeat="tab in tabs" >
                                                 <li ng-class="activeClass" ><a href="" ng-click="onClickTab(tab)" id="div1">{{tab.title}}</a></li>
                                             </ul>
+                                    </div>
                                     </div>
                                     <div id="mainView">
                                         <div ng-include="currentTab"></div>
@@ -752,20 +754,7 @@ document.getElementById('stylechange').onclick= function() {
 										<figure><a href="#"><img src="assets/img/advertise3.jpg" alt="your advertise here"></a></figure>
 									</div>
 								</div>
-								<div class="tg-widget">
-									<div class="tg-widgettitle">
-										<h3>Report This User</h3>
-									</div>
-									<div class="tg-widgetcontent">
-										<form class="tg-formtheme tg-formreportuser">
-											<fieldset>
-												<input type="text" class="form-control" name="reportsubject" placeholder="Report Subject">
-												<textarea class="form-control" placeholder="Report Detail"></textarea>
-												<button class="tg-btn tg-btn-lg" type="submit">Submit Report Now</button>
-											</fieldset>
-										</form>
-									</div>
-								</div>
+								
 								
 							</aside>
 						</div>
