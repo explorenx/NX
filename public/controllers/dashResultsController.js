@@ -1092,7 +1092,7 @@ if (area == undefined && category ==undefined) {
             ClinicId: ''
         });
     };
-    $scope.myInterval = 5000;
+    $scope.myInterval = 3000;
 
     $scope.onSelectUploadImage = function(i) {
         //alert(JSON.stringify(i));
