@@ -38,7 +38,7 @@ app.directive("loadingIndicator", function (loadingCounts, $timeout) {
                     if (loadingCounts.enable_count > loadingCounts.disable_count) {
                         element.css({ "display": "" });
                     }
-                }, 1000);  
+                }, 5000);  
             });
             scope.$on("loading-complete", function (e) {
                 loadingCounts.disable_count++;
@@ -325,7 +325,7 @@ app.directive('myMap', function() {
                 position: position,
                 map: map,
                 title: title,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                icon: '/map-blue.png'
             };
 
             marker = new google.maps.Marker(markerOptions);
@@ -345,7 +345,7 @@ app.directive('myMap', function() {
             });
         }
         
-        
+              
         // show the map and place some markers
         initMap();
         //alert((attrs.lat +' ' +attrs.lng));
