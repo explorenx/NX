@@ -311,9 +311,9 @@ document.getElementById('stylechange').onclick= function() {
                                                 <ul class="tg-socialsharewithtext">
                                                     <li class="tg-facebook">
                                                         <a class="tg-roundicontext">
-                                                            <em class="tg-usericonholder">
+                                                            <em class="tg-usericonholder" id="shareBtn">
                                                                 <i class="fa fa-facebook"></i>
-                                                                <span style="cursor: pointer;" id="shareBtn" title="Share on Facebook">share on facebook</span>
+                                                                <span style="cursor: pointer;" title="Share on Facebook">share on facebook</span>
                                                             </em>
                                                         </a>
                                                     </li>
@@ -443,7 +443,187 @@ document.getElementById('stylechange').onclick= function() {
 										</div>
 										
 									</div>
-                                     <tabset active="active" style="margin-top: 20px;">
+                                    <br>
+                                    <div id="navbar-collapse" class=" menu1">
+
+                                            <ul class="nav nav-pills" ng-repeat="tab in tabs">
+                                                <li ng-class="activeClass" ><a href="" ng-click="onClickTab(tab)" id="div1">{{tab.title}}</a></li>
+                                            </ul>
+                                    </div>
+                                    <div id="mainView">
+                                        <div ng-include="currentTab"></div>
+                                    </div>
+
+                                            <script type="text/ng-template" id="one.tpl.html">
+                                                <div id="Home" style= "float:right;">
+                                                    <div class="row well_new" ng-repeat="data in HomeData | filter : data.ClinicId = clientId">
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+															<div class="doc-photo-container">
+																<div ng-if="data.Image != ''">
+																	<img src="{{::data.Image }}" alt="{{::data.Image }}" class="listing_image" width="100" height="100">
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-justify">
+															<div class="col-lg-12 col-xs-12">
+																<h4 class="pull-left">{{::data.DoctorName}}</h4>
+															</div>
+															<div class="col-xs-12 text-justify list_specialty" hm-read-more hm-text="{{::data.Description}}" hm-limit="{{limitText}}" hm-more-text="{{moreText}}" hm-less-text="{{lessText}}">
+																
+
+															</div>
+
+														</div>
+													</div>
+                                                </div>
+                                            </script>
+
+                                        <script type="text/ng-template" id="two.tpl.html">
+                                            <div id="Services">
+
+                                                <div class="col-lg-12 col-sm-12 col-xs-12 well_new" ng-repeat="data in ServiceData | filter : data.ClinicId = clientId">
+
+													<div class="col-md-2  col-xs-4">
+														<div ng-if="data.Image != ''">
+															<img src="{{::data.ServiceImage}}" alt="{{::data.ServiceImage}}" class="listing_image  img-responsive" width="100" height="100" style="position:relative;">
+														</div>
+														<div ng-if="data.Image == ''">
+															<img src="http://www.innovativephp.com/demo/impress-js-demos/chapter5/images/aboutme.jpg" width="100" height="100" class="listing_image img-responsive">
+														</div>
+													</div>
+                                                    <h4>{{::data.ServiceName}}</h4>
+													<div class="col-md-10 col-xs-12 text-justify list_specialty"  hm-read-more hm-text="{{::data.ServiceInfo}}" hm-limit="{{limitText}}" hm-more-text="{{moreText}}" hm-less-text="{{lessText}}">
+														
+														
+													</div>
+
+												</div>
+
+                                        </div>
+                                    </script>
+
+ <script type="text/ng-template" id="three.tpl.html">
+                        <div id="Feedback">
+                            <div class="col-md-12 col-xs-12 well_new bg-default">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="input-group"> <input ng-model="txtSearch" class="form-control input-lg text-center" placeholder="Search Feedback"></div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                                    <a class="btn btn-info" data-toggle="modal" data-target="myModal1"><i class="fa fa-shield" ></i> Give Feedback</a>
+                                    <!--# removed for data-target="#myModal1" -->
+                                    <div class="modal fade" id="myModal1" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h3 class="modal-title pull-left">Give Feedback</h3>
+                                                </div>
+                                                <div class="modal-body pull-left">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label>Add Feedback</label>
+                                                            <input type="hidden" ng-model="formData._id">
+
+                                                            <div>
+                                                                <label>Username</label>
+                                                                <input type="text" ng-model="item.userName" name="" class="form-control text-center" placeholder="Enter a Username ">
+                                                                <label>Feedback</label>
+                                                                <input type="text" ng-model="item.feedback" name="" class="form-control text-center" placeholder="Enter a Feedback ">
+                                                            </div>
+                                                        </div>
+                                                        <br />
+
+                                                    </form>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary btn-lg" ng-click="addFeedback()">Give Feedback</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12 help-block"></div>
+                            <div class="col-md-12 col-xs-12 help-block"></div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" ng-repeat="data in FeedbackData | filter : data.ClinicId = clientId">
+                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <i class="fa fa-th fa-3x img-responsive" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-11 col-sm-9 col-xs-9">
+
+                                    <div class="col-md-12 col-xs-12 pull-left">
+                                        <h4 class="pull-left"> {{::data.userName}}</h4>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 col-md-offset-1 col-xs-offset-1 pull-left">
+                                        <p class="pull-left">{{::data.feedback}}</p>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 text-success pull-left">
+                                        <p class="text-success pull-left">Was this review useful to you?</p>
+
+                                        <i class="fa fa-thumbs-up fa-2x text-primary col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{::data.likes}}
+                                        <i class="fa fa-thumbs-down fa-2x text-muted col-md-offset-1 col-xs-offset-1" aria-hidden="true"></i> {{::data.dislikes}}
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+
+                                     <script type="text/ng-template" id="four.tpl.html">
+                                        <div id="Gallary">
+                                    
+                                            <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
+
+                                                <div>
+                                                        
+                                                        <div carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                                            <div slide ng-repeat="slide in GallaryeData | filter : data.ClinicId = clientId" index="slide.id">
+                                                                <img ng-src="{{slide.gallaryImage}}" style="margin:auto;height: auto">
+                                                            
+                                                            </div>
+                                                        </div>
+                                                       
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </script>
+
+                    <script type="text/ng-template" id="five.tpl.html">
+                        <div id="Contact">
+                            <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
+                                <div class="col-md-12">
+                                    <input type="hidden" id="lat" value="{{::ContacteData.lat}}" />
+                                    <input type="hidden" id="lng" value="{{::ContacteData.long}}" />
+                                    <div my-map="" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="map" class="col-xs-6">
+
+                            </div>
+
+                        </div>
+
+
+
+                    </script>
+                                    <!-- <tabset active="active" style="margin-top: 20px;">
 										
 										<tab class="tg-navuitab" heading="Home">
 											
@@ -535,17 +715,20 @@ document.getElementById('stylechange').onclick= function() {
 
 													</div>
 
-												</div>-->
+												</div>
 											</div>
+
+                                        
 										</tab>
-										<tab class="tg-navuitab"  heading="Location">
-											<div class="tg-boxProfile" >
+									
+										    	<tab class="tg-navuitab"  heading="Location">
+											<div class="tg-boxProfile" id="Contact">
 												<div class="col-lg-12 col-sm-12 col-xs-12">
 													<div class="col-md-12">
 														<input type="hidden" id="lat" value="{{::ContacteData.lat}}" />
 														<input type="hidden" id="lng" value="{{::ContacteData.long}}" />
-														<div class="my-map" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
-														</div>
+														<div my-map="" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
+                                                             </div>
 													</div>
 												</div>
 
@@ -556,8 +739,7 @@ document.getElementById('stylechange').onclick= function() {
 											</div>
 										</tab>
 										
-										
-									</tabset>
+									</tabset>-->
 																		
 									
 								</div>
