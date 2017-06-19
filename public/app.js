@@ -299,16 +299,16 @@ app.directive('myMap', function() {
     var link = function(scope, element, attrs) {
         var map, infoWindow;
         var markers = [];
-        
+        //alert(attrs.address1);
         // map config
         var mapOptions = {
             center: new google.maps.LatLng(attrs.lat, attrs.lng),
             zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false,
-            title: 'Pune',
+            title: 'NX-Search',
 
-            icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            icon: '/blue-map.png'
         };
         
         // init the map
@@ -321,10 +321,12 @@ app.directive('myMap', function() {
         // place a marker
         function setMarker(map, position, title, content) {
             var marker;
+           // alert(attrs.lat);
+          //  var title = attrs.address1 + ' ' + attrs.address2
             var markerOptions = {
                 position: position,
                 map: map,
-                title: title,
+                title: 'Pune',
                 icon: '/map-blue.png'
             };
 
@@ -602,7 +604,10 @@ app.config(function($routeProvider, $locationProvider) {
                 templateUrl : 'views/updatesitemap.html',
                // controller : 'sitemapsController'
             })
-
+              .when('/export', {
+                templateUrl : 'views/userfeedback.html',
+                //controller : 'homeController'
+            })
 
             .when('/categories', {
                 templateUrl : 'views/categories/categories.html',
@@ -726,10 +731,7 @@ app.config(function($routeProvider, $locationProvider) {
                 //controller : mainController
             })
             
-            .when('/userfeedback', {
-                templateUrl : 'views/userfeedback.html',
-                //controller : 'homeController'
-            })
+          
            
 
             .otherwise({redirectTo:'/'});
