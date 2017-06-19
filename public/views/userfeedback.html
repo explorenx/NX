@@ -1,17 +1,117 @@
-<div class="col-lg-12 col-md-12 col-xs-12">
-<form>
-    <div class="form-group">
-        <label >Add Feedback</label>
-        <input type="hidden" ng-model="formData._id" >
+<!-- Header -->
+<div class="row dash_head navbar-fixed-top">
+        
+            <div class="container-fluid">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-md-12 col-xs-12 text-center">
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo.png" alt="NX-Search" width="160px" height="65px" /></a>
+                        </div>
+                    </div>
+                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                         
+                        <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                    </div>
+                </div>
+            </div>
+        
+</div>
+<!-- Header End -->
 
-        <div>
-            <label  >Username</label>
-            <input type="text" ng-model="item.userName" name=""  class="form-control text-center" placeholder="Enter a Username ">
-            <label  >Feedback</label>
-            <input type="text" ng-model="item.feedback" name=""  class="form-control text-center" placeholder="Enter a Feedback ">
+
+    <div class="col-md-2 dash_sidebar">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
+                <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
+               <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
+                <li><a href="/addClient"><i class="fa fa-user"></i> Add Clients</a></li>
+                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
+                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
+                <li><a href="/addCities"><i class="fa fa-map-marker"></i> Add Cities</a></li>
+                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
+        <div class="col-md-12" ng-controller="dashResultsController">
+            <div class="ng-hide">
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="city"></span></h5>
+                &nbsp<i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i> &nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a id="categry" href=""> <span id="category"></span></a>
+                </h5>&nbsp
+                <i class="fa fa-angle-right" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"></i>&nbsp
+                <h5 style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span id="area"></span>&nbsp</h5>
+                &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp
+                <h1 style="font-size: 14px; display: inline; "> <b>{{aaa}}</b> matches found for: <b id="keyword"></b></h1>
+                <li class="login">
+                    <i id="shareBtn" class="fa fa-facebook-square fa-3x" style="color: #365899; cursor: pointer; padding-top: 15px;"></i>
+                </li>
+            </div>
+
+            <div class="col-md-12 col-xs-12 bg-default" style="top: 10px">
+                <div class="col-md-4 col-sm- col-xs-4">
+                    <div class="form-group"><button class="btn btn-success" ng-click="exportData()" >Export</button></div>
+                </div>
+                <div class="col-md-4 col-sm- col-xs-4">
+                    <div class="col-xs-12">
+                        Total Clients :<b> {{aaa}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12 bg-default" style="top: 10px">
+             <div class="col-md-5 col-sm-6 col-xs-12">
+                    <div class="form-group"> <input ng-model="txtSearch" class="form-control text-center" placeholder="Search Category"></div>
+                </div>
+                 <div class="col-md-5 col-sm-6 col-xs-12">
+                    <div class="form-group"> <input ng-model="area" class="form-control text-center" placeholder="Search Area"></div>
+                </div>
+                <div class="col-md-12 col-xs-12 bg-default" style="top: 10px">
+            <div id="exportable">
+                    <table class="table table-hover table-bordered" id="">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="text-center" style="width:65px;"> Sr. No.</th>
+                                <th class="text-center"> Business Name</th>
+                                <th class="text-center"> Client Name</th>
+                                <th class="text-center">Mobile No.</th>
+                                <th class="text-center"> Category</th>
+                                <th class="text-center"> Location</th>
+                               
+                                
+                                <th class="text-center">Address</th>
+                               
+
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="item in resultsofclient | filter:txtSearch | filter:area ">
+                            <tr>
+                                <td class="text-center" style="width:65px;">{{$index+1}}</td>
+                                 <td class="text-center">{{item.ClinicName}}</td>
+                               <td class="text-center">{{item.DoctorName}}</td>
+                               <td class="text-center">
+                                    <b>{{item.extensionNo}}</b>
+                                </td>
+                                <td class="text-center"><b>{{item.Categories}}</b>
+                                    
+                                
+                                </td>
+                                <td class="text-center"><b>&nbsp;{{ item.Area  }}:</b><span ng-repeat="area in item.SubArea"> {{ area  }} ,</span> </td>
+                                
+                                <td class="text-center">{{item.address1}}, {{item.address2}}</td> 
+    
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
         </div>
     </div>
-    <br />
-    <button type="submit" class="btn btn-primary btn-lg" ng-click="addFeedback()">{{btnValue}}</button>
-</form>
 </div>
