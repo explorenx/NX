@@ -183,7 +183,7 @@ app.post('/sendmail', function(req, res) {
 var number=req.body.clientMobile;
  
 //message 
-var message= "Enquiry on nxsearch.com for: "+req.body.ClinicName +" Name: "+req.body.username + " Enquirer Contact No. : " +req.body.usermobile + " Area: "+ req.body.Area + "Thank You...!";
+var message= "Enquiry on nxsearch.com for: "+req.body.ClinicName +" Name: "+req.body.username + " Enquirer Contact No. : " +req.body.usermobile + " Area: "+ req.body.Area + " Thank You...!";
  
 //Sender ID 
 var senderid='NXSRCH';
@@ -204,6 +204,41 @@ console.log(response);
 });
     
  });
+
+// SMS to user
+ app.post('/sendMsgtoUser', function(req,res){
+    console.log(res);
+          var authkey='138679A23pr5hn5889ca25';
+//for multiple numbers 
+//var numbers=[];
+//numbers.push(req.body.clientMobile);
+ 
+//for single number 
+var number=req.body.usermobile;
+ 
+//message 
+var message= "You Enquire for "+req.body.ClinicName +", Contact No. : " +req.body.clientMobile + "Thank you for using www.nxsearch.com. keep NX-searching...!";
+ 
+//Sender ID 
+var senderid='NXSRCH';
+ 
+//Route 
+var route='4';
+ 
+//Country dial code 
+var dialcode='91';
+ 
+ 
+//send to single number 
+ 
+msg91.sendOne(authkey,number,message,senderid,route,dialcode,function(response){
+ 
+//Returns Message ID, If Sent Successfully or the appropriate Error Message 
+console.log(response);
+});
+    
+ });
+
 
 app.post('/sendmail12', function(req, res) {
     var options = {
@@ -285,7 +320,6 @@ app.get('/apply', function(req, res) {
         transporter.close();
     });
 });
-
 
 
 //application -------------------------------------------------------------
