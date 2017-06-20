@@ -1544,6 +1544,16 @@ if (area == undefined && category ==undefined) {
                     });
         
 
+                    // SMS to User
+                     $http.post('/sendMsgtoUser', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
                 $scope.serverMessage = 'Email sent successfully';
@@ -1646,6 +1656,17 @@ if (area == undefined && category ==undefined) {
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
+
+                    //SMS to User
+                      $http.post('/sendMsgtoUser', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
                 $scope.serverMessage = 'Email sent successfully';
@@ -1744,6 +1765,17 @@ if (area == undefined && category ==undefined) {
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
+
+                    //SMS to User
+                      $http.post('/sendMsgtoUser', $scope.item)
+                    .success(function(data) {
+                        //$scope.formData = {}; // clear the form so our user is ready to enter another
+                        console.log(data);
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+
             if (status != undefined && status.status == 'success') {
                 $scope.loading = false;
                 $scope.serverMessage = 'Email sent successfully';
