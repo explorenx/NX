@@ -267,8 +267,8 @@ var google_remarketing_only = false;
                                                         <div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</div>
                                                         </div>
                                                         <ul class="tg-contactinfo">
-                                                            <li><i class="fa fa-clock-o"></i><span>{{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</span></li>
-                                                            <li><i class="fa fa-location-arrow"></i><span>{{::FirstSponsoredClient.Area}}</span></li>														
+                                                            <li><i class="fa fa-clock-o"></i><span> &nbsp;{{::FirstSponsoredClient.FirstHalfTime}} | {{::FirstSponsoredClient.SecondHalfTime}}</span></li>
+                                                            <li><i class="fa fa-location-arrow"></i><span> &nbsp;{{::FirstSponsoredClient.SubArea[0]}}<span ng-show="FirstSponsoredClient.SubArea!=''">,</span>{{::FirstSponsoredClient.Area}}</span></li>														
                                                         </ul>
                                                     </div>
                                                     <!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
@@ -407,8 +407,8 @@ var google_remarketing_only = false;
                                                             <div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} | {{::item.speciality}})</div>
                                                             </div>
                                                             <ul class="tg-contactinfo">
-                                                                <li><i class="fa fa-clock-o"></i><span>{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span></li>
-                                                                <li><i class="fa fa-location-arrow"></i><span>{{::item.Area}}</span></li>														
+                                                                <li><i class="fa fa-clock-o"></i><span> &nbsp;{{::item.FirstHalfTime}} | {{::item.SecondHalfTime}}</span></li>
+                                                                <li><i class="fa fa-location-arrow"></i><span> &nbsp;{{::item.SubArea[0]}}<span ng-show="item.SubArea!=''">,</span> {{::item.Area}}</span></li>														
                                                             </ul>
                                                         </div>
                                                                         <!--<div class="tg-rightarea" ng-if="item.isPaidClient===true">
