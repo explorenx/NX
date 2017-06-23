@@ -151,11 +151,11 @@ $window.onload = function(){
        //     url = url + '&City=' + city + '&Area=' + area;
       //  }
 //alert($routeParams.area);
-$window.document.getElementById('keyword').innerHTML = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
+
         if (area != undefined) {
             var myurl = '/' + city + '/' + category.replace(/ /g, '-');
             $window.document.getElementById('categry').href = myurl;
-
+            $window.document.getElementById('keyword').innerHTML = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
             //  var cityurl = '/showResults';
             // document.getElementById('citylink').href=cityurl;
            //  $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
@@ -205,7 +205,7 @@ if (area == undefined && category ==undefined) {
 
         $http.get(url)
             .success(function(data) {
-                
+                 //alert(JSON.stringify(data[0]));
                 $scope.resultsofclient = data;
                 $scope.results = shuffle(data, 'isPaidClient');
                 $scope.totalpaid = $scope.results.length;
@@ -240,6 +240,7 @@ if (area == undefined && category ==undefined) {
                     $http.get('/api/dashbord/results/?&City=' + city + urlWithSubcategory)
                         .success(function(resdata) {
                             $scope.results = shuffle(resdata, 'isPaidClient');
+                           
                             $scope.totalpaid = $scope.results.length;
                             var sponsoredClients = shuffle(resdata, 'isSponsoredClient');
                             if (sponsoredClients.length > 0) {
@@ -1560,7 +1561,7 @@ if (area == undefined && category ==undefined) {
 
                 $http.post('/sendmail', {
                     from: 'NXsearch <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Enquiry for ' + item.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + item.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + item.Area + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
@@ -1673,7 +1674,7 @@ if (area == undefined && category ==undefined) {
 
                 $http.post('/sendmail12', {
                     from: 'NXsearch <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Enquiry for ' + client.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + client.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + client.Area + " </b>" + "<br>" + "Name : " + "<b>" + client.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.usermobile + "</b>" + "<br>" // html body
@@ -1782,7 +1783,7 @@ if (area == undefined && category ==undefined) {
 
                 $http.post('/sendmail12', {
                     from: 'NXsearch <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Enquiry for ' + FirstSponsoredClient.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + FirstSponsoredClient.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + FirstSponsoredClient.Area + " </b>" + "<br>" + "Name : " + "<b>" + FirstSponsoredClient.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + FirstSponsoredClient.usermobile + "</b>" + "<br>" // html body
@@ -1880,7 +1881,7 @@ $scope.baseurl = $location.path()
                         console.log(data);
                                $http.post('/sendmail12', {
                     from: 'NXsearch PopUp Form <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Enquiry ',
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry from :" + "<b>" + popupForm.name + "</b> " + "<br>" + "Mobile :" + "<b>" + popupForm.phone + " </b>" + "<br>" + "Message : " + "<b>" + popupForm.message + " </b>" + "<br>"
@@ -1919,7 +1920,7 @@ $scope.baseurl = $location.path()
 
  $http.post('/sendmail12', {
                     from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Enquiry ',
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry from :" + "<b>" + contact.fname + "</b> " + "<br>" + "Last Name :" + "<b>" + contact.lname + "</b> " + "<br>" + "Email :" + "<b>" + contact.email + "</b> " + "<br>" + "Mobile :" + "<b>" + contact.phone + " </b>" + "<br>" + "Message : " + "<b>" + contact.message + " </b>" + "<br>"
@@ -1941,7 +1942,7 @@ $scope.baseurl = $location.path()
   $scope.registerform = function(formData){
       $http.post('/sendmail12', {
                     from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,nxsearch1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,nxsearch1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch Registration Request ',
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Registration from Business :" + "<b>" + formData.clientName + "</b> " + "<br>" + "Owner Name :" + "<b>" + formData.Name + "</b> " + "<br>" + "Email :" + "<b>" + formData.email + "</b> " + "<br>" + "Mobile :" + "<b>" + formData.phone + " </b>" + "<br>"
@@ -1963,7 +1964,7 @@ $scope.MailSub= function(newsletter){
    // alert('1223');
              $http.post('/sendmail12', {
                     from: 'NXsearch Contact Form <enquiry@nxsearch.com>',
-                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com',
+                    to: 'agogweb1@gmail.com,bizzbazar1@gmail.com,enquiry.nxsearch@gmail.com',
                     subject: 'NXsearch News letter Subscription Request',
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Subscription Request From :" + "<b>" + newsletter.subscribe + "</b> " 
