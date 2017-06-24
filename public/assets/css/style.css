@@ -2243,7 +2243,7 @@
       font-size: 60px;
       line-height: 60px;
       font-weight: 300;
-      text-transform: capitalize;
+      
     }
 
     .kw-page-header.kw-type-6 .kw-page-title:not(:last-child) {
@@ -14539,3 +14539,9 @@ a {
 .menu1>ul {
     float: left;
 }
+.nav>li>a:hover, .nav>li>a:visited {
+    text-decoration: none;
+    background-color: #1e97cc;
+    color: #000;
+}
+
