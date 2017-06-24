@@ -264,7 +264,7 @@ var google_remarketing_only = false;
                                                                 </h3>
                                                         
 
-                                                        <div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} | {{::FirstSponsoredClient.speciality}})</div>
+                                                        <div class="tg-subjects">{{::FirstSponsoredClient.DoctorName}} ({{::FirstSponsoredClient.Profession}} <span ng-hide="!FirstSponsoredClient.speciality"> | </span> {{::FirstSponsoredClient.speciality}})</div>
                                                         </div>
                                                         <ul class="tg-contactinfo">
                                                             <li><i class="fa fa-clock-o"></i><span> &nbsp;{{::FirstSponsoredClient.FirstHalfTime}}<span ng-hide="!FirstSponsoredClient.SecondHalfTime"> | </span>{{::FirstSponsoredClient.SecondHalfTime}}</span></li>
@@ -404,7 +404,7 @@ var google_remarketing_only = false;
                                                                         {{::item.ClinicName}}
                                                                 </h3>
 
-                                                            <div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} | {{::item.speciality}})</div>
+                                                            <div class="tg-subjects">{{::item.DoctorName}} ({{::item.Profession}} <span ng-hide="!item.speciality"> | </span> {{::item.speciality}})</div>
                                                             </div>
                                                             <ul class="tg-contactinfo">
                                                                 <li><i class="fa fa-clock-o"></i><span> &nbsp;{{::item.FirstHalfTime}}<span ng-hide="!item.SecondHalfTime"> | </span>{{::item.SecondHalfTime}}</span></li>
