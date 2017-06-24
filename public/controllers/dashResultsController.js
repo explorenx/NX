@@ -201,6 +201,46 @@ if (area == undefined && category ==undefined) {
             $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
 }
 
+if($location.path() == '/register'){
+     $window.document.title = 'Register Free - NXsearch';
+}
+if($location.path() == '/aboutus'){
+     $window.document.title = 'About Us - NXsearch';
+}
+
+if($location.path() == '/termsandconditions'){
+     $window.document.title = 'Terms and Conditions - NXsearch';
+}
+if($location.path() == '/career'){
+     $window.document.title = 'Career - NXsearch';
+}
+if($location.path() == '/privacypolicy'){
+     $window.document.title = 'Privacy Policy';
+}
+if($location.path() == '/disclaimer'){
+     $window.document.title = 'Disclaimer';
+}
+if($location.path() == '/enquiryDetails'){
+     $window.document.title = 'Enquiry Details';
+}
+if($location.path() == '/clientlist'){
+     $window.document.title = 'Client List';
+}
+if($location.path() == '/addClient'){
+     $window.document.title = 'Add New Client';
+}
+if($location.path() == '/addClient/'+ $routeParams.id){
+     $window.document.title = 'Update Client';
+}
+if($location.path() == '/categories'){
+     $window.document.title = 'Categories List';
+}
+if($location.path() == '/addCities'){
+     $window.document.title = 'City List';
+}
+if($location.path() == '/export'){
+     $window.document.title = 'Export Data';
+}
 
 
         // if(city == undefined){
