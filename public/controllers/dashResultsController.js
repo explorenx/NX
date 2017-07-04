@@ -155,7 +155,9 @@ $window.onload = function(){
         if (area != undefined) {
             var myurl = '/' + city + '/' + category.replace(/ /g, '-');
             $window.document.getElementById('categry').href = myurl;
-            $window.document.getElementById('keyword').innerHTML = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
+           // $window.document.getElementById('keyword').innerHTML = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
+            $scope.keyword = $routeParams.category + ' in ' + $routeParams.area + ', ' + $routeParams.city;
+            //alert($scope.keyword)
             //  var cityurl = '/showResults';
             // document.getElementById('citylink').href=cityurl;
            //  $window.document.getElementsByClassName('listing_image')[0].alt = category + ' in ' + city;
