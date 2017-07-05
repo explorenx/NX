@@ -1,8 +1,11 @@
-app.controller('citiesController', function($scope, $http, $routeParams, $location) {
+app.controller('citiesController', function($scope, $http, $routeParams, $location,$window) {
     $scope.addr = {};
 
     $scope.btnValue = "Save";
     //console.log($routeParams.id)
+if($location.path() == '/addCities'){
+     $window.document.title = 'List of Areas';
+}
 
     function getData() {
         $http.get('/api/locations/area')
