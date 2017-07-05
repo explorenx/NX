@@ -1,9 +1,15 @@
-app.controller('categoriesController', function($scope, $http, $routeParams, $location) {
+app.controller('categoriesController', function($scope, $http, $routeParams, $location,$window) {
     $scope.formData = {};
 
     $scope.btnValue = "Save";
     //console.log($routeParams.id)
     //var clientId = $routeParams.id;
+    if($location.path() == '/categories'){
+     $window.document.title = 'List of Categories';
+}
+    if($location.path() == '/addCategories'){
+     $window.document.title = 'Add New Category';
+}
     function getData() {
         $http.get('/api/category/categories')
             .success(function(data) {
