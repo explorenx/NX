@@ -198,20 +198,16 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
         //alert(JSON.stringify($scope.client.selectedCityModel));
         //alert(JSON.stringify($scope.client.selectedCityModel.$$hashKey));
-        if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
-            alert('Please enter City to begin search !');
-
-        if ($scope.MainAreas.selectedAreaModel.Area == null) {
-            $window.document.getElementById("mymodal1").className = "alert alert-danger";
-            $window.document.getElementById('mymodal1').innerHTML = 'Please Select Area to begin search !';
-            alert('Please Select Area to begin search !');
-        } else {
-            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category) {
+        if (($rootScope.client.selectedCityModel != null || $rootScope.client.selectedCityModel.$$hashKey) && $scope.MainAreas.selectedAreaModel.Area == null){
+           $location.path('/' + $scope.client.selectedCityModel + '/' + category.replace(/ /g, '-') );
+        }
+       
+            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category && $scope.MainAreas.selectedAreaModel.Area != null) {
                 category = category.replace(/ /g, '-');
                 $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
                 $location.path('/' + $scope.client.selectedCityModel + '/' + category + '/' + $scope.MainAreas.selectedAreaModel.Area  + '/' + category+ '-in-' +$scope.MainAreas.selectedAreaModel.Area + '-'+ $scope.client.selectedCityModel);
             }
-        }
+        
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
@@ -221,21 +217,17 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
         //alert(JSON.stringify($rootScope.client.selectedCityModel));
         //alert(JSON.stringify($scope.client.selectedCityModel.$$hashKey));
-        if ($rootScope.client.selectedCityModel == null || $rootScope.client.selectedCityModel.$$hashKey)
-            alert('Please enter City to begin search !');
+        if (($rootScope.client.selectedCityModel != null || $rootScope.client.selectedCityModel.$$hashKey) && $scope.MainAreas.selectedAreaModel.Area == null){
+            $location.path('/' + $scope.client.selectedCityModel + '/' + subCategory.replace(/ /g, '-') );
+        }
+       
 
-        if ($scope.MainAreas.selectedAreaModel.Area == null) {
-            alert('Please Select Area to begin search !');
-            $window.document.getElementById("mymodal1").className = "alert alert-danger";
-            $window.document.getElementById('mymodal1').innerHTML = 'Please Select Area to begin search !';
-        } else {
-
-            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory) {
+            if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && subCategory && $scope.MainAreas.selectedAreaModel.Area != null) {
                 subCategory = subCategory.replace(/ /g, '-');
                 $scope.MainAreas.selectedAreaModel.Area = $scope.MainAreas.selectedAreaModel.Area.replace(/ /g, '-');
                 $location.path('/' + $rootScope.client.selectedCityModel + '/' + subCategory + '/' + $scope.MainAreas.selectedAreaModel.Area + '/' + subCategory+ '-in-' +$scope.MainAreas.selectedAreaModel.Area + '-'+ $scope.client.selectedCityModel);
             }
-        }
+        
         // if(category)
         //     $location.path('/showResults/'+ category);
         // if(angular.isDefined($scope.client.selectedCityModel))
