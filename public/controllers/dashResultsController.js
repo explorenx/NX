@@ -176,78 +176,202 @@ $window.onload = function(){
 
             $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + area + ', ' + city + ' | NXsearch';
         }
-
+       
+$scope.area2 = $routeParams.area;
+                            //alert($scope.area2);
         if (area == undefined) {
-            $window.document.getElementById('keyword').innerHTML = category + ' in ' + city;
+            $http.get('/api/category/categories')
+            .success(function(data) {
+                $scope.categories = data;
+                //alert(JSON.stringify(data));
+                //  alert($scope.data.mainCategoryName);
+                $scope.sample = data;
+
+
+                       var metaKeys = metaDesc = metaTitle = '';
+
+                angular.forEach(data, function(value, key1) {
+
+                    angular.forEach(value.category, function(cat, key2) {
+                        //alert(JSON.stringify(cat.name.length));
+                        $scope.catcount = cat.name.length;
+                        
+                        if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
+                            $scope.maincat = cat.name;
+                            $scope.city2 = $routeParams.city;
+                            $scope.catname = cat.name;
+                           //alert(JSON.stringify($scope.maincat));
+                          
+                            $scope.areaonlink = 'in ' + $routeParams.city.replace(/-/g, ' ');
+                            // $scope.SubCategoriesLinks = [];
+                            angular.forEach(cat.subcategories, function(value, key) {
+                                $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                //alert(JSON.stringify(cat.name));
+                                //alert($scope.SubCategoriesLinks);
+                            });
+                             $scope.SubCategoriesLinks = [];
+                                                  
+                                                  //alert(JSON.stringify(area.Area));
+                                              $window.document.getElementsByName('description')[0].content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                //alert(metaDesc);
+                                $window.document.getElementsByName('keywords')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
+                               $window.document.getElementById('longdescription').innerHTML = cat.categoryDescriptionLong;
+                                $window.document.querySelector('[property="og:description"]').content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                    $window.document.querySelector('[name="twitter:description"]').content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                if (typeof(cat.categoryTitle) !== 'undefined') {
+                                    $window.document.title = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', ' + cat.categoryTitle + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                    $window.document.getElementsByName('title')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', ' + cat.categoryTitle + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                }
+                                if (typeof(cat.categoryTitle) == 'undefined') {
+                                    $window.document.title = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', NXsearch';
+                                    $window.document.getElementsByName('title')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', NXsearch';
+                                }
+
+                                    //$window.document.getElementsByName('description')[0].content = metaDesc;
+                                    //$window.document.getElementsByName('keywords')[0].content = metaKeys;
+                                   // $window.document.getElementById('longdescription').innerHTML = longDesc;
+                                   
+                                   // $window.document.title = metaTitle;
+                                   // $window.document.getElementsByName('title')[0].content = metaTitle;
+                                          
+                            //$scope.catname = cat.name;
+                            //$window.document.getElementById('categoryname').innerHTML = catname;
+                            //alert( $scope.SubCategories);
+                            //alert($routeParams.area);
+                            
+                          
+
+                        }
+                    
+                        angular.forEach(cat.subcategories, function(value, key) {
+                            //alert(value.subCategoryName);
+                            if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
+                                //alert(JSON.stringify($routeParams.area));
+                                
+                                    $scope.maincat = cat.name;
+                                     $scope.city2 = $routeParams.city;
+                            
+                           //alert(JSON.stringify($scope.maincat));
+                          
+                            $scope.areaonlink = 'in ' + $routeParams.city.replace(/-/g, ' ');
+                             
+                            angular.forEach(cat.subcategories, function(value, key) {
+                                $scope.SubCategoriesLinks.push(value.subCategoryName);
+                                //alert(JSON.stringify(cat.name));
+                                //alert($scope.SubCategoriesLinks);
+                            });
+                             $scope.SubCategoriesLinks = [];
+                                                  
+                                                  //alert(JSON.stringify(area.Area));
+                                              $window.document.getElementsByName('description')[0].content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + value.subCategoryDescriptionShort + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                //alert(metaDesc);
+                                $window.document.getElementsByName('keywords')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
+                               $window.document.getElementById('longdescription').innerHTML = cat.categoryDescriptionLong;
+                                $window.document.querySelector('[property="og:description"]').content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + value.subCategoryDescriptionShort + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                    $window.document.querySelector('[name="twitter:description"]').content = $routeParams.category.replace(/-/g, ' ') + " in "+ $routeParams.city + " , " + value.subCategoryDescriptionShort + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                if (typeof(cat.categoryTitle) !== 'undefined') {
+                                    $window.document.title = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', ' + value.subCategoryTitle + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                    $window.document.getElementsByName('title')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', ' + value.subCategoryTitle + " in " + $routeParams.city.replace(/-/g, ' ') + '| Nx-search';
+                                }
+                                if (typeof(cat.categoryTitle) == 'undefined') {
+                                    $window.document.title = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', NXsearch';
+                                    $window.document.getElementsByName('title')[0].content = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.city + ', NXsearch';
+                                }
+                                    $window.document.getElementById('longdescription').innerHTML = longDesc;
+                                    //$window.document.querySelector('[property="og:description"]').content = metaDesc;
+                                   // $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
+                                   // $window.document.title = metaTitle;
+                                    //$window.document.getElementsByName('title')[0].content = metaTitle;
+                              
+                                // $scope.catname1 = value.subCategoryName;
+                                //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
+                            }
+                            //alert(JSON.stringify(cat.name));
+                        });
+
+                    });
+                });
+
+
+
+
+
+
+
+
+
+            })
+            //alert(category);
+            $scope.keyword = category + ' in ' + city;
              $window.document.getElementById('category').innerHTML = category;
-            $window.document.getElementById('area').innerHTML = area;
+            //$window.document.getElementById('area').innerHTML = area;
             $window.document.getElementById('city').innerHTML = city;
-              $window.document.title = category + ' in '+ city + ' | NXsearch';
-            $window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
-              $window.document.getElementsByName('description')[0].content = category + ' in ' + city + ' | NXsearch';
-              $window.document.getElementsByName('keywords')[0].content = category + ' in ' + city + ' | NXsearch';
+             // $window.document.title = category + ' in '+ city + ' | NXsearch';
+            //$window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
+              //$window.document.getElementsByName('description')[0].content = category + ' in ' + city + ' | NXsearch';
+              //$window.document.getElementsByName('keywords')[0].content = category + ' in ' + city + ' | NXsearch';
             $window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
-            $window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
+            //$window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
             $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
-            $window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
+            //$window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
 
-if (area == undefined && category ==undefined) {
-              $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-               $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-             $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-            $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-             $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-            $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-            $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-            $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-}
+        if (area == 'undefined' && category == 'undefined') {
+                    $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    //$window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        }
 
-if($location.path() == '/register'){
-     $window.document.title = 'Register Free - NXsearch';
-}
-if($location.path() == '/aboutus'){
-     $window.document.title = 'About Us - NXsearch';
-}
+        if($location.path() == '/register'){
+            $window.document.title = 'Register Free - NXsearch';
+        }
+        if($location.path() == '/aboutus'){
+            $window.document.title = 'About Us - NXsearch';
+        }
 
-if($location.path() == '/termsandconditions'){
-     $window.document.title = 'Terms and Conditions - NXsearch';
-}
-if($location.path() == '/career'){
-     $window.document.title = 'Career - NXsearch';
-}
-if($location.path() == '/privacypolicy'){
-     $window.document.title = 'Privacy Policy';
-}
-if($location.path() == '/disclaimer'){
-     $window.document.title = 'Disclaimer';
-}
-if($location.path() == '/enquiryDetails'){
-     $window.document.title = 'Enquiry Details';
-}
-if($location.path() == '/clientlist'){
-     $window.document.title = 'Client List';
-}
-if($location.path() == '/addClient'){
-     $window.document.title = 'Add New Client';
-}
-if($location.path() == '/addClient/'+ $routeParams.id){
-     $window.document.title = 'Update Client';
-}
-if($location.path() == '/categories'){
-     $window.document.title = 'Categories List';
-}
-if($location.path() == '/addCities'){
-     $window.document.title = 'City List';
-}
-if($location.path() == '/export'){
-     $window.document.title = 'Export Data';
-}
+        if($location.path() == '/termsandconditions'){
+            $window.document.title = 'Terms and Conditions - NXsearch';
+        }
+        if($location.path() == '/career'){
+            $window.document.title = 'Career - NXsearch';
+        }
+        if($location.path() == '/privacypolicy'){
+            $window.document.title = 'Privacy Policy';
+        }
+        if($location.path() == '/disclaimer'){
+            $window.document.title = 'Disclaimer';
+        }
+        if($location.path() == '/enquiryDetails'){
+            $window.document.title = 'Enquiry Details';
+        }
+        if($location.path() == '/clientlist'){
+            $window.document.title = 'Client List';
+        }
+        if($location.path() == '/addClient'){
+            $window.document.title = 'Add New Client';
+        }
+        if($location.path() == '/addClient/'+ $routeParams.id){
+            $window.document.title = 'Update Client';
+        }
+        if($location.path() == '/categories'){
+            $window.document.title = 'Categories List';
+        }
+        if($location.path() == '/addCities'){
+            $window.document.title = 'City List';
+        }
+        if($location.path() == '/export'){
+            $window.document.title = 'Export Data';
+        }
 
 
-        // if(city == undefined){
-        //     url.replace('Categories','SubCategories')
-        // }
+                // if(city == undefined){
+                //     url.replace('Categories','SubCategories')
+                // }
 
         $http.get(url)
             .success(function(data) {
@@ -616,7 +740,7 @@ if($location.path() == '/export'){
                 $scope.city2 = $routeParams.city;
                 $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
-              //  alert( $scope.SubCategoriesLinks);
+                // alert( $scope.SubCategoriesLinks);
                      //alert( metaDesc);
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
@@ -2018,7 +2142,7 @@ if($location.path() == '/export'){
     }
 //Popup Form Code
 $scope.baseurl = $location.path()
-  $scope.sendPopup = function(popupForm){  
+ /* $scope.sendPopup = function(popupForm){  
       $scope.item = {
         popupName : popupForm.name,
         popupPhone : popupForm.phone,
@@ -2049,7 +2173,7 @@ $scope.baseurl = $location.path()
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-  }
+  }*/
 
     $http.get('/api/formenquiry/popupForm')
             .success(function(data) {
@@ -2120,7 +2244,7 @@ $scope.MailSub= function(newsletter){
                     html: "Subscription Request From :" + "<b>" + newsletter.subscribe + "</b> " 
                          
                 }) .then(function successCallback(response) {
-                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+                     $scope.serverMessage = 'Subscription successfull...Thank you...!';
     // this callback will be called asynchronously
     // when the response is available
   }, function errorCallback(response) {
