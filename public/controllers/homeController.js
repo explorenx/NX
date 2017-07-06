@@ -199,7 +199,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
         //alert(JSON.stringify($scope.client.selectedCityModel));
         //alert(JSON.stringify($scope.client.selectedCityModel.$$hashKey));
         if (($rootScope.client.selectedCityModel != null || $rootScope.client.selectedCityModel.$$hashKey) && $scope.MainAreas.selectedAreaModel.Area == null){
-           $location.path('/' + $scope.client.selectedCityModel + '/' + category.replace(/ /g, '-') );
+           $location.path('/' + $scope.client.selectedCityModel + '/' + category.replace(/ /g, '-') + '/' + category.replace(/ /g, '-') + '-in-'  + $scope.client.selectedCityModel);
         }
        
             if (($rootScope.client.selectedCityModel != null || !$rootScope.client.selectedCityModel.$$hashKey) && category && $scope.MainAreas.selectedAreaModel.Area != null) {
@@ -218,7 +218,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
         //alert(JSON.stringify($rootScope.client.selectedCityModel));
         //alert(JSON.stringify($scope.client.selectedCityModel.$$hashKey));
         if (($rootScope.client.selectedCityModel != null || $rootScope.client.selectedCityModel.$$hashKey) && $scope.MainAreas.selectedAreaModel.Area == null){
-            $location.path('/' + $scope.client.selectedCityModel + '/' + subCategory.replace(/ /g, '-') );
+            $location.path('/' + $scope.client.selectedCityModel + '/' + subCategory.replace(/ /g, '-') + '/' + subCategory.replace(/ /g, '-') + '-in-'  + $scope.client.selectedCityModel);
         }
        
 
