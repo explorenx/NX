@@ -924,7 +924,7 @@
 
 												<ul class="kw-listing-item-data kw-icons-list kw-oneline-form1">
 
-													<span class="lnr icon-map-marker"></span>{{::item.Area}}, {{::item.City}}
+													<span class="lnr icon-map-marker"></span>{{::item.Area | limitTo : 13}}{{item.Area.length > 13 ? '...' : ''}}, {{::item.City}}
 													
 
 												</ul>
