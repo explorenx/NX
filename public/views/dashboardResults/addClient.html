@@ -28,12 +28,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="col-md-12 col-xs-12 text-center">
-                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo.png" alt="NX-Search" width="160px" height="65px" /></a>
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/NX-LOGO-300x66.png" alt="NX-Search" width="160px" height="65px" /></a>
                         </div>
                     </div>
                      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
                          
                         <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                        <a href="http://nxsearch.com" target="_blank"><button class="btn btn-info">Go to nxsearch.com </button></a>
                         
                     </div>
                 </div>
@@ -62,9 +63,10 @@
     <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
 
         <div class="col-md-12 col-sm-12 col-xs-12 text-center" ng-controller="dashResultsController as up">
-
-            <div class="col-md-12">
-                <h3 class="text-center">Add Client</h3>
+ <h3 class="text-center" ng-show="currentPath == '/addClient'">Add Client</h3>
+            <div class="col-md-12 asdf" ng-repeat="business in businessname">
+                <h3 class="text-center">Edit Client {{business.ClinicName}}</h3>
+               
             </div>
             <div  class="alert" style="color:#3c763d">
                  <strong> {{successMsg}}</strong>
