@@ -357,6 +357,19 @@ $scope.area2 = $routeParams.area;
         }
         if($location.path() == '/addClient/'+ $routeParams.id){
             $window.document.title = 'Update Client';
+           
+            if($routeParams.id){
+               
+                 $http.get('/api/dashbord/results/?_id=' + $routeParams.id)
+                                    .success(function(data) {
+                                        //alert(JSON.stringify(data));
+                                         $scope.businessname = data;
+                                         //alert($scope.businessname);
+                                    }).error(function(err){
+                                        alert('error');
+                                    })
+                 //alert($routeParams.id);
+            }
         }
         if($location.path() == '/categories'){
             $window.document.title = 'Categories List';
@@ -1023,10 +1036,14 @@ $scope.area2 = $routeParams.area;
 
 
         if ($scope.formData._id) {
+           
             //alert(JSON.stringify($scope.formData));
             $http.put('/api/dashbord/results/' + $scope.formData._id, $scope.formData)
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
+                    $scope.formData._id.ClinicName=clinicname;
+                    
+
                     $scope.successMsg="Client Added Succesfully";
                     console.log(data);
                     var geocoder = new google.maps.Geocoder();
