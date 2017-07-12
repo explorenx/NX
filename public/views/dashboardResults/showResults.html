@@ -55,7 +55,7 @@ var google_remarketing_only = false;
     };
 
 </script>
-<page-loader latency="2000"></page-loader>
+<!--<page-loader latency="2000"></page-loader>-->
 
 <!-- Header -->
 				<header id="header" class="kw-header kw-dark">
@@ -536,7 +536,7 @@ var google_remarketing_only = false;
                              <div class="align-center">
 
 							    <button class="kw-btn-medium kw-theme-color kw-listings-load-more" ng-hide="aaa<=10" ng-click='loadMore()'>Load More</button>
-
+                                <br>
 						    </div>
 						</div>
 
@@ -570,7 +570,7 @@ var google_remarketing_only = false;
 												</div>
 											</div>
 											<div class="col-sm-12 col-xs-12 text-center" style="margin-top:10px;">
-												<img class="img-responsive" src="assets/img/advertise3.jpg"  >
+												<img class="img-responsive" src="assets/img/advertise3.jpg">
 											</div>
 										</div>  
 										<!-- Side Banner code Ends Here -->
@@ -644,7 +644,7 @@ var google_remarketing_only = false;
 
             
            
-            <div class="col-md-12 col-xs-12 well_new">
+            <div class="col-md-12 col-xs-12 well_new" style="display:none;">
                 <div class="row">
                       <div itemprop="availableService" class="col-md-3 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services" itemscope itemtype="http://schema.org/MedicalTherapy">
                         <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}-{{::formData.City}}">
