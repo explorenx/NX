@@ -35,6 +35,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
 
 }
 
+$scope.myFunction = function myFunction() {
+    myVar = setTimeout(alertFunc, 10000);
+}
+
+function alertFunc() {
+  //alert("Hello!");
+}
+$scope.myFunction();
     //read more start
  $scope.limitText = 150;
   $scope.lessText = "Show less";
@@ -1041,7 +1049,7 @@ $scope.area2 = $routeParams.area;
             $http.put('/api/dashbord/results/' + $scope.formData._id, $scope.formData)
                 .success(function(data) {
                     //$scope.formData = {}; // clear the form so our user is ready to enter another
-                    $scope.formData._id.ClinicName=clinicname;
+                    //$scope.formData._id.ClinicName=clinicname;
                     
 
                     $scope.successMsg="Client Added Succesfully";
@@ -1856,17 +1864,44 @@ $scope.area2 = $routeParams.area;
                     subject: 'NXsearch Enquiry for ' + item.ClinicName,
                     //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
                     html: "Enquiry for :" + "<b>" + item.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + item.Area + " </b>" + "<br>" + "Name : " + "<b>" + item.username + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.usermobile + "</b>" + "<br>" // html body
-                        +
-                        "Email Id :" + "<b>" + item.useremail + "</b>"
+                    
+                        
                 })
                 .then(function successCallback(response) {
                      $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
     // this callback will be called asynchronously
     // when the response is available
-  }, function errorCallback(response) {
+  }
+ 
+  , function errorCallback(response) {
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
+
+//mail to Client
+               $http.post('/sendmail', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: item.useremail,
+                    subject: 'NXsearch Enquiry for ' + item.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + item.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + item.Area + " </b>" + "<br>" + "Mobile No :" + "<b>" + item.extensionNo + "</b>" + "<br>" // html body
+                       + "<img src='http://nxsearch.com/assets/img/NX-LOGO-300x66.png'>"
+                })
+                .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }
+  
+  
+  
+
+  
+  , function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+  //mail to client
             }
 
 
@@ -1979,6 +2014,32 @@ $scope.area2 = $routeParams.area;
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
+
+  //mail to Client
+               $http.post('/sendmail', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: client.useremail,
+                    subject: 'NXsearch Enquiry for ' + client.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + client.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + client.Area + " </b>" + "<br>" + "Mobile No :" + "<b>" + client.extensionNo + "</b>" + "<br>" // html body
+                       + "<img src='http://nxsearch.com/assets/img/NX-LOGO-300x66.png'>"
+                })
+                .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }
+  
+  
+  
+
+  
+  , function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+  //mail to client
+
             }
         }).
         error(function(status) {
@@ -2089,6 +2150,32 @@ $scope.area2 = $routeParams.area;
     // or server returns response with an error status.
   });
             }
+
+            //mail to Client
+               $http.post('/sendmail', {
+                    from: 'NXsearch <enquiry@nxsearch.com>',
+                    to: FirstSponsoredClient.useremail,
+                    subject: 'NXsearch Enquiry for ' + FirstSponsoredClient.ClinicName,
+                    //text: item.username + ","+ item.usermobile + ","+item.useremail + ","+item.date + ","+item.time + ","+item.ClinicName,
+                    html: "Enquiry for :" + "<b>" + FirstSponsoredClient.ClinicName + "</b> " + "<br>" + "Area :" + "<b>" + FirstSponsoredClient.Area + " </b>" + "<br>" + "Mobile No :" + "<b>" + FirstSponsoredClient.extensionNo + "</b>" + "<br>" // html body
+                       + "<img src='http://nxsearch.com/assets/img/NX-LOGO-300x66.png'>"
+                })
+                .then(function successCallback(response) {
+                     $scope.serverMessage = 'Enquiry sent successfully... You will get contacted soon...!';
+    // this callback will be called asynchronously
+    // when the response is available
+  }
+  
+  
+  
+
+  
+  , function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+  //mail to client
+
         }).
         error(function(status) {
             //your code when fails
