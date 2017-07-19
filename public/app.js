@@ -542,6 +542,10 @@ app.config(function($routeProvider, $locationProvider) {
                 templateUrl : 'views/dashboardResults/editHomeServicesRecord.html',
             })
 
+        .when('/register-free', {
+                templateUrl : 'views/dashboardResults/clientAddDemo.html',
+            })    
+
          .when('/editService/:id', {
                 templateUrl : 'views/dashboardResults/editService.html',
                
