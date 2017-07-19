@@ -14207,6 +14207,37 @@ li h1 {
     top: 86px;
 }
 
+@media (max-width:963px){
+  .dash_sidebar{
+        /*bottom: 0;
+    left: 0;*/
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #222222;
+    border-right: 1px solid #eee;
+    height: auto;
+    position: fixed;
+    top: 59px;
+}
+}
+@media (max-width:602px){
+  .dash_sidebar{
+        /*bottom: 0;
+    left: 0;*/
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #222222;
+    border-right: 1px solid #eee;
+    height: auto;
+    position: relative;
+    top: 88px;
+}
+}
+
 .inner-bg {
     padding: 60px 0 80px 0;
 }
@@ -14545,3 +14576,11 @@ a {
     color: #000;
 }
 
+/* New added css Date 19/07/2017 */
+
+.cat_clickable{
+  background-color: #99c4f5;
+  margin: 5px;
+  cursor: pointer;
+  padding-top: 6px;
+}
