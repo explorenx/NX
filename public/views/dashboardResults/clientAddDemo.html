@@ -19,50 +19,152 @@
     });
 </script>
 <!-- Header -->
-<div class="row dash_head navbar-fixed-top">
-        
-            <div class="container-fluid">
-                <div class="col-md-12 col-xs-12 col-sm-12" style="padding-top:11px; padding-bottom:11px">
-                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                        
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="col-md-12 col-xs-12 text-center">
-                            <a href="/" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo1.png" alt="NX-Search" width="160px" height="65px" /></a>
-                        </div>
-                    </div>
-                     <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                        
-                    </div>
-                </div>
-            </div>
-        
-    </div>
+				<header id="header" class="kw-header kw-dark">
+
+				<!-- - - - - - - - - - - - - - Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				
+
+				<!-- - - - - - - - - - - - - - End of Header Top Bar - - - - - - - - - - - - - - - - -->
+
+				<!-- - - - - - - - - - - - - - Header Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-hsection kw-sticky">
+
+					<div class="row">
+
+						<div class="col-sm-12 col-md-2 text-center">
+
+							<!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+
+							<a href="/">
+
+								<img src="assets/img/NX-LOGO-300x66.png" alt="">
+
+							</a>
+
+							<!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
+
+						</div>
+                        <!-- - - - - - - - - - - - - - sEARCH FORM- - - - - - - - - - - - - - - - -->
+                        <div class="col-md-7 col-xs-12 formbackground2" style="padding-top:10px;" ng-controller="InstantSearchController">
+                            <div class="col-md-12 col-xs-12">
+                                <form>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
+
+                                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                                                                <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
+                                                            </select>
+
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-3 col-xs-12 nopadforsearch">
+                                        <div>
+                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                                                                <option value="">Select Area</option>
+                                                            </select>
+                                            <!--{{MainAreas.selectedAreaModel}}-->
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-4 col-sm-4 col-xs-12 nopadforsearch">
+                                        <div class="form-group" id="showdiv" ng-blur="EnableData = false">
+                                            
+                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;" autocomplete="off"/>
+
+                                            <div ng-show="EnableTextInputResult == false || EnableData" id="showId" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
+                                                <div ng-repeat="i in Categories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageByCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                                    <a href="" ng-click="gotoResultsPageBySubCategory(i)">
+                                                        <div class="list_dropdown">
+                                                            {{i}}
+                                                        </div>
+                                                    </a>
+
+
+                                                </div>
+
+                                                <div ng-repeat="i in clients |filter : {isPaidClient:true}  |  filter : searchString track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <b> {{i.ClinicName}}</b>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <!--<div ng-repeat="i in clients |  filter : searchString | limitTo:5 track by $index " ng-click="doSomething($event, 1)">
+                                                    <a href="/profile/{{i.City | slugify}}/{{i.Categories | slugifynolower}}/{{i.Area | slugify}}/{{i.ClinicName | slugify | slug}}/{{i._id}}">
+                                                        <div class="list_dropdown">
+                                                            <span class="text-center;">{{i.DoctorName}}</span>
+                                                            <br/>
+                                                        </div>
+                                                    </a>
+                                                </div> -->
+                                            </div>
+
+                                        </div>
+                                        <span class="clearInput" ng-click="clearInput()">X</span>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-2 col-xs-12 text-center nopadforsearch">
+                                        
+                                        
+
+										<button class="kw-btn-big kw-yellow" style="width:100%" type="submit">Search</button>
+
+									
+                                    </div>
+                                </form>
+                            </div>
+                        </div> 
+
+
+                        <!-- - - - - - - - - - - - - - End of SEARCH FORM - - - - - - - - - - - - - - - - -->
+
+						<div class="col-sm-12 col-xs-12 col-md-3">
+
+							<div class="kw-hcontent text-center">
+                                    
+
+								<!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
+
+								<!-- - - - - - - - - - - - - - Add Listing - - - - - - - - - - - - - - - - -->
+
+								<a href="/register" class="kw-btn-medium kw-yellow-type-2">Add Listing</a> 
+
+								<!-- - - - - - - - - - - - - - End of Add Listing - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-hcontent -->
+
+						</div>
+
+					</div><!--/ .kw-sm-table-row.row -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Header Section - - - - - - - - - - - - - - - - -->
+
+		</header>
 <!-- Header End -->
+<!-- Page Container -->
+<div class="container-fluid">
 
-
-    <div class="col-md-2 col-sm-2 dash_sidebar">
-        <nav class="navbar navbar-inverse">
-            <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
-              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
-                <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
-                <li><a href="/addCities"><i class="fa fa-shield"></i> Add Cities</a></li>
-                <li><a href="/categories"><i class="fa fa-shield"></i> Categories</a></li>
-                <li><a href="/addClient"><i class="fa fa-shield"></i> Add Clients</a></li>                
-                <li><a href="/clientlist"><i class="fa fa-user"></i>Clientlist</a></li>
-                <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
-                <li ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></li>
-                <span class="fa fa-user pull-right"> <b>Hello Admin</b></span>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 well_new" style="background-color: #f1efef;">
 
         <div class="col-md-12 col-sm-12 col-xs-12 text-center" ng-controller="dashResultsController as up">
-
-            <div class="col-md-12">
-                <h3 class="text-center">Add Client</h3>
+         <h3 class="text-center" ng-show="currentPath == '/addClient'">Add Client</h3>
+            <div class="col-md-12 asdf" ng-repeat="business in businessname">
+                <h3 class="text-center">Edit Client {{business.ClinicName}}</h3>
+               
             </div>
             <div  class="alert" style="color:#3c763d">
                  <strong> {{successMsg}}</strong>
@@ -83,7 +185,8 @@
                     <i id="shareBtn" class="fa fa-facebook-square fa-2x" style="color: #365899; cursor: pointer; padding-top: 15px;"></i>
                 </li>
             </div>
-<!--Form toggle--><form name="ClientForm">
+            <!--Form toggle-->
+            <form name="ClientForm">
                 <div class="col-md-12 col-xs-12 col-sm-12">
 
                     <!--<button type="button" class="navbar-toggle1 collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -94,13 +197,12 @@
                                     <span class="icon-bar"></span>
                                 </button>-->
 
-                    <div id="navbar" class="navbar-collapse collapse">
+                    <div id="navbar" class="navbar-collapse">
                         <ul class="nav nav-tabsH nav-justified">
                             <li class="active"><a href="#Basic" data-toggle="tab">Basic Info</a></li>
                             <li><a href="#Category" data-toggle="tab" aria-expanded="false">Category Info</a></li>
                             <li><a href="#Area" data-toggle="tab" aria-expanded="false">Area Info</a></li>
-                            <li><a href="#Address" data-toggle="tab" aria-expanded="false">Address and time</a></li>
-                            <li><a href="#other" data-toggle="tab" aria-expanded="false">For Official Use only</a></li>
+                            <li><a href="#Address" data-toggle="tab" aria-expanded="false">Address and time</a></li>                         
                             
                         </ul>
                     </div>
@@ -108,7 +210,7 @@
                 <div class="tab-content">
                     
                         <!--Hidden div-->
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
 
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -123,7 +225,7 @@
                             </div>
                             <div class="col-lg-6">
 
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 col-sm-12 col-xs-12">
 
                                     <div class="form-group">
                                         <label class="col-lg-4 ng-hide">Password:</label>
@@ -138,7 +240,7 @@
                             </div>
                         </div>
                         <!--Hidden div End-->
-                        <div id="Basic" class="col-md-12 col-sm-12 tab-pane active">
+                        <div id="Basic" class="row tab-pane active">
                                 <div class="col-sm-12 col-md-12 TitleBoxAC">
                                     <h5>Basic Information</h5>
                                 </div>
@@ -184,9 +286,9 @@
 
                                     <div class="col-lg-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <label class="col-lg-4 col-md-4 col-sm-4">Speciality*:</label>
+                                            <label class="col-lg-4 col-md-4 col-sm-4">Speciality:</label>
                                             <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
-                                                <input type="text" ng-model="formData.speciality" name="speciality" class="form-control text-center" placeholder="Enter Speciality" ng-required="true" />
+                                                <input type="text" ng-model="formData.speciality" name="speciality" class="form-control text-center" placeholder="Enter Speciality"/>
                                                 <div ng-show="ClientForm.speciality.$touched && ClientForm.speciality.$invalid">
                                                     <small style="color: red; display: block; text-align: center">Please Enter Client Speciality</small>
                                                 </div>
@@ -226,7 +328,7 @@
                         </div>
 
                         <!--this is select category part-->
-                        <div id="Category" class="col-md-12 tab-pane fade">
+                        <div id="Category" class="row tab-pane fade">
                             <div class="col-sm-12 col-md-12 TitleBoxAC">
                                 <h5>Category Information</h5>
                             </div>
@@ -235,7 +337,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 col-md-4 col-sm-6">Main Categories*:</label>
                                         <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
-                                            <select name="category" ng-options="s.mainCategoryName for s in sample" ng-model="selitemMain" ng-change="getMainselectval()">
+                                            <select name="category" ng-options="s.mainCategoryName for s in sample" ng-model="selitemMain" ng-change="getMainselectval()" ng-required="true">
                                         <option value="">--Select Category--</option>
                                     </select>
                                             <div ng-show="ClientForm.category.$touched && ClientForm.category.$invalid">
@@ -252,7 +354,7 @@
                                         <label class="col-lg-4 col-md-4 col-sm-4">Categories*:</label>
                                         <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
 
-                                            <select name="subcategory" ng-options="s.name for s in SubSample " ng-model="selitemCats" ng-change="getCatsselectval()">
+                                            <select name="subcategory" ng-options="s.name for s in SubSample " ng-model="selitemCats" ng-change="getCatsselectval()" ng-required="true">
                                         <option value="">--Select SubCategory--</option>
                                     </select>
                                             <div ng-show="ClientForm.subcategory.$touched && ClientForm.subcategory.$invalid">
@@ -272,12 +374,12 @@
                                     <div class="col-lg-10 well">
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 subs" style="border: solid 1px;">
-                                                <input type="button" class="btn1 btn1-info" value="Check All" ng-click="checkAll()">
-                                                <label class="col-md-4 col-sm-4" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
+                                                <input type="button" class="btn btn-info" value="Check All" ng-click="checkAll()">
+                                                <label class="col-md-4 col-sm-4 col-xs-6" ng-repeat="sub in subCategories | orderBy" style="padding: 5px;">
                                                 
                                                     <div class="col-md-12 col-xs-12 pull-left">
                                                         <input type="checkbox" class="pull-left" checklist-model="SubCatetories.subs" checklist-value="sub">
-                                                        <span>{{sub}}</span>
+                                                        <span class="pull-left">&nbsp;&nbsp;{{sub}}</span>
                                                     </div>
 
                                                 </label>
@@ -293,7 +395,7 @@
                         <!--end of category part-->
 
                         <!--this is select Location part-->
-                        <div id="Area" class="col-md-12 col-sm-12 tab-pane fade">
+                        <div id="Area" class="row tab-pane fade">
                             <div class="col-sm-12 col-md-12 TitleBoxAC">
                                 <h5>Area Information</h5>
                             </div>
@@ -302,7 +404,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 col-md-4 col-sm-4">Main City*:</label>
                                         <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
-                                            <select name="maincity" ng-options="s.city for s in locations" ng-model="selitemLocations" ng-change="getLocationselectval()">
+                                            <select name="maincity" ng-options="s.city for s in locations" ng-model="selitemLocations" ng-change="getLocationselectval()" ng-required="true">
                                         <option value="">--Select Location--</option>
                                     </select>
                                             <div ng-show="ClientForm.maincity.$touched && ClientForm.maincity.$invalid">
@@ -318,7 +420,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 col-md-4 col-sm-4">Area*:</label>
                                         <div class="col-lg-8 col-md-8 col-sm-12 inputMargin">
-                                            <select name="area" ng-options="s.Area for s in SubLocationsSample " ng-model="selitemSubLocations" ng-change="getSubLocationselectval()">
+                                            <select name="area" ng-options="s.Area for s in SubLocationsSample " ng-model="selitemSubLocations" ng-change="getSubLocationselectval()" ng-required="true">
                                         <option value="">--Select Area--</option>
                                     </select>
                                             <div ng-show="ClientForm.area.$touched && ClientForm.area.$invalid">
@@ -334,7 +436,7 @@
                                         <label class="col-lg-2 col-md-2 col-sm-4">Sub-Areas:</label>
                                         <div class="col-lg-10 col-md-10 col-sm-12 subox pre-scrollable">
                                             <div class="row">
-                                                <div class="col-xs-12">
+                                                <div class="col-xs-12" style="border: solid 1px;">
                                                     <div class="form-group">
 
                                                         <label class="col-md-4 col-sm-4" ng-repeat="sub in subLocationCategories track by $index" style="padding: 5px;">
@@ -350,7 +452,7 @@
                     
 
                         <!--end of Location part-->
-                        <div id="Address" class="col-md-12 tab-pane fade">
+                        <div id="Address" class="row tab-pane fade">
                             <!--Time Start here -->
                             <div class="col-sm-12 col-md-12 TitleBoxAC">
                                 <h5>Time, Address and Contact Info</h5>
@@ -384,20 +486,13 @@
                                             <div class="form-group">
                                                 <label class="col-lg-3 col-md-2 col-sm-6">Mobile Number*:</label>
                                                 <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                                    <input type="text" ng-model="formData.extensionNo" name="" class="form-control text-center" placeholder="Enter Mobile no" >
+                                                    <input type="text" ng-model="formData.extensionNo" name="" class="form-control text-center" placeholder="Enter Mobile no" ng-minlength="10" ng-maxlength="10">
                                                 </div>
                                             </div>
                                        
 
                                         
-                                            <div class="col-lg-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="col-lg-3 col-md-2 col-sm-6">Date Of Registration*:</label>
-                                                    <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                                        <input type="text" ng-model="formData.registerDate" name="" class="form-control text-center" placeholder="MM/DD/YYY or write nil" ng-required="true">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
                                         
                                     </div>
                                    
@@ -459,94 +554,198 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <label class="col-lg-4 col-md-2 col-sm-4">Social Links:</label>
-                                            <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                                <input type="text" ng-model="formData.Socical.Youtube" name="" class="form-control text-center" placeholder="Enter Youtube link">
-                                                <input type="text" ng-model="formData.Socical.instagram" name="" class="form-control text-center" placeholder="Enter Instagram link">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
                             </div>
                         </div>
                             <!--end of Address time part-->
-                        <div id="other" class="col-md-12 col-sm-12 tab-pane fade">
-                            <!--Official Start here -->
-                            <div class="col-sm-12 col-md-12 TitleBoxAC">
-                                <h5>Official Info</h5>
-                            </div>
-
-                            <!--<div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-lg-4 col-md-2 col-sm-4">Tags:</label>
-                                    <div class="col-lg-8 col-md-10 col-sm-12">
-                                        <input type="text" ng-model="formData.Tags" name="tags" class="form-control text-center" placeholder="Enter Tags" />
-                                        <div ng-show="ClientForm.tags.$touched && ClientForm.tags.$invalid">
-                                            <small style="color: red; display: block; text-align: center">Please Enter Tags</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>-->
-                                <div class="col-lg-12 col-sm-12 col-md-12">
-                                    <div class="col-lg-6 col-sm-6 col-md-6">
-                                        <label class="col-lg-4 col-md-2 col-sm-4">Is Paid Client</label>
-                                        <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                            <input type="checkbox" ng-model="formData.isPaidClient" name="" class="form-control text-center" placeholder="Enter Extension no">
-                                        </div>
-                                    </div>    
-                                    <div class="col-lg-6 col-sm-6 col-md-6">
-                                        <label class="col-lg-4 col-md-2 col-sm-6">Is Sponsored Client</label>
-                                        <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
-                                        <input type="checkbox" ng-model="formData.isSponsoredClient" name="" class="form-control text-center" placeholder="Enter Extension no">
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <label>Enter Meta Title :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                    <textarea ng-model="formData.Socical.facebook" class="form-control text-center" placeholder="Enter Meta Title"></textarea>
-                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.facebook.length}}</span></p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <label>Enter Meta Description :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                    <textarea ng-model="formData.Socical.twitter" class="form-control text-center" placeholder="Enter Meta Description :"></textarea>
-                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.twitter.length}}</span></p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <label>Enter Meta Keywords :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
-                                    <textarea ng-model="formData.Socical.google" class="form-control text-center" placeholder="Enter Meta Keywords :"></textarea>
-                                    <p> Length of Meta Description = <span style="color: #14a516; font-weight: bold;">{{formData.Socical.google.length}}</span></p>
-                                    </div>
-                                </div>
-                            
-
-
-
-
-                            <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="ClientForm.$invalid">{{btnValue}}</button>
+                      <button type="submit" class="btn btn-primary btn-lg" ng-click="createEditRec()" ng-disabled="ClientForm.$invalid">{{btnValue}}</button>
                         </div>   
                     
                 </div>
-                </form>
+            </form>
 
         </div>
     </div>
+
 </div>
-</div>
-</div>
+<!--old container-->
+
+<!--  End of Page Container  -->
+
+
+
+<!-- Footer -->
+	<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+
+			<footer id="footer" class="kw-footer">
+
+				<!-- - - - - - - - - - - - - - Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-newsletter-section">
+
+					<!-- - - - - - - - - - - - - - Background Icon - - - - - - - - - - - - - - - - -->
+
+					<i class="lnr icon-envelope kw-section-icon"></i>
+
+					<!-- - - - - - - - - - - - - - End of Background Icon - - - - - - - - - - - - - - - - -->
+
+					<div class="container">
+
+						<div class="kw-newsletter">
+
+							<h3 class="kw-title">Sign Up to Newsletter</h3>
+
+							
+
+							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
+
+							<form class="kw-newsletter-form kw-inline-form" method="POST">
+
+								<div class="kw-input-wrapper">
+
+									<input type="text" name="email" autocomplete="off" placeholder="Enter your email address...">
+
+								</div><!--/ .kw-input-wrapper -->
+
+								<button type="submit" class="kw-btn-big kw-yellow" name="newsletter_submit">Sign Up</button>
+
+							</form>
+
+							<!-- - - - - - - - - - - - - - End of Newsletter Form - - - - - - - - - - - - - - - - -->
+
+						</div><!--/ .kw-newsletter -->
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Newsletter Section - - - - - - - - - - - - - - - - -->
+
+				<div class="container">
+
+					<!-- - - - - - - - - - - - - - Footer Section - - - - - - - - - - - - - - - - -->
+
+					<div class="kw-fsection">
+
+						<div class="kw-footer-widget-area kw-cols-4">
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<div class="kw-widget">
+
+									<a href="/" class="kw-footer-logo"><img src="assets/img/NX-LOGO-300x66.png" alt="nxsearxh.com"></a>
+
+									
+
+									<ul class="kw-social-links">
+
+										<li><a href="https://www.facebook.com/nxsearch" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href=""><i class="fa fa-google-plus" target="_blank"></i></a></li>
+										<li><a href="https://twitter.com/nxsearch" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="https://www.instagram.com/nxsearch_com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+										<!--<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>-->
+
+									</ul>
+
+								</div>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Company</h4>
+
+									<ul>
+
+										<li><a href="/aboutus">About Us</a></li>										
+										<li><a href="/career">Careers</a></li>
+										<li><a href="contactus">Contact Us</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+                            <!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Quick Links</h4>
+
+									<ul>
+
+										<li><a href="#">How It Works</a></li>
+										<li><a href="#">Add Listing</a></li>
+                                        <li><a href="#">Blog</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+							<div class="col-md-3 col-xs-6">
+
+								<!-- - - - - - - - - - - - - - Widget - - - - - - - - - - - - - - - - -->
+
+								<section class="kw-widget">
+
+									<h4 class="kw-widget-title">Terms</h4>
+
+									<ul>										
+										<li><a href="/termsandconditions">Terms & Conditions</a></li>
+										<li><a href="/privacypolicy">Privacy Policy</a></li>
+										<li><a href="/disclaimer">Disclaimer</a></li>
+
+									</ul>
+
+								</section>
+
+								<!-- - - - - - - - - - - - - - End of Widget - - - - - - - - - - - - - - - - -->
+
+							</div><!--/ .kw-widget-col -->
+
+						</div><!--/ .kw-footer-widget-area -->
+
+					</div>
+
+					<!-- - - - - - - - - - - - - - End of Footer Section - - - - - - - - - - - - - - - - -->
+
+				</div><!--/ .container -->
+
+				<!-- - - - - - - - - - - - - - Copyright Section - - - - - - - - - - - - - - - - -->
+
+				<div class="kw-copyright">
+
+					<div class="container">
+
+						<p>Copyright <a href="/">NXsearch</a> &copy; 2017. All Rights Reserved</p>
+
+					</div><!--/ .container -->
+
+				</div>
+
+				<!-- - - - - - - - - - - - - - End of Copyright Section - - - - - - - - - - - - - - - - -->
+
+			</footer>
+
+			<!-- - - - - - - - - - - - - - End of Footer - - - - - - - - - - - - - - - - -->
+<!-- Footer End --> 
