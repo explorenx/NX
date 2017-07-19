@@ -22,12 +22,18 @@
 <!-- Header End -->
 
 
-    <div class="col-md-2 dash_sidebar">
+    <div class="col-md-2 col-sm-2 dash_sidebar">
         <nav class="navbar navbar-inverse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
-              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li> 
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
-                <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
+                 <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
                 <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
                 <li><a href="/addClient"><i class="fa fa-user"></i> Add Clients</a></li>
                 <li><a href="/enquiryDetails"><i class="fa fa-shield"></i> Enquiry Details</a></li>
@@ -36,9 +42,13 @@
                 <li><a href="/export"><i class="fa fa-cloud-download"></i> Export </a></li>
                 <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
             </ul>
+         </div>   
         </nav>
     </div>
-    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
+    <!-- Navigation End -->
+
+    <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 well_new" style="top:86px; background-color: #f1efef;overflow-x: hidden;">
+        
         
         <div id="todo-form" ng-controller="citiesController">
             <div class="col-xs-12">
