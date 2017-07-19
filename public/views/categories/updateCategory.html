@@ -8,11 +8,10 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="col-md-12 col-xs-12 text-center">
-                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo.png" alt="NX-Search" width="160px" height="65px" /></a>
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/NX-LOGO-300x66.png" alt="NX-Search" width="160px" height="65px" /></a>
                         </div>
                     </div>
                      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
                         <div ng-show="isAuthenticated" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
                     </div>
                 </div>
@@ -22,10 +21,16 @@
 <!-- Header End -->
 
 
-    <div class="col-md-2 dash_sidebar">
+    <div class="col-md-2 col-sm-2 dash_sidebar">
         <nav class="navbar navbar-inverse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
-              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li> 
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
                  <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
                 <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
@@ -36,13 +41,16 @@
                 <li><a href="/export"><i class="fa fa-cloud-download"></i> Export </a></li>
                 <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
             </ul>
+         </div>   
         </nav>
     </div>
-    <div class="col-md-10 col-md-offset-2 well_new" style="top:86px; background-color: #f1efef;">
-        <a href="#bottom"> <button class="btn btn-info pull-right" id="top" style="left: 0;">Goto Bottom</button></a>
+    <!-- Navigation End -->
+
+    <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 well_new" style="top:86px; background-color: #f1efef;overflow-x: hidden;">
+        
         <div class="col-md-12" ng-controller="categoriesController" ng-init="initUpdateCategory()">
 
-            <div class="col-sm-10 col-sm-offset-1 dashboard" style="margin-top: 25px;">
+            <div class="col-sm-12 dashboard" style="margin-top: 25px;">
                 <form name="categoryform">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -63,9 +71,11 @@
 
                         <div ng-repeat="cat in tempCategories">
                             <div class="col-md-12 well_new">
-                                <div class="col-md-12">
-                                    <h4 for="choice" class="text-center">Category</h4>
+                                <span data-toggle="collapse" href="#collapse{{$index+1}}">
+                                <div class="col-md-12 cat_clickable">
+                                    <h4 for="choice" class="text-center">Edit : {{cat.id}} <i class="fa fa-chevron-down" aria-hidden="true"></i></h4>
                                 </div>
+                                </span>
                                 <div class="col-md-3">
                                     <label for="Category">Category Name</label>
                                 </div>
@@ -73,7 +83,7 @@
                                     <input type="text" ng-model="cat.id" name="area" class="form-control" placeholder="Enter a Category" ng-required="true">
                                 </div>
 
-
+                          <div id="collapse{{$index+1}}" class="panel-collapse collapse">                  
                                 <div class="col-md-3">
                                     <label for="Category">Page Title</label>
                                 </div>
@@ -121,7 +131,7 @@
                                 </div>
                                 <hr />
                                 <div class="col-md-12">
-                                    <h4 for="choice" class="text-center">Sub-categories</h4>
+                                    <h4 for="choice" class="text-center">Sub-categories </h4>
                                 </div>
                                 <div class="form-group" ng-repeat="choice in cat.subs">
                                     <!--<input type="text" ng-model="choice.name" name="subarea" class="form-control text-center" placeholder="Enter a sub Category">
@@ -142,7 +152,7 @@
                                         <label for="choice"><b>SubCategory Page  Title </b></label>
                                     </div>
                                     <div class="col-md-9">
-                                        <textarea ng-model="choice.subCategoryTitle" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
+                                        <textarea ng-model="choice.subCategoryTitle" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category 2nd Title"></textarea>
                                         <p> Length of Meta Title = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryTitle.length}}</span></p>
                                     </div>
                                     
@@ -168,8 +178,8 @@
                                         
                             </div>
                             <div class="col-md-3">
-                                        <label for="choice"><b>Meta SubCategoryExtra </b></label>
-                                    </div>
+                                <label for="choice"><b>Meta SubCategoryExtra </b></label>
+                            </div>
                                     <div class="col-md-9">
                                         <textarea ng-model="choice.subCategoryExtra" name="" class="form-control" maxlength="5000" placeholder="Enter Sub-Category Meta Description"></textarea>
                                         <p> Length of Meta Extra Description = <span style="color: #14a516; font-weight: bold;">{{choice.subCategoryExtra.length}}</span></p>
@@ -181,17 +191,20 @@
                         </div>
                         <button class="btn btn-info" ng-click="addNewSubCategories(cat.id)">Add another Sub-Category</button>
                         <hr />
-                        <button class="btn btn-default" ng-click="addNewCategory()">Add Category</button>
+                        
                         <button class="btn btn-info" ng-click="clearForm()">Clear Form</button>
+                       </div> 
                     </div>
                 </div>
             </div>
-
+            <button class="btn btn-default" ng-click="addNewCategory()">Add Category</button>
+            <br />
             <br />
             <button type="submit" class="btn btn-primary text-center" ng-click="createEditRec()" ng-disabled="categoryform.$invalid">{{btnValue}}</button>
+            
         </form>
     </div>
-    <a href="#top"> <button class="btn btn-info pull-right" id="bottom" style="left: 0;">Goto Top</button></a>
+    
 </div>
      </div>
      
