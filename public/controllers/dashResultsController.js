@@ -203,7 +203,7 @@ $scope.area2 = $routeParams.area;
                     angular.forEach(value.category, function(cat, key2) {
                         //alert(JSON.stringify(cat.name.length));
                         $scope.catcount = cat.name.length;
-                        
+                         if (typeof($routeParams.category) != 'undefined') {
                         if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                             $scope.maincat = cat.name;
                             $scope.city2 = $routeParams.city;
@@ -250,9 +250,9 @@ $scope.area2 = $routeParams.area;
                           
 
                         }
-                    
+                    }
                         angular.forEach(cat.subcategories, function(value, key) {
-                            //alert(value.subCategoryName);
+                         if (typeof($routeParams.category) != 'undefined') {
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
                                 
@@ -293,7 +293,7 @@ $scope.area2 = $routeParams.area;
                               
                                 // $scope.catname1 = value.subCategoryName;
                                 //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
-                            }
+                        }}
                             //alert(JSON.stringify(cat.name));
                         });
 
@@ -573,7 +573,7 @@ $scope.area2 = $routeParams.area;
                     angular.forEach(value.category, function(cat, key2) {
                         //alert(JSON.stringify(cat.name.length));
                         $scope.catcount = cat.name.length;
-                        
+                        if (typeof($routeParams.category) != 'undefined') {
                         if (cat.name.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                             $scope.maincat = cat.name;
                            //alert(JSON.stringify($scope.maincat));
@@ -665,9 +665,9 @@ $scope.area2 = $routeParams.area;
                           
 
                         }
-                    
+                    }
                         angular.forEach(cat.subcategories, function(value, key) {
-                            //alert(value.subCategoryName);
+                            if (typeof($routeParams.category) != 'undefined') {
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
                                 //alert(JSON.stringify($routeParams.area));
                                 if ($routeParams.area != undefined) {
@@ -750,7 +750,7 @@ $scope.area2 = $routeParams.area;
                                 });
                                 // $scope.catname1 = value.subCategoryName;
                                 //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
-                            }
+                        }}
                             //alert(JSON.stringify(cat.name));
                         });
 
@@ -766,7 +766,7 @@ $scope.area2 = $routeParams.area;
 
                 $window.document.getElementsByName('description')[0].content = metaDesc;
                 $window.document.getElementsByName('keywords')[0].content = metaKeys;
-               $window.document.getElementById('longdescription').innerHTML = longDesc;
+              // $window.document.getElementById('longdescription').innerHTML = longDesc;
                 $window.document.querySelector('[property="og:description"]').content = metaDesc;
                 $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                 $window.document.title = metaTitle;
@@ -1127,7 +1127,7 @@ $scope.area2 = $routeParams.area;
                                     alert("Request failed.")
                                 }
                             });
-                             $location.path("/clientlist");
+                             $location.path("/showResults");
                         })
                         .error(function(data) {
                             console.log('Error: ' + data);
