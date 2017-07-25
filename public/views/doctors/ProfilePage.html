@@ -359,7 +359,7 @@ document.getElementById('stylechange').onclick= function() {
                                                     </li>-->
                                                 </ul>
                                             </div>
-                                            <button type="button" class="tg-btn" id="stylechange" style="margin-top:5px;" data-toggle="modal" data-target="#myModal">Send An Enquiry</button>
+                                            <button type="button" class="tg-btn" id="stylechange" style="margin-top:5px;" data-toggle="modal" data-target="#myModal">Get Contact No.</button>
 
                                                    <div class="modal fade" id="myModal" role="dialog">
                                     <div class="modal-dialog" style="top: 25%;">
@@ -592,7 +592,7 @@ document.getElementById('stylechange').onclick= function() {
 
                                                 <div>
                                                         
-                                                        <div carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                                        <div carousel active="active" interval="myInterval">
                                                             <div slide ng-repeat="slide in GallaryeData | filter : data.ClinicId = clientId" index="slide.id">
                                                                 <img ng-src="{{slide.gallaryImage}}" style="margin:auto;height: auto">
                                                             
