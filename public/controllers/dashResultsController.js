@@ -323,7 +323,7 @@ $scope.area2 = $routeParams.area;
             //$window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
             //$window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
-alert(city);
+
         if (area == 'undefined' && category == 'undefined' && city == 'undefined') {
                     $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
