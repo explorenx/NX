@@ -318,16 +318,16 @@ $scope.area2 = $routeParams.area;
             //$window.document.getElementsByName('title')[0].content = category + ' in ' + city + ' | NXsearch';
               //$window.document.getElementsByName('description')[0].content = category + ' in ' + city + ' | NXsearch';
               //$window.document.getElementsByName('keywords')[0].content = category + ' in ' + city + ' | NXsearch';
-            $window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
+            //$window.document.querySelector('[property="og:title"]').content = category + ' in ' + city + ' | NXsearch';
             //$window.document.querySelector('[property="og:description"]').content = category + ' in ' + city + ' | NXsearch';
-            $window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
+            //$window.document.querySelector('[name="twitter:title"]').content = category + ' in ' + city + ' | NXsearch';
             //$window.document.querySelector('[name="twitter:description"]').content = category + ' in ' + city + ' | NXsearch';
         }
-
-        if (area == 'undefined' && category == 'undefined') {
+alert(city);
+        if (area == 'undefined' && category == 'undefined' && city == 'undefined') {
                     $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    //$window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
@@ -389,6 +389,7 @@ $scope.area2 = $routeParams.area;
             $window.document.title = 'Export Data';
         }
 
+     
 
                 // if(city == undefined){
                 //     url.replace('Categories','SubCategories')
@@ -763,14 +764,23 @@ $scope.area2 = $routeParams.area;
                 // $scope.categoryname = catname;
                 // alert( $scope.SubCategoriesLinks);
                      //alert( metaDesc);
-
-                $window.document.getElementsByName('description')[0].content = metaDesc;
-                $window.document.getElementsByName('keywords')[0].content = metaKeys;
+      
+             $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    //$window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        
+                //$window.document.getElementsByName('description')[0].content = metaDesc;
+                //$window.document.getElementsByName('keywords')[0].content = metaKeys;
               // $window.document.getElementById('longdescription').innerHTML = longDesc;
-                $window.document.querySelector('[property="og:description"]').content = metaDesc;
-                $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
-                $window.document.title = metaTitle;
-                $window.document.getElementsByName('title')[0].content = metaTitle;
+                //$window.document.querySelector('[property="og:description"]').content = metaDesc;
+                //$window.document.querySelector('[name="twitter:description"]').content = metaDesc;
+               // $window.document.title = metaTitle;
+                //$window.document.getElementsByName('title')[0].content = metaTitle;
                 // $scope.subCategories = data[0].category[0].subcategories;
             })
             .error(function(data) {
