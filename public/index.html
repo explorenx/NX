@@ -168,6 +168,26 @@ mixpanel.init("6743eb8661397afd5a682a2330a01c38");</script><!-- end Mixpanel -->
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+ }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hide-loader{
+display:none;
+}
+
         
         #gmaps {
             /*width: 821px;*/
@@ -290,7 +310,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </page-loader>-->
     <!--[if gte IE 8]>   <h1>IE</h1> <img src="/index.jpg"> <![endif]-->
 
-    <div loading-indicator class="waiting-box"><img src="assets/img/blu2.gif" style="top: 50%; left:50; z-index: 1;"/></div>
+    <div loading-indicator class="waiting-box"><div class="loader" id="loader">
+</div></div>
      <!--[if gte IE 8]>
 <script>
   
