@@ -6,6 +6,14 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
         return 0.5 - Math.random();
     };
 
+
+
+
+
+
+
+
+
  $scope.exportData = function () {
         var blob = new Blob([document.getElementById('exportable').innerHTML], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
@@ -1716,6 +1724,27 @@ $scope.area2 = $routeParams.area;
             .success(function(data) {
                 $scope.GallaryeData = data;
                 console.log(data);
+                // initial image index
+$scope._Index = 0;
+// if a current image is the same as requested image
+$scope.isActive = function (index) {
+return $scope._Index === index;
+};
+// show prev image
+$scope.showPrev = function () {
+$scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.GallaryeData.length - 1;
+};
+// show next image
+$scope.showNext = function () {
+$scope._Index = ($scope._Index < $scope.GallaryeData.length - 1) ? ++$scope._Index : 0;
+};
+// show a certain image
+$scope.showPhoto = function (index) {
+$scope._Index = index;
+};
+
+
+
             })
             .error(function(data) {
                 console.log('Error: ' + data);
