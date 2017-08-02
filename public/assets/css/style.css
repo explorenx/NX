@@ -14650,10 +14650,10 @@ width: 100%;
 .slider {
 border: 15px solid #FFFFFF;
 border-radius: 5px;
-height: 400px;
+height: 100%;
 /*margin: 20px auto;*/
 position: relative;
-width: 800px;
+width: 100%;
 -webkit-perspective: 1000px;
 -moz-perspective: 1000px;
 -ms-perspective: 1000px;
