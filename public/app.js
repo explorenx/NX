@@ -1,4 +1,4 @@
-var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','angular-page-loader', 'ui.bootstrap','hm.readmore']);
+var app = angular.module('ClinicApp', ['ngRoute','checklist-model', 'ngCookies','ngFileUpload','angularUtils.directives.dirPagination', 'angular-linq','angular-page-loader', 'ui.bootstrap','hm.readmore', 'ngAnimate', 'ngTouch']);
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q, $rootScope) {
