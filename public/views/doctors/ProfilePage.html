@@ -586,7 +586,7 @@ document.getElementById('stylechange').onclick= function() {
                     </script>
 
                                      <script type="text/ng-template" id="four.tpl.html">
-                                        <div id="Gallary">
+                                       <!-- <div id="Gallary">
                                     
                                             <div class="col-lg-12 col-sm-12 col-xs-12 well_new">
 
@@ -602,7 +602,28 @@ document.getElementById('stylechange').onclick= function() {
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div>-->
+
+                                        <div id="Gallary">
+                                            <!-- slider container -->
+                                                    <div class="slider">
+                                                    <!-- enumerate all photos -->
+                                                         <img ng-repeat="photo in GallaryeData" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="{{photo.gallaryImage}}" />
+                                                    <!-- prev / next controls -->
+                                                            <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+                                                            <a class="arrow next" href="#" ng-click="showNext()"></a>
+                                                    <!-- extra navigation controls -->
+                                                            <ul class="nav2">
+                                                            <li ng-repeat="photo in GallaryeData" ng-class="{'active':isActive($index)}">
+                                                            <img src="{{photo.gallaryImage}}" alt="{{photo.gallaryImage}}" title="{{photo.gallaryImage}}" ng-click="showPhoto($index);" />
+                                                            </li>
+                                                            </ul>
+                                                    </div>
+                                                    </div>
+
+
+
+
                                     </script>
 
                     <script type="text/ng-template" id="five.tpl.html">
