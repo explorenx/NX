@@ -1,6 +1,5 @@
 // set up ======================================================================
-var connect_s4a = require('connect-s4a');
-var token = "18a9d76bd14a9b98fc80582c0a86db5b";
+
 var compression = require('compression');
 var express = require('express');
 var app = express();
@@ -67,7 +66,7 @@ app.use(passport.initialize());
 // configuration ===============================================================
 mongoose.connect(database.url); // connect to mongoDB database on modulus.io
 
-app.use(connect_s4a(token));
+app.use(require('prerender-node').set('prerenderToken', '9omkevXjIgPIK2sjFkq1'));
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); // log every request to the console
@@ -217,7 +216,7 @@ console.log(response);
 var number=req.body.usermobile;
  
 //message 
-var message= "You Enquire for "+req.body.ClinicName +", Contact No. : " +req.body.clientMobile + "Thank you for using www.nxsearch.com. keep NX-searching...!";
+var message= "You Enquire for " + req.body.ClinicName + ", Contact No. : " + req.body.clientMobile + "Thank you for using www.nxsearch.com. keep NX-searching...!";
  
 //Sender ID 
 var senderid='NXSRCH';
