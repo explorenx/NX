@@ -111,7 +111,7 @@ var google_remarketing_only = false;
                                     <div class="col-md-4 col-sm-4 col-xs-12 nopadforsearch">
                                         <div class="form-group" id="showdiv" ng-blur="EnableData = false">
                                             
-                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;" autocomplete="off"/>
+                                            <input type="text" ng-value="selectedCategory | slug1" class="formInput showdiv" id="exampleInputPassword2" ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="EnableData= true" ng-click="loadDefaultCategories()" ng-keydown="loadCategories()" ng-keyup="loadClient()" click-anywhere-but-here="EnableData=false" style="height: 50px;" autocomplete="off"/>
 
                                             <div ng-show="EnableTextInputResult == false || EnableData" id="showId" class="scrollable-menu" style="background-color:white; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 100%;height:900px;">
                                                 <div ng-repeat="i in Categories |  filter : searchString track by $index">
@@ -121,7 +121,7 @@ var google_remarketing_only = false;
                                                         </div>
                                                     </a>
                                                 </div>
-                                                <div ng-repeat="i in SubCategories |  filter : searchString track by $index">
+                                                <div ng-repeat="i in SubCategories | filter : searchString track by $index ">
                                                     <a href="" ng-click="gotoResultsPageBySubCategory(i)">
                                                         <div class="list_dropdown">
                                                             {{i}}
@@ -321,9 +321,12 @@ var google_remarketing_only = false;
                                                                                             </div>
                                                                                         </div>
 
-
+                                                                                         <div class="col-xs-12">
+                                                                                            <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Eneter Email " class="formControlModal" ng-required="true">
+                                                                                        </div>
                                                                                         <!-- Text input-->
-                                                                                        <div class="col-xs-12">
+                                                                                        <div class="col-md-12">
+                                                                                        <div class="col-md-8 col-xs-12">
                                                                                             
                                                                                                 <input type="text" name="usermobile" id="usermobile" ng-model="FirstSponsoredClient.usermobile" placeholder="Enter Your Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                                                 <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
@@ -332,14 +335,13 @@ var google_remarketing_only = false;
                                                                                             
 
                                                                                         </div>
-
-                                                                                        <div class="col-xs-12">
-                                                                                            <input type="email" name="useremail" ng-model="FirstSponsoredClient.useremail" id="useremail" placeholder="Eneter Email " class="formControlModal" ng-required="true">
-                                                                                        </div>
-                                                                                        <div class="col-xs-12">
+                                                                                               <div class="col-md-4 col-xs-12">
                                                                                             <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTPsponsor(FirstSponsoredClient)" value="Generate OTP" id="send_otp" />
                                                                                             <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
                                                                                         </div>
+                                                                                        </div>
+                                                                                       
+                                                                                     
 
                                                                                         <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
                                                                                         <div class="col-xs-12">
@@ -460,15 +462,25 @@ var google_remarketing_only = false;
                                                                                                         </div>
                                                                                                     
                                                                                                 </div>
-
+                                                                                                   <div class="col-xs-12">
+                                                                                                    
+                                                                                                        <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Your Email " class="formControlModal" ng-required="true">
+                                                                                                  
+                                                                                                </div>
                                                                                                 <!-- Text input-->
-                                                                                                <div class="col-xs-12">
+                                                                                                <div class="col-md-12">
+                                                                                                <div class="col-md-8 col-xs-12">
                                                                                                         <input type="text" name="usermobile" id="usermobile" ng-model="item.usermobile" placeholder="Your Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
                                                                                                         <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
                                                                                                             <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
                                                                                                         </div>
-                                                                                                </div>
 
+                                                                                                         <div class="col-xs-12 col-md-4">
+                                                                                                            <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTP(item)" value="Generate OTP" id="send_otp" />
+                                                                                                            <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                                </div>
                                                                                                 <!-- <div class="col-xs-12">
                                                                                                     <div class="col-xs-4">
                                                                                                         <b>Pick Date :</b>
@@ -488,15 +500,8 @@ var google_remarketing_only = false;
                                                                                                         <input type="time" id="datetimepicker3" name="time" ng-model="item.time" placeholder="Pick Time" class="formControlModal input-small" ng-required="true">
                                                                                                     </div>
                                                                                                 </div>-->
-                                                                                                <div class="col-xs-12">
-                                                                                                    
-                                                                                                        <input type="email" name="useremail" ng-model="item.useremail" id="useremail" placeholder="Your Email " class="formControlModal" ng-required="true">
-                                                                                                  
-                                                                                                </div>
-                                                                                                <div class="col-xs-12">
-                                                                                                    <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info" ng-click="sendOTP(item)" value="Generate OTP" id="send_otp" />
-                                                                                                    <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
-                                                                                                </div>
+                                                                                             
+                                                                                               
 
                                                                                                 <!--  <div class="g-recaptcha" data-sitekey="6LfxPhMUAAAAAMGDdjN1FQ4eCY_fRL3ejKXAu5dj"></div>-->
                                                                                                 <div class="col-xs-12">
