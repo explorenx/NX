@@ -9,7 +9,9 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     // but are hardcoded here for simplicity. See the next example for
     // tips on using AJAX.
     console.log = function() {};
-
+if($location.path() == '/login'){
+          document.title = "Login | NX-Search";
+    }
     //$scope.onHomePage = false;
     //$rootScope.currentPath = $location.path();
     // 
@@ -17,6 +19,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
     $rootScope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
         // TODO What you want on the event.
         $rootScope.currentPath = newUrl;
+  
          //$scope.MainAreas.selectedAreaModel.Area = $routeParams.area;
         //alert(newUrl);
     });
@@ -132,7 +135,7 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
 
         $scope.EnableTextInputResult = false;
         $scope.Categories = [];
-        $scope.SubCategories = [];
+       // $scope.SubCategories = [];
 
         if ($scope.MainCategoriesData.length > 0) {} else {
 
@@ -151,6 +154,75 @@ function InstantSearchController($scope, $http, $location, $rootScope, savedMeta
                         metaKeys = el.subCategoryDescription;
                         var sss = el.category.map(function(s) {
                             $scope.Categories.push(s.name);
+
+                            angular.forEach(s.subcategories, function(value, key) {
+                                //$scope.SubCategories.push(value.subCategoryName);
+
+                            });
+                            // var subCats = s.subcategories.map(function(subs) {
+                            // $scope.SubCategories.push(subs);
+                            // alert(subs);
+                            //   return subs;
+                            // });
+
+                            return s.name;
+                        });
+                        return sss;
+
+                        //return el.category.name; 
+                    });
+
+
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+
+
+
+
+            // $scope.Categories = $scope.CategoriesTemp;
+            // $scope.SubCategories = $scope.SubCategoriesTemp;
+
+        }
+        //  $http.get('/api/dashbord/results/?speciality='+ newVal.Area)
+        //     .success(function(data) {
+        //     $scope.clients = data;
+        //         //$scope.cities = data;
+        //         console.log(data);
+        //     })
+        //     .error(function(data) {
+        //         console.log('Error: ' + data);
+        //     });
+        //  alert(t);
+    }
+
+// for subcategory
+    
+    $scope.loadCategories = function() {
+
+
+        $scope.EnableTextInputResult = false;
+       // $scope.Categories = [];
+        $scope.SubCategories = [];
+
+        if ($scope.MainCategoriesData.length > 0) {} else {
+
+
+
+
+            $http.get('/api/category/categories')
+                .success(function(data) {
+                    $scope.categories = data;
+                    console.log(data);
+                    //alert($scope.clients);
+                    var newData = data.map(function(el) {
+
+                        //alert(JSON.stringify(el));
+                        metaDesc = el.categoryDescription;
+                        metaKeys = el.subCategoryDescription;
+                        var sss = el.category.map(function(s) {
+                            //$scope.Categories.push(s.name);
 
                             angular.forEach(s.subcategories, function(value, key) {
                                 $scope.SubCategories.push(value.subCategoryName);
