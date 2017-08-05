@@ -606,7 +606,7 @@ document.getElementById('stylechange').onclick= function() {
 
                                         <div id="Gallary">
                                             <!-- slider container -->
-                                                    <div class="col-lg-12 col-sm-12 col-xs-12 well_new slider">
+                                                    <div class="col-lg-12 col-sm-12 col-xs-12 well_new slider" interval="myInterval">
                                                     <!-- enumerate all photos -->
                                                          <img ng-repeat="photo in GallaryeData" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="{{photo.gallaryImage}}" />
                                                     <!-- prev / next controls -->
