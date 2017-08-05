@@ -1,11 +1,11 @@
 // set up ======================================================================
-
+var connect_s4a = require('connect-s4a');
 var compression = require('compression');
 var express = require('express');
 var app = express();
 var core = require('core-js/library');
 var msg91=require('msg91-sms');
-
+var token = "18a9d76bd14a9b98fc80582c0a86db5b";
 var slug = require('mongoose-slug-generator'); // create our app w/ express
 var mongoose = require('mongoose'); // mongoose for mongodb
 mongoose.plugin(slug);
@@ -64,9 +64,10 @@ app.use(passport.initialize());
 
 
 // configuration ===============================================================
+app.use(connect_s4a(token));
 mongoose.connect(database.url); // connect to mongoDB database on modulus.io
 
-app.use(require('prerender-node').set('prerenderToken', '9omkevXjIgPIK2sjFkq1'));
+
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); // log every request to the console
