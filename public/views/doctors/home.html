@@ -246,7 +246,7 @@
 
 																<div class="col-sm-4">
 																	
-																	<input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control showdiv" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()" ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" autocomplete="off" />
+																	<input type="text" value="{{selectedCategory}}" name="categoryselect" class="form-control showdiv" id="exampleInputPassword2" placeholder="Start Typing..." ng-model="searchString" ng-change="callScriptThenServer(searchString)" ng-focus="loadDefaultCategories()" ng-click="EnableData=true" ng-keypress="EnableData=true" ng-keydown="loadCategories()" ng-keyup="loadClients()" click-anywhere-but-here="EnableData=false" autocomplete="off" />
 																	
 
 												<div ng-show="EnableTextInputResult == false || EnableData" class="scrollable-menu" style="color:black !important; background-color: #fff; z-index: 2;border: 1px solid grey;position: absolute;padding-left:2px; width: 96%;height:400px;">
@@ -1043,7 +1043,7 @@
 							<!-- - - - - - - - - - - - - - Newsletter Form - - - - - - - - - - - - - - - - -->
 
 							<form class="kw-newsletter-form kw-inline-form" ng-controller="dashResultsController">
-
+								
 								<div class="kw-input-wrapper">
 
 									<input type="email" name="email1" autocomplete="off" ng-model="newsletter.subscribe" placeholder="Enter your email address...">
@@ -1182,7 +1182,7 @@
 						<p>Copyright <a href="/">NXsearch</a> &copy; 2017. All Rights Reserved</p>
 
 					</div><!--/ .container -->
-
+						
 				</div>
 
 				<!-- - - - - - - - - - - - - - End of Copyright Section - - - - - - - - - - - - - - - - -->
