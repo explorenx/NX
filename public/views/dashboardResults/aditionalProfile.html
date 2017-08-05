@@ -1,5 +1,5 @@
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQguSQA07nEPpUJ58qHhAlin9Pd0LHBEA"></script>-->
-
+<!-- Header -->
 <div class="row dash_head navbar-fixed-top">
         
             <div class="container-fluid">
@@ -9,12 +9,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="col-md-12 col-xs-12 text-center">
-                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/nxsearch-logo.png" alt="NX-Search" width="160px" height="65px" /></a>
+                            <a href="/clientlist" itemprop="logo"><img itemprop="logo" class="img-responsive center-block" src="/assets/img/NX-LOGO-300x66.png" alt="NX-Search" width="160px" height="65px" /></a>
                         </div>
                     </div>
                      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                         <span ng-show="isAuthenticated" class="fa fa-user pull-right"> <b>Hello Admin</b></span>
+                         
                         <div ng-show="isAuthenticated" class="pull-right" ng-controller="loginController"><button class="btn btn-danger" ng-click="logout()"><i class="fa fa-user"></i> LogOut </button></div>
+                        <a href="http://nxsearch.com" target="_blank"><button class="btn btn-info">Go to nxsearch.com </button></a>
                         
                     </div>
                 </div>
@@ -26,8 +27,14 @@
 
     <div class="col-md-2 col-sm-2 dash_sidebar">
         <nav class="navbar navbar-inverse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
-              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+              <!--<li><a href="/"><i class="fa fa-home"></i> Home</a></li> 
                 <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>-->
                  <li>&nbsp;&nbsp;&nbsp;<span ng-show="isAuthenticated" class="fa fa-user" style="color:white;font-size:17px;margin-top:7px;margin-top:17px;"> <b>&nbsp;&nbsp;&nbsp;&nbsp;Hello Admin</b></span></li><hr>
                 <li><a href="/clientlist"><i class="fa fa-users"></i>Clientlist</a></li>
@@ -38,9 +45,13 @@
                 <li><a href="/export"><i class="fa fa-cloud-download"></i> Export </a></li>
                 <!-- <li><a href="/homepage"><i class="fa fa-user"></i>profile</a></li>-->
             </ul>
+         </div>   
         </nav>
     </div>
-    <div class="col-md-10 col-md-offset-2 col-sm-offset-2 col Add_Client_form well_new" style="top:86px; background-color: #f1efef; overflow-x: hidden;">
+    <!-- Navigation End -->
+
+    <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 well_new" style="top:86px; background-color: #f1efef;overflow-x: hidden;">
+        
     <div id="todo-form" class="container" ng-controller="dashResultsController as up">
      <div class="ng-hide">
         <h5 id="demo1"  style="display: inline" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/">Home</a></h5>&nbsp 
