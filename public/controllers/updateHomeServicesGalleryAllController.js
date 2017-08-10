@@ -140,7 +140,7 @@ var vm = this;
 
                     vm.file = Upload.rename(vm.file, ImageName);
                     Upload.upload({
-                        url: 'http://nxsearch.com/uploadClientImage', //webAPI exposed to upload the file
+                        url: 'http://localhost:80/uploadClientImage', //webAPI exposed to upload the file
                         data:{file:vm.file } //pass file as data, should be user ng-model
                     }).then(function (resp) { //upload function returns a promise
                         if(resp.data.error_code === 0){ //validate success
