@@ -7,13 +7,6 @@ app.controller('dashResultsController', function($scope, $rootScope, $http, $rou
     };
 
 
-
-
-
-
-
-
-
  $scope.exportData = function () {
         var blob = new Blob([document.getElementById('exportable').innerHTML], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
@@ -1802,6 +1795,26 @@ $scope._Index = index;
             .success(function(data) {
                 $scope.enquiries = data;
                 $scope.total = data.length;
+
+                $scope.viewby = 10;
+                $scope.totalItems = data.length;
+                $scope.currentPage = 1;
+                $scope.itemsPerPage = $scope.viewby;
+                $scope.maxSize = 5; //Number of pager buttons to show
+
+                $scope.setPage = function (pageNo) {
+                    $scope.currentPage = pageNo;
+                };
+
+                $scope.pageChanged = function() {
+                    console.log('Page changed to: ' + $scope.currentPage);
+                };
+
+                $scope.setItemsPerPage = function(num) {
+                $scope.itemsPerPage = num;
+                $scope.currentPage = 1; //reset to first paghe
+                }
+
                // alert($scope.total);
                 console.log(data);
             }) .error(function(data) {
