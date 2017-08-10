@@ -198,6 +198,7 @@ app.controller('categoriesController', function($scope, $http, $routeParams, $lo
                 .success(function(data) {
                     //$scope.formData = {};
                     //$scope.cities = data;
+                    //alert(data);
                     $scope.btnValue = "Save";
                     //                   alert(JSON.stringify(data));
                 })
