@@ -9,7 +9,7 @@ Disallow: /updateSitemap/?
 Disallow: /export
 Disallow: /result/?
 Disallow: /results/?
-Disallow: /www.nxsearch.com/-in--www.nxsearch.com
+
 Allow: /
 
 Sitemap: http://nxsearch.com/sitemap.xml
