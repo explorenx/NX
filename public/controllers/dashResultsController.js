@@ -335,6 +335,9 @@ $scope.area2 = $routeParams.area;
                     $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         }
+                 if($location.path() == '/'){
+            $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+        }
 
         if($location.path() == '/register'){
             $window.document.title = 'Register Free - NXsearch';
@@ -766,8 +769,8 @@ $scope.area2 = $routeParams.area;
                 // alert( $scope.SubCategoriesLinks);
                      //alert( metaDesc);
       
-             $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+             //$window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                   // $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     //$window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
@@ -890,7 +893,10 @@ $scope.area2 = $routeParams.area;
                
                 if(data.Socical !== 'undefined'){
                 $window.document.title = data.ClinicName + ' in ' + data.Area + '-' + data.City +  ' ' + data.Socical.facebook + '| NXsearch';
+                }else{
+                    $window.document.title = data.ClinicName + ' in ' + data.Area + '-' + data.City + '| NXsearch';
                 }
+            //alert(data.Socical.facebook);
                 $window.document.getElementsByName('title')[0].content = data.Socical.facebook + '| NXsearch';
                $window.document.getElementsByName('description')[0].content = data.Socical.twitter + ' | NXsearch';
                 $window.document.getElementsByName('keywords')[0].content = data.Socical.google + ' ' + 'NXsearch';
