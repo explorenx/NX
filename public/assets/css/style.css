@@ -14688,3 +14688,56 @@ opacity:0;
 .slide, .slide.ng-hide-remove.ng-hide-remove-active {
 opacity:1;
 }
+
+/* added 30 aug 2017 */
+
+.grid-title{
+    position: absolute;
+    top: 35%;
+    left:0;
+    width:100%;
+}
+
+.grid-title h3{
+  font-weight:600;
+  color: #ffffff;
+}
+
+.toDiv{
+  display:inline-block;
+  padding-left:7px;
+  
+}
+.toDiv img {
+  display: block;
+  max-width: 100%;
+  
+}
+
+.toDiv:hover {
+  background: rgba(2, 2, 2, 1);
+}
+
+.toDiv img:hover {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  
+  /* For IE8 and earlier */
+}
+
+.toDiv .row{
+  
+}
+
+@media(max-width:670px){
+  .kw-hcontent{
+    display:none;
+  }
+}
+
+
+@media(max-width:670px){
+  .hideShort{
+    display:none;
+  }
+}
