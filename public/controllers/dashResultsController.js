@@ -619,7 +619,7 @@ $scope.area2 = $routeParams.area;
                                            //alert(JSON.stringify($scope.SubAreaLinks));   //alert(JSON.stringify($scope.areas));
                                      if($scope.SubAreaLinks.length != 0){   
                                        
-                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $scope.SubAreaLinks + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') +  ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 //alert(metaDesc);
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
                                longDesc = cat.categoryDescriptionLong;
@@ -713,7 +713,7 @@ $scope.area2 = $routeParams.area;
                                    // alert(JSON.stringify($scope.maincat));
                                 if($scope.SubAreaLinks.length != 0){   
                                        
-                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $scope.SubAreaLinks + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') +  ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 //alert(metaDesc);
                                 metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
                                longDesc = cat.categoryDescriptionLong;
