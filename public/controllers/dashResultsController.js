@@ -301,14 +301,6 @@ $scope.area2 = $routeParams.area;
                     });
                 });
 
-
-
-
-
-
-
-
-
             })
             //alert(category);
             $scope.keyword = category + ' in ' + city;
@@ -1030,7 +1022,8 @@ $scope.area2 = $routeParams.area;
 //Banner image code
  if (vm.file1) {
             alert(vm.file1.name);
-            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + 'banner-nxsearch.jpg';
+            var datetimestamp = Date.now();
+            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + datetimestamp + 'banner-nxsearch.jpg';
             $scope.formData.Socical.Youtube = 'uploads/clientProfilePictures/' + fileName;
             vm.file1.name = fileName;
             //       alert('new file name -' + vm.file.name);//
@@ -1038,7 +1031,7 @@ $scope.area2 = $routeParams.area;
 
             vm.file1 = Upload.rename(vm.file1, fileName);
             Upload.upload({
-                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
+                url: 'http://localhost/uploadProfileImage', //webAPI exposed to upload the file
                 data: { file: vm.file1 } //pass file as data, should be user ng-model
             }).then(function(resp) { //upload function returns a promise
                 if (resp.data.error_code === 0) { //validate success
@@ -1053,6 +1046,39 @@ $scope.area2 = $routeParams.area;
                 console.log(evt);
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file1.name);
+                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+            });
+        }
+
+//Banner image code End
+
+//Banner image code
+ if (vm.file2) {
+            alert(vm.file2.name);
+            var datetimestamp = Date.now();
+            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + datetimestamp + 'banner-nxsearch.jpg';
+            $scope.formData.ContactNumber1 = 'uploads/clientProfilePictures/' + fileName;
+            vm.file2.name = fileName;
+            //       alert('new file name -' + vm.file.name);//
+            //        alert(JSON.stringify($scope.formData));//
+
+            vm.file2 = Upload.rename(vm.file2, fileName);
+            Upload.upload({
+                url: 'http://localhost/uploadProfileImage', //webAPI exposed to upload the file
+                data: { file: vm.file2 } //pass file as data, should be user ng-model
+            }).then(function(resp) { //upload function returns a promise
+                if (resp.data.error_code === 0) { //validate success
+                    $window.alert('Success ' + resp.config.data.file2.name + 'uploaded. Response: ');
+                } else {
+                    $window.alert('an error occured');
+                }
+            }, function(resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                $window.alert('Error status: ' + resp.status);
+            }, function(evt) {
+                console.log(evt);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file2.name);
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         }
@@ -1082,7 +1108,9 @@ $scope.area2 = $routeParams.area;
                                     var recordToInsert = {
                                         ClinicId: data._id,
                                         lat: $scope.formData.lat,
-                                        long: $scope.formData.long
+                                        long: $scope.formData.long,
+                                        address1: $scope.formData.address1,
+                                        address2: $scope.formData.address2
                                     };
                                     $http.post('/api/contact/cliniccontact', recordToInsert)
                                         .success(function(data) {
@@ -1383,7 +1411,7 @@ $scope.area2 = $routeParams.area;
         $http.get('/api/dashbord/results/' + clientId)
             .success(function(data) {
                 $scope.client = data;
-
+                //alert(JSON.stringify($scope.client));
                 console.log(data);
             })
             .error(function(data) {
