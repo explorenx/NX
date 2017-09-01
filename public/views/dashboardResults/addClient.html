@@ -373,7 +373,7 @@
                                     <label class="col-lg-12 col-md-12 col-sm-4">Timings</label>
                                     <div class="form-group">                                     
                                             <label class="col-lg-2 col-md-2 col-sm-6">1st Half*:</label>
-                                            <div class="col-lg-10 col-md-10 col-sm-12 inputMargin">
+                                        <div class="col-lg-10 col-md-10 col-sm-12 inputMargin">
                                             <input type="text" ng-model="formData.FirstHalfTime" name="firsthalf" class="form-control text-center" placeholder="Enter First Half Time" ng-required="true" />
                                             <div ng-show="ClientForm.firsthalf.$touched && ClientForm.firsthalf.$invalid">
                                                 <small style="color: red; display: block; text-align: center">Please Enter First Half Time</small>
@@ -451,8 +451,25 @@
                             </div>-->
 
                             
-
-                            <!--<input type="text" ng-model="formData.ContactNumber2" name="" class="form-control text-center" placeholder="Enter contact no" ng-required="true">-->
+                               <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-lg-4 col-md-2 col-sm-4">BG Image <small>(For Paid Clients only)</small> :</label>
+                                            <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
+                                                  <div class="col-lg-10 col-md-8 col-sm-12">
+                                            <input type="file" ngf-select ng-model="up.file2" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
+                                            
+                                            <i ng-show="up.upload_form.file2.$error.required">*required</i><br>
+                                            <i ng-show="up.upload_form.file2.$error.maxSize">File too large 
+                                                {{up.file2.size / 1000000|number:1}}MB: max 20M</i>
+                                                         <img style="width:10%;" ngf-thumbnail="up.file2 || '/thumb.jpg'" />
+                                        </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--<input type="file" ng-model="formData.ContactNumber2" name="" class="form-control text-center" placeholder="Enter contact no" ng-required="true">-->
 
                             <div class="col-lg-12 col-sm-12 col-md-12"> <span><br></span></div>
 
@@ -475,7 +492,7 @@
                                 <div class="col-lg-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            <label class="col-lg-4 col-md-2 col-sm-4">Side Banner :</label>
+                                            <label class="col-lg-4 col-md-2 col-sm-4">Side Banner Ad :</label>
                                             <div class="col-lg-8 col-md-10 col-sm-12 inputMargin">
                                                   <div class="col-lg-10 col-md-8 col-sm-12">
                                             <input type="file" ngf-select ng-model="up.file1" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" />
