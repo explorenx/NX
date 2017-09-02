@@ -326,7 +326,7 @@ app.directive('myMap', function() {
             var markerOptions = {
                 position: position,
                 map: map,
-                title: 'Pune',
+                title: attrs.address1 + ', ' + attrs.address2,
                 icon: '/map-blue.png'
             };
 
