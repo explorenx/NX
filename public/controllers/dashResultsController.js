@@ -858,14 +858,14 @@ $scope.area2 = $routeParams.area;
         $http.get('/api/dashbord/results/' + $routeParams.id)
             .success(function(data) {
                 $scope.formData = data;
-                 //alert(JSON.stringify($scope.formData));
+                // alert(JSON.stringify($scope.formData));
 
                 var metaInfo = {
                     title: data.ClinicName,
                     description: data.ClinicName,
                     keywords: data.ClinicName
                 };
-                 //alert(JSON.stringify(data.Socical));
+                 //alert(JSON.stringify(data.ContactNumber1));
                 savedMetaData.setData(metaInfo);
                 $scope.services = data.SubCategories ;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
@@ -877,7 +877,14 @@ $scope.area2 = $routeParams.area;
                     $scope.serviceurl = '/' + data.City + '/' + data.Area + '/' + $scope.services[i];
                 }
                 // alert( $scope.serviceurl);
-
+               
+                if(data.ContactNumber1 !== undefined){
+                    $scope.imageadd = data.ContactNumber1;
+                }
+                else{
+                    $scope.imageadd = 'https://nxsearch.files.wordpress.com/2017/08/headerbg.jpg';
+                }
+                //alert($scope.imageadd);
                 $window.document.getElementById('demo1').innerHTML = data.ClinicName;
                 $window.document.getElementById('city1').innerHTML = data.City;
                 $window.document.getElementById('area1').innerHTML = data.Area;
@@ -1642,11 +1649,11 @@ $scope.area2 = $routeParams.area;
             url: 'two.tpl.html',
             activtab: 'Services'
         },
-        {
+       /* {
             title: 'Gallary',
             url: 'four.tpl.html',
             activtab: 'Gallary'
-        },
+        },*/
         {
             title: 'Location',
             url: 'five.tpl.html',
@@ -1750,6 +1757,7 @@ $scope.area2 = $routeParams.area;
         $http.get('/api/gallary/clinicGallary/?ClinicId=' + $routeParams.id)
             .success(function(data) {
                 $scope.GallaryeData = data;
+                
                 console.log(data);
                 // initial image index
 $scope._Index = 0;
@@ -1768,19 +1776,13 @@ $scope._Index = ($scope._Index < $scope.GallaryeData.length - 1) ? ++$scope._Ind
 // show a certain image
 $scope.showPhoto = function (index) {
 $scope._Index = index;
+//alert($scope._Index);
 };
-
-
-
-            })
-            .error(function(data) {
+}).error(function(data) {
                 console.log('Error: ' + data);
             });
     }
     getData2();
-
-
-
 
     // delete a image after checking it
     $scope.deleteRec2 = function(id) {
