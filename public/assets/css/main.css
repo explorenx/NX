@@ -406,7 +406,7 @@ address { font-style: italic; }
 .tg-btn{
 	color: #fff;
 	padding: 0 30px;
-	background: #484848;
+	background: #00b7f1;
 	position:relative;
 	text-align:center;
 	border-radius: 3px;
@@ -1004,7 +1004,7 @@ address { font-style: italic; }
 ==============================================*/
 .tg-wrapper{overflow: hidden;}
 body.tg-home .tg-main{padding: 20px 0;}
-.tg-main{padding: 30px 0;}
+.tg-main{padding: 3px 0;}
 #tg-twocolumns{
 	width: 100%;
 	float: left;
@@ -3211,7 +3211,7 @@ body.tg-home .tg-leftarea {
 	display: inline-block !important;
 }
 .tg-socialarea{
-	width: 100%;
+	/*width: 100%;*/
 	float: left;
 	text-align: left;
 	padding: 15px 0 0;
@@ -3222,7 +3222,7 @@ body.tg-home .tg-leftarea {
 	vertical-align: middle;
 }
 .tg-socialarea > span{
-	color: #484848;
+	color: #fbfbfb;
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 17px;
