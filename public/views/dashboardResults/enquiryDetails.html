@@ -90,7 +90,7 @@
                         <th class="text-center">Date</th>
                     </tr>
                 </thead>
-                <tbody dir-paginate="enquiry in enquiries | itemsPerPage:10 | filter : userSearch track by $index">
+                <tbody ng-repeat="enquiry in enquiries | orderBy: 'date':true | filter : userSearch track by $index">
                     <tr>
                         <td class="text-center">{{$index +1}}</td>
                         <td class="text-center">{{enquiry.ClinicName}}</td>
@@ -104,7 +104,7 @@
                 </tbody>
             </table>
             
-                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                
         </div>
     </div>
     </div>
