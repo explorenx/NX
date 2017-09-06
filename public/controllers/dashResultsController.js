@@ -1669,6 +1669,27 @@ $scope.area2 = $routeParams.area;
         }
 
     ];
+    $scope.tabs1 = [{
+        title: 'Home',
+        url: 'one.tpl.html',
+        activtab: 'Home'
+    }, {
+        title: 'Services',
+        url: 'two.tpl.html',
+        activtab: 'Services'
+    },
+    {
+        title: 'Gallary',
+        url: 'four.tpl.html',
+        activtab: 'Gallary'
+    },
+    {
+        title: 'Location',
+        url: 'five.tpl.html',
+        activtab: 'Location'
+    }
+
+];
     $scope.currentTab = 'one.tpl.html';
 
 
