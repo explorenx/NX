@@ -867,6 +867,14 @@ $scope.area2 = $routeParams.area;
                 };
                  //alert(JSON.stringify(data.ContactNumber1));
                 savedMetaData.setData(metaInfo);
+
+                $scope.limit3= 8;
+                
+                      // loadMore function
+             $scope.loadMoreservice = function() {
+                        $scope.limit3 = $scope.limit3+10;
+                  }
+
                 $scope.services = data.SubCategories ;
                 $scope.areaofcats = ' in ' + data.Area.replace(/-/g, ' ');
                 //alert($scope.services);
@@ -1801,6 +1809,9 @@ $scope._Index = index;
             .success(function(data) {
                 $scope.ContacteData = data[data.length - 1];
                 console.log(data);
+                //alert(JSON.stringify($scope.ContacteData));
+           
+              
 
             })
             .error(function(data) {
