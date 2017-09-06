@@ -1046,7 +1046,7 @@ $scope.area2 = $routeParams.area;
 
             vm.file1 = Upload.rename(vm.file1, fileName);
             Upload.upload({
-                url: 'http://localhost/uploadProfileImage', //webAPI exposed to upload the file
+                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
                 data: { file: vm.file1 } //pass file as data, should be user ng-model
             }).then(function(resp) { //upload function returns a promise
                 if (resp.data.error_code === 0) { //validate success
@@ -1079,7 +1079,7 @@ $scope.area2 = $routeParams.area;
 
             vm.file2 = Upload.rename(vm.file2, fileName);
             Upload.upload({
-                url: 'http://localhost/uploadProfileImage', //webAPI exposed to upload the file
+                url: 'http://nxsearch.com/uploadProfileImage', //webAPI exposed to upload the file
                 data: { file: vm.file2 } //pass file as data, should be user ng-model
             }).then(function(resp) { //upload function returns a promise
                 if (resp.data.error_code === 0) { //validate success
