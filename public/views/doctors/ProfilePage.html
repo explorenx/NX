@@ -211,7 +211,7 @@ document.getElementById('stylechange').onclick= function() {
             </div>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="row">
 						<!-- Breadcrumbs data -->
 						<div class="col-xs-12 bcumbs">
 
@@ -269,153 +269,157 @@ document.getElementById('stylechange').onclick= function() {
                                             <div class="tg-description">
                                                 <span><i class="fa fa-clock-o" aria-hidden="true"></i> </span> <span itemprop="opens">{{::client.FirstHalfTime}} | {{::client.SecondHalfTime}}</span>
                                             </div>
-                                            <h4 itemprop="streetAddress"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;{{::client.address1}}, {{::client.address2}}</h4>
+                                            <h4 itemprop="streetAddress"><a style="color:#00b7f1;" href="https://maps.google.com/maps?q={{::client.address1}}, {{::client.address2}}" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;{{::client.address1}}, {{::client.address2}}</a></h4>
                                         
                                             <div class="row">
-                                                <div class="col-md-3 col-xs-5">    
-                                                    <button type="button" class="tg-btn" id="stylechange" style="margin-top:5px;" data-toggle="modal" data-target="#myModal">Get Contact No.</button>
-                                                        <div class="modal fade" id="myModal" role="dialog">
-                                                            <div class="modal-dialog" style="top: 25%;">
-    
-                                                                <!-- Modal content-->
-                                                                <div class="modal-content">
-    
-                                                                    <div class="modal-body well_new">
-    
-                                                                        <button type="button" id="closemodal2" class="close" data-dismiss="modal" style="opacity:0.5 !important;">Close</button>
-                                                                        <form name="enquiryForm" class="form-horizontal" role="form" style="color:#000">
-                                                                            <!-- Form Name -->
-                                                                            <input type="hidden" ng-model="client._id" name="id">
-                                                                            <input type="hidden" ng-model="client.extensionNo" name="clientMobile">
-                                                                            <!-- Text input  -->
-                                                                            <div class="col-xs-12">
+                                                <div class="col-md-3 col-xs-5">
+                                                        
+                                                        <button type="button" class="tg-btn" id="stylechange" style="margin-top:5px;" data-toggle="modal" data-target="#myModal">Get Contact No.</button>
+                                                            <div class="modal fade" id="myModal" role="dialog">
+                                                                <div class="modal-dialog" style="top: 25%;">
+        
+                                                                    <!-- Modal content-->
+                                                                    <div class="modal-content">
+        
+                                                                        <div class="modal-body well_new">
+        
+                                                                            <button type="button" id="closemodal2" class="close" data-dismiss="modal" style="opacity:0.5 !important;">Close</button>
+                                                                            <form name="enquiryForm" class="form-horizontal" role="form" style="color:#000">
+                                                                                <!-- Form Name -->
+                                                                                <input type="hidden" ng-model="client._id" name="id">
+                                                                                <input type="hidden" ng-model="client.extensionNo" name="clientMobile">
+                                                                                <!-- Text input  -->
                                                                                 <div class="col-xs-12">
-                                                                                    <b>Your Enquiry For : {{client.ClinicName}}</b>
-                                                                                </div>
-                                                                                <div class="col-xs-12 ng-hide">
-                                                                                    <input type="text" id="ClinicName" ng-model="client.ClinicName" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
-                                                                                </div>
-                                                                                
-                                                                                <div class="col-xs-10 ng-hide">
-                                                                                    <input type="text" id="ClinicArea" ng-model="client.Area" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-xs-12">
-                                                                            <div class="col-xs-12">
-                                                                                <input type="text" name="username" id="username" ng-model="client.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
-                                                                                <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
-                                                                                    <small style="color: red; display: block; text-align: center">Please Enter Name</small>
-                                                                                </div>
-                                                                            </div>
-                                                                            </div>
-    
-    
-                                                                            <!-- Text input-->
-                                                                            <div class="col-xs-12">
-                                                                                
-                                                                                <div class="col-xs-12">
-                                                                                    <input type="text" name="usermobile" id="usermobile" ng-model="client.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
-                                                                                    <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
-                                                                                        <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                                    <div class="col-xs-12">
+                                                                                        <b>Your Enquiry For : {{client.ClinicName}}</b>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 ng-hide">
+                                                                                        <input type="text" id="ClinicName" ng-model="client.ClinicName" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="col-xs-10 ng-hide">
+                                                                                        <input type="text" id="ClinicArea" ng-model="client.Area" name="ClinicName" class="formControlModal" ng-value="client.ClinicName" readonly>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-xs-12">
-                                                                            <div class="col-xs-12">
-                                                                                <input type="email" name="useremail" ng-model="client.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
-                                                                            </div>
-                                                                            </div>
                                                                                 <div class="col-xs-12">
                                                                                 <div class="col-xs-12">
-                                                                                    <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info text-center" ng-click="sendOTP1(client)" value="Generate OTP" id="send_otp" />
-                                                                                    <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                                                    <input type="text" name="username" id="username" ng-model="client.username" value="{{item.ClinicName}}" placeholder="Name" class="formControlModal" ng-required="true">
+                                                                                    <div ng-show="enquiryForm.username.$touched && enquiryForm.username.$invalid">
+                                                                                        <small style="color: red; display: block; text-align: center">Please Enter Name</small>
+                                                                                    </div>
                                                                                 </div>
                                                                                 </div>
-    
-                                                                            <div class="col-xs-12">
-                                                                                
+        
+        
+                                                                                <!-- Text input-->
                                                                                 <div class="col-xs-12">
-                                                                                    <input type="text" ng-model="client.OTP" class="form-control" placeholder="Enter OTP Here..." ng-required="true">
+                                                                                    
+                                                                                    <div class="col-xs-12">
+                                                                                        <input type="text" name="usermobile" id="usermobile" ng-model="client.usermobile" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" class="formControlModal" ng-required="true">
+                                                                                        <div ng-show="enquiryForm.mobile.$touched && enquiryForm.mobile.$invalid">
+                                                                                            <small style="color: red; display: block; text-align: center">Please Enter Valid Mobile Number</small>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <br />
-    
-                                                                            <br />
-                                                                            <div class="col-xs-12">
-                                                                            <div class="col-xs-12">
-                                                                                <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions" target="_blank">terms</a> </small>
-                                                                            </div>
-                                                                            </div>
-                                                                            <input name="btnSubmit" type="button" style="margin-left: 32px" class="btn btn-primary" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
-                                                                        </form>
+                                                                                <div class="col-xs-12">
+                                                                                <div class="col-xs-12">
+                                                                                    <input type="email" name="useremail" ng-model="client.useremail" id="useremail" placeholder="Email " class="formControlModal" ng-required="true">
+                                                                                </div>
+                                                                                </div>
+                                                                                    <div class="col-xs-12">
+                                                                                    <div class="col-xs-12">
+                                                                                        <input name="btnSubmit" type="button" style="margin: 5px" class="btn btn-info text-center" ng-click="sendOTP1(client)" value="Generate OTP" id="send_otp" />
+                                                                                        <small class="text-center" style="color: green; display: block; text-align: center">{{otpmsg}}</small>
+                                                                                    </div>
+                                                                                    </div>
+        
+                                                                                <div class="col-xs-12">
+                                                                                    
+                                                                                    <div class="col-xs-12">
+                                                                                        <input type="text" ng-model="client.OTP" class="form-control" placeholder="Enter OTP Here..." ng-required="true">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+        
+                                                                                <br />
+                                                                                <div class="col-xs-12">
+                                                                                <div class="col-xs-12">
+                                                                                    <small>By clicking submit button, you agree to NX-search's <a href="/termsandconditions" target="_blank">terms</a> </small>
+                                                                                </div>
+                                                                                </div>
+                                                                                <input name="btnSubmit" type="button" style="margin-left: 32px" class="btn btn-primary" ng-click="send1(client)" ng-disabled="enquiryForm.$invalid" data-dismiss="modal" value="Submit" id="send_email" />
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                    
                                                 </div>              
-                                                <div class="col-md-9 col-xs-7">        
-                                                    <div class="tg-socialarea pull-right">
-                                                        <span>share:</span>
-                                                        <ul class="tg-socialsharewithtext">
-                                                            <li class="tg-facebook">
-                                                                <a class="tg-roundicontext">
-                                                                    <em class="tg-usericonholder" id="shareBtn">
-                                                                        <i class="fa fa-facebook"></i>
-                                                                        <span style="cursor: pointer;" title="Share on Facebook">share on facebook</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>
-                                                            <li class="tg-twitter">
-                                                                <a class="tg-roundicontext" href="http://twitter.com/share?text=text goes here&url=http://{{fpath}}" title="Share on Twitter" target="_blank">
-                                                                    <em class="tg-usericonholder">
-                                                                        <i class="fa fa-twitter"></i>
-                                                                        <span>share on twitter</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>
-                                                            <!---<li class="tg-linkedin">
-                                                                <a class="tg-roundicontext" href="#">
-                                                                    <em class="tg-usericonholder">
-                                                                        <i class="fa fa-linkedin"></i>
-                                                                        <span>share on linkdin</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>-->
-                                                            <li class="tg-googleplus">
-                                                                <a class="tg-roundicontext" href="https://plus.google.com/share?url=http://{{fpath}}" title="Share on Google+" target="_blank">
-                                                                    <em class="tg-usericonholder">
-                                                                        <i class="fa fa-google-plus"></i>
-                                                                        <span>share on googl+</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>
-                                                        <!-- <li class="tg-rss">
-                                                                <a class="tg-roundicontext" href="#">
-                                                                    <em class="tg-usericonholder">
-                                                                        <i class="fa fa-rss"></i>
-                                                                        <span>share on RSS</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>
-                                                            <li class="tg-youtube">
-                                                                <a class="tg-roundicontext" href="#">
-                                                                    <em class="tg-usericonholder">
-                                                                        <i class="fa fa-youtube-play"></i>
-                                                                        <span>share on YouTube</span>
-                                                                    </em>
-                                                                </a>
-                                                            </li>
-                                                                <figcaption style="margin-top: -50px;">
-                                                                    <a class="tg-usericon tg-iconvarified" href="#">
-                                                                    <em class="tg-usericonholder">
-                                                                    <i class="fa fa-shield"></i>
-                                                                    <span>varified</span>
-                                                                    </em>
+                                                <div class="col-md-9 col-xs-7">
+                                                            
+                                                        <div class="tg-socialarea pull-right">
+                                                            <span>share:</span>
+                                                            <ul class="tg-socialsharewithtext">
+                                                                <li class="tg-facebook">
+                                                                    <a class="tg-roundicontext">
+                                                                        <em class="tg-usericonholder" id="shareBtn">
+                                                                            <i class="fa fa-facebook"></i>
+                                                                            <span style="cursor: pointer;" title="Share on Facebook">share on facebook</span>
+                                                                        </em>
                                                                     </a>
-                                                                </figcaption>-->
-                                                        </ul>
-                                                        
-                                                    </div>
+                                                                </li>
+                                                                <li class="tg-twitter">
+                                                                    <a class="tg-roundicontext" href="http://twitter.com/share?text=text goes here&url=http://{{fpath}}" title="Share on Twitter" target="_blank">
+                                                                        <em class="tg-usericonholder">
+                                                                            <i class="fa fa-twitter"></i>
+                                                                            <span>share on twitter</span>
+                                                                        </em>
+                                                                    </a>
+                                                                </li>
+                                                                <!---<li class="tg-linkedin">
+                                                                    <a class="tg-roundicontext" href="#">
+                                                                        <em class="tg-usericonholder">
+                                                                            <i class="fa fa-linkedin"></i>
+                                                                            <span>share on linkdin</span>
+                                                                        </em>
+                                                                    </a>
+                                                                </li>-->
+                                                                <li class="tg-googleplus">
+                                                                    <a class="tg-roundicontext" href="https://plus.google.com/share?url=http://{{fpath}}" title="Share on Google+" target="_blank">
+                                                                        <em class="tg-usericonholder">
+                                                                            <i class="fa fa-google-plus"></i>
+                                                                            <span>share on googl+</span>
+                                                                        </em>
+                                                                    </a>
+                                                                </li>
+                                                            <!-- <li class="tg-rss">
+                                                                    <a class="tg-roundicontext" href="#">
+                                                                        <em class="tg-usericonholder">
+                                                                            <i class="fa fa-rss"></i>
+                                                                            <span>share on RSS</span>
+                                                                        </em>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="tg-youtube">
+                                                                    <a class="tg-roundicontext" href="#">
+                                                                        <em class="tg-usericonholder">
+                                                                            <i class="fa fa-youtube-play"></i>
+                                                                            <span>share on YouTube</span>
+                                                                        </em>
+                                                                    </a>
+                                                                </li>
+                                                                    <figcaption style="margin-top: -50px;">
+                                                                        <a class="tg-usericon tg-iconvarified" href="#">
+                                                                        <em class="tg-usericonholder">
+                                                                        <i class="fa fa-shield"></i>
+                                                                        <span>varified</span>
+                                                                        </em>
+                                                                        </a>
+                                                                    </figcaption>-->
+                                                            </ul>
+                                                            
+                                                        </div>
+                                                    
                                                 </div>    
                                             </div>
                                         </div>        
@@ -635,18 +639,19 @@ document.getElementById('stylechange').onclick= function() {
                                                 <div class="col-lg-12 col-sm-12 col-xs-12">
                                                     <div class="row">
                                                         <div class="col-md-12 detailservices">
-                                                            <div class="col-md-1">
+                                                            <div class="col-md-1 col-xs-2">
                                                                 <img src="../map-blue.png">
                                                             </div>
-                                                            <div class="col-md-11">
+                                                            <div class="col-md-11 col-xs-10">
                                                                     {{::ContacteData.address1}}
                                                                     {{::ContacteData.address2}}
                                                             </div>    
                                                         </div>
-                                                            
-                                                        <input type="hidden" id="lat" value="{{::ContacteData.lat}}" />
-                                                        <input type="hidden" id="lng" value="{{::ContacteData.long}}" />
-                                                        <div class="col-md-12" my-map="" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
+                                                        <div class="col-md-12 col-xs-12">    
+                                                            <input type="hidden" id="lat" value="{{::ContacteData.lat}}" />
+                                                            <input type="hidden" id="lng" value="{{::ContacteData.long}}" />
+                                                            <div class="col-md-12" my-map="" lat="{{::ContacteData.lat}}" lng="{{::ContacteData.long}}" address1="{{::ContacteData.address1}}" address2="{{::ContacteData.address2}}">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -824,12 +829,15 @@ document.getElementById('stylechange').onclick= function() {
                             </ul>
                         </a>
                     </div>
-                    <div itemprop="availableService" class="col-md-4 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services | limitTo:8" itemscope itemtype="http://schema.org/MedicalTherapy">
+                    <div itemprop="availableService" class="col-md-4 col-sm-6 col-xs-12 bottomlinks center-block Searches" ng-repeat="s in services | limitTo:limit3" itemscope itemtype="http://schema.org/MedicalTherapy">
                         <a itemprop="url" onclick="$(window).scrollTop(10);" title=" {{::s}} {{::areaofcats}}" href="/{{::formData.City}}/{{::s | slugifynolower}}/{{::formData.Area | slugifynolower}}/{{::s | slugifynolower}}-in-{{::formData.Area | slugifynolower}}-{{::formData.City}}">
                             <ul>
                                 <li> {{::s | limitTo:20}} {{s.length > 20 ? '...' : ''}} {{::areaofcats}}</li>
                             </ul>
                         </a>
+                    </div>
+                    <div class="col-md-12 col-xs-12 text-center">
+                    <button class="btn-link" style="color:green;" ng-click='loadMoreservice()'>Load More</button>
                     </div>
                 </div>
             </div>
