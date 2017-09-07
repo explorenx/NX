@@ -580,10 +580,10 @@ $scope.area2 = $routeParams.area;
 
                                           $scope.areas = data;
                                           //alert(JSON.stringify(data));
-                                          angular.forEach(data, function(value, key1) {
+                                          angular.forEach(data, function(area, key1) {
 
-                                              angular.forEach(value.areas, function(area, key2) {
-                                                  if(area.Area.replace(/-/, ' ') == $routeParams.area.replace(/-/g, ' ')) {
+                                              angular.forEach(value.areas, function(area1, key2) {
+                                                  if(area1.Area.replace(/-/, ' ') == $routeParams.area.replace(/-/g, ' ')) {
                                                   //alert(JSON.stringify(area.Area));
                                               metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 //alert(metaDesc);
@@ -603,6 +603,8 @@ $scope.area2 = $routeParams.area;
                                     $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                                     $window.document.title = metaTitle;
                                     $window.document.getElementsByName('title')[0].content = metaTitle;
+                                    $window.document.querySelector('[property="og:title"]').content = metaTitle;
+                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle
                                            $scope.SubAreaLinks = [];       
                                      angular.forEach(area.subArea, function(value, key) {
                                         $scope.SubAreaLinks.push(value);
@@ -629,6 +631,8 @@ $scope.area2 = $routeParams.area;
                                     $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                                     $window.document.title = metaTitle;
                                     $window.document.getElementsByName('title')[0].content = metaTitle;
+                                    $window.document.querySelector('[property="og:title"]').content = metaTitle;
+                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle
 
                                      }
 
@@ -664,9 +668,9 @@ $scope.area2 = $routeParams.area;
                         }
                     }
                         angular.forEach(cat.subcategories, function(value, key) {
-                            if (typeof($routeParams.category) != 'undefined') {
+                            
                             if (value.subCategoryName.replace(/-/g, ' ') == $routeParams.category.replace(/-/g, ' ')) {
-                                //alert(JSON.stringify($routeParams.area));
+                                //alert(JSON.stringify($routeParams.category.replace(/-/g, ' ')));
                                 if ($routeParams.area != undefined) {
                                     $scope.maincat = cat.name;
 
@@ -675,19 +679,19 @@ $scope.area2 = $routeParams.area;
 
                                           $scope.areas = data;
                                           //alert(JSON.stringify(data));
-                                          angular.forEach(data, function(value, key1) {
+                                          angular.forEach(data, function(area1, key1) {
 
-                                              angular.forEach(value.areas, function(area, key2) {
-                                                  if(area.Area.replace(/-/, ' ') == $routeParams.area.replace(/-/g, ' ')) {
+                                              angular.forEach(area1.areas, function(area2, key2) {
+                                                  if(area2.Area.replace(/-/, ' ') == $routeParams.area.replace(/-/g, ' ')) {
                                                   //alert(JSON.stringify(area.Area));
-                                              metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                              metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + value.subCategoryDescriptionShort + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 //alert(metaDesc);
-                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
-                               longDesc = cat.categoryDescriptionLong;
-                                if (typeof(cat.categoryTitle) !== 'undefined') {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + cat.categoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
+                               longDesc = value.subCategoryDescriptionLong;
+                                if (typeof(value.subCategoryTitle) !== 'undefined') {
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 }
-                                if (typeof(cat.categoryTitle) == 'undefined') {
+                                if (typeof(value.subCategoryTitle) == 'undefined') {
                                     metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch';
                                 }
 
@@ -698,6 +702,8 @@ $scope.area2 = $routeParams.area;
                                     $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                                     $window.document.title = metaTitle;
                                     $window.document.getElementsByName('title')[0].content = metaTitle;
+                                    $window.document.querySelector('[property="og:title"]').content = metaTitle;
+                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle
                                            $scope.SubAreaLinks = [];       
                                      angular.forEach(area.subArea, function(value, key) {
                                         $scope.SubAreaLinks.push(value);
@@ -705,14 +711,14 @@ $scope.area2 = $routeParams.area;
                                    // alert(JSON.stringify($scope.maincat));
                                 if($scope.SubAreaLinks.length != 0){   
                                        
-                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') +  ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') +  ", " + $routeParams.city + " , " + value.subCategoryDescriptionShort + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 //alert(metaDesc);
-                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + cat.categoryKeywords + '| Nx-search';
-                               longDesc = cat.categoryDescriptionLong;
-                                if (typeof(cat.categoryTitle) !== 'undefined') {
-                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + cat.categoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
+                                metaKeys = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + " | " + value.subCategoryKeywords + '| Nx-search';
+                               longDesc = value.subCategoryDescriptionLong;
+                                if (typeof(value.subCategoryTitle) !== 'undefined') {
+                                    metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', ' + value.subCategoryTitle + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
                                 }
-                                if (typeof(cat.categoryTitle) == 'undefined') {
+                                if (typeof(value.subCategoryTitle) == 'undefined') {
                                     metaTitle = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + ', NXsearch';
                                 }
 
@@ -723,6 +729,8 @@ $scope.area2 = $routeParams.area;
                                     $window.document.querySelector('[name="twitter:description"]').content = metaDesc;
                                     $window.document.title = metaTitle;
                                     $window.document.getElementsByName('title')[0].content = metaTitle;
+                                    $window.document.querySelector('[property="og:title"]').content = metaTitle;
+                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle
 
                                      }
                                       });
@@ -747,7 +755,7 @@ $scope.area2 = $routeParams.area;
                                 });
                                 // $scope.catname1 = value.subCategoryName;
                                 //$window.document.getElementById('longdescription1').innerHTML = longDesc1;
-                        }}
+                        }
                             //alert(JSON.stringify(cat.name));
                         });
 
