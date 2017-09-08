@@ -78,7 +78,7 @@ var google_remarketing_only = false;
 
 							<a href="/">
 
-								<img src="assets/img/NX-LOGO-300x66.png" alt="">
+								<img itemprop="logo" src="assets/img/NX-LOGO-300x66.png" alt="">
 
 							</a>
 
@@ -217,7 +217,7 @@ var google_remarketing_only = false;
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>Success!</strong> {{::serverMessage}}.
         </div>
-			<div class="container">
+			<div class="container" itemscope itemtype="http://schema.org/LocalBusiness">
 				<div class="row">
 					<div id="tg-twocolumns" class="tg-twocolumns">
 						<div class="col-sm-12 col-xs-12">
@@ -233,7 +233,7 @@ var google_remarketing_only = false;
                                         <div class="row well_new" ng-show="FirstSponsoredClient !=null">
                                             <div class="col-md-2 col-xs-5 col-sm-3">
                                                 <figure class="tg-directpostimg row">
-                                                    <a href="#"><img title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
+                                                    <a href="#"><img itemprop="image" title="{{::FirstSponsoredClient.ClinicName }}, {{::FirstSponsoredClient.Categories }}, {{::FirstSponsoredClient.Area }}, {{::FirstSponsoredClient.City }}" itemprop="photo" src="{{FirstSponsoredClient.imageUrl}}" alt="{{::FirstSponsoredClient.ClinicName }}-{{::FirstSponsoredClient.Area }}-{{::FirstSponsoredClient.City }}-NXsearch.com" width="98" height="98"></a>
                                                     <figcaption ng-show="FirstSponsoredClient.isPaidClient===true">
                                                         <a class="tg-usericon tg-iconvarified">
                                                             <em class="tg-usericonholder">
@@ -598,7 +598,7 @@ var google_remarketing_only = false;
 											<!--<span>{{ss}}</span>-->
 										</div>
                                         <div class="col-md-4 col-xs-12" ng-show="area2 == undefined">
-											<a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{maincat | slugifynolower}}">
+											<a itemprop="url" title="{{maincat}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{maincat | slugifynolower}}/{{maincat | slugifynolower}}-in-{{::city2}}">
 												<ul>
 													<li class="Searches similarsearches " style="line-height: 27px;"><h1 style="color:#70af1a;"> {{maincat}} {{::areaonlink}}</h1></li>
 												</ul>
@@ -614,7 +614,7 @@ var google_remarketing_only = false;
 											<!--<span>{{ss}}</span>-->
 										</div>
                                         <div class="col-md-4 col-xs-12" ng-repeat="ss in SubCategoriesLinks | limitTo:41" ng-show="area2 == undefined">
-											<a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{::ss | slugifynolower}}">
+											<a itemprop="url" title="{{::ss}} {{::areaonlink}}" onclick="$(window).scrollTop(10);" style="color:#70af1a;" href="/{{::city2}}/{{::ss | slugifynolower}}/{{::ss | slugifynolower}}-in-{{::city2}}">
 												<ul>
 													<li class="Searches similarsearches " style="line-height: 27px;"><h1 style="color:#70af1a;"> {{::ss}} {{::areaonlink}}</h1></li>
 												</ul>
