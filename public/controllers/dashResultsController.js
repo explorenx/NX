@@ -1014,7 +1014,7 @@ $scope.area2 = $routeParams.area;
 
         if (vm.file) {
             alert(vm.file.name);
-            var fileName = $scope.formData.ClinicName + '-' + $scope.formData.Area + '-' + $scope.formData.City + '-' + $routeParams.id + '-nxsearch.jpg';
+            var fileName = $scope.formData.ClinicName.replace(/ /g, '-') + '-' + $scope.formData.Area.replace(/ /g, '-') + '-' + $scope.formData.City.replace(/ /g, '-') + '-' + $routeParams.id + '-nxsearch.jpg';
             $scope.formData.imageUrl = 'uploads/clientProfilePictures/' + fileName;
             vm.file.name = fileName;
             //       alert('new file name -' + vm.file.name);//
