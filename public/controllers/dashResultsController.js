@@ -582,7 +582,7 @@ $scope.area2 = $routeParams.area;
                                           //alert(JSON.stringify(data));
                                           angular.forEach(data, function(area, key1) {
 
-                                              angular.forEach(value.areas, function(area1, key2) {
+                                              angular.forEach(area.areas, function(area1, key2) {
                                                   if(area1.Area.replace(/-/, ' ') == $routeParams.area.replace(/-/g, ' ')) {
                                                   //alert(JSON.stringify(area.Area));
                                               metaDesc = $routeParams.category.replace(/-/g, ' ') + " in " + $routeParams.area.replace(/-/g, ' ') + ", " + $routeParams.city + " , " + cat.categoryDescription + " in " + $routeParams.area.replace(/-/g, ' ') + '| Nx-search';
