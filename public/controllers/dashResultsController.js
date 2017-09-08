@@ -703,7 +703,7 @@ $scope.area2 = $routeParams.area;
                                     $window.document.title = metaTitle;
                                     $window.document.getElementsByName('title')[0].content = metaTitle;
                                     $window.document.querySelector('[property="og:title"]').content = metaTitle;
-                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle
+                                    $window.document.querySelector('[name="twitter:title"]').content = metaTitle;
                                            $scope.SubAreaLinks = [];       
                                      angular.forEach(area.subArea, function(value, key) {
                                         $scope.SubAreaLinks.push(value);
@@ -773,10 +773,10 @@ $scope.area2 = $routeParams.area;
                    // $window.document.getElementsByName('title')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     //$window.document.getElementsByName('description')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
                     $window.document.getElementsByName('keywords')[0].content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    $window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
-                    $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                    //$window.document.querySelector('[property="og:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                   // $window.document.querySelector('[property="og:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                   // $window.document.querySelector('[name="twitter:title"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+                   // $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         
                 //$window.document.getElementsByName('description')[0].content = metaDesc;
                 //$window.document.getElementsByName('keywords')[0].content = metaKeys;
@@ -919,9 +919,9 @@ $scope.area2 = $routeParams.area;
                 document.querySelector('[property="og:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
                 document.querySelector('[property="og:description"]').content = data.Socical.twitter + ' | NXsearch';
                 document.querySelector('[name="twitter:title"]').content = data.ClinicName + ' in ' + data.Area + ', ' + data.City + ' ' + '| NXsearch';
-                document.querySelector('[name="twitter:description"]').content = data.Socical.google + ' | NXsearch';
+                document.querySelector('[name="twitter:description"]').content = data.Socical.twitter + ' | NXsearch';
                 document.querySelector('[name="twitter:image"]').content = 'www.nxsearch.com/' + data.imageUrl;
-
+                
             })
             .error(function(data) {
                 console.log('Error: ' + data);
