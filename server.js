@@ -18,7 +18,7 @@ var XMLWriter = require('xml-writer');
 var nodemailer = require("nodemailer");
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-var ClassList = require('classlist')
+var ClassList = require('classlist');
 var database = require('./config/database'); // load the database config
 var home = require('./app/controllers/home/homeController'); //added
 var locations = require('./app/controllers/locations/citiesController');
@@ -71,8 +71,8 @@ mongoose.connect(database.url); // connect to mongoDB database on modulus.io
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); // log every request to the console
-app.use(bodyParser.urlencoded({ 'extended': 'true' })); // parse application/x-www-form-urlencoded
-app.use(bodyParser.json()); // parse application/json
+app.use(bodyParser.urlencoded({ 'extended': 'true' },{limit: '50mb'})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json({limit: '50mb'})); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
