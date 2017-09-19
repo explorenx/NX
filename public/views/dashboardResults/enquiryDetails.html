@@ -98,8 +98,8 @@
                         <td class="text-center">{{enquiry.Area}}</td>
                         <td class="text-center">{{enquiry.category}}</td>
                         <td class="text-center">{{enquiry.usermobile}}</td>
-                        <td class="text-center">{{enquiry.useremail}}</td>    
-                        <td class="text-center">{{enquiry.date}}</td>           
+                        <td class="text-center" style="width:100px; word-wrap:break-word;">{{enquiry.useremail}}</td>    
+                        <td class="text-center">{{enquiry.date | date :  "dd.MM.y"}}</td>           
                     </tr>
                 </tbody>
             </table>
