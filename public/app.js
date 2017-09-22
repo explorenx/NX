@@ -32,7 +32,7 @@ app.directive("loadingIndicator", function (loadingCounts, $timeout) {
         link: function (scope, element, attrs) {
             scope.$on("loading-started", function (e) {
                 loadingCounts.enable_count++;
-                console.log("displaying indicator " + loadingCounts.enable_count);
+                //alert("displaying indicator " + loadingCounts.enable_count);
                 //only show if longer than one sencond
                 $timeout(function () {
                     if (loadingCounts.enable_count > loadingCounts.disable_count) {
@@ -334,6 +334,26 @@ app.directive('myMap', function() {
             markers.push(marker); // add marker to array
             
             google.maps.event.addListener(marker, 'click', function () {
+                var directionsService = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setMap(map);
+                //directionsDisplay.setPanel(map);
+           
+                var request = {
+                  origin: 'Pune', 
+                  destination: attrs.address1 + ', ' + attrs.address2,
+                  travelMode: google.maps.DirectionsTravelMode.DRIVING
+                };
+           
+                directionsService.route(request, function(response, status) {
+                    //alert(status);
+                  if (status == google.maps.DirectionsStatus.OK) {
+                      
+                   
+
+                    directionsDisplay.setDirections(response);
+                  }
+                });
                 // close window if not undefined
                 if (infoWindow !== void 0) {
                     infoWindow.close();
@@ -473,6 +493,11 @@ app.config(function($routeProvider, $locationProvider) {
         
         .when('/login', {
                 templateUrl : 'views/login.html',
+                //controller : 'homeController'
+               
+            })
+            .when('/map', {
+                templateUrl : 'views/map.html',
                 //controller : 'homeController'
                
             })
