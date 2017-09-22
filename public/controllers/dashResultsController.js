@@ -395,6 +395,7 @@ $scope.area2 = $routeParams.area;
             .success(function(data) {
                  //alert(JSON.stringify(data[0]));
                 $scope.resultsofclient = data;
+                
                 $scope.results = shuffle(data, 'isPaidClient');
                 $scope.totalpaid = $scope.results.length;
                // alert( $scope.totalpaid);
@@ -1146,7 +1147,7 @@ $scope.area2 = $routeParams.area;
 
                                     console.log("Latitude: " + value.lat + "\nLongitude: " + value.long);
                                 } else {
-                                    alert("Request failed.")
+                                    alert("Request failed.");
                                 }
                             });
                    $location.path("/clientlist");
@@ -1179,7 +1180,9 @@ $scope.area2 = $routeParams.area;
                                     var recordToInsert = {
                                         ClinicId: data._id,
                                         lat: $scope.formData.lat,
-                                        long: $scope.formData.long
+                                        long: $scope.formData.long,
+                                        address1: $scope.formData.address1,
+                                        address2: $scope.formData.address2
                                     };
                                     $http.post('/api/contact/cliniccontact', recordToInsert)
                                         .success(function(data) {
