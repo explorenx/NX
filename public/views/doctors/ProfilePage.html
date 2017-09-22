@@ -88,7 +88,7 @@ document.getElementById('stylechange').onclick= function() {
 
                                     <div class="col-md-3 col-sm-3 col-xs-6 nopadforsearch">
                                         <div>
-                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="disabled">
+                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="true">
                                                                 <option value="">Select Area</option>
                                                             </select>
                                             <!--{{MainAreas.selectedAreaModel}}-->
@@ -451,15 +451,15 @@ document.getElementById('stylechange').onclick= function() {
                                                         <h3>About</h3>
                                                     </div>
                                                     <div class="row detailprofile" ng-repeat="data in HomeData | filter : data.ClinicId = clientId">
-                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
                                                             <div class="doc-photo-container">
                                                                 <div ng-if="data.Image != ''">
                                                                     <img src="{{::data.Image }}" alt="{{::data.Image }}" class="listing_image" width="100" height="100">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-justify">
-                                                            <div class="col-lg-12 col-xs-12">
+                                                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8 text-justify">
+                                                            <div class="row">
                                                                 <h4 class="pull-left">{{::data.DoctorName}}</h4>
                                                             </div>
                                                             <div class="col-xs-12 text-justify list_specialty" hm-read-more hm-text="{{::data.Description}}" hm-limit="{{limitText}}" hm-more-text="{{moreText}}" hm-less-text="{{lessText}}">
