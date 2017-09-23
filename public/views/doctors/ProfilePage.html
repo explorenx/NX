@@ -80,7 +80,7 @@ document.getElementById('stylechange').onclick= function() {
                                 <form>
                                     <div class="col-md-3 col-sm-3 col-xs-6 nopadforsearch">
 
-                                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="disabled">
+                                        <select class="form-control" select2="" name="city" data-ng-model="client.selectedCityModel" ng-options="c.city as c.city for c in client.cities" ng-disabled="true">
                                                                 <option value=""><i class="fa fa-map-marker" aria-hidden="true"></i> Select City</option>
                                                             </select>
 
@@ -88,7 +88,7 @@ document.getElementById('stylechange').onclick= function() {
 
                                     <div class="col-md-3 col-sm-3 col-xs-6 nopadforsearch">
                                         <div>
-                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' " ng-disabled="true">
+                                            <select class="form-control" select2="" name="city" data-ng-model="MainAreas.selectedAreaModel.Area" ng-options="c.Area as c.Area for c in MainAreas.areas | orderBy : 'Area' ">
                                                                 <option value="">Select Area</option>
                                                             </select>
                                             <!--{{MainAreas.selectedAreaModel}}-->
