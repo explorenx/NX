@@ -1891,6 +1891,11 @@ body.tg-home .tg-main{padding: 20px 0;}
 	width: 100%;
 	float: left;
 }
+.tg-blog{
+	width: 100%;
+	float: left;
+    text-align: justify;
+}
 .tg-counter{
 	width: 33.33%;
 	float: left;

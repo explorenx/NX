@@ -98,7 +98,7 @@
     font-family: 'Heebo', sans-serif;
     font-weight: 400;
     color: #777;
-    background: #dfe8f1;
+    background: #fff;
     position: relative;
     overflow-x: hidden;
   }
@@ -870,7 +870,7 @@
 
   .kw-header.kw-dark,
   .kw-header.kw-dark .kw-sticked {
-    background: #464646;
+    background: #fff;
   }
 
   .kw-header.kw-light,
@@ -888,7 +888,7 @@
   }
 
   .kw-header.kw-transparent {
-    background: transparent;
+    /*background: transparent;*/
   }
 
   .kw-header.kw-theme-color,
@@ -994,6 +994,7 @@
       font-size: 12px;
       position: relative;
       z-index: 2;
+        background-color: #195496;
     
     }
 
@@ -2115,6 +2116,7 @@
       background: #000000;
       opacity: 0.7;
       z-index: 1;
+      background-image: url(../img/pattern.png);
     }
 
     .kw-page-header-media img {
@@ -2284,8 +2286,8 @@
     }
 
     .kw-page-header.kw-type-7 {
-      padding-top: 120px;
-      padding-bottom: 30px;
+      padding-top: 180px;
+      padding-bottom: 180px;
     }
 
     .kw-page-header.kw-type-7 .kw-page-title {
@@ -2313,7 +2315,10 @@
     }
 
     .kw-page-header.kw-type-7 .kw-page-header-content > .container > *:last-child:not(:only-child) {
-      margin-top: 100px;
+      margin-top: 80px;
+      background-color: #00000054;
+      padding: 10px;
+      border-radius: 10px;
     }
 
     .kw-page-header.kw-type-7.kw-dark.kw-transparent .kw-page-header-media::before {
@@ -5548,9 +5553,9 @@
 
     .kw-dim [class*="kw-btn"].kw-yellow,
     [class*="kw-btn"].kw-yellow-type-2 {
-      color: #000 !important;
-      border-color: #13a759;
-      background-color: rgba(0, 255, 123, 0.59);
+      color: #fff !important;
+      border-color: #195496;
+      background-color: rgb(56, 179, 207);
     }
 
     .kw-blue-theme [class*="kw-btn"].kw-yellow-type-2 {
@@ -5568,8 +5573,8 @@
     .kw-dim [class*="kw-btn"].kw-yellow:focus,
     [class*="kw-btn"].kw-yellow-type-2:hover,
     [class*="kw-btn"].kw-yellow-type-2:focus {
-      color: #222 !important;
-      background: #13a759;
+      color: #fff !important;
+      background: #195496;
     }
 
     .kw-dim [class*="kw-btn"].kw-theme-color {
@@ -11825,6 +11830,8 @@
   .kw-footer .container .kw-fsection {
     padding-left: 0px;
     padding-right: 0px;
+      margin-bottom: 100px;
+      margin-top: 40px;
   }
 
   .kw-footer .kw-copyright {
@@ -14026,6 +14033,15 @@
 }
 
 .paralaxbag{
+  background-color: #011021;
+   background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: contain;
+
+}
+
+.paralaxbag-city{
   background-image:url("/assets/img/stat-Background.jpg");
    background-attachment: fixed;
     background-position: center;
@@ -14034,6 +14050,22 @@
   
 }
 
+.paralaxbag-color{
+  background-color: #195496;
+   background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: contain;
+    background-image:url("/assets/img/nxsearch-pattern.png");
+
+}
+.margin-left{
+    margin-left: 30px !important;
+}
+
+.spacer5 {
+  height: 20px;
+}
 @media only screen and (max-device-width: 1024px) {
     .paralaxbag {
         background-attachment: scroll;
@@ -14041,7 +14073,8 @@
     }
 }
 
-.paralaxbag .whitegb{
+
+.paralaxbag-city     .whitegb{
   background-color:rgba(240, 248, 255, 0.75);
   width:100%;
   padding: 20px 0px;
@@ -14870,4 +14903,3 @@ border-bottom: 2px solid #eaeaea;
   }
   html{overflow-y:scroll}.nav1{padding-left:0;margin-bottom:0;list-style:none}.nav1>li{position:relative;display:block;padding:10px 15px}.nav1>li:active,.nav1>li:focus,.nav1>li:hover,.nav1>li:visited{text-decoration:none;background-color:#37A0CE;cursor:pointer}.nav1>li.disabled{color:#37A0CE}.nav1>li.disabled:focus,.nav1>li.disabled:hover{color:#37A0CE;text-decoration:none;cursor:not-allowed;background-color:transparent}.nav1 .open>li:active,.nav1 .open>li:focus,.nav1 .open>li:hover{background-color:#37A0CE;border-color:#337ab7}.subox{border:1px solid #ccc;border-radius:4px}.profileheight{font-size:14px;line-height:24px}input[type=file]{width:300px}.login a p{display:none}.login a:hover p{display:block}
 
-  
