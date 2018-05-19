@@ -1010,6 +1010,7 @@ body.tg-home .tg-main{padding: 20px 0;}
 	float: left;
     padding: 30px;
     background-color: #fff;
+    box-shadow: 2px 3px 6px 0px rgba(177, 177, 177, 0.44);
 
 }
 #tg-content{
