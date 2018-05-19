@@ -870,7 +870,7 @@
 
   .kw-header.kw-dark,
   .kw-header.kw-dark .kw-sticked {
-    background: #fff;
+    background: #484848;
   }
 
   .kw-header.kw-light,
@@ -2117,6 +2117,7 @@
       opacity: 0.7;
       z-index: 1;
       background-image: url(../img/pattern.png);
+      background: rgba(93,89,83,.3) url(pattern.png) repeat;
     }
 
     .kw-page-header-media img {
