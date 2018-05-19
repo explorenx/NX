@@ -1008,6 +1008,9 @@ body.tg-home .tg-main{padding: 20px 0;}
 #tg-twocolumns{
 	width: 100%;
 	float: left;
+    padding: 30px;
+    background-color: #fff;
+
 }
 #tg-content{
 	z-index: 2;
