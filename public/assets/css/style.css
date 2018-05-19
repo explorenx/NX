@@ -11802,7 +11802,7 @@
   }
 
   .kw-footer[data-bg] {
-    background-color: transparent;
+    background-color: #4171caab;
   }
 
   .kw-footer[data-bg]::before {
