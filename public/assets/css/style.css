@@ -2317,7 +2317,7 @@
 
     .kw-page-header.kw-type-7 .kw-page-header-content > .container > *:last-child:not(:only-child) {
       margin-top: 80px;
-      background-color: #00000054;
+      background-color:rgba(0, 0, 0, 0.22);
       padding: 10px;
       border-radius: 10px;
     }
