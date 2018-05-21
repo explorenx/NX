@@ -328,7 +328,7 @@ $scope.area2 = $routeParams.area;
                     $window.document.querySelector('[name="twitter:description"]').content = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
         }
                  if($location.path() == '/'){
-            $window.document.title = 'Find Doctors in Pune, Dentist in Pune, Preschools in Pune, Diagnostic Labs in Pune, Spas &amp; Salons in Pune | NX-search';
+            $window.document.title = 'Welcome to NXsearch';
         }
 
         if($location.path() == '/register'){
